@@ -47,21 +47,13 @@ const posts = [
 ---
 
 <Layout>
-  <section style="margin-bottom: 3rem;">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #333;">Latest Updates</h2>
-    <p style="color: #666; font-size: 1.1rem;">
-      Stay informed about the rapidly evolving world of AI agents, autonomous systems, and the new economic models they enable.
-    </p>
+  <section class="intro">
+    <h2>Curated news and insights about AI agents and the autonomous economy.</h2>
   </section>
 
   <section>
     {posts.map(post => (
       <BlogPost {...post} />
     ))}
-  </section>
-
-  <section style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <h3 style="margin-bottom: 1rem;">📬 Stay Updated</h3>
-    <p>Get the latest agent economy news delivered to your inbox. (Coming soon)</p>
   </section>
 </Layout>

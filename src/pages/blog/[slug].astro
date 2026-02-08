@@ -115,25 +115,20 @@ const post = posts[slug];
 ---
 
 <Layout>
-  <article style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">{post.title}</h1>
-    <div style="color: #666; margin-bottom: 1.5rem;">
-      <time>{post.date}</time> • <span>Source: {post.source}</span>
-    </div>
+  <article class="article-content">
+    <h1>{post.title}</h1>
+    <time>{post.date} · Source: {post.source}</time>
     
-    <div style="line-height: 1.8; color: #333;" set:html={post.content} />
+    <div set:html={post.content} />
     
-    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
-      <h4 style="margin-bottom: 0.5rem;">Tags:</h4>
-      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+      <div class="tags">
         {post.tags.map(tag => (
-          <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; color: #666;">{tag}</span>
+          <span>{tag}</span>
         ))}
       </div>
     </div>
   </article>
   
-  <div style="margin-top: 2rem;">
-    <a href="/" style="color: #667eea; text-decoration: none;">← Back to all articles</a>
-  </div>
+  <a href="/" class="back-link">← All articles</a>
 </Layout>

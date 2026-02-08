@@ -2,17 +2,13 @@
 const { title, excerpt, date, tags, slug } = Astro.props;
 ---
 
-<article style="background: white; padding: 2rem; margin-bottom: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer;" 
-         onmouseover="this.style.transform='translateY(-4px)'" 
-         onmouseout="this.style.transform='translateY(0)'">
-  <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
-    <a href={`/blog/${slug}`} style="color: #333; text-decoration: none;">{title}</a>
-  </h3>
-  <time style="color: #666; font-size: 0.9rem;">{date}</time>
-  <p style="margin: 1rem 0; color: #555; line-height: 1.6;">{excerpt}</p>
-  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+<article>
+  <h2><a href={`/blog/${slug}`}>{title}</a></h2>
+  <time>{date}</time>
+  <p>{excerpt}</p>
+  <div class="tags">
     {tags.map(tag => (
-      <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; color: #666;">{tag}</span>
+      <span>{tag}</span>
     ))}
   </div>
 </article>

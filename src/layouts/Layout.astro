@@ -10,79 +10,252 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{siteTitle}</title>
     <meta name="description" content={siteDescription}>
-    <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style is:global>
+        :root {
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --color-bg: #fafafa;
+            --color-text: #171717;
+            --color-text-secondary: #525252;
+            --color-text-muted: #737373;
+            --color-border: #e5e5e5;
+            --max-width: 680px;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2.5rem;
+            --space-xl: 4rem;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: var(--font-sans);
+            font-weight: 400;
             line-height: 1.6;
-            color: #333;
-            background: #fafafa;
+            color: var(--color-text);
+            background: var(--color-bg);
+            letter-spacing: -0.01em;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        a:hover {
+            opacity: 0.6;
         }
         
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            max-width: var(--max-width);
+            margin: 0 auto;
         }
         
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
         
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        header h1 a {
+            color: var(--color-text);
         }
         
         nav {
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-md) var(--space-lg);
+            display: flex;
+            gap: var(--space-md);
         }
         
         nav a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 400;
         }
         
         nav a:hover {
-            text-decoration: underline;
+            color: var(--color-text);
+            opacity: 1;
         }
         
         main {
-            max-width: 800px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 0 var(--space-md) var(--space-xl);
+        }
+        
+        article {
+            margin-bottom: var(--space-xl);
+        }
+        
+        article h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: var(--space-xs);
+            letter-spacing: -0.02em;
+        }
+        
+        article h2 a {
+            color: var(--color-text);
+        }
+        
+        article time {
+            display: block;
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-sm);
+        }
+        
+        article p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tags span {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            background: transparent;
+            padding: 0;
+        }
+        
+        .tags span::before {
+            content: '#';
         }
         
         footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            border-top: 1px solid #eee;
-            margin-top: 3rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-md);
+            border-top: 1px solid var(--color-border);
+        }
+        
+        footer p {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+        }
+        
+        footer a {
+            color: var(--color-text-secondary);
+        }
+        
+        .intro {
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .intro h2 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.02em;
+        }
+        
+        .intro p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: var(--space-lg);
+            letter-spacing: -0.03em;
+        }
+        
+        .article-content {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .article-content h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.02em;
+        }
+        
+        .article-content time {
+            display: block;
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .article-content p {
+            margin-bottom: var(--space-md);
+            color: var(--color-text);
+        }
+        
+        .article-content ul {
+            margin-bottom: var(--space-md);
+            margin-left: var(--space-md);
+        }
+        
+        .article-content li {
+            margin-bottom: var(--space-xs);
+            color: var(--color-text);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: var(--space-xl);
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+        
+        @media (max-width: 640px) {
+            header {
+                padding: var(--space-lg) var(--space-md);
+            }
+            
+            .intro h2 {
+                font-size: 1.5rem;
+            }
+            
+            article h2 {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>🤖 Agent Economy</h1>
-        <p>Curated news and insights about AI agents and the autonomous economy</p>
+        <h1><a href="/">Agent Economy</a></h1>
     </header>
     
     <nav>
-        <a href="/">Home</a>
-        <a href="/blog">Articles</a>
+        <a href="/">Articles</a>
         <a href="/about">About</a>
+        <a href="/rss.xml">RSS</a>
     </nav>
     
     <main>
@@ -90,7 +263,7 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     </main>
     
     <footer>
-        <p>Built with Astro • Deployed on Vercel</p>
+        <p>Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.</p>
     </footer>
 </body>
 </html>
