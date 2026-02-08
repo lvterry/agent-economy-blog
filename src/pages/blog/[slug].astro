@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'openai-codex-agent' } },
+    { params: { slug: 'ai-agent-market-size' } },
+    { params: { slug: 'devin-first-ai-engineer' } },
+    { params: { slug: 'multi-agent-systems' } },
+    { params: { slug: 'agent-income-generation' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const posts = {
+  'openai-codex-agent': {
+    title: 'OpenAI Codex: The Rise of AI Software Agents',
+    date: '2026-02-08',
+    content: `
+      <p>OpenAI has unveiled Codex, a groundbreaking AI agent capable of autonomously writing, debugging, and deploying code. This represents a major milestone in the development of AI agents that can perform complex software engineering tasks.</p>
+      
+      <p>Key features include:</p>
+      <ul>
+        <li>Autonomous code generation and debugging</li>
+        <li>Integration with development environments</li>
+        <li>Ability to handle multiple files and complex codebases</li>
+        <li>Real-time collaboration with human developers</li>
+      </ul>
+      
+      <p>The implications for the agent economy are significant. As these tools become more capable, we may see a shift in how software is developed, with AI agents handling increasingly complex tasks.</p>
+    `,
+    tags: ['OpenAI', 'Codex', 'AI Agents', 'Development'],
+    source: 'Hacker News'
+  },
+  'ai-agent-market-size': {
+    title: 'The AI Agent Market: $216 Billion by 2030',
+    date: '2026-02-07',
+    content: `
+      <p>According to recent market research, the autonomous AI agent market is projected to reach $216 billion by 2030, representing a compound annual growth rate (CAGR) of over 40%.</p>
+      
+      <p>The growth is driven by:</p>
+      <ul>
+        <li>Enterprise adoption for customer service and support</li>
+        <li>Consumer applications in personal productivity</li>
+        <li>Integration with existing software platforms</li>
+        <li>Advancements in large language models</li>
+      </ul>
+      
+      <p>This market size indicates that AI agents are moving from experimental technology to mainstream business tools.</p>
+    `,
+    tags: ['Market Research', 'AI Economy', 'Business'],
+    source: 'Industry Report'
+  },
+  'devin-first-ai-engineer': {
+    title: 'Devin: The First Fully Autonomous AI Software Engineer',
+    date: '2026-02-06',
+    content: `
+      <p>Cognition Labs has introduced Devin, an AI system that can independently plan, code, debug, and deploy software applications. Unlike coding assistants, Devin can work on entire projects from start to finish.</p>
+      
+      <p>Devin's capabilities include:</p>
+      <ul>
+        <li>Breaking down complex projects into manageable steps</li>
+        <li>Writing and testing code independently</li>
+        <li>Debugging and fixing errors</li>
+        <li>Deploying to production environments</li>
+      </ul>
+      
+      <p>This represents a significant step toward truly autonomous software development agents.</p>
+    `,
+    tags: ['Devin', 'AI Engineering', 'Autonomous AI'],
+    source: 'TechCrunch'
+  },
+  'multi-agent-systems': {
+    title: 'Multi-Agent Systems: The Next Frontier',
+    date: '2026-02-05',
+    content: `
+      <p>Research in multi-agent systems is showing promising results, where multiple AI agents collaborate to solve problems that single agents cannot handle alone.</p>
+      
+      <p>Key developments include:</p>
+      <ul>
+        <li>Agent specialization and role assignment</li>
+        <li>Inter-agent communication protocols</li>
+        <li>Collaborative problem solving</li>
+        <li>Emergent behaviors from agent interactions</li>
+      </ul>
+      
+      <p>These systems could enable more complex automation in business processes and scientific research.</p>
+    `,
+    tags: ['Multi-Agent', 'Research', 'AI Systems'],
+    source: 'Hacker News'
+  },
+  'agent-income-generation': {
+    title: 'Can AI Agents Generate Real Income?',
+    date: '2026-02-04',
+    content: `
+      <p>As AI agents become more capable, a new question emerges: Can they generate actual economic value and income for their owners?</p>
+      
+      <p>Emerging models include:</p>
+      <ul>
+        <li>AI agents providing freelance services</li>
+        <li>Automated content creation and monetization</li>
+        <li>Trading and financial management bots</li>
+        <li>Customer service and support automation</li>
+      </ul>
+      
+      <p>While still early, some entrepreneurs are already reporting income from AI agent operations.</p>
+    `,
+    tags: ['Economics', 'AI Business', 'Future of Work'],
+    source: 'Blog Analysis'
+  }
+};
+
+const post = posts[slug];
+---
+
+<Layout>
+  <article style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">{post.title}</h1>
+    <div style="color: #666; margin-bottom: 1.5rem;">
+      <time>{post.date}</time> • <span>Source: {post.source}</span>
+    </div>
+    
+    <div style="line-height: 1.8; color: #333;" set:html={post.content} />
+    
+    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+      <h4 style="margin-bottom: 0.5rem;">Tags:</h4>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        {post.tags.map(tag => (
+          <span style="background: #f0f0f0; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; color: #666;">{tag}</span>
+        ))}
+      </div>
+    </div>
+  </article>
+  
+  <div style="margin-top: 2rem;">
+    <a href="/" style="color: #667eea; text-decoration: none;">← Back to all articles</a>
+  </div>
+</Layout>

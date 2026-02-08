@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const posts = [
+  {
+    slug: 'openai-codex-agent',
+    title: 'OpenAI Codex: The Rise of AI Software Agents',
+    excerpt: 'OpenAI introduces Codex, an AI agent that can write, debug, and deploy code autonomously, marking a significant step toward the agent economy.',
+    date: '2026-02-08',
+    tags: ['OpenAI', 'Codex', 'AI Agents', 'Development'],
+    source: 'Hacker News'
+  },
+  {
+    slug: 'ai-agent-market-size',
+    title: 'The AI Agent Market: $216 Billion by 2030',
+    excerpt: 'New research predicts the autonomous AI agent market will reach $216 billion by 2030, driven by enterprise adoption and consumer applications.',
+    date: '2026-02-07',
+    tags: ['Market Research', 'AI Economy', 'Business'],
+    source: 'Industry Report'
+  },
+  {
+    slug: 'devin-first-ai-engineer',
+    title: 'Devin: The First Fully Autonomous AI Software Engineer',
+    excerpt: 'Cognition Labs introduces Devin, an AI that can plan, code, debug, and deploy entire applications without human intervention.',
+    date: '2026-02-06',
+    tags: ['Devin', 'AI Engineering', 'Autonomous AI'],
+    source: 'TechCrunch'
+  },
+  {
+    slug: 'multi-agent-systems',
+    title: 'Multi-Agent Systems: The Next Frontier',
+    excerpt: 'How multiple AI agents working together can solve complex problems beyond the capabilities of single models.',
+    date: '2026-02-05',
+    tags: ['Multi-Agent', 'Research', 'AI Systems'],
+    source: 'Hacker News'
+  },
+  {
+    slug: 'agent-income-generation',
+    title: 'Can AI Agents Generate Real Income?',
+    excerpt: 'Exploring the emerging models where AI agents provide services and generate revenue for their owners.',
+    date: '2026-02-04',
+    tags: ['Economics', 'AI Business', 'Future of Work'],
+    source: 'Blog Analysis'
+  }
+];
+---
+
+<Layout>
+  <section style="margin-bottom: 3rem;">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #333;">Latest Updates</h2>
+    <p style="color: #666; font-size: 1.1rem;">
+      Stay informed about the rapidly evolving world of AI agents, autonomous systems, and the new economic models they enable.
+    </p>
+  </section>
+
+  <section>
+    {posts.map(post => (
+      <BlogPost {...post} />
+    ))}
+  </section>
+
+  <section style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h3 style="margin-bottom: 1rem;">📬 Stay Updated</h3>
+    <p>Get the latest agent economy news delivered to your inbox. (Coming soon)</p>
+  </section>
+</Layout>
