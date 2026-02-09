@@ -6,6 +6,7 @@ export function getStaticPaths() {
     { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
     { params: { slug: 'ai-hires-humans' } },
     { params: { slug: 'anthropic-model-context-protocol' } },
+    { params: { slug: 'google-a2a-protocol' } },
   ];
 }
 
@@ -124,6 +125,45 @@ const posts = {
     `,
     tags: ['Anthropic', 'MCP', 'AI-Standards'],
     source: 'Anthropic'
+  },
+  'google-a2a-protocol': {
+    titleZh: 'Google 推出 A2A 协议：智能体互操作的新时代',
+    titleEn: 'Google Introduces A2A Protocol: A New Era of Agent Interoperability',
+    date: '2025-04-09',
+    contentZh: `
+      <p>Google 宣布推出 A2A（Agent-to-Agent）协议，这是一个开放协议，为智能体之间的协作提供了标准方式，无论底层框架或供应商如何。这标志着智能体互操作新时代的开始。</p>
+      
+      <p>A2A 的设计遵循五项关键原则：</p>
+      <ul>
+        <li><b>拥抱智能体能力</b>：A2A 专注于使智能体能够以自然的、非结构化的方式协作，即使它们不共享内存、工具和上下文。</li>
+        <li><b>基于现有标准构建</b>：该协议建立在 HTTP、SSE、JSON-RPC 等流行的现有标准之上，意味着更容易与企业日常使用的现有 IT 堆栈集成。</li>
+        <li><b>默认安全</b>：A2A 设计支持企业级身份验证和授权，在发布时即与 OpenAPI 的身份验证方案保持一致。</li>
+        <li><b>支持长时间运行的任务</b>：A2A 设计灵活，支持从快速任务到可能需要数小时甚至数天的深度研究场景。</li>
+        <li><b>模态无关</b>：智能体世界不仅限于文本，A2A 支持各种模态，包括音频和视频流。</li>
+      </ul>
+      
+      <p>Google 与 50 多个合作伙伴共同推动这一协议的发展，包括 Atlassian、Box、Cohere、LangChain、MongoDB、Salesforce、ServiceNow 等。</p>
+      
+      <p>阅读完整文章：<a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/</a></p>
+    `,
+    contentEn: `
+      <p>Google announced the A2A (Agent-to-Agent) protocol, an open protocol that provides a standard way for agents to collaborate with each other, regardless of the underlying framework or vendor. This marks the beginning of a new era of agent interoperability.</p>
+      
+      <p>A2A follows five key design principles:</p>
+      <ul>
+        <li><b>Embrace agentic capabilities</b>: A2A focuses on enabling agents to collaborate in their natural, unstructured modalities, even when they don't share memory, tools and context.</li>
+        <li><b>Build on existing standards</b>: The protocol is built on top of existing, popular standards including HTTP, SSE, JSON-RPC, making it easier to integrate with existing IT stacks.</li>
+        <li><b>Secure by default</b>: A2A is designed to support enterprise-grade authentication and authorization, with parity to OpenAPI's authentication schemes at launch.</li>
+        <li><b>Support for long-running tasks</b>: A2A is designed to be flexible and support scenarios from quick tasks to deep research that may take hours or even days.</li>
+        <li><b>Modality agnostic</b>: The agentic world isn't limited to just text, which is why A2A supports various modalities, including audio and video streaming.</li>
+      </ul>
+      
+      <p>Google is working with over 50 partners to advance this protocol, including Atlassian, Box, Cohere, LangChain, MongoDB, Salesforce, ServiceNow, and more.</p>
+      
+      <p>Read the full article at <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/</a></p>
+    `,
+    tags: ['Google', 'A2A', 'Agent-Interoperability'],
+    source: 'Google Developers Blog'
   }
 };
 

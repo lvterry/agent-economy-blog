@@ -26,6 +26,14 @@ export async function GET(context) {
       descriptionZh: 'Anthropic 开源 MCP，一个连接 AI 助手与数据系统的开放标准...',
       link: '/blog/anthropic-model-context-protocol',
     },
+    {
+      title: 'Google Introduces A2A Protocol: A New Era of Agent Interoperability',
+      titleZh: 'Google 推出 A2A 协议：智能体互操作的新时代',
+      pubDate: new Date('2025-04-09'),
+      description: 'Google announces A2A open protocol enabling agents from different frameworks and vendors to collaborate...',
+      descriptionZh: 'Google 宣布 A2A 开放协议，让不同框架和供应商的智能体能够协作...',
+      link: '/blog/google-a2a-protocol',
+    },
   ];
 
   return rss({
