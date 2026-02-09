@@ -178,7 +178,7 @@ const post = posts[slug];
     <div class="lang-content lang-en">
       <h1>{post.titleEn}</h1>
     </div>
-    <time>{post.date} · Source: {post.source}</time>
+    <time>{post.date}</time>
     
     <div class="lang-content lang-zh active" set:html={post.contentZh} />
     <div class="lang-content lang-en" set:html={post.contentEn} />
