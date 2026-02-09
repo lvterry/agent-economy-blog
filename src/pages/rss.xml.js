@@ -18,6 +18,14 @@ export async function GET(context) {
       descriptionZh: 'Google 发布 AP2 协议，一个建立在 A2A 之上的开放标准，支持 AI 智能体之间的安全支付交易...',
       link: '/blog/google-announced-agent-payments-protocol-ap2',
     },
+    {
+      title: 'Anthropic Introduces Model Context Protocol (MCP)',
+      titleZh: 'Anthropic 发布 Model Context Protocol (MCP)',
+      pubDate: new Date('2024-11-25'),
+      description: 'Anthropic open-sources MCP, an open standard connecting AI assistants to data systems...',
+      descriptionZh: 'Anthropic 开源 MCP，一个连接 AI 助手与数据系统的开放标准...',
+      link: '/blog/anthropic-model-context-protocol',
+    },
   ];
 
   return rss({
