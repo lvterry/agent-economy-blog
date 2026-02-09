@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'AI Hires Humans: A New Paradigm in the Agent Economy',
+      titleZh: 'AI 雇佣人类：智能体经济的新范式',
+      pubDate: new Date('2026-02-09'),
+      description: 'Rent a Human introduces a disruptive concept where AI agents hire humans for physical tasks...',
+      descriptionZh: 'Rent a Human 提出颠覆性概念：AI 智能体雇佣人类完成物理任务...',
+      link: '/blog/ai-hires-humans',
+    },
+    {
       title: 'Google Announced Agent Payments Protocol (AP2)',
       titleZh: 'Google 发布 Agent Payments Protocol (AP2)',
       pubDate: new Date('2026-02-09'),

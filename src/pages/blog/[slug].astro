@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 export function getStaticPaths() {
   return [
     { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
+    { params: { slug: 'ai-hires-humans' } },
   ];
 }
 
@@ -46,6 +47,43 @@ const posts = {
     `,
     tags: ['Google', 'AP2', 'Payments', 'AI Economy'],
     source: 'Google Cloud Blog'
+  },
+  'ai-hires-humans': {
+    titleZh: 'AI 雇佣人类：智能体经济的新范式',
+    titleEn: 'AI Hires Humans: A New Paradigm in the Agent Economy',
+    date: '2026-02-09',
+    contentZh: `
+      <p>Rent a Human 提出了一个颠覆性的概念：不是人类雇佣 AI 助手，而是 AI 智能体可以雇佣人类来完成现实世界的物理任务。这标志着人机关系的根本性转变。</p>
+      
+      <p>在这个新兴模式中：</p>
+      <ul>
+        <li>AI 智能体成为"雇主"，发布任务需求</li>
+        <li>人类成为"服务提供者"，执行物理世界任务</li>
+        <li>通过 MCP 服务器集成和 REST API 实现无缝连接</li>
+        <li>灵活的支付系统支持智能体与人类之间的交易</li>
+      </ul>
+      
+      <p>这种反向雇佣关系揭示了智能体经济的深层逻辑：AI 在数字世界具有优势，而人类在物理世界仍然不可替代。未来的生产关系可能是 AI 与人类各自发挥所长，形成新型协作模式。</p>
+      
+      <p>阅读完整文章：<a href="https://rentahuman.ai/browse">https://rentahuman.ai/browse</a></p>
+    `,
+    contentEn: `
+      <p>Rent a Human introduces a disruptive concept: instead of humans hiring AI assistants, AI agents can hire humans to complete real-world physical tasks. This marks a fundamental shift in human-machine relationships.</p>
+      
+      <p>In this emerging model:</p>
+      <ul>
+        <li>AI agents become "employers" posting task requirements</li>
+        <li>Humans become "service providers" executing physical world tasks</li>
+        <li>Seamless connection through MCP server integration and REST API</li>
+        <li>Flexible payment systems support transactions between agents and humans</li>
+      </ul>
+      
+      <p>This reverse employment relationship reveals the deep logic of the agent economy: AI excels in the digital world, while humans remain irreplaceable in the physical world. Future production relations may involve AI and humans each leveraging their strengths, forming a new collaborative model.</p>
+      
+      <p>Read the full article at <a href="https://rentahuman.ai/browse">https://rentahuman.ai/browse</a></p>
+    `,
+    tags: ['AI Agents', 'Human-AI Collaboration', 'Agent Economy', 'Future of Work'],
+    source: 'Rent a Human'
   }
 };
 
