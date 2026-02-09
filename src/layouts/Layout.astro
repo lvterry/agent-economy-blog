@@ -311,34 +311,42 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         </p>
     </footer>
     
-    <script>
-        // Get saved language preference or default to Chinese
-        let currentLang = localStorage.getItem('preferred-lang') || 'zh';
-        
-        function switchLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('preferred-lang', lang);
-            updateLanguage();
-        }
-        
-        function updateLanguage() {
-            // Update buttons
-            document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
-            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+    <script is:inline>
+        (function() {
+            // Get saved language preference or default to Chinese
+            window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
             
-            // Update all elements with data-zh and data-en attributes
-            document.querySelectorAll('[data-zh][data-en]').forEach(el => {
-                el.textContent = el.getAttribute('data-' + currentLang);
-            });
+            window.switchLang = function(lang) {
+                window.currentLang = lang;
+                localStorage.setItem('preferred-lang', lang);
+                window.updateLanguage();
+            };
             
-            // Show/hide language content
-            document.querySelectorAll('.lang-content').forEach(el => {
-                el.classList.toggle('active', el.classList.contains('lang-' + currentLang));
-            });
-        }
-        
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', updateLanguage);
+            window.updateLanguage = function() {
+                // Update buttons
+                var btnZh = document.getElementById('btn-zh');
+                var btnEn = document.getElementById('btn-en');
+                if (btnZh) btnZh.classList.toggle('active', window.currentLang === 'zh');
+                if (btnEn) btnEn.classList.toggle('active', window.currentLang === 'en');
+                
+                // Update all elements with data-zh and data-en attributes
+                document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+                    el.textContent = el.getAttribute('data-' + window.currentLang);
+                });
+                
+                // Show/hide language content
+                document.querySelectorAll('.lang-content').forEach(function(el) {
+                    el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
+                });
+            };
+            
+            // Initialize on page load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', window.updateLanguage);
+            } else {
+                window.updateLanguage();
+            }
+        })();
     </script>
 </body>
 </html>
