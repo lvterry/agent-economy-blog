@@ -61,9 +61,12 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         }
         
         header {
-            padding: var(--space-xl) var(--space-md);
+            padding: var(--space-xl) var(--space-md) var(--space-md);
             max-width: var(--max-width);
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
         }
         
         header h1 {
@@ -74,6 +77,32 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         
         header h1 a {
             color: var(--color-text);
+        }
+        
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .lang-switch button {
+            background: none;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            font-family: inherit;
+            font-size: inherit;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-switch button:hover {
+            color: var(--color-text);
+        }
+        
+        .lang-switch button.active {
+            color: var(--color-text);
+            font-weight: 500;
         }
         
         nav {
@@ -99,6 +128,22 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 var(--space-md) var(--space-xl);
+        }
+        
+        footer {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-md);
+            border-top: 1px solid var(--color-border);
+        }
+        
+        footer p {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+        }
+        
+        footer a {
+            color: var(--color-text-secondary);
         }
         
         article {
@@ -146,22 +191,6 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         
         .tags span::before {
             content: '#';
-        }
-        
-        footer {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: var(--space-xl) var(--space-md);
-            border-top: 1px solid var(--color-border);
-        }
-        
-        footer p {
-            font-size: 0.8125rem;
-            color: var(--color-text-muted);
-        }
-        
-        footer a {
-            color: var(--color-text-secondary);
         }
         
         .intro {
@@ -232,9 +261,19 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             color: var(--color-text-secondary);
         }
         
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
         @media (max-width: 640px) {
             header {
-                padding: var(--space-lg) var(--space-md);
+                padding: var(--space-lg) var(--space-md) var(--space-sm);
+                flex-direction: column;
+                gap: var(--space-sm);
             }
             
             .intro h2 {
@@ -250,11 +289,15 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
 <body>
     <header>
         <h1><a href="/">Agent Economy</a></h1>
+        <div class="lang-switch">
+            <button onclick="switchLang('zh')" id="btn-zh" class="active">中</button>
+            <button onclick="switchLang('en')" id="btn-en">EN</button>
+        </div>
     </header>
     
     <nav>
-        <a href="/">Articles</a>
-        <a href="/about">About</a>
+        <a href="/" data-zh="文章" data-en="Articles">Articles</a>
+        <a href="/about" data-zh="关于" data-en="About">About</a>
         <a href="/rss.xml">RSS</a>
     </nav>
     
@@ -263,7 +306,39 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     </main>
     
     <footer>
-        <p>Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.</p>
+        <p data-zh="关于 AI 智能体和自主经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
+            Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
+        </p>
     </footer>
+    
+    <script>
+        // Get saved language preference or default to Chinese
+        let currentLang = localStorage.getItem('preferred-lang') || 'zh';
+        
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferred-lang', lang);
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            // Update buttons
+            document.getElementById('btn-zh').classList.toggle('active', currentLang === 'zh');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            
+            // Update all elements with data-zh and data-en attributes
+            document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+            
+            // Show/hide language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.toggle('active', el.classList.contains('lang-' + currentLang));
+            });
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', updateLanguage);
+    </script>
 </body>
 </html>

@@ -3,21 +3,39 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <h1 class="page-title">About</h1>
+  <h1 class="page-title" data-zh="关于" data-en="About">About</h1>
   
   <div class="article-content">
-    <p>The agent economy represents a new paradigm where AI agents autonomously perform tasks, make decisions, and generate economic value. From software engineering to content creation, customer service to financial trading, AI agents are becoming capable economic actors.</p>
+    <div class="lang-content lang-zh active">
+      <p>智能体经济代表着一种新范式，AI 智能体自主执行任务、做出决策并产生经济价值。从软件工程到内容创作，从客户服务到金融交易，AI 智能体正在成为有能力的经济参与者。</p>
+      
+      <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">我们涵盖的内容</h3>
+      <ul style="margin-left: 1.5rem; line-height: 2; color: var(--color-text-secondary);">
+        <li>新的 AI 智能体发布和能力</li>
+        <li>智能体技术的市场趋势和投资</li>
+        <li>实际应用和案例研究</li>
+        <li>智能体驱动业务的商业模式</li>
+        <li>技术发展和研究</li>
+      </ul>
+      
+      <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">保持更新</h3>
+      <p>订阅我们的 <a href="/rss.xml" style="text-decoration: underline;">RSS 提要</a>，获取最新文章。</p>
+    </div>
     
-    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">What We Cover</h3>
-    <ul style="margin-left: 1.5rem; line-height: 2; color: var(--color-text-secondary);">
-      <li>New AI agent releases and capabilities</li>
-      <li>Market trends and investment in agent technology</li>
-      <li>Real-world applications and case studies</li>
-      <li>Economic models for agent-powered businesses</li>
-      <li>Technical developments and research</li>
-    </ul>
-    
-    <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">Stay Updated</h3>
-    <p>Subscribe to our <a href="/rss.xml" style="text-decoration: underline;">RSS feed</a> to get the latest articles delivered to your reader.</p>
+    <div class="lang-content lang-en">
+      <p>The agent economy represents a new paradigm where AI agents autonomously perform tasks, make decisions, and generate economic value. From software engineering to content creation, customer service to financial trading, AI agents are becoming capable economic actors.</p>
+      
+      <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">What We Cover</h3>
+      <ul style="margin-left: 1.5rem; line-height: 2; color: var(--color-text-secondary);">
+        <li>New AI agent releases and capabilities</li>
+        <li>Market trends and investment in agent technology</li>
+        <li>Real-world applications and case studies</li>
+        <li>Economic models for agent-powered businesses</li>
+        <li>Technical developments and research</li>
+      </ul>
+      
+      <h3 style="margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 500;">Stay Updated</h3>
+      <p>Subscribe to our <a href="/rss.xml" style="text-decoration: underline;">RSS feed</a> to get the latest articles.</p>
+    </div>
   </div>
 </Layout>
