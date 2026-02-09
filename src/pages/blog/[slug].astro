@@ -3,53 +3,16 @@ import Layout from '../../layouts/Layout.astro';
 
 export function getStaticPaths() {
   return [
-    { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
     { params: { slug: 'ai-hires-humans' } },
-    { params: { slug: 'anthropic-model-context-protocol' } },
+    { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
     { params: { slug: 'google-a2a-protocol' } },
+    { params: { slug: 'anthropic-model-context-protocol' } },
   ];
 }
 
 const { slug } = Astro.params;
 
 const posts = {
-  'google-announced-agent-payments-protocol-ap2': {
-    titleZh: 'Google 发布 Agent Payments Protocol (AP2)',
-    titleEn: 'Google Announced Agent Payments Protocol (AP2)',
-    date: '2025-09-16',
-    contentZh: `
-      <p>Google 发布了 Agent Payments Protocol (AP2)，这是一个建立在 A2A (Agent to Agent Protocol) 之上的开放协议。AP2 由 Google 与领先的支付和技术公司共同开发，旨在安全地实现 AI 智能体之间的支付交易。</p>
-      
-      <p>主要特点包括：</p>
-      <ul>
-        <li>基于 A2A 协议构建的开放标准</li>
-        <li>支持 AI 智能体之间的安全支付</li>
-        <li>与 Google Cloud 生态系统深度集成</li>
-        <li>推动智能体经济的商业化发展</li>
-      </ul>
-      
-      <p>这标志着 AI 智能体从实验走向实际商业应用的重要一步，为智能体经济的基础设施建设提供了关键支撑。</p>
-      
-      <p>阅读完整文章：<a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol">https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol</a></p>
-    `,
-    contentEn: `
-      <p>Google has announced the Agent Payments Protocol (AP2), an open protocol that builds on A2A (Agent to Agent Protocol). AP2 was developed by Google with leading payments and technology companies to securely enable payment transactions between AI agents.</p>
-      
-      <p>Key features include:</p>
-      <ul>
-        <li>Open standard built on A2A protocol</li>
-        <li>Supports secure payments between AI agents</li>
-        <li>Deep integration with Google Cloud ecosystem</li>
-        <li>Advances the commercialization of the agent economy</li>
-      </ul>
-      
-      <p>This marks an important step in AI agents moving from experimentation to actual commercial applications, providing critical infrastructure support for the agent economy.</p>
-      
-      <p>Read the full article at <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol">https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol</a></p>
-    `,
-    tags: ['Google', 'AP2', 'Agent-Economy'],
-    source: 'Google Cloud Blog'
-  },
   'ai-hires-humans': {
     titleZh: 'AI 雇佣人类：智能体经济的新范式',
     titleEn: 'AI Hires Humans: A New Paradigm in the Agent Economy',
@@ -87,44 +50,42 @@ const posts = {
     tags: ['AI-Agents', 'Agent-Economy', 'Future-of-Work'],
     source: 'Rent a Human'
   },
-  'anthropic-model-context-protocol': {
-    titleZh: 'Anthropic 发布 Model Context Protocol (MCP)',
-    titleEn: 'Anthropic Introduces Model Context Protocol (MCP)',
-    date: '2024-11-25',
+  'google-announced-agent-payments-protocol-ap2': {
+    titleZh: 'Google 发布 Agent Payments Protocol (AP2)',
+    titleEn: 'Google Announced Agent Payments Protocol (AP2)',
+    date: '2025-09-16',
     contentZh: `
-      <p>Anthropic 宣布开源 Model Context Protocol (MCP)，这是一个用于连接 AI 助手与数据所在系统的新标准，包括内容仓库、业务工具和开发环境。其目标是帮助前沿模型产生更好、更相关的响应。</p>
+      <p>Google 发布了 Agent Payments Protocol (AP2)，这是一个建立在 A2A (Agent to Agent Protocol) 之上的开放协议。AP2 由 Google 与领先的支付和技术公司共同开发，旨在安全地实现 AI 智能体之间的支付交易。</p>
       
-      <p>随着 AI 助手获得主流采用，行业在模型能力方面投入巨资，在推理和质量方面取得了快速进步。然而，即使是最复杂的模型也受到其与数据隔离的限制——被困在信息孤岛和遗留系统后面。每个新数据源都需要自己的自定义实现，使得真正互联的系统难以扩展。</p>
-      
-      <p>MCP 解决了这一挑战。它提供了一个通用的开放标准，用于将 AI 系统与数据源连接，用单一协议取代碎片化的集成。结果是 AI 系统访问所需数据的更简单、更可靠的方式。</p>
-      
-      <p>核心组件包括：</p>
+      <p>主要特点包括：</p>
       <ul>
-        <li>MCP 规范和 SDK</li>
-        <li>Claude Desktop 应用中的本地 MCP 服务器支持</li>
-        <li>开源的 MCP 服务器仓库</li>
+        <li>基于 A2A 协议构建的开放标准</li>
+        <li>支持 AI 智能体之间的安全支付</li>
+        <li>与 Google Cloud 生态系统深度集成</li>
+        <li>推动智能体经济的商业化发展</li>
       </ul>
       
-      <p>阅读完整文章：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></p>
+      <p>这标志着 AI 智能体从实验走向实际商业应用的重要一步，为智能体经济的基础设施建设提供了关键支撑。</p>
+      
+      <p>阅读完整文章：<a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol">https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol</a></p>
     `,
     contentEn: `
-      <p>Anthropic announced the open-source Model Context Protocol (MCP), a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments. Its aim is to help frontier models produce better, more relevant responses.</p>
+      <p>Google has announced the Agent Payments Protocol (AP2), an open protocol that builds on A2A (Agent to Agent Protocol). AP2 was developed by Google with leading payments and technology companies to securely enable payment transactions between AI agents.</p>
       
-      <p>As AI assistants gain mainstream adoption, the industry has invested heavily in model capabilities, achieving rapid advances in reasoning and quality. Yet even the most sophisticated models are constrained by their isolation from data—trapped behind information silos and legacy systems. Every new data source requires its own custom implementation, making truly connected systems difficult to scale.</p>
-      
-      <p>MCP addresses this challenge. It provides a universal, open standard for connecting AI systems with data sources, replacing fragmented integrations with a single protocol. The result is a simpler, more reliable way to give AI systems access to the data they need.</p>
-      
-      <p>Core components include:</p>
+      <p>Key features include:</p>
       <ul>
-        <li>MCP specification and SDKs</li>
-        <li>Local MCP server support in Claude Desktop apps</li>
-        <li>An open-source repository of MCP servers</li>
+        <li>Open standard built on A2A protocol</li>
+        <li>Supports secure payments between AI agents</li>
+        <li>Deep integration with Google Cloud ecosystem</li>
+        <li>Advances the commercialization of the agent economy</li>
       </ul>
       
-      <p>Read the full article at <a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></p>
+      <p>This marks an important step in AI agents moving from experimentation to actual commercial applications, providing critical infrastructure support for the agent economy.</p>
+      
+      <p>Read the full article at <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol">https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol</a></p>
     `,
-    tags: ['Anthropic', 'MCP', 'AI-Standards'],
-    source: 'Anthropic'
+    tags: ['Google', 'AP2', 'Agent-Economy'],
+    source: 'Google Cloud Blog'
   },
   'google-a2a-protocol': {
     titleZh: 'Google 推出 A2A 协议：智能体互操作的新时代',
@@ -164,6 +125,45 @@ const posts = {
     `,
     tags: ['Google', 'A2A', 'Agent-Interoperability'],
     source: 'Google Developers Blog'
+  },
+  'anthropic-model-context-protocol': {
+    titleZh: 'Anthropic 发布 Model Context Protocol (MCP)',
+    titleEn: 'Anthropic Introduces Model Context Protocol (MCP)',
+    date: '2024-11-25',
+    contentZh: `
+      <p>Anthropic 宣布开源 Model Context Protocol (MCP)，这是一个用于连接 AI 助手与数据所在系统的新标准，包括内容仓库、业务工具和开发环境。其目标是帮助前沿模型产生更好、更相关的响应。</p>
+      
+      <p>随着 AI 助手获得主流采用，行业在模型能力方面投入巨资，在推理和质量方面取得了快速进步。然而，即使是最复杂的模型也受到其与数据隔离的限制——被困在信息孤岛和遗留系统后面。每个新数据源都需要自己的自定义实现，使得真正互联的系统难以扩展。</p>
+      
+      <p>MCP 解决了这一挑战。它提供了一个通用的开放标准，用于将 AI 系统与数据源连接，用单一协议取代碎片化的集成。结果是 AI 系统访问所需数据的更简单、更可靠的方式。</p>
+      
+      <p>核心组件包括：</p>
+      <ul>
+        <li>MCP 规范和 SDK</li>
+        <li>Claude Desktop 应用中的本地 MCP 服务器支持</li>
+        <li>开源的 MCP 服务器仓库</li>
+      </ul>
+      
+      <p>阅读完整文章：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></p>
+    `,
+    contentEn: `
+      <p>Anthropic announced the open-source Model Context Protocol (MCP), a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments. Its aim is to help frontier models produce better, more relevant responses.</p>
+      
+      <p>As AI assistants gain mainstream adoption, the industry has invested heavily in model capabilities, achieving rapid advances in reasoning and quality. Yet even the most sophisticated models are constrained by their isolation from data—trapped behind information silos and legacy systems. Every new data source requires its own custom implementation, making truly connected systems difficult to scale.</p>
+      
+      <p>MCP addresses this challenge. It provides a universal, open standard for connecting AI systems with data sources, replacing fragmented integrations with a single protocol. The result is a simpler, more reliable way to give AI systems access to the data they need.</p>
+      
+      <p>Core components include:</p>
+      <ul>
+        <li>MCP specification and SDKs</li>
+        <li>Local MCP server support in Claude Desktop apps</li>
+        <li>An open-source repository of MCP servers</li>
+      </ul>
+      
+      <p>Read the full article at <a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></p>
+    `,
+    tags: ['Anthropic', 'MCP', 'AI-Standards'],
+    source: 'Anthropic'
   }
 };
 
