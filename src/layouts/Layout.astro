@@ -115,32 +115,6 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             gap: 0.75rem;
         }
         
-        .lang-switch {
-            display: flex;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-        }
-        
-        .lang-switch button {
-            background: none;
-            border: none;
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            color: var(--color-text-muted);
-            font-family: inherit;
-            font-size: inherit;
-            transition: all 0.2s ease;
-        }
-        
-        .lang-switch button:hover {
-            color: var(--color-text);
-        }
-        
-        .lang-switch button.active {
-            color: var(--color-text);
-            font-weight: 500;
-        }
-        
         .theme-toggle {
             background: none;
             border: 1px solid var(--color-border);
@@ -191,15 +165,60 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             margin: 0 auto;
             padding: var(--space-xl) var(--space-md);
             border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
         }
         
         footer p {
             font-size: 0.8125rem;
             color: var(--color-text-muted);
+            flex: 1;
         }
         
         footer a {
             color: var(--color-text-secondary);
+        }
+
+        /* Language dropdown in footer */
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-icon {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .lang-dropdown {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-family: inherit;
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 60px;
+        }
+
+        .lang-dropdown:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+
+        .lang-dropdown:focus {
+            outline: none;
+            border-color: var(--color-text);
+        }
+
+        .lang-dropdown option {
+            background: var(--color-card-bg);
+            color: var(--color-text);
         }
         
         article {
@@ -388,6 +407,16 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
                 width: 100%;
                 justify-content: flex-end;
             }
+
+            footer {
+                flex-direction: column;
+                gap: var(--space-sm);
+                text-align: center;
+            }
+
+            .lang-selector {
+                justify-content: center;
+            }
             
             .intro h2 {
                 font-size: 1.5rem;
@@ -407,10 +436,6 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
                 <span class="theme-icon-light">☀</span>
                 <span class="theme-icon-dark" style="display: none;">☾</span>
             </button>
-            <div class="lang-switch">
-                <button onclick="switchLang('zh')" id="btn-zh" class="active">中</button>
-                <button onclick="switchLang('en')" id="btn-en">EN</button>
-            </div>
         </div>
     </header>
     
@@ -429,6 +454,13 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         <p data-zh="关于 AI 智能体和自主经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
             Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
         </p>
+        <div class="lang-selector">
+            <span class="lang-icon" aria-label="Language">🌐</span>
+            <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)">
+                <option value="zh">中</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
     </footer>
     
     <script is:inline>
@@ -497,15 +529,16 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             };
             
             window.updateLanguage = function() {
-                var btnZh = document.getElementById('btn-zh');
-                var btnEn = document.getElementById('btn-en');
-                if (btnZh) btnZh.classList.toggle('active', window.currentLang === 'zh');
-                if (btnEn) btnEn.classList.toggle('active', window.currentLang === 'en');
+                // Update dropdown selection
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
                 
+                // Update all elements with data-zh and data-en attributes
                 document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
                     el.textContent = el.getAttribute('data-' + window.currentLang);
                 });
                 
+                // Update language-specific content blocks
                 document.querySelectorAll('.lang-content').forEach(function(el) {
                     el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
                 });
