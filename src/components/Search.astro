@@ -9,57 +9,64 @@
     placeholder="搜索文章... / Search articles..." 
     class="search-input"
   />
-  <div id="search-results" class="search-results"></div>
+  <div id="search-results" class="search-results" style="display: none;"></div>
 </div>
 
 <script is:inline>
-  (function() {
-    async function initSearch() {
-      const input = document.getElementById('search-input');
-      const resultsContainer = document.getElementById('search-results');
-      
-      if (!input || !resultsContainer) return;
-      
-      try {
-        const pagefind = await import('/pagefind/pagefind.js');
-        
-        input.addEventListener('input', async (e) => {
-          const query = e.target.value.trim();
-          if (query.length < 2) {
-            resultsContainer.innerHTML = '';
-            resultsContainer.style.display = 'none';
-            return;
-          }
-          
-          const search = await pagefind.search(query);
-          displayResults(search.results.slice(0, 5), resultsContainer);
-        });
-      } catch (err) {
-        console.error('Search init failed:', err);
-      }
+  // Pagefind search initialization
+  (async function() {
+    const input = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    
+    if (!input || !resultsContainer) {
+      console.error('Search elements not found');
+      return;
     }
     
-    function displayResults(results, container) {
-      if (results.length === 0) {
-        container.innerHTML = '<p class="search-no-results">No results / 无结果</p>';
-        container.style.display = 'block';
+    let pagefind;
+    try {
+      pagefind = await import('/pagefind/pagefind.js');
+      console.log('Pagefind loaded successfully');
+    } catch (err) {
+      console.error('Failed to load pagefind:', err);
+      input.placeholder = 'Search unavailable / 搜索不可用';
+      return;
+    }
+    
+    input.addEventListener('input', async (e) => {
+      const query = e.target.value.trim();
+      
+      if (query.length < 2) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
         return;
       }
       
-      container.innerHTML = results.map(result => `
-        <a href="${result.url}" class="search-result">
-          <h4>${result.meta?.title || 'Untitled'}</h4>
-          <p>${result.excerpt || ''}</p>
-        </a>
-      `).join('');
-      container.style.display = 'block';
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSearch);
-    } else {
-      initSearch();
-    }
+      try {
+        const search = await pagefind.search(query);
+        const results = search.results.slice(0, 5);
+        
+        if (results.length === 0) {
+          resultsContainer.innerHTML = '<p class="search-no-results">No results / 无结果</p>';
+        } else {
+          resultsContainer.innerHTML = '';
+          for (const result of results) {
+            const data = await result.data();
+            const link = document.createElement('a');
+            link.href = data.url;
+            link.className = 'search-result';
+            link.innerHTML = `
+              <h4>${data.meta?.title || 'Untitled'}</h4>
+              <p>${data.excerpt || ''}</p>
+            `;
+            resultsContainer.appendChild(link);
+          }
+        }
+        resultsContainer.style.display = 'block';
+      } catch (err) {
+        console.error('Search error:', err);
+      }
+    });
   })();
 </script>
 
@@ -102,13 +109,13 @@
     max-height: 300px;
     overflow-y: auto;
     z-index: 100;
-    display: none;
   }
   
   .search-result {
     display: block;
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
   }
   
   .search-result:last-child {
