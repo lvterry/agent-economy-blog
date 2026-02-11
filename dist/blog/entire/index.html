@@ -34,27 +34,46 @@ Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Sub
             var savedTheme = localStorage.getItem('theme');
             var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             
+            function updateIcons(isDark) {
+                var lightIcon = document.querySelector('.theme-icon-light');
+                var darkIcon = document.querySelector('.theme-icon-dark');
+                if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
+                if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
+            }
+            
             function applyTheme(theme) {
-                if (theme === 'dark' || (!theme && prefersDark)) {
+                var isDark = theme === 'dark' || (!theme && prefersDark);
+                if (isDark) {
                     document.documentElement.setAttribute('data-theme', 'dark');
-                    document.querySelector('.theme-icon-light').style.display = 'none';
-                    document.querySelector('.theme-icon-dark').style.display = 'inline';
                 } else {
                     document.documentElement.removeAttribute('data-theme');
-                    document.querySelector('.theme-icon-light').style.display = 'inline';
-                    document.querySelector('.theme-icon-dark').style.display = 'none';
                 }
+                updateIcons(isDark);
             }
             
             window.toggleTheme = function() {
-                var currentTheme = document.documentElement.getAttribute('data-theme');
-                var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                var newTheme = isDark ? 'light' : 'dark';
                 localStorage.setItem('theme', newTheme);
                 applyTheme(newTheme);
             };
             
-            // Initialize theme
-            applyTheme(savedTheme);
+            // Initialize theme immediately for the HTML attribute
+            var isDarkInitially = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            if (isDarkInitially) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+            
+            // Initialize icons after DOM is ready
+            function initIcons() {
+                updateIcons(isDarkInitially);
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initIcons);
+            } else {
+                initIcons();
+            }
             
             // Language handling
             window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
