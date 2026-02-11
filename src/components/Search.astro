@@ -2,74 +2,63 @@
 // Search component using Pagefind
 ---
 
-<div id="search" class="search-container"></div>
+<div id="search" class="search-container">
+  <input 
+    type="text" 
+    id="search-input"
+    placeholder="搜索文章... / Search articles..." 
+    class="search-input"
+  />
+  <div id="search-results" class="search-results"></div>
+</div>
 
 <script is:inline>
   (function() {
-    // Wait for page to load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSearch);
-    } else {
-      initSearch();
-    }
-    
     async function initSearch() {
+      const input = document.getElementById('search-input');
+      const resultsContainer = document.getElementById('search-results');
+      
+      if (!input || !resultsContainer) return;
+      
       try {
-        // Dynamically import pagefind
         const pagefind = await import('/pagefind/pagefind.js');
         
-        // Initialize the search UI
-        const search = await pagefind.options({
-          excerptLength: 15
+        input.addEventListener('input', async (e) => {
+          const query = e.target.value.trim();
+          if (query.length < 2) {
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+            return;
+          }
+          
+          const search = await pagefind.search(query);
+          displayResults(search.results.slice(0, 5), resultsContainer);
         });
-        
-        // Add search input if container exists
-        const container = document.getElementById('search');
-        if (container) {
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.placeholder = window.currentLang === 'zh' ? '搜索文章...' : 'Search articles...';
-          input.className = 'search-input';
-          
-          const resultsContainer = document.createElement('div');
-          resultsContainer.className = 'search-results';
-          
-          container.appendChild(input);
-          container.appendChild(resultsContainer);
-          
-          // Handle input
-          input.addEventListener('input', async (e) => {
-            const query = e.target.value;
-            if (query.length < 2) {
-              resultsContainer.innerHTML = '';
-              return;
-            }
-            
-            const results = await search.search(query);
-            displayResults(results, resultsContainer);
-          });
-        }
       } catch (err) {
-        console.error('Search initialization failed:', err);
+        console.error('Search init failed:', err);
       }
     }
     
     function displayResults(results, container) {
-      if (results.results.length === 0) {
-        container.innerHTML = '<p class="search-no-results">' + 
-          (window.currentLang === 'zh' ? '没有找到结果' : 'No results found') + 
-          '</p>';
+      if (results.length === 0) {
+        container.innerHTML = '<p class="search-no-results">No results / 无结果</p>';
+        container.style.display = 'block';
         return;
       }
       
-      const html = results.results.map(result => `
+      container.innerHTML = results.map(result => `
         <a href="${result.url}" class="search-result">
-          <h4>${result.meta.title}</h4>
-          <p>${result.excerpt}</p>
+          <h4>${result.meta?.title || 'Untitled'}</h4>
+          <p>${result.excerpt || ''}</p>
         </a>
       `).join('');
-      
-      container.innerHTML = html;
+      container.style.display = 'block';
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSearch);
+    } else {
+      initSearch();
     }
   })();
 </script>
@@ -113,6 +102,7 @@
     max-height: 300px;
     overflow-y: auto;
     z-index: 100;
+    display: none;
   }
   
   .search-result {
