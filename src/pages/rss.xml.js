@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Entire: A Collaboration Platform for Agents and Humans',
+      titleZh: 'Entire：智能体与人类的协作平台',
+      pubDate: new Date('2026-02-11'),
+      description: 'Entire is going beyond repositories, building a developer platform where agents and humans can collaborate, interact, and grow.',
+      descriptionZh: 'Entire 正在超越代码仓库，构建一个开发者平台，让智能体和人类能够协作、互动和成长。',
+      link: '/blog/entire',
+    },
+    {
       title: 'AI Hires Humans: A New Paradigm in the Agent Economy',
       titleZh: 'AI 雇佣人类：智能体经济的新范式',
       pubDate: new Date('2026-02-09'),
