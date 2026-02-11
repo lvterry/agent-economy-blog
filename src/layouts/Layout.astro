@@ -16,17 +16,46 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     <style is:global>
         :root {
             --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Light mode colors (default) */
             --color-bg: #fafafa;
             --color-text: #171717;
             --color-text-secondary: #525252;
             --color-text-muted: #737373;
             --color-border: #e5e5e5;
+            --color-card-bg: #ffffff;
+            --color-hover: #f5f5f5;
+            
             --max-width: 680px;
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
             --space-lg: 2.5rem;
             --space-xl: 4rem;
+        }
+        
+        /* Dark mode colors */
+        [data-theme="dark"] {
+            --color-bg: #0a0a0a;
+            --color-text: #fafafa;
+            --color-text-secondary: #a3a3a3;
+            --color-text-muted: #737373;
+            --color-border: #262626;
+            --color-card-bg: #171717;
+            --color-hover: #262626;
+        }
+        
+        /* Respect system preference if no manual choice */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme]) {
+                --color-bg: #0a0a0a;
+                --color-text: #fafafa;
+                --color-text-secondary: #a3a3a3;
+                --color-text-muted: #737373;
+                --color-border: #262626;
+                --color-card-bg: #171717;
+                --color-hover: #262626;
+            }
         }
         
         * {
@@ -48,6 +77,7 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             color: var(--color-text);
             background: var(--color-bg);
             letter-spacing: -0.01em;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         a {
@@ -79,6 +109,12 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             color: var(--color-text);
         }
         
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
         .lang-switch {
             display: flex;
             gap: 0.5rem;
@@ -103,6 +139,26 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
         .lang-switch button.active {
             color: var(--color-text);
             font-weight: 500;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
         }
         
         nav {
@@ -232,6 +288,14 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             letter-spacing: -0.02em;
         }
         
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-sm);
+            color: var(--color-text);
+        }
+        
         .article-content time {
             display: block;
             font-size: 0.8125rem;
@@ -287,11 +351,42 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             display: block;
         }
         
+        /* Company cards dark mode support */
+        .company-card {
+            background: var(--color-card-bg);
+            border-color: var(--color-border);
+        }
+        
+        .company-card:hover {
+            border-color: var(--color-text);
+        }
+        
+        .filter-btn {
+            border-color: var(--color-border);
+            color: var(--color-text-secondary);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--color-text);
+            color: var(--color-text);
+        }
+        
+        .filter-btn.active {
+            background: var(--color-text);
+            color: var(--color-bg);
+            border-color: var(--color-text);
+        }
+        
         @media (max-width: 640px) {
             header {
                 padding: var(--space-lg) var(--space-md) var(--space-sm);
                 flex-direction: column;
                 gap: var(--space-sm);
+            }
+            
+            .header-controls {
+                width: 100%;
+                justify-content: flex-end;
             }
             
             .intro h2 {
@@ -307,9 +402,15 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
 <body>
     <header>
         <h1><a href="/">Agent Economy</a></h1>
-        <div class="lang-switch">
-            <button onclick="switchLang('zh')" id="btn-zh" class="active">中</button>
-            <button onclick="switchLang('en')" id="btn-en">EN</button>
+        <div class="header-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon-light">☀</span>
+                <span class="theme-icon-dark" style="display: none;">☾</span>
+            </button>
+            <div class="lang-switch">
+                <button onclick="switchLang('zh')" id="btn-zh" class="active">中</button>
+                <button onclick="switchLang('en')" id="btn-en">EN</button>
+            </div>
         </div>
     </header>
     
@@ -332,7 +433,33 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     
     <script is:inline>
         (function() {
-            // Get saved language preference or default to Chinese
+            // Theme handling
+            var savedTheme = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            function applyTheme(theme) {
+                if (theme === 'dark' || (!theme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.querySelector('.theme-icon-light').style.display = 'none';
+                    document.querySelector('.theme-icon-dark').style.display = 'inline';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    document.querySelector('.theme-icon-light').style.display = 'inline';
+                    document.querySelector('.theme-icon-dark').style.display = 'none';
+                }
+            }
+            
+            window.toggleTheme = function() {
+                var currentTheme = document.documentElement.getAttribute('data-theme');
+                var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            };
+            
+            // Initialize theme
+            applyTheme(savedTheme);
+            
+            // Language handling
             window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
             
             window.switchLang = function(lang) {
@@ -342,26 +469,25 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
             };
             
             window.updateLanguage = function() {
-                // Update buttons
                 var btnZh = document.getElementById('btn-zh');
                 var btnEn = document.getElementById('btn-en');
                 if (btnZh) btnZh.classList.toggle('active', window.currentLang === 'zh');
                 if (btnEn) btnEn.classList.toggle('active', window.currentLang === 'en');
                 
-                // Update all elements with data-zh and data-en attributes
                 document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
                     el.textContent = el.getAttribute('data-' + window.currentLang);
                 });
                 
-                // Show/hide language content
                 document.querySelectorAll('.lang-content').forEach(function(el) {
                     el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
                 });
             };
             
-            // Initialize on page load
+            // Initialize
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', window.updateLanguage);
+                document.addEventListener('DOMContentLoaded', function() {
+                    window.updateLanguage();
+                });
             } else {
                 window.updateLanguage();
             }
