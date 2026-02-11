@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 
 export function getStaticPaths() {
   return [
+    { params: { slug: 'openai-testing-ads-in-chatgpt' } },
     { params: { slug: 'entire' } },
     { params: { slug: 'ai-hires-humans' } },
     { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
@@ -14,6 +15,45 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 
 const posts = {
+  'openai-testing-ads-in-chatgpt': {
+    titleZh: 'OpenAI 开始在 ChatGPT 中测试广告',
+    titleEn: 'OpenAI Begins Testing Ads in ChatGPT',
+    date: '2026-02-11',
+    contentZh: `
+      <p>OpenAI 宣布在美国开始测试 ChatGPT 中的广告功能。此次测试仅面向 Free 和 Go 订阅层的登录成年用户，Plus、Pro、Business、Enterprise 和 Education 订阅层将不会显示广告。</p>
+      
+      <p>OpenAI 强调以下核心原则：</p>
+      
+      <h3>使命一致性</h3>
+      <p>ChatGPT 被数亿人用于学习、工作和日常决策。保持 Free 和 Go 层级快速可靠需要大量基础设施和持续投资。广告有助于资助这项工作，通过更高质量的免费和低成本选项支持更广泛的 AI 访问，并使我们能够持续改进所提供的智能和功能。如果你不想看到广告，可以升级到 Plus 或 Pro 计划，或在 Free 层级选择退出广告（代价是每日免费消息数量减少）。</p>
+      
+      <h3>回答独立性</h3>
+      <p>广告不会影响 ChatGPT 给你的回答。回答基于对你最有帮助的内容进行优化。当你看到广告时，它们始终被明确标记为"赞助"，并在视觉上与有机回答区分开来。</p>
+      
+      <h3>对话隐私</h3>
+      <p>广告设计尊重你的隐私。广告商无法访问你的聊天记录、聊天历史、记忆或个人详细信息。广告商仅收到关于其广告表现的聚合信息。</p>
+      
+      <p>阅读完整文章：<a href="https://openai.com/index/testing-ads-in-chatgpt/">https://openai.com/index/testing-ads-in-chatgpt/</a></p>
+    `,
+    contentEn: `
+      <p>OpenAI announced the beginning of ad testing in ChatGPT in the U.S. The test is for logged-in adult users on the Free and Go subscription tiers. Plus, Pro, Business, Enterprise, and Education tiers will not have ads.</p>
+      
+      <p>OpenAI emphasizes the following core principles:</p>
+      
+      <h3>Mission Alignment</h3>
+      <p>ChatGPT is used by hundreds of millions of people for learning, work, and everyday decisions. Keeping the Free and Go tiers fast and reliable requires significant infrastructure and ongoing investment. Ads help fund that work, supporting broader access to AI through higher quality free and low cost options, and enabling us to keep improving the intelligence and capabilities we offer over time. If you prefer not to see ads, you can upgrade to our Plus or Pro plans, or opt out of ads in the Free tier in exchange for fewer daily free messages.</p>
+      
+      <h3>Answer Independence</h3>
+      <p>Ads do not influence the answers ChatGPT gives you. Answers are optimized based on what's most helpful to you. When you see an ad, they are always clearly labeled as sponsored and visually separated from the organic answer.</p>
+      
+      <h3>Conversation Privacy</h3>
+      <p>Ads are designed to respect your privacy. Advertisers do not have access to your chats, chat history, memories, or personal details. Advertisers only receive aggregate information about how their ads perform.</p>
+      
+      <p>Read the full article at <a href="https://openai.com/index/testing-ads-in-chatgpt/">https://openai.com/index/testing-ads-in-chatgpt/</a></p>
+    `,
+    tags: ['OpenAI', 'ChatGPT', 'AI-Advertising'],
+    source: 'OpenAI'
+  },
   'entire': {
     titleZh: 'Entire：智能体与人类的协作平台',
     titleEn: 'Entire: A Collaboration Platform for Agents and Humans',
