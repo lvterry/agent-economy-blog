@@ -1,0 +1,153 @@
+---
+// Search component using Pagefind
+---
+
+<div id="search" class="search-container"></div>
+
+<script is:inline>
+  (function() {
+    // Wait for page to load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSearch);
+    } else {
+      initSearch();
+    }
+    
+    async function initSearch() {
+      try {
+        // Dynamically import pagefind
+        const pagefind = await import('/pagefind/pagefind.js');
+        
+        // Initialize the search UI
+        const search = await pagefind.options({
+          excerptLength: 15
+        });
+        
+        // Add search input if container exists
+        const container = document.getElementById('search');
+        if (container) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.placeholder = window.currentLang === 'zh' ? '搜索文章...' : 'Search articles...';
+          input.className = 'search-input';
+          
+          const resultsContainer = document.createElement('div');
+          resultsContainer.className = 'search-results';
+          
+          container.appendChild(input);
+          container.appendChild(resultsContainer);
+          
+          // Handle input
+          input.addEventListener('input', async (e) => {
+            const query = e.target.value;
+            if (query.length < 2) {
+              resultsContainer.innerHTML = '';
+              return;
+            }
+            
+            const results = await search.search(query);
+            displayResults(results, resultsContainer);
+          });
+        }
+      } catch (err) {
+        console.error('Search initialization failed:', err);
+      }
+    }
+    
+    function displayResults(results, container) {
+      if (results.results.length === 0) {
+        container.innerHTML = '<p class="search-no-results">' + 
+          (window.currentLang === 'zh' ? '没有找到结果' : 'No results found') + 
+          '</p>';
+        return;
+      }
+      
+      const html = results.results.map(result => `
+        <a href="${result.url}" class="search-result">
+          <h4>${result.meta.title}</h4>
+          <p>${result.excerpt}</p>
+        </a>
+      `).join('');
+      
+      container.innerHTML = html;
+    }
+  })();
+</script>
+
+<style>
+  .search-container {
+    margin-bottom: var(--space-lg);
+    position: relative;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-text-secondary);
+  }
+  
+  .search-input::placeholder {
+    color: var(--color-text-muted);
+  }
+  
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  
+  .search-result {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .search-result:last-child {
+    border-bottom: none;
+  }
+  
+  .search-result:hover {
+    background: var(--color-hover);
+    opacity: 1;
+  }
+  
+  .search-result h4 {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+  }
+  
+  .search-result p {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .search-no-results {
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+</style>

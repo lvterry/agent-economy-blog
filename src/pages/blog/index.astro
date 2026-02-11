@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogPost from '../../components/BlogPost.astro';
+import Search from '../../components/Search.astro';
 
 const posts = [
   {
@@ -68,6 +69,8 @@ const posts = [
 
 <Layout>
   <h1 class="page-title" data-zh="全部文章" data-en="All Articles">All Articles</h1>
+  
+  <Search />
   
   <section>
     {posts.map(post => (

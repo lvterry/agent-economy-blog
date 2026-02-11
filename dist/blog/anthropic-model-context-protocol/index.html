@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Agent Economy</title><meta name="description" content="Curated news and insights about the AI agent economy"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.BY9XWaWx.css"></head> <body> <header> <h1><a href="/">Agent Economy</a></h1> <div class="header-controls"> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> <div class="lang-switch"> <button onclick="switchLang('zh')" id="btn-zh" class="active">中</button> <button onclick="switchLang('en')" id="btn-en">EN</button> </div> </div> </header> <nav> <a href="/" data-zh="文章" data-en="Articles">Articles</a> <a href="/companies" data-zh="公司" data-en="Companies">Companies</a> <a href="/about" data-zh="关于" data-en="About">About</a> <a href="/rss.xml">RSS</a> </nav> <main>  <article class="article-content"> <div class="lang-content lang-zh active"> <h1>Anthropic 发布 Model Context Protocol (MCP)</h1> </div> <div class="lang-content lang-en"> <h1>Anthropic Introduces Model Context Protocol (MCP)</h1> </div> <time>2024-11-25</time> <div class="lang-content lang-zh active">
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Agent Economy</title><meta name="description" content="Curated news and insights about the AI agent economy"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.CQDnGwyb.css"></head> <body> <header> <h1><a href="/">Agent Economy</a></h1> <div class="header-controls"> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </header> <nav> <a href="/" data-zh="文章" data-en="Articles">Articles</a> <a href="/companies" data-zh="公司" data-en="Companies">Companies</a> <a href="/about" data-zh="关于" data-en="About">About</a> <a href="/rss.xml">RSS</a> </nav> <main>  <article class="article-content"> <div class="lang-content lang-zh active"> <h1>Anthropic 发布 Model Context Protocol (MCP)</h1> </div> <div class="lang-content lang-en"> <h1>Anthropic Introduces Model Context Protocol (MCP)</h1> </div> <time>2024-11-25</time> <div class="lang-content lang-zh active">
       <p>Anthropic 宣布开源 Model Context Protocol (MCP)，这是一个用于连接 AI 助手与数据所在系统的新标准，包括内容仓库、业务工具和开发环境。其目标是帮助前沿模型产生更好、更相关的响应。</p>
       
       <p>随着 AI 助手获得主流采用，行业在模型能力方面投入巨资，在推理和质量方面取得了快速进步。然而，即使是最复杂的模型也受到其与数据隔离的限制——被困在信息孤岛和遗留系统后面。每个新数据源都需要自己的自定义实现，使得真正互联的系统难以扩展。</p>
@@ -30,7 +30,7 @@
       <p>Read the full article at <a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></p>
     </div> <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);"> <div class="tags"> <span>Anthropic</span><span>MCP</span><span>AI-Standards</span> </div> </div> </article> <a href="/" class="back-link" data-zh="← 全部文章" data-en="← All articles">← All articles</a>  </main> <footer> <p data-zh="关于 AI 智能体和自主经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
 Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
-</p> </footer> <script>
+</p> <div class="lang-selector"> <span class="lang-icon" aria-label="Language">🌐</span> <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)"> <option value="zh">中</option> <option value="en">EN</option> </select> </div> </footer> <script>
         (function() {
             // Theme handling
             var savedTheme = localStorage.getItem('theme');
@@ -96,15 +96,16 @@ Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Sub
             };
             
             window.updateLanguage = function() {
-                var btnZh = document.getElementById('btn-zh');
-                var btnEn = document.getElementById('btn-en');
-                if (btnZh) btnZh.classList.toggle('active', window.currentLang === 'zh');
-                if (btnEn) btnEn.classList.toggle('active', window.currentLang === 'en');
+                // Update dropdown selection
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
                 
+                // Update all elements with data-zh and data-en attributes
                 document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
                     el.textContent = el.getAttribute('data-' + window.currentLang);
                 });
                 
+                // Update language-specific content blocks
                 document.querySelectorAll('.lang-content').forEach(function(el) {
                     el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
                 });

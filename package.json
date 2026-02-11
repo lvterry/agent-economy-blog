@@ -5,13 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npm run postbuild",
+    "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.0.0",
     "@astrojs/mdx": "^2.0.0",
-    "@astrojs/rss": "^4.0.0"
+    "@astrojs/rss": "^4.0.0",
+    "astro": "^4.0.0"
+  },
+  "devDependencies": {
+    "@pagefind/default-ui": "^1.4.0",
+    "pagefind": "^1.4.0"
   }
 }
