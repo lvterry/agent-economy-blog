@@ -2,47 +2,35 @@
 // Search component using Pagefind
 ---
 
-<div id="search" class="search-container">
+<div class="search-wrapper">
   <input 
     type="text" 
     id="search-input"
     placeholder="搜索文章... / Search articles..." 
     class="search-input"
   />
-  <div id="search-results" class="search-results" style="display: none;"></div>
+  <div id="search-results" class="search-results"></div>
 </div>
 
 <script is:inline>
-  // Pagefind search initialization
   (async function() {
     const input = document.getElementById('search-input');
     const resultsContainer = document.getElementById('search-results');
     
-    if (!input || !resultsContainer) {
-      console.error('Search elements not found');
-      return;
-    }
+    if (!input || !resultsContainer) return;
     
-    let pagefind;
     try {
-      pagefind = await import('/pagefind/pagefind.js');
-      console.log('Pagefind loaded successfully');
-    } catch (err) {
-      console.error('Failed to load pagefind:', err);
-      input.placeholder = 'Search unavailable / 搜索不可用';
-      return;
-    }
-    
-    input.addEventListener('input', async (e) => {
-      const query = e.target.value.trim();
+      const pagefind = await import('/pagefind/pagefind.js');
       
-      if (query.length < 2) {
-        resultsContainer.innerHTML = '';
-        resultsContainer.style.display = 'none';
-        return;
-      }
-      
-      try {
+      input.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+          resultsContainer.innerHTML = '';
+          resultsContainer.style.display = 'none';
+          return;
+        }
+        
         const search = await pagefind.search(query);
         const results = search.results.slice(0, 5);
         
@@ -55,46 +43,59 @@
             const link = document.createElement('a');
             link.href = data.url;
             link.className = 'search-result';
-            link.innerHTML = `
-              <h4>${data.meta?.title || 'Untitled'}</h4>
-              <p>${data.excerpt || ''}</p>
-            `;
+            link.innerHTML = `<h4>${data.meta?.title || 'Untitled'}</h4><p>${data.excerpt || ''}</p>`;
             resultsContainer.appendChild(link);
           }
         }
         resultsContainer.style.display = 'block';
-      } catch (err) {
-        console.error('Search error:', err);
-      }
-    });
+      });
+    } catch (err) {
+      console.error('Search init failed:', err);
+      input.placeholder = 'Search unavailable';
+    }
   })();
 </script>
 
 <style>
-  .search-container {
-    margin-bottom: var(--space-lg);
+  .search-wrapper {
+    margin-bottom: 2.5rem;
     position: relative;
   }
   
   .search-input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid #e5e5e5;
     border-radius: 0.5rem;
-    background: var(--color-card-bg);
-    color: var(--color-text);
-    font-family: var(--font-sans);
+    background: #ffffff;
+    color: #171717;
+    font-family: inherit;
     font-size: 0.9375rem;
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
   }
   
   .search-input:focus {
     outline: none;
-    border-color: var(--color-text-secondary);
+    border-color: #525252;
   }
   
   .search-input::placeholder {
-    color: var(--color-text-muted);
+    color: #737373;
+  }
+  
+  /* Dark mode styles */
+  :global([data-theme="dark"]) .search-input {
+    background: #171717;
+    color: #fafafa;
+    border-color: #262626;
+  }
+  
+  :global([data-theme="dark"]) .search-input:focus {
+    border-color: #a3a3a3;
+  }
+  
+  :global([data-theme="dark"]) .search-input::placeholder {
+    color: #737373;
   }
   
   .search-results {
@@ -103,19 +104,30 @@
     left: 0;
     right: 0;
     margin-top: 0.5rem;
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
     border-radius: 0.5rem;
     max-height: 300px;
     overflow-y: auto;
     z-index: 100;
+    display: none;
+  }
+  
+  :global([data-theme="dark"]) .search-results {
+    background: #171717;
+    border-color: #262626;
   }
   
   .search-result {
     display: block;
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #e5e5e5;
     text-decoration: none;
+    color: inherit;
+  }
+  
+  :global([data-theme="dark"]) .search-result {
+    border-color: #262626;
   }
   
   .search-result:last-child {
@@ -123,28 +135,39 @@
   }
   
   .search-result:hover {
-    background: var(--color-hover);
-    opacity: 1;
+    background: #f5f5f5;
+  }
+  
+  :global([data-theme="dark"]) .search-result:hover {
+    background: #262626;
   }
   
   .search-result h4 {
     font-size: 0.9375rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
-    color: var(--color-text);
+    color: #171717;
+  }
+  
+  :global([data-theme="dark"]) .search-result h4 {
+    color: #fafafa;
   }
   
   .search-result p {
     font-size: 0.8125rem;
-    color: var(--color-text-secondary);
+    color: #525252;
     margin: 0;
     line-height: 1.5;
+  }
+  
+  :global([data-theme="dark"]) .search-result p {
+    color: #a3a3a3;
   }
   
   .search-no-results {
     padding: 1rem;
     text-align: center;
-    color: var(--color-text-muted);
+    color: #737373;
     font-size: 0.875rem;
   }
 </style>

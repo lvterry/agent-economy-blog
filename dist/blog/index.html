@@ -1,36 +1,24 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Agent Economy</title><meta name="description" content="Curated news and insights about the AI agent economy"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.CQDnGwyb.css">
-<style>.search-container[data-astro-cid-otpdt6jm]{margin-bottom:var(--space-lg);position:relative}.search-input[data-astro-cid-otpdt6jm]{width:100%;padding:.75rem 1rem;border:1px solid var(--color-border);border-radius:.5rem;background:var(--color-card-bg);color:var(--color-text);font-family:var(--font-sans);font-size:.9375rem;transition:border-color .2s ease}.search-input[data-astro-cid-otpdt6jm]:focus{outline:none;border-color:var(--color-text-secondary)}.search-input[data-astro-cid-otpdt6jm]::placeholder{color:var(--color-text-muted)}.search-results[data-astro-cid-otpdt6jm]{position:absolute;top:100%;left:0;right:0;margin-top:.5rem;background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:.5rem;max-height:300px;overflow-y:auto;z-index:100}.search-result[data-astro-cid-otpdt6jm]{display:block;padding:.75rem 1rem;border-bottom:1px solid var(--color-border);text-decoration:none}.search-result[data-astro-cid-otpdt6jm]:last-child{border-bottom:none}.search-result[data-astro-cid-otpdt6jm]:hover{background:var(--color-hover);opacity:1}.search-result[data-astro-cid-otpdt6jm] h4[data-astro-cid-otpdt6jm]{font-size:.9375rem;font-weight:500;margin-bottom:.25rem;color:var(--color-text)}.search-result[data-astro-cid-otpdt6jm] p[data-astro-cid-otpdt6jm]{font-size:.8125rem;color:var(--color-text-secondary);margin:0;line-height:1.5}.search-no-results[data-astro-cid-otpdt6jm]{padding:1rem;text-align:center;color:var(--color-text-muted);font-size:.875rem}
-</style></head> <body> <header> <h1><a href="/">Agent Economy</a></h1> <div class="header-controls"> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </header> <nav> <a href="/" data-zh="文章" data-en="Articles">Articles</a> <a href="/companies" data-zh="公司" data-en="Companies">Companies</a> <a href="/about" data-zh="关于" data-en="About">About</a> <a href="/rss.xml">RSS</a> </nav> <main>  <h1 class="page-title" data-zh="全部文章" data-en="All Articles">All Articles</h1> <div id="search" class="search-container" data-astro-cid-otpdt6jm> <input type="text" id="search-input" placeholder="搜索文章... / Search articles..." class="search-input" data-astro-cid-otpdt6jm> <div id="search-results" class="search-results" style="display: none;" data-astro-cid-otpdt6jm></div> </div> <script>
-  // Pagefind search initialization
+<style>.search-wrapper[data-astro-cid-otpdt6jm]{margin-bottom:2.5rem;position:relative}.search-input[data-astro-cid-otpdt6jm]{width:100%;padding:.75rem 1rem;border:1px solid #e5e5e5;border-radius:.5rem;background:#fff;color:#171717;font-family:inherit;font-size:.9375rem;transition:all .2s ease}.search-input[data-astro-cid-otpdt6jm]:focus{outline:none;border-color:#525252}.search-input[data-astro-cid-otpdt6jm]::placeholder{color:#737373}[data-theme=dark] .search-input[data-astro-cid-otpdt6jm]{background:#171717;color:#fafafa;border-color:#262626}[data-theme=dark] .search-input[data-astro-cid-otpdt6jm]:focus{border-color:#a3a3a3}[data-theme=dark] .search-input[data-astro-cid-otpdt6jm]::placeholder{color:#737373}.search-results[data-astro-cid-otpdt6jm]{position:absolute;top:100%;left:0;right:0;margin-top:.5rem;background:#fff;border:1px solid #e5e5e5;border-radius:.5rem;max-height:300px;overflow-y:auto;z-index:100;display:none}[data-theme=dark] .search-results[data-astro-cid-otpdt6jm]{background:#171717;border-color:#262626}.search-result[data-astro-cid-otpdt6jm]{display:block;padding:.75rem 1rem;border-bottom:1px solid #e5e5e5;text-decoration:none;color:inherit}[data-theme=dark] .search-result[data-astro-cid-otpdt6jm]{border-color:#262626}.search-result[data-astro-cid-otpdt6jm]:last-child{border-bottom:none}.search-result[data-astro-cid-otpdt6jm]:hover{background:#f5f5f5}[data-theme=dark] .search-result[data-astro-cid-otpdt6jm]:hover{background:#262626}.search-result[data-astro-cid-otpdt6jm] h4[data-astro-cid-otpdt6jm]{font-size:.9375rem;font-weight:500;margin-bottom:.25rem;color:#171717}[data-theme=dark] .search-result[data-astro-cid-otpdt6jm] h4[data-astro-cid-otpdt6jm]{color:#fafafa}.search-result[data-astro-cid-otpdt6jm] p[data-astro-cid-otpdt6jm]{font-size:.8125rem;color:#525252;margin:0;line-height:1.5}[data-theme=dark] .search-result[data-astro-cid-otpdt6jm] p[data-astro-cid-otpdt6jm]{color:#a3a3a3}.search-no-results[data-astro-cid-otpdt6jm]{padding:1rem;text-align:center;color:#737373;font-size:.875rem}
+</style></head> <body> <header> <h1><a href="/">Agent Economy</a></h1> <div class="header-controls"> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </header> <nav> <a href="/" data-zh="文章" data-en="Articles">Articles</a> <a href="/companies" data-zh="公司" data-en="Companies">Companies</a> <a href="/about" data-zh="关于" data-en="About">About</a> <a href="/rss.xml">RSS</a> </nav> <main>  <h1 class="page-title" data-zh="全部文章" data-en="All Articles">All Articles</h1> <div class="search-wrapper" data-astro-cid-otpdt6jm> <input type="text" id="search-input" placeholder="搜索文章... / Search articles..." class="search-input" data-astro-cid-otpdt6jm> <div id="search-results" class="search-results" data-astro-cid-otpdt6jm></div> </div> <script>
   (async function() {
     const input = document.getElementById('search-input');
     const resultsContainer = document.getElementById('search-results');
     
-    if (!input || !resultsContainer) {
-      console.error('Search elements not found');
-      return;
-    }
+    if (!input || !resultsContainer) return;
     
-    let pagefind;
     try {
-      pagefind = await import('/pagefind/pagefind.js');
-      console.log('Pagefind loaded successfully');
-    } catch (err) {
-      console.error('Failed to load pagefind:', err);
-      input.placeholder = 'Search unavailable / 搜索不可用';
-      return;
-    }
-    
-    input.addEventListener('input', async (e) => {
-      const query = e.target.value.trim();
+      const pagefind = await import('/pagefind/pagefind.js');
       
-      if (query.length < 2) {
-        resultsContainer.innerHTML = '';
-        resultsContainer.style.display = 'none';
-        return;
-      }
-      
-      try {
+      input.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        
+        if (query.length < 2) {
+          resultsContainer.innerHTML = '';
+          resultsContainer.style.display = 'none';
+          return;
+        }
+        
         const search = await pagefind.search(query);
         const results = search.results.slice(0, 5);
         
@@ -43,18 +31,16 @@
             const link = document.createElement('a');
             link.href = data.url;
             link.className = 'search-result';
-            link.innerHTML = `
-              <h4>${data.meta?.title || 'Untitled'}</h4>
-              <p>${data.excerpt || ''}</p>
-            `;
+            link.innerHTML = `<h4>${data.meta?.title || 'Untitled'}</h4><p>${data.excerpt || ''}</p>`;
             resultsContainer.appendChild(link);
           }
         }
         resultsContainer.style.display = 'block';
-      } catch (err) {
-        console.error('Search error:', err);
-      }
-    });
+      });
+    } catch (err) {
+      console.error('Search init failed:', err);
+      input.placeholder = 'Search unavailable';
+    }
   })();
 </script>  <section> <article> <div class="lang-content lang-zh active"> <h2><a href="/blog/openai-testing-ads-in-chatgpt">OpenAI 开始在 ChatGPT 中测试广告</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/openai-testing-ads-in-chatgpt">OpenAI Begins Testing Ads in ChatGPT</a></h2> </div> <time>2026-02-11</time> <div class="lang-content lang-zh active"> <p>OpenAI 宣布在美国开始测试 ChatGPT 中的广告功能，仅面向 Free 和 Go 订阅层的登录成年用户，Plus、Pro 等高级订阅将不显示广告。</p> </div> <div class="lang-content lang-en"> <p>OpenAI announces the beginning of ad testing in ChatGPT in the U.S., for logged-in adult users on Free and Go subscription tiers. Plus, Pro and other premium tiers will not have ads.</p> </div> <div class="tags"> <span>OpenAI</span><span>ChatGPT</span><span>AI-Advertising</span> </div> </article><article> <div class="lang-content lang-zh active"> <h2><a href="/blog/entire">Entire：智能体与人类的协作平台</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/entire">Entire: A Collaboration Platform for Agents and Humans</a></h2> </div> <time>2026-02-11</time> <div class="lang-content lang-zh active"> <p>Entire 正在超越代码仓库，构建一个开发者平台，让智能体和人类能够协作、互动和成长。一个新星系的诞生即将到来。</p> </div> <div class="lang-content lang-en"> <p>Entire is going beyond repositories, building a developer platform where agents and humans can collaborate, interact, and grow. The birth of a new galaxy draws near.</p> </div> <div class="tags"> <span>AI-Agents</span><span>Agent-Economy</span><span>Future-of-Work</span> </div> </article><article> <div class="lang-content lang-zh active"> <h2><a href="/blog/ai-hires-humans">AI 雇佣人类：智能体经济的新范式</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/ai-hires-humans">AI Hires Humans: A New Paradigm in the Agent Economy</a></h2> </div> <time>2026-02-09</time> <div class="lang-content lang-zh active"> <p>Rent a Human 提出颠覆性概念：AI 智能体雇佣人类完成物理任务，揭示人机关系的根本性转变。</p> </div> <div class="lang-content lang-en"> <p>Rent a Human introduces a disruptive concept where AI agents hire humans for physical tasks, marking a fundamental shift in human-machine relationships.</p> </div> <div class="tags"> <span>AI-Agents</span><span>Agent-Economy</span><span>Future-of-Work</span> </div> </article><article> <div class="lang-content lang-zh active"> <h2><a href="/blog/google-announced-agent-payments-protocol-ap2">Google 发布 Agent Payments Protocol (AP2)</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/google-announced-agent-payments-protocol-ap2">Google Announced Agent Payments Protocol (AP2)</a></h2> </div> <time>2025-09-16</time> <div class="lang-content lang-zh active"> <p>Google 发布 AP2 协议，一个建立在 A2A 之上的开放标准，支持 AI 智能体之间的安全支付交易。</p> </div> <div class="lang-content lang-en"> <p>Google announced AP2, an open protocol built on A2A that enables secure payment transactions between AI agents.</p> </div> <div class="tags"> <span>Google</span><span>AP2</span><span>Agent-Economy</span> </div> </article><article> <div class="lang-content lang-zh active"> <h2><a href="/blog/google-a2a-protocol">Google 推出 A2A 协议：智能体互操作的新时代</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/google-a2a-protocol">Google Introduces A2A Protocol: A New Era of Agent Interoperability</a></h2> </div> <time>2025-04-09</time> <div class="lang-content lang-zh active"> <p>Google 宣布 A2A 开放协议，让不同框架和供应商的智能体能够协作，开启智能体互操作新时代。</p> </div> <div class="lang-content lang-en"> <p>Google announces A2A open protocol enabling agents from different frameworks and vendors to collaborate, ushering in a new era of agent interoperability.</p> </div> <div class="tags"> <span>Google</span><span>A2A</span><span>Agent-Interoperability</span> </div> </article><article> <div class="lang-content lang-zh active"> <h2><a href="/blog/anthropic-model-context-protocol">Anthropic 发布 Model Context Protocol (MCP)</a></h2> </div> <div class="lang-content lang-en"> <h2><a href="/blog/anthropic-model-context-protocol">Anthropic Introduces Model Context Protocol (MCP)</a></h2> </div> <time>2024-11-25</time> <div class="lang-content lang-zh active"> <p>Anthropic 开源 MCP，一个连接 AI 助手与数据系统的开放标准，解决 AI 与数据孤岛隔离的问题。</p> </div> <div class="lang-content lang-en"> <p>Anthropic open-sources MCP, an open standard connecting AI assistants to data systems, solving the isolation between AI and data silos.</p> </div> <div class="tags"> <span>Anthropic</span><span>MCP</span><span>AI-Standards</span> </div> </article> </section>  </main> <footer> <p data-zh="关于 AI 智能体和自主经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
 Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
