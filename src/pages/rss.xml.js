@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'RynnBrain: Alibaba\'s Open Embodied Foundation Model',
+      titleZh: 'RynnBrain：阿里巴巴开源具身智能基础模型',
+      pubDate: new Date('2026-02-15'),
+      description: 'Alibaba DAMO Academy releases RynnBrain, an embodied foundation model grounded in physical reality...',
+      descriptionZh: '阿里巴巴达摩院发布 RynnBrain，一个基于物理现实的具身基础模型...',
+      link: '/blog/rynnbrain-alibaba-embodied-model',
+    },
+    {
       title: 'Entire: A Collaboration Platform for Agents and Humans',
       titleZh: 'Entire：智能体与人类的协作平台',
       pubDate: new Date('2026-02-11'),

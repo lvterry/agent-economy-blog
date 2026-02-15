@@ -9,6 +9,7 @@ export function getStaticPaths() {
     { params: { slug: 'google-announced-agent-payments-protocol-ap2' } },
     { params: { slug: 'google-a2a-protocol' } },
     { params: { slug: 'anthropic-model-context-protocol' } },
+    { params: { slug: 'rynnbrain-alibaba-embodied-model' } },
   ];
 }
 
@@ -242,6 +243,101 @@ const posts = {
     `,
     tags: ['Anthropic', 'MCP', 'AI-Standards'],
     source: 'Anthropic'
+  },
+  'rynnbrain-alibaba-embodied-model': {
+    titleZh: 'RynnBrain：阿里巴巴开源具身智能基础模型',
+    titleEn: 'RynnBrain: Alibaba\'s Open Embodied Foundation Model',
+    date: '2026-02-15',
+    contentZh: `
+      <p>阿里巴巴达摩院近日发布了 <strong>RynnBrain</strong>，一个基于物理现实的具身基础模型（Embodied Foundation Model）。该模型在物理世界理解、空间推理和机器人任务规划方面展现了强大的能力。</p>
+      
+      <h2>模型规格</h2>
+      <p>RynnBrain 提供三种模型规格：</p>
+      <ul>
+        <li><strong>RynnBrain-2B</strong>：轻量级密集模型</li>
+        <li><strong>RynnBrain-8B</strong>：标准密集模型</li>
+        <li><strong>RynnBrain-30B-A3B</strong>：MoE（混合专家）模型，激活参数 3B</li>
+      </ul>
+      
+      <h2>核心能力</h2>
+      
+      <h3>1. 全面的自我中心理解</h3>
+      <p>在细粒度视频理解和自我中心认知方面表现出色，涵盖具身问答、计数和 OCR 等任务。</p>
+      
+      <h3>2. 多样化时空定位</h3>
+      <p>具备强大的跨时间记忆定位能力，可精确识别物体、目标区域和运动轨迹。</p>
+      
+      <h3>3. 物理空间推理</h3>
+      <p>采用文本和空间定位交替进行的交错推理策略，确保推理过程根植于物理环境。</p>
+      
+      <h3>4. 物理感知精确规划</h3>
+      <p>将定位出的可供性和物体信息整合到规划中，使下游 VLA（视觉-语言-动作）模型能够执行具有细粒度指令的复杂任务。</p>
+      
+      <h2>专项模型</h2>
+      <p>除基础模型外，达摩院还发布了三个后训练专项模型：</p>
+      <ul>
+        <li><strong>RynnBrain-Plan</strong>：机器人任务规划</li>
+        <li><strong>RynnBrain-Nav</strong>：视觉语言导航</li>
+        <li><strong>RynnBrain-CoP</strong>：链式点推理（Chain-of-Point）</li>
+      </ul>
+      
+      <h2>技术报告与资源</h2>
+      <p>达摩院同时发布了详细的技术报告，并在 Hugging Face 和 ModelScope 上开源了模型权重和代码。</p>
+      
+      <p><strong>相关链接：</strong></p>
+      <ul>
+        <li>项目主页：<a href="https://alibaba-damo-academy.github.io/RynnBrain.github.io/">https://alibaba-damo-academy.github.io/RynnBrain.github.io/</a></li>
+        <li>GitHub 仓库：<a href="https://github.com/alibaba-damo-academy/RynnBrain">https://github.com/alibaba-damo-academy/RynnBrain</a></li>
+        <li>在线 Demo：<a href="https://huggingface.co/spaces/Alibaba-DAMO-Academy/RynnBrain">Hugging Face Spaces</a></li>
+        <li>技术报告：<a href="https://alibaba-damo-academy.github.io/RynnBrain.github.io/assets/RynnBrain_Report.pdf">PDF 下载</a></li>
+      </ul>
+    `,
+    contentEn: `
+      <p>Alibaba DAMO Academy has recently released <strong>RynnBrain</strong>, an embodied foundation model grounded in physical reality. The model demonstrates strong capabilities in physical world understanding, spatial reasoning, and robot task planning.</p>
+      
+      <h2>Model Specifications</h2>
+      <p>RynnBrain is available in three variants:</p>
+      <ul>
+        <li><strong>RynnBrain-2B</strong>: Lightweight dense model</li>
+        <li><strong>RynnBrain-8B</strong>: Standard dense model</li>
+        <li><strong>RynnBrain-30B-A3B</strong>: MoE (Mixture-of-Experts) model with 3B active parameters</li>
+      </ul>
+      
+      <h2>Core Capabilities</h2>
+      
+      <h3>1. Comprehensive Egocentric Understanding</h3>
+      <p>Excels in fine-grained video understanding and egocentric cognition, covering tasks such as embodied QA, counting, and OCR.</p>
+      
+      <h3>2. Diverse Spatio-temporal Localization</h3>
+      <p>Possesses powerful localization capabilities across episodic memory, enabling precise identification of objects, target areas, and motion trajectories.</p>
+      
+      <h3>3. Physical-space Reasoning</h3>
+      <p>Employs an interleaved reasoning strategy that alternates between textual and spatial grounding, ensuring that reasoning processes are firmly rooted in the physical environment.</p>
+      
+      <h3>4. Physics-aware Precise Planning</h3>
+      <p>Integrates located affordances and object information into planning, enabling downstream VLA (Vision-Language-Action) models to execute intricate tasks with fine-grained instructions.</p>
+      
+      <h2>Specialized Models</h2>
+      <p>In addition to the base models, DAMO Academy has released three post-trained specialized models:</p>
+      <ul>
+        <li><strong>RynnBrain-Plan</strong>: Robot task planning</li>
+        <li><strong>RynnBrain-Nav</strong>: Vision-language navigation</li>
+        <li><strong>RynnBrain-CoP</strong>: Chain-of-Point reasoning</li>
+      </ul>
+      
+      <h2>Technical Report and Resources</h2>
+      <p>DAMO Academy has also published a detailed technical report and open-sourced model weights and code on Hugging Face and ModelScope.</p>
+      
+      <p><strong>Related Links:</strong></p>
+      <ul>
+        <li>Project Page: <a href="https://alibaba-damo-academy.github.io/RynnBrain.github.io/">https://alibaba-damo-academy.github.io/RynnBrain.github.io/</a></li>
+        <li>GitHub Repository: <a href="https://github.com/alibaba-damo-academy/RynnBrain">https://github.com/alibaba-damo-academy/RynnBrain</a></li>
+        <li>Live Demo: <a href="https://huggingface.co/spaces/Alibaba-DAMO-Academy/RynnBrain">Hugging Face Spaces</a></li>
+        <li>Technical Report: <a href="https://alibaba-damo-academy.github.io/RynnBrain.github.io/assets/RynnBrain_Report.pdf">PDF Download</a></li>
+      </ul>
+    `,
+    tags: ['AI', 'Embodied AI', 'Foundation Model', 'Robotics', 'Alibaba'],
+    source: 'Alibaba DAMO Academy'
   }
 };
 
