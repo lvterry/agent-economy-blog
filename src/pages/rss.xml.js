@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Figma: The Future of Design is Code and Canvas',
+      titleZh: 'Figma：设计的未来是代码与画布',
+      pubDate: new Date('2026-02-18'),
+      description: 'Figma introduces Claude Code to Figma, allowing developers to convert code directly into editable designs...',
+      descriptionZh: 'Figma 推出 Claude Code to Figma 功能，让开发者可以直接将代码转换为可编辑的设计稿...',
+      link: '/blog/figma-future-of-design-code-canvas',
+    },
+    {
       title: 'RynnBrain: Alibaba\'s Open Embodied Foundation Model',
       titleZh: 'RynnBrain：阿里巴巴开源具身智能基础模型',
       pubDate: new Date('2026-02-15'),
