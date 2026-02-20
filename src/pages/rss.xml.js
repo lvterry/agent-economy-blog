@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Google Releases Gemini 3.1 Pro: Next-Gen Multimodal Reasoning Model',
+      titleZh: 'Google 发布 Gemini 3.1 Pro：新一代多模态推理模型',
+      pubDate: new Date('2026-02-20'),
+      description: 'Google DeepMind releases Gemini 3.1 Pro, leading on benchmarks including Humanity\'s Last Exam, ARC-AGI-2, and SWE-Bench...',
+      descriptionZh: 'Google DeepMind 发布 Gemini 3.1 Pro，在 Humanity\'s Last Exam、ARC-AGI-2、SWE-Bench 等多项基准测试中领先...',
+      link: '/blog/gemini-3-1-pro-model-card',
+    },
+    {
       title: 'Figma: The Future of Design is Code and Canvas',
       titleZh: 'Figma：设计的未来是代码与画布',
       pubDate: new Date('2026-02-18'),
