@@ -466,30 +466,18 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
     
     <script is:inline>
         (function() {
-            // Theme handling
-            var savedTheme = localStorage.getItem('theme');
-            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
+            // Theme handling - follows system preference
+            var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
             function updateIcons(isDark) {
                 var lightIcon = document.querySelector('.theme-icon-light');
                 var darkIcon = document.querySelector('.theme-icon-dark');
                 if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
                 if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
             }
-            
-            function getCurrentTheme() {
-                // Check localStorage first, then data-theme attribute, then system preference
-                var stored = localStorage.getItem('theme');
-                if (stored === 'dark' || stored === 'light') {
-                    return stored;
-                }
-                var dataTheme = document.documentElement.getAttribute('data-theme');
-                if (dataTheme === 'dark') return 'dark';
-                return prefersDark ? 'dark' : 'light';
-            }
-            
-            function applyTheme(theme) {
-                var isDark = theme === 'dark';
+
+            function applySystemTheme() {
+                var isDark = mediaQuery.matches;
                 if (isDark) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 } else {
@@ -497,28 +485,20 @@ const siteDescription = 'Curated news and insights about the AI agent economy';
                 }
                 updateIcons(isDark);
             }
-            
+
+            // Listen for system theme changes
+            mediaQuery.addEventListener('change', applySystemTheme);
+
+            // Initialize theme based on system preference
+            applySystemTheme();
+
+            // Manual toggle (temporary override, resets on page reload)
             window.toggleTheme = function() {
-                var currentTheme = getCurrentTheme();
+                var currentTheme = document.documentElement.getAttribute('data-theme');
                 var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                localStorage.setItem('theme', newTheme);
-                applyTheme(newTheme);
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateIcons(newTheme === 'dark');
             };
-            
-            // Initialize theme immediately for the HTML attribute
-            var initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', initialTheme);
-            
-            // Initialize icons after DOM is ready
-            function initIcons() {
-                updateIcons(initialTheme === 'dark');
-            }
-            
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initIcons);
-            } else {
-                initIcons();
-            }
             
             // Language handling
             window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
