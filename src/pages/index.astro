@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import BlogPost from '../components/BlogPost.astro';
 
+const title = 'Articles';
+const description = 'Latest curated news and insights about AI agents, the agent economy, and autonomous systems.';
+
 const posts = [
   {
     slug: '2028-global-intelligence-crisis',
@@ -126,7 +129,7 @@ const posts = [
 ];
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <section>
     {posts.map(post => (
       <BlogPost {...post} />

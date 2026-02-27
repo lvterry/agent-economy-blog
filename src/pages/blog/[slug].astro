@@ -734,9 +734,21 @@ const posts = {
 };
 
 const post = posts[slug];
+
+// Generate description from content (first 160 chars)
+const descriptionZh = post.contentZh.replace(/<[^>]*>/g, '').slice(0, 160).trim() + '...';
+const descriptionEn = post.contentEn.replace(/<[^>]*>/g, '').slice(0, 160).trim() + '...';
+const description = `${post.titleEn} - ${descriptionEn}`;
 ---
 
-<Layout>
+<Layout
+  title={post.titleEn}
+  description={description}
+  type="article"
+  publishedTime={post.date}
+  tags={post.tags}
+  author={post.source}
+>
   <article class="article-content">
     <div class="lang-content lang-zh active">
       <h1>{post.titleZh}</h1>
