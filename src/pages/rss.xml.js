@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Jack Dorsey Announces Major Block Layoffs: Reducing from 10,000 to 6,000 Employees',
+      titleZh: 'Jack Dorsey 宣布 Block 大规模裁员：从 10,000 人减至 6,000 人',
+      pubDate: new Date('2026-02-27'),
+      description: 'Block founder Jack Dorsey announces the company will reduce workforce by nearly 50%, from over 10,000 to approximately 6,000 employees. Over 4,000 people will be affected...',
+      descriptionZh: 'Block 创始人 Jack Dorsey 宣布公司将裁员近 50%，从超过 10,000 名员工减少至约 6,000 人。超过 4,000 名员工将受到影响...',
+      link: '/blog/jack-block-layoffs-2026',
+    },
+    {
       title: 'Google Releases Nano Banana 2: Next-Gen Image Model Combining Pro Capabilities with Lightning Speed',
       titleZh: 'Google 发布 Nano Banana 2：结合 Pro 能力与闪电速度的新一代图像模型',
       pubDate: new Date('2026-02-27'),
