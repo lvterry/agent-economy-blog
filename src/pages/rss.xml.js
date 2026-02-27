@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'The 2028 Global Intelligence Crisis: A Bearish Scenario for AI Optimism',
+      titleZh: '2028年全球智能危机：AI 乐观主义的熊市情景',
+      pubDate: new Date('2026-02-27'),
+      description: 'CitriniResearch scenario analysis explores economic risks of rapid AI development: unemployment hits 10.2%, "Ghost GDP", SaaS industry collapse...',
+      descriptionZh: 'CitriniResearch 发布情景分析，探讨 AI 快速发展可能带来的经济风险：失业率飙升至 10.2%、"幽灵 GDP"、SaaS 行业崩溃...',
+      link: '/blog/2028-global-intelligence-crisis',
+    },
+    {
       title: 'Jack Dorsey Announces Major Block Layoffs: Reducing from 10,000 to 6,000 Employees',
       titleZh: 'Jack Dorsey 宣布 Block 大规模裁员：从 10,000 人减至 6,000 人',
       pubDate: new Date('2026-02-27'),
