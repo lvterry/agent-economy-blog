@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Google Releases Nano Banana 2: Next-Gen Image Model Combining Pro Capabilities with Lightning Speed',
+      titleZh: 'Google 发布 Nano Banana 2：结合 Pro 能力与闪电速度的新一代图像模型',
+      pubDate: new Date('2026-02-27'),
+      description: 'Google DeepMind releases Nano Banana 2, combining Pro features with Flash speed. Supports subject consistency, precise text rendering, 4K resolution...',
+      descriptionZh: 'Google DeepMind 发布 Nano Banana 2，将 Pro 版本的高级功能与 Flash 的闪电速度相结合。支持主体一致性、精确文本渲染、4K 分辨率...',
+      link: '/blog/nano-banana-2-google-image-model',
+    },
+    {
       title: 'Google Releases Gemini 3.1 Pro: Next-Gen Multimodal Reasoning Model',
       titleZh: 'Google 发布 Gemini 3.1 Pro：新一代多模态推理模型',
       pubDate: new Date('2026-02-20'),
