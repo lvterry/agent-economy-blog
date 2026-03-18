@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Introducing Forge | Mistral AI',
+      titleZh: 'Mistral AI 发布 Forge：企业专有知识驱动的前沿模型系统',
+      pubDate: new Date('2026-03-18'),
+      description: 'Today, we’re introducing Forge, a system that allows enterprises to build frontier-grade AI models grounded in their proprietary knowledge.',
+      descriptionZh: 'Mistral AI 发布 Forge，让企业基于专有知识构建前沿级 AI 模型。',
+      link: '/blog/introducing-forge-mistral-ai',
+    },
+    {
       title: 'Claude Now Creates Interactive Visuals Directly in Chat',
       titleZh: 'Claude 现可直接在对话中生成交互式可视化内容',
       pubDate: new Date('2026-03-18'),
