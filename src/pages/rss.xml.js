@@ -3,11 +3,11 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
-      title: 'Claude now creates interactive charts, diagrams and visualizations',
-      titleZh: 'Claude 在对话中生成交互式图表与可视化',
+      title: 'Claude Now Creates Interactive Visuals Directly in Chat',
+      titleZh: 'Claude 现可直接在对话中生成交互式可视化内容',
       pubDate: new Date('2026-03-18'),
-      description: 'Claude can now generate interactive charts, diagrams, and visualizations inline in chat and iteratively update them as the conversation evolves.',
-      descriptionZh: 'Claude 现可在对话中直接生成交互式图表、示意图与可视化，并可随讨论推进不断调整。',
+      description: 'Claude now creates interactive charts and diagrams directly in chat. This beta feature lets users explain concepts or analyze data with custom visuals—no coding required. Based on last fall\'s Imagine…',
+      descriptionZh: 'Claude 推出对话内嵌可视化功能，可直接生成交互式图表和示意图。该测试版源自去年预览的 Imagine with Claude，用户无需编程即可解释概念或分析数据。',
       link: '/blog/claude-builds-interactive-visuals-right-in-your-co',
     },
     {
