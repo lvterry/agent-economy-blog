@@ -3,11 +3,11 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
-      title: 'Claude builds interactive visuals right in your conversation | Claude',
-      titleZh: 'Claude builds interactive visuals right in your conversation | Claude',
+      title: 'Claude now creates interactive charts, diagrams and visualizations',
+      titleZh: 'Claude 在对话中生成交互式图表与可视化',
       pubDate: new Date('2026-03-18'),
-      description: 'Ask Claude to explain a concept or analyze your data, and it can respond with interactive charts, diagrams, and visualizations — rendered inline as part of the conversation.',
-      descriptionZh: 'Ask Claude to explain a concept or analyze your data, and it can respond with interactive charts, diagrams, and visualizations — rendered inline as part of the conversation.',
+      description: 'Claude can now generate interactive charts, diagrams, and visualizations inline in chat and iteratively update them as the conversation evolves.',
+      descriptionZh: 'Claude 现可在对话中直接生成交互式图表、示意图与可视化，并可随讨论推进不断调整。',
       link: '/blog/claude-builds-interactive-visuals-right-in-your-co',
     },
     {
