@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Claude builds interactive visuals right in your conversation | Claude',
+      titleZh: 'Claude builds interactive visuals right in your conversation | Claude',
+      pubDate: new Date('2026-03-18'),
+      description: 'Ask Claude to explain a concept or analyze your data, and it can respond with interactive charts, diagrams, and visualizations — rendered inline as part of the conversation.',
+      descriptionZh: 'Ask Claude to explain a concept or analyze your data, and it can respond with interactive charts, diagrams, and visualizations — rendered inline as part of the conversation.',
+      link: '/blog/claude-builds-interactive-visuals-right-in-your-co',
+    },
+    {
       title: 'The 2028 Global Intelligence Crisis: A Bearish Scenario for AI Optimism',
       titleZh: '2028年全球智能危机：AI 乐观主义的熊市情景',
       pubDate: new Date('2026-02-27'),
