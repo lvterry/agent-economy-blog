@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Design UI using AI with Stitch from Google Labs',
+      titleZh: 'Design UI using AI with Stitch from Google Labs',
+      pubDate: new Date('2026-03-19'),
+      description: 'Stitch is evolving into an AI-native platform that allows anyone to create, iterate, and collaborate on high-fidelity UI.',
+      descriptionZh: 'Stitch is evolving into an AI-native platform that allows anyone to create, iterate, and collaborate on high-fidelity UI.',
+      link: '/blog/design-ui-using-ai-with-stitch-from-google-labs',
+    },
+    {
       title: 'Introducing Forge | Mistral AI',
       titleZh: 'Mistral AI 发布 Forge：企业专有知识驱动的前沿模型系统',
       pubDate: new Date('2026-03-18'),
