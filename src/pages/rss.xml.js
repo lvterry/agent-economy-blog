@@ -118,7 +118,7 @@ export async function GET(context) {
 
   return rss({
     title: 'Agent Economy',
-    description: 'Curated news and insights about AI agents and the autonomous economy | 关于 AI 智能体和自主经济的精选洞察',
+    description: 'Curated news and insights about AI agents and the autonomous economy | 关于 AI 智能体经济的精选洞察',
     site: context.site,
     items: posts.map((post) => ({
       title: `${post.title} | ${post.titleZh}`,
