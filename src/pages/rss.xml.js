@@ -4,10 +4,10 @@ export async function GET(context) {
   const posts = [
     {
       title: 'Design UI using AI with Stitch from Google Labs',
-      titleZh: 'Design UI using AI with Stitch from Google Labs',
+      titleZh: 'Google Labs 发布 Stitch：用 AI 设计 UI',
       pubDate: new Date('2026-03-19'),
       description: 'Stitch is evolving into an AI-native platform that allows anyone to create, iterate, and collaborate on high-fidelity UI.',
-      descriptionZh: 'Stitch is evolving into an AI-native platform that allows anyone to create, iterate, and collaborate on high-fidelity UI.',
+      descriptionZh: 'Stitch 正在演进为 AI 原生平台，让任何人都能创建、迭代并协作打造高保真 UI。',
       link: '/blog/design-ui-using-ai-with-stitch-from-google-labs',
     },
     {
