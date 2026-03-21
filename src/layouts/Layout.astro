@@ -25,9 +25,31 @@ const {
 
 const siteTitle = 'Agent Economy';
 const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-const siteURL = 'https://agenteconomy.ai';
+const siteURL = 'https://agenteconomy.cn';
 const ogImage = image.startsWith('http') ? image : `${siteURL}${image}`;
 const canonical = canonicalURL || Astro.url.pathname;
+
+// JSON-LD for website
+const websiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": siteTitle,
+  "url": siteURL,
+  "description": "Curated news and insights about the AI agent economy",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteURL}/search?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteTitle,
+    "url": siteURL
+  }
+});
 ---
 
 <!DOCTYPE html>
@@ -80,6 +102,9 @@ const canonical = canonicalURL || Astro.url.pathname;
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={websiteSchema} />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

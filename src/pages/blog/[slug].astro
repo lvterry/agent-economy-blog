@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
+const siteURL = 'https://agenteconomy.cn';
+
 export function getStaticPaths() {
   return [
     { params: { slug: 'openai-testing-ads-in-chatgpt' } },
@@ -739,6 +741,35 @@ const post = posts[slug];
 const descriptionZh = post.contentZh.replace(/<[^>]*>/g, '').slice(0, 160).trim() + '...';
 const descriptionEn = post.contentEn.replace(/<[^>]*>/g, '').slice(0, 160).trim() + '...';
 const description = `${post.titleEn} - ${descriptionEn}`;
+const articleUrl = `${siteURL}/blog/${slug}`;
+
+// JSON-LD for article
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.titleEn,
+  "datePublished": post.date,
+  "dateModified": post.date,
+  "description": descriptionEn,
+  "image": `${siteURL}/og-image.png`,
+  "url": articleUrl,
+  "author": {
+    "@type": "Organization",
+    "name": post.source
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agent Economy",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteURL}/favicon.svg`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": articleUrl
+  }
+});
 ---
 
 <Layout
@@ -749,6 +780,7 @@ const description = `${post.titleEn} - ${descriptionEn}`;
   tags={post.tags}
   author={post.source}
 >
+  <script type="application/ld+json" set:html={articleSchema} />
   <article class="article-content">
     <div class="lang-content lang-zh active">
       <h1>{post.titleZh}</h1>
