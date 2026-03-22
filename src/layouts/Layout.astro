@@ -211,6 +211,29 @@ const websiteSchema = JSON.stringify({
             background: var(--color-hover);
         }
         
+        /* Category styles */
+        .categories {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+        }
+        
+        .category-tag:hover {
+            color: var(--color-text);
+            border-color: var(--color-text);
+            opacity: 1;
+        }
+        
         header {
             padding: var(--space-xl) var(--space-md) var(--space-md);
             max-width: var(--max-width);

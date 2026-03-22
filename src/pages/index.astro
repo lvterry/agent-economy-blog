@@ -5,6 +5,29 @@ import BlogPost from '../components/BlogPost.astro';
 const title = 'Articles';
 const description = 'Latest curated news and insights about AI agents, the agent economy, and autonomous systems.';
 
+// Category mapping
+const categoryMap = {
+  "AI 模型": ["OpenAI", "Google", "Anthropic", "Claude", "Gemini", "GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4"],
+  "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
+  "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Hardware", "Tinygrad", "Deep-Learning", "Computer-Use", "Coding"],
+  "商业 & 经济": ["Agent-Economy", "Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
+  "安全 & 协议": ["AP2", "AI-Advertising"],
+  "行业动态": ["X/Twitter", "ChatGPT"]
+};
+
+function getCategories(tags) {
+  const categories = new Set();
+  for (const tag of tags) {
+    for (const [category, categoryTags] of Object.entries(categoryMap)) {
+      if (categoryTags.includes(tag)) {
+        categories.add(category);
+      }
+    }
+  }
+  if (categories.size === 0) categories.add("AI 智能体");
+  return Array.from(categories);
+}
+
 const posts = [
   {
     slug: 'tinygrad-tinybox',
@@ -177,11 +200,20 @@ const posts = [
     source: 'Anthropic'
   }
 ];
+
+// Get category from URL query param
+const url = Astro.url;
+const categoryFilter = url.searchParams.get('category');
+
+// Filter posts by category if specified
+const filteredPosts = categoryFilter 
+  ? posts.filter(post => getCategories(post.tags).includes(categoryFilter))
+  : posts;
 ---
 
 <Layout title={title} description={description}>
   <section>
-    {posts.map(post => (
+    {filteredPosts.map(post => (
       <BlogPost {...post} />
     ))}
   </section>

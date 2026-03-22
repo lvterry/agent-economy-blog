@@ -3,6 +3,30 @@ import Layout from '../../layouts/Layout.astro';
 
 const siteURL = 'https://agenteconomy.cn';
 
+// Category mapping: map old tags to new categories
+const categoryMap = {
+  "AI 模型": ["OpenAI", "Google", "Anthropic", "Claude", "Gemini", "GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4"],
+  "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
+  "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Hardware", "Tinygrad", "Deep-Learning", "Computer-Use", "Coding"],
+  "商业 & 经济": ["Agent-Economy", "Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
+  "安全 & 协议": ["AP2", "AI-Advertising"],
+  "行业动态": ["X/Twitter", "ChatGPT"]
+};
+
+function getCategories(tags) {
+  const categories = new Set();
+  for (const tag of tags) {
+    for (const [category, categoryTags] of Object.entries(categoryMap)) {
+      if (categoryTags.includes(tag)) {
+        categories.add(category);
+      }
+    }
+  }
+  // If no category matched, default to "AI 智能体"
+  if (categories.size === 0) categories.add("AI 智能体");
+  return Array.from(categories).slice(0, 2); // Max 2 categories
+}
+
 export function getStaticPaths() {
   return [
     { params: { slug: 'openai-testing-ads-in-chatgpt' } },
@@ -858,9 +882,9 @@ const articleSchema = JSON.stringify({
     <div class="lang-content lang-en" set:html={post.contentEn} />
     
     <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
-      <div class="tags">
-        {post.tags.map(tag => (
-          <span>{tag}</span>
+      <div class="categories">
+        {getCategories(post.tags).map(category => (
+          <a href={`/?category=${encodeURIComponent(category)}`} class="category-tag">{category}</a>
         ))}
       </div>
     </div>
