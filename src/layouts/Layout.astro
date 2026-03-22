@@ -322,6 +322,12 @@ const websiteSchema = JSON.stringify({
             flex: 1;
         }
         
+        .footer-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
         footer a {
             color: var(--color-text-secondary);
         }
@@ -581,10 +587,13 @@ const websiteSchema = JSON.stringify({
     <header>
         <h1><a href="/">Agent Economy</a></h1>
         <div class="header-controls">
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <span class="theme-icon-light">☀</span>
-                <span class="theme-icon-dark" style="display: none;">☾</span>
-            </button>
+            <div class="lang-selector">
+                <span class="lang-icon" aria-label="Language">🌐</span>
+                <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)">
+                    <option value="zh">中</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
         </div>
     </header>
     
@@ -603,12 +612,11 @@ const websiteSchema = JSON.stringify({
         <p data-zh="关于 AI 智能体经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
             Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
         </p>
-        <div class="lang-selector">
-            <span class="lang-icon" aria-label="Language">🌐</span>
-            <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)">
-                <option value="zh">中</option>
-                <option value="en">EN</option>
-            </select>
+        <div class="footer-controls">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon-light">☀</span>
+                <span class="theme-icon-dark" style="display: none;">☾</span>
+            </button>
         </div>
     </footer>
     
