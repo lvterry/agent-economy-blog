@@ -188,6 +188,29 @@ const websiteSchema = JSON.stringify({
             opacity: 0.6;
         }
         
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        
+        th {
+            background: var(--color-hover);
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) td {
+            background: var(--color-hover);
+        }
+        
         header {
             padding: var(--space-xl) var(--space-md) var(--space-md);
             max-width: var(--max-width);
