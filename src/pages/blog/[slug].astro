@@ -42,6 +42,7 @@ export function getStaticPaths() {
     { params: { slug: 'jack-block-layoffs-2026' } },
     { params: { slug: '2028-global-intelligence-crisis' } },
     { params: { slug: 'tinygrad-tinybox' } },
+    { params: { slug: 'project-nomad-offline-ai-server' } },
   ];
 }
 
@@ -820,6 +821,83 @@ const posts = {
     `,
     tags: ['AI', 'Tinygrad', 'Hardware', 'Deep-Learning'],
     source: 'TinyCorp'
+  },
+  'project-nomad-offline-ai-server': {
+    titleZh: 'Project NOMAD：离线 AI 服务器，让任何人都能在电脑上运行 AI',
+    titleEn: 'Project NOMAD: Offline AI Server - Run AI on Your Own Computer',
+    date: '2026-03-23',
+    contentZh: `
+      <p>Project NOMAD（Node for Offline Media, Archives, and Data）是一个免费开源的离线服务器，让你可以在自己的电脑上运行 LLM、AI 助手、离线地图和知识库。无需互联网，永不断线。</p>
+      
+      <h2>核心功能</h2>
+      <ul>
+        <li><strong>离线知识库</strong>：Wikipedia、医学参考手册、修复指南，全部存储在本地</li>
+        <li><strong>本地 AI</strong>：通过 Ollama 运行强大的大语言模型，完全离线</li>
+        <li><strong>离线地图</strong>：OpenStreetMap 数据，导航无需网络</li>
+        <li><strong>教育平台</strong>：Khan Academy 等课程离线使用</li>
+      </ul>
+      
+      <h2>适用场景</h2>
+      <ul>
+        <li><strong>应急准备</strong>：基础设施故障时，NOMAD 依然可用——医学参考、生存指南、百科知识，无需网络</li>
+        <li><strong>离网生活</strong>：在 cabin、RV 或帆船上，带着完整的图书馆、AI 助手和离线地图</li>
+        <li><strong>技术爱好者</strong>：运行本地 LLM、自托管知识库、完全掌控数据</li>
+        <li><strong>教育</strong>：Khan Academy、Wikipedia for Schools —— 即使没有网络也能学习</li>
+      </ul>
+      
+      <h2>硬件要求</h2>
+      <table>
+        <tr><td>处理器</td><td>AMD Ryzen 7 with Radeon graphics 或 Intel i7+</td></tr>
+        <tr><td>内存</td><td>32 GB RAM</td></tr>
+        <tr><td>显卡</td><td>集成 AMD Radeon 780M+ 或独立 NVIDIA GPU</td></tr>
+        <tr><td>存储</td><td>1 TB SSD</td></tr>
+      </table>
+      
+      <p>推荐 Ubuntu 22.04+ 或 Debian 12+。Windows 可通过 Docker Desktop 运行。</p>
+      
+      <h2>60 秒安装</h2>
+      <pre><code>$ curl -fsSL https://raw.githubusercontent.com/Crosstalk-Solutions/project-nomad/main/install/install_nomad.sh -o install_nomad.sh
+$ sudo bash install_nomad.sh</code></pre>
+      
+      <p>阅读完整文章：<a href="https://www.projectnomad.us/">https://www.projectnomad.us/</a></p>
+    `,
+    contentEn: `
+      <p>Project NOMAD (Node for Offline Media, Archives, and Data) is a free, open-source offline server that lets you run LLMs, AI assistants, offline maps, and knowledge bases on your own computer. No internet required.</p>
+      
+      <h2>Core Features</h2>
+      <ul>
+        <li><strong>Offline Knowledge</strong>: Wikipedia, medical references, repair guides — all stored locally</li>
+        <li><strong>Local AI</strong>: Run powerful LLMs completely offline via Ollama</li>
+        <li><strong>Offline Maps</strong>: OpenStreetMap data for navigation without network</li>
+        <li><strong>Education Platform</strong>: Khan Academy courses offline</li>
+      </ul>
+      
+      <h2>Use Cases</h2>
+      <ul>
+        <li><strong>Emergency Preparedness</strong>: When infrastructure fails, NOMAD keeps working — medical references, survival guides, encyclopedic knowledge</li>
+        <li><strong>Off-Grid Living</strong>: Cabin, RV, or sailboat — bring a complete library, AI assistant, and offline maps</li>
+        <li><strong>Tech Enthusiasts</strong>: Run local LLMs, self-host your knowledge base, own your data</li>
+        <li><strong>Education</strong>: Khan Academy, Wikipedia for Schools — complete learning resources without connectivity</li>
+      </ul>
+      
+      <h2>Hardware Requirements</h2>
+      <table>
+        <tr><td>Processor</td><td>AMD Ryzen 7 with Radeon graphics or Intel i7+</td></tr>
+        <tr><td>Memory</td><td>32 GB RAM</td></tr>
+        <tr><td>Graphics</td><td>Integrated AMD Radeon 780M+ or dedicated NVIDIA GPU</td></tr>
+        <tr><td>Storage</td><td>1 TB SSD</td></tr>
+      </table>
+      
+      <p>Ubuntu 22.04+ or Debian 12+ recommended. Windows support via Docker Desktop.</p>
+      
+      <h2>60-Second Install</h2>
+      <pre><code>$ curl -fsSL https://raw.githubusercontent.com/Crosstalk-Solutions/project-nomad/main/install/install_nomad.sh -o install_nomad.sh
+$ sudo bash install_nomad.sh</code></pre>
+      
+      <p>Read the full article at <a href="https://www.projectnomad.us/">https://www.projectnomad.us/</a></p>
+    `,
+    tags: ['Hardware', 'Open Source', 'Local AI', 'Offline'],
+    source: 'Project NOMAD'
   }
 };
 
