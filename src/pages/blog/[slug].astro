@@ -46,6 +46,7 @@ export function getStaticPaths() {
     { params: { slug: 'playbit-personal-software-platform' } },
     { params: { slug: 'arm-agi-cpu' } },
     { params: { slug: 'sora-shutting-down' } },
+    { params: { slug: 'arc-agi-3-benchmark' } },
   ];
 }
 
@@ -924,6 +925,31 @@ const posts = {
     `,
     tags: ['AI-Model', 'OpenAI', 'X/Twitter'],
     source: 'OpenAI'
+  },
+  'arc-agi-3-benchmark': {
+    titleZh: 'ARC-AGI-3：衡量 AI 通用智能的新一代推理基准',
+    titleEn: 'ARC-AGI-3: The Next-Gen Reasoning Benchmark for Measuring AGI',
+    date: '2026-03-26',
+    contentZh: `
+      <p>ARC-AGI-3 是第三代 ARC 推理基准，专注于测试 AI 智能体的交互式推理能力。</p>
+      
+      <h2>这意味着什么？</h2>
+      <p>对开发者：这是衡量 AI 与人类智能差距的新工具。100% 分数意味着 AI 智能体可以像人类一样高效地完成每个任务。</p>
+      <p>对行业：ARC-AGI-3 测试的是学习能力而非解题技巧——技能习得效率、长期规划、经验驱动的适应能力。只要 AI 和人类学习之间有差距，就不算实现了 AGI。</p>
+      
+      <p>阅读完整介绍：<a href="https://arcprize.org/arc-agi/3">https://arcprize.org/arc-agi/3</a></p>
+    `,
+    contentEn: `
+      <p>ARC-AGI-3 is the third generation of the ARC reasoning benchmark, focusing on testing AI agents' interactive reasoning capabilities.</p>
+      
+      <h2>What This Means</h2>
+      <p>For developers: This is a new tool to measure the gap between AI and human intelligence. A 100% score means AI agents can beat every task as efficiently as humans.</p>
+      <p>For the industry: ARC-AGI-3 tests learning ability, not puzzle-solving — skill-acquisition efficiency, long-horizon planning, experience-driven adaptation. As long as there's a gap between AI and human learning, we don't have AGI.</p>
+      
+      <p>Read more: <a href="https://arcprize.org/arc-agi/3">https://arcprize.org/arc-agi/3</a></p>
+    `,
+    tags: ['AI-Model', 'Reasoning', 'Benchmark'],
+    source: 'ARC Prize'
   }
 };
 
