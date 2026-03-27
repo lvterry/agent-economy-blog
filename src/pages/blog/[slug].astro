@@ -47,6 +47,7 @@ export function getStaticPaths() {
     { params: { slug: 'arm-agi-cpu' } },
     { params: { slug: 'sora-shutting-down' } },
     { params: { slug: 'arc-agi-3-benchmark' } },
+    { params: { slug: 'hyperagents-self-improving-agents' } },
   ];
 }
 
@@ -950,6 +951,31 @@ const posts = {
     `,
     tags: ['AI-Model', 'Reasoning', 'Benchmark'],
     source: 'ARC Prize'
+  },
+  'hyperagents-self-improving-agents': {
+    titleZh: 'Meta 发布 HyperAgents：自引用、自改进的 AI 智能体',
+    titleEn: 'Meta HyperAgents: Self-Referential Self-Improving AI Agents',
+    date: '2026-03-27',
+    contentZh: `
+      <p>Meta AI 发布 HyperAgents，一个可以让 AI 智能体自主优化代码以完成任何可计算任务的框架。</p>
+      
+      <h2>这意味着什么？</h2>
+      <p>对开发者：智能体不仅可以执行任务，还能自我改进代码。meta agent 负责审查和改进 task agent 的代码，形成自引用循环。</p>
+      <p>对行业：这是 AI 智能体自我进化的重要探索，可能推动更强大的自主 AI 系统出现。但需注意风险——执行由模型生成的未信任代码存在安全隐患。</p>
+      
+      <p>阅读完整内容：<a href="https://github.com/facebookresearch/hyperagents">https://github.com/facebookresearch/hyperagents</a></p>
+    `,
+    contentEn: `
+      <p>Meta AI releases HyperAgents, a framework enabling AI agents to autonomously optimize code to complete any computable task.</p>
+      
+      <h2>What This Means</h2>
+      <p>For developers: Agents can not only execute tasks but also self-improve their code. The meta agent reviews and improves task agent's code, forming a self-referential loop.</p>
+      <p>For the industry: This is a significant exploration of AI agent self-evolution, potentially leading to more powerful autonomous AI systems. But be aware of risks — executing untrusted model-generated code has security concerns.</p>
+      
+      <p>Read more: <a href="https://github.com/facebookresearch/hyperagents">https://github.com/facebookresearch/hyperagents</a></p>
+    `,
+    tags: ['AI-Agents', 'Agentic AI', 'Meta'],
+    source: 'Meta AI'
   }
 };
 
