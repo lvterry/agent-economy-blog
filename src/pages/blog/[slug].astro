@@ -53,6 +53,7 @@ export function getStaticPaths() {
     { params: { slug: 'agents-of-chaos-red-teaming-study' } },
     { params: { slug: 'coasts-localhost-service-isolation' } },
     { params: { slug: 'linear-agent-interaction-guidelines' } },
+    { params: { slug: 'claude-code-source-leak-insights' } },
   ];
 }
 
@@ -1266,6 +1267,69 @@ const posts = {
     `,
     tags: ['AI-Agents', 'Product-Design', 'UX', 'Human-Computer-Interaction'],
     source: 'Linear'
+  },
+  'claude-code-source-leak-insights': {
+    titleZh: 'Claude Code 源代码泄露：社区深度分析汇总',
+    titleEn: 'Claude Code Source Leak: Community Analysis & Insights',
+    date: '2026-04-01',
+    contentZh: `
+      <p>2026年3月31日，安全研究员 Chaofan Shou 发现 Anthropic 在 Claude Code 的 npm 包中意外包含了一个 source map 文件，导致约 1,900 个文件、51.2 万行 TypeScript 源代码被完全暴露。</p>
+
+      <h2>泄露内容亮点</h2>
+      <ul>
+        <li><strong>虚假工具 (Fake Tools)</strong> — 用于特定场景的内部工具</li>
+        <li><strong>沮丧检测正则</strong> — 用正则表达式而非模型检测用户情绪</li>
+        <li><strong>卧底模式 (Undercover Mode)</strong> — 内部开发模式</li>
+        <li><strong>BUDDY 系统</strong> — 即将发布的 Tamagotchi 风格虚拟伙伴（愚人节彩蛋）</li>
+        <li><strong>KAIROS 模式</strong> — "始终在线"的主动式助手</li>
+        <li><strong>ULTRAPLAN 模式</strong> — 30分钟远程编排模式</li>
+        <li><strong>模型代号</strong> — Tengu、Fennec、Capybara 等内部模型变体</li>
+      </ul>
+
+      <h2>技术架构洞察</h2>
+      <ul>
+        <li>基于 Bun + React + Ink 的终端 UI</li>
+        <li>Zod v4 用于类型安全</li>
+        <li>三层上下文压缩管道（MicroCompact → AutoCompact → Full Compact）</li>
+        <li>AutoDream 四阶段记忆整合流程</li>
+        <li>自定义 Bun 运行时和 Zig 编译的 token 生成</li>
+      </ul>
+
+      <h2>根本原因</h2>
+      <p>可能是 Bun 构建工具的一个 bug 导致 source map 文件被包含在发布的 npm 包中。</p>
+
+      <p>社区分析汇总：<a href="https://github.com/nblintao/awesome-claude-code-postleak-insights">https://github.com/nblintao/awesome-claude-code-postleak-insights</a></p>
+    `,
+    contentEn: `
+      <p>On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exposing approximately 1,900 files and 512,000 lines of TypeScript source code.</p>
+
+      <h2>Notable Leaked Content</h2>
+      <ul>
+        <li><strong>Fake Tools</strong> — Internal tools for specific scenarios</li>
+        <li><strong>Frustration Regexes</strong> — Using regex instead of models to detect user sentiment</li>
+        <li><strong>Undercover Mode</strong> — Internal development mode</li>
+        <li><strong>BUDDY System</strong> — Upcoming Tamagotchi-style virtual companion (April Fools easter egg)</li>
+        <li><strong>KAIROS Mode</strong> — "Always-on" proactive assistant</li>
+        <li><strong>ULTRAPLAN Mode</strong> — 30-minute remote orchestration mode</li>
+        <li><strong>Model Codenames</strong> — Internal variants: Tengu, Fennec, Capybara</li>
+      </ul>
+
+      <h2>Technical Architecture Insights</h2>
+      <ul>
+        <li>Bun + React + Ink for terminal UI</li>
+        <li>Zod v4 for type safety</li>
+        <li>Three-layer context compression pipeline (MicroCompact → AutoCompact → Full Compact)</li>
+        <li>AutoDream four-phase memory consolidation flow</li>
+        <li>Custom Bun runtime and Zig-compiled token generation</li>
+      </ul>
+
+      <h2>Root Cause</h2>
+      <p>Likely a bug in the Bun build tool that caused source map files to be included in the published npm package.</p>
+
+      <p>Community analysis collection: <a href="https://github.com/nblintao/awesome-claude-code-postleak-insights">https://github.com/nblintao/awesome-claude-code-postleak-insights</a></p>
+    `,
+    tags: ['AI-Agents', 'Security', 'Claude', 'Developer-Tools'],
+    source: 'Community / nblintao'
   }
 };
 
