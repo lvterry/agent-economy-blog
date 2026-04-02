@@ -54,6 +54,7 @@ export function getStaticPaths() {
     { params: { slug: 'coasts-localhost-service-isolation' } },
     { params: { slug: 'linear-agent-interaction-guidelines' } },
     { params: { slug: 'claude-code-source-leak-insights' } },
+    { params: { slug: 'google-gemma-4-open-models' } },
   ];
 }
 
@@ -1330,6 +1331,73 @@ const posts = {
     `,
     tags: ['AI-Agents', 'Security', 'Claude', 'Developer-Tools'],
     source: 'Community / nblintao'
+  },
+  'google-gemma-4-open-models': {
+    titleZh: 'Google 发布 Gemma 4：迄今最智能的开源模型',
+    titleEn: 'Google Releases Gemma 4: The Most Capable Open Models to Date',
+    date: '2026-04-02',
+    contentZh: `
+      <p>Google 发布 Gemma 4 —— 迄今最智能的开源模型家族。专为高级推理和智能体工作流设计，Gemma 4 实现了前所未有的"单位参数智能"突破。</p>
+
+      <h2>模型规格</h2>
+      <p>Gemma 4 提供四种尺寸，超越简单对话，支持复杂逻辑和智能体工作流：</p>
+      <ul>
+        <li><strong>E2B (Effective 2B)</strong> — 边缘设备优化，128K 上下文</li>
+        <li><strong>E4B (Effective 4B)</strong> — 边缘设备优化，支持原生音频输入</li>
+        <li><strong>26B MoE</strong> — 混合专家模型，仅激活 3.8B 参数，延迟优化</li>
+        <li><strong>31B Dense</strong> — 稠密模型，最大质量，256K 上下文</li>
+      </ul>
+
+      <h2>核心能力</h2>
+      <ul>
+        <li><strong>高级推理</strong> — 多步规划和深度逻辑，数学和指令遵循显著提升</li>
+        <li><strong>智能体工作流</strong> — 原生支持函数调用、结构化 JSON 输出、系统指令</li>
+        <li><strong>代码生成</strong> — 高质量离线代码，将工作站变成本地 AI 编程助手</li>
+        <li><strong>多模态</strong> — 原生处理视频、图像，支持 OCR 和图表理解；E2B/E4B 支持音频输入</li>
+        <li><strong>长上下文</strong> — 边缘模型 128K，大模型 256K，可处理整个代码库</li>
+        <li><strong>140+ 语言</strong> — 原生支持超过 140 种语言</li>
+      </ul>
+
+      <h2>性能表现</h2>
+      <p>31B 模型在 Arena AI 文本排行榜上位列开源模型第 3，26B 模型位列第 6。Gemma 4 以 20 倍更小的尺寸超越了更大模型的性能。</p>
+
+      <h2>开源许可</h2>
+      <p>Gemma 4 采用 Apache 2.0 许可证发布，提供完整的开发者灵活性和数字主权，允许在任何环境中自由构建和安全部署。</p>
+
+      <p>了解更多：<a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/">https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/</a></p>
+    `,
+    contentEn: `
+      <p>Google introduces Gemma 4 — the most intelligent open models to date. Purpose-built for advanced reasoning and agentic workflows, Gemma 4 delivers an unprecedented level of intelligence-per-parameter.</p>
+
+      <h2>Model Sizes</h2>
+      <p>Gemma 4 comes in four versatile sizes, moving beyond simple chat to handle complex logic and agentic workflows:</p>
+      <ul>
+        <li><strong>E2B (Effective 2B)</strong> — Edge-optimized, 128K context window</li>
+        <li><strong>E4B (Effective 4B)</strong> — Edge-optimized with native audio input support</li>
+        <li><strong>26B MoE</strong> — Mixture of Experts, activates only 3.8B parameters, latency-focused</li>
+        <li><strong>31B Dense</strong> — Dense model maximizing raw quality, 256K context window</li>
+      </ul>
+
+      <h2>Core Capabilities</h2>
+      <ul>
+        <li><strong>Advanced Reasoning</strong> — Multi-step planning and deep logic, significant improvements in math and instruction-following</li>
+        <li><strong>Agentic Workflows</strong> — Native support for function-calling, structured JSON output, system instructions</li>
+        <li><strong>Code Generation</strong> — High-quality offline code, turning workstations into local AI coding assistants</li>
+        <li><strong>Multimodal</strong> — Native video and image processing, OCR and chart understanding; E2B/E4B support audio input</li>
+        <li><strong>Long Context</strong> — 128K for edge models, 256K for larger models, can process entire codebases</li>
+        <li><strong>140+ Languages</strong> — Natively trained on over 140 languages</li>
+      </ul>
+
+      <h2>Performance</h2>
+      <p>The 31B model ranks #3 among open models on Arena AI text leaderboard, with the 26B model at #6. Gemma 4 outcompetes models 20x its size.</p>
+
+      <h2>Open Source License</h2>
+      <p>Gemma 4 is released under Apache 2.0 license, providing complete developer flexibility and digital sovereignty for building and deploying across any environment.</p>
+
+      <p>Learn more: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/">https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/</a></p>
+    `,
+    tags: ['Google', 'Gemma', 'Open-Source', 'AI-Model', 'Agentic-AI'],
+    source: 'Google DeepMind'
   }
 };
 
