@@ -58,6 +58,7 @@ export function getStaticPaths() {
     { params: { slug: 'qwen3-6-plus-real-world-agents' } },
     { params: { slug: 'lemonade-amd-local-llm-server' } },
     { params: { slug: 'linkedin-browser-extension-scanning' } },
+    { params: { slug: 'mintlify-chromafs-virtual-filesystem' } },
   ];
 }
 
@@ -1560,6 +1561,87 @@ const posts = {
     `,
     tags: ['Security', 'Privacy', 'LinkedIn', 'Data-Protection', 'Trust'],
     source: 'Fairlinked e.V. / BrowserGate'
+  },
+  'mintlify-chromafs-virtual-filesystem': {
+    titleZh: 'Mintlify 构建虚拟文件系统 ChromaFs：让 AI Agent 秒开文档会话',
+    titleEn: 'Mintlify ChromaFs: Building a Virtual Filesystem for AI Assistants',
+    date: '2026-04-04',
+    contentZh: `
+      <p>Mintlify 分享了他们如何为文档助手构建虚拟文件系统 ChromaFs，解决了传统沙盒方案启动慢、成本高的问题。</p>
+
+      <h2>问题背景</h2>
+      <p>传统的文档 RAG 方案只能检索匹配的文本片段，当答案分布在多个页面或需要精确语法时就会失效。Agent 需要像探索代码库一样探索文档。</p>
+
+      <p>但使用真实文件系统沙盒存在严重问题：</p>
+      <ul>
+        <li>P90 会话创建时间：~46 秒</li>
+        <li>每月 85 万次对话的基础设施成本：超过 $70,000/年</li>
+        <li>需要为每个用户维护独立的微虚拟机</li>
+      </ul>
+
+      <h2>ChromaFs 解决方案</h2>
+      <p>基于 Vercel Labs 的 just-bash，ChromaFs 将 UNIX 命令（grep、cat、ls、find、cd）拦截并翻译成对 Chroma 数据库的查询：</p>
+
+      <h3>性能对比</h3>
+      <table>
+        <tr><th>指标</th><th>沙盒</th><th>ChromaFs</th></tr>
+        <tr><td>P90 启动时间</td><td>~46 秒</td><td>~100 毫秒</td></tr>
+        <tr><td>边际计算成本</td><td>~$0.0137/对话</td><td>$0（复用现有 DB）</td></tr>
+        <tr><td>搜索机制</td><td>线性磁盘扫描</td><td>DB 元数据查询</td></tr>
+      </table>
+
+      <h3>核心特性</h3>
+      <ul>
+        <li><strong>权限控制</strong> — 基于用户会话令牌在构建文件树前进行路径裁剪</li>
+        <li><strong>分块重组</strong> — 从 Chroma 分块中按 chunk_index 排序重组完整页面</li>
+        <li><strong>惰性加载</strong> — 大文件（如 OpenAPI spec）仅在访问时从 S3 获取</li>
+        <li><strong>只读保护</strong> — 所有写操作返回 EROFS 错误，确保无状态、无清理风险</li>
+        <li><strong>智能 grep</strong> — Chroma 粗筛 + Redis 缓存 + 内存精筛，毫秒级完成</li>
+      </ul>
+
+      <p>ChromaFs 现已支持每天 3 万+ 对话，为数十万用户提供即时文档助手体验。</p>
+
+      <p>原文：<a href="https://www.mintlify.com/blog/how-we-built-a-virtual-filesystem-for-our-assistant">https://www.mintlify.com/blog/how-we-built-a-virtual-filesystem-for-our-assistant</a></p>
+    `,
+    contentEn: `
+      <p>Mintlify shares how they built ChromaFs, a virtual filesystem for their documentation assistant, solving the slow startup and high costs of traditional sandbox approaches.</p>
+
+      <h2>Problem Background</h2>
+      <p>Traditional document RAG can only retrieve matching text chunks, failing when answers span multiple pages or require exact syntax. Agents need to explore documentation like exploring a codebase.</p>
+
+      <p>But using real filesystem sandboxes has serious issues:</p>
+      <ul>
+        <li>P90 session creation time: ~46 seconds</li>
+        <li>Infrastructure cost for 850K conversations/month: over $70,000/year</li>
+        <li>Requires maintaining separate micro-VMs per user</li>
+      </ul>
+
+      <h2>ChromaFs Solution</h2>
+      <p>Built on Vercel Labs' just-bash, ChromaFs intercepts UNIX commands (grep, cat, ls, find, cd) and translates them into Chroma database queries:</p>
+
+      <h3>Performance Comparison</h3>
+      <table>
+        <tr><th>Metric</th><th>Sandbox</th><th>ChromaFs</th></tr>
+        <tr><td>P90 Boot Time</td><td>~46 seconds</td><td>~100 milliseconds</td></tr>
+        <tr><td>Marginal Compute Cost</td><td>~$0.0137/conversation</td><td>$0 (reuses existing DB)</td></tr>
+        <tr><td>Search Mechanism</td><td>Linear disk scan</td><td>DB Metadata Query</td></tr>
+      </table>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li><strong>Access Control</strong> — Path pruning based on user session tokens before building file tree</li>
+        <li><strong>Chunk Reassembly</strong> — Reconstructs full pages from Chroma chunks sorted by chunk_index</li>
+        <li><strong>Lazy Loading</strong> — Large files (e.g., OpenAPI specs) only fetch from S3 on access</li>
+        <li><strong>Read-Only Protection</strong> — All write operations return EROFS errors, ensuring stateless, no cleanup risk</li>
+        <li><strong>Smart grep</strong> — Chroma coarse filter + Redis cache + in-memory fine filter, completes in milliseconds</li>
+      </ul>
+
+      <p>ChromaFs now supports 30,000+ conversations daily, providing instant documentation assistant experiences for hundreds of thousands of users.</p>
+
+      <p>Read more: <a href="https://www.mintlify.com/blog/how-we-built-a-virtual-filesystem-for-our-assistant">https://www.mintlify.com/blog/how-we-built-a-virtual-filesystem-for-our-assistant</a></p>
+    `,
+    tags: ['AI-Agents', 'Developer-Tools', 'Infrastructure', 'RAG', 'Performance'],
+    source: 'Mintlify'
   }
 };
 
