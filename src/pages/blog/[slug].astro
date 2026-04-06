@@ -59,6 +59,7 @@ export function getStaticPaths() {
     { params: { slug: 'lemonade-amd-local-llm-server' } },
     { params: { slug: 'linkedin-browser-extension-scanning' } },
     { params: { slug: 'mintlify-chromafs-virtual-filesystem' } },
+    { params: { slug: 'gemma-4-lm-studio-headless-cli' } },
   ];
 }
 
@@ -1642,6 +1643,113 @@ const posts = {
     `,
     tags: ['AI-Agents', 'Developer-Tools', 'Infrastructure', 'RAG', 'Performance'],
     source: 'Mintlify'
+  },
+  'gemma-4-lm-studio-headless-cli': {
+    titleZh: '用 LM Studio 无头 CLI 本地运行 Google Gemma 4',
+    titleEn: 'Running Google Gemma 4 Locally with LM Studio Headless CLI',
+    date: '2026-04-06',
+    contentZh: `
+      <p>本地运行大模型的优势：零 API 成本、数据不出本机、随时可用。Google Gemma 4 的 MoE 架构使其成为本地运行的理想选择。</p>
+
+      <h2>为什么选择 Gemma 4 26B-A4B</h2>
+      <p>混合专家架构（MoE）是关键：128 个专家 + 1 个共享专家，但每个 token 只激活 8 个专家（3.8B 参数）。实际推理成本相当于 4B 稠密模型，但质量远超该级别。</p>
+
+      <h3>性能对比</h3>
+      <table>
+        <tr><th>模型</th><th>MMLU Pro</th><th>AIME 2026</th><th>总参数量</th></tr>
+        <tr><td>Gemma 4 26B-A4B</td><td>82.6%</td><td>88.3%</td><td>26B</td></tr>
+        <tr><td>Gemma 4 31B Dense</td><td>85.2%</td><td>89.2%</td><td>31B</td></tr>
+        <tr><td>Qwen 3.5 397B-A17B</td><td>-</td><td>~1450 Elo</td><td>397B</td></tr>
+        <tr><td>Kimi-K2.5</td><td>-</td><td>~1457 Elo</td><td>1000B+</td></tr>
+      </table>
+
+      <p>26B-A4B 以 26B 总参数实现了接近 400B+ 模型的 Elo 分数，内存需求却大幅降低。</p>
+
+      <h2>LM Studio 0.4.0 新特性</h2>
+      <ul>
+        <li><strong>llmster daemon</strong> — 无桌面应用的后台推理服务</li>
+        <li><strong>lms CLI</strong> — 完整的命令行界面</li>
+        <li><strong>并行请求处理</strong> — 连续批处理而非顺序队列</li>
+        <li><strong>有状态 REST API</strong> — /v1/chat 端点保持对话历史</li>
+        <li><strong>MCP 集成</strong> — 本地 Model Context Protocol 支持</li>
+      </ul>
+
+      <h2>快速开始</h2>
+      <pre><code># 安装 lms CLI
+curl -fsSL https://lmstudio.ai/install.sh | bash
+
+# 启动后台服务
+lms daemon up
+
+# 下载 Gemma 4 26B
+lms get google/gemma-4-26b-a4b
+
+# 开始对话（显示性能统计）
+lms chat google/gemma-4-26b-a4b --stats</code></pre>
+
+      <h3>实测性能（M4 Pro 48GB）</h3>
+      <ul>
+        <li>生成速度：51 tokens/秒</li>
+        <li>首 token 延迟：1.5 秒</li>
+        <li>内存占用：17.99 GB（基础）+ 3-4 GB/每倍上下文</li>
+        <li>48K 上下文总内存：约 21 GB</li>
+        <li>最大 256K 上下文：约 37.5 GB</li>
+      </ul>
+
+      <p>原文：<a href="https://ai.georgeliu.com/p/running-google-gemma-4-locally-with">https://ai.georgeliu.com/p/running-google-gemma-4-locally-with</a></p>
+    `,
+    contentEn: `
+      <p>Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal for local deployment.</p>
+
+      <h2>Why Gemma 4 26B-A4B</h2>
+      <p>The Mixture-of-Experts architecture is key: 128 experts + 1 shared expert, but only 8 experts (3.8B parameters) activate per token. Inference cost comparable to a 4B dense model, but quality far exceeds that class.</p>
+
+      <h3>Performance Comparison</h3>
+      <table>
+        <tr><th>Model</th><th>MMLU Pro</th><th>AIME 2026</th><th>Total Params</th></tr>
+        <tr><td>Gemma 4 26B-A4B</td><td>82.6%</td><td>88.3%</td><td>26B</td></tr>
+        <tr><td>Gemma 4 31B Dense</td><td>85.2%</td><td>89.2%</td><td>31B</td></tr>
+        <tr><td>Qwen 3.5 397B-A17B</td><td>-</td><td>~1450 Elo</td><td>397B</td></tr>
+        <tr><td>Kimi-K2.5</td><td>-</td><td>~1457 Elo</td><td>1000B+</td></tr>
+      </table>
+
+      <p>26B-A4B achieves near 400B+ model Elo scores with only 26B total parameters, dramatically reducing memory requirements.</p>
+
+      <h2>LM Studio 0.4.0 New Features</h2>
+      <ul>
+        <li><strong>llmster daemon</strong> — Background inference service without desktop app</li>
+        <li><strong>lms CLI</strong> — Full command-line interface</li>
+        <li><strong>Parallel request processing</strong> — Continuous batching instead of sequential queuing</li>
+        <li><strong>Stateful REST API</strong> — /v1/chat endpoint maintains conversation history</li>
+        <li><strong>MCP integration</strong> — Local Model Context Protocol support</li>
+      </ul>
+
+      <h2>Quick Start</h2>
+      <pre><code># Install lms CLI
+curl -fsSL https://lmstudio.ai/install.sh | bash
+
+# Start daemon
+lms daemon up
+
+# Download Gemma 4 26B
+lms get google/gemma-4-26b-a4b
+
+# Chat with stats
+lms chat google/gemma-4-26b-a4b --stats</code></pre>
+
+      <h3>Real-world Performance (M4 Pro 48GB)</h3>
+      <ul>
+        <li>Generation speed: 51 tokens/sec</li>
+        <li>Time to first token: 1.5 sec</li>
+        <li>Memory: 17.99 GB (base) + 3-4 GB per context doubling</li>
+        <li>48K context total: ~21 GB</li>
+        <li>Max 256K context: ~37.5 GB</li>
+      </ul>
+
+      <p>Source: <a href="https://ai.georgeliu.com/p/running-google-gemma-4-locally-with">https://ai.georgeliu.com/p/running-google-gemma-4-locally-with</a></p>
+    `,
+    tags: ['Google', 'Gemma', 'Local-AI', 'LM-Studio', 'Developer-Tools'],
+    source: 'George Liu'
   }
 };
 
