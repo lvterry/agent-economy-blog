@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Project Glasswing: Securing critical software for the AI era',
+      titleZh: 'Project Glasswing: 为 AI 时代保护关键软件',
+      pubDate: new Date('2026-04-08'),
+      description: 'Anthropic launches initiative to secure the world\'s most critical software and give defenders a durable advantage in the AI-driven cybersecurity era.',
+      descriptionZh: 'Anthropic 推出新计划，旨在保护全球最关键软件，为防御者在 AI 驱动的网络安全时代提供持久优势。',
+      link: '/blog/project-glasswing-securing-critical-software-for-t',
+    },
+    {
       title: 'Design UI using AI with Stitch from Google Labs',
       titleZh: 'Google Labs 发布 Stitch：用 AI 设计 UI',
       pubDate: new Date('2026-03-19'),
