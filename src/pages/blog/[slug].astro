@@ -62,6 +62,7 @@ export function getStaticPaths() {
     { params: { slug: 'gemma-4-lm-studio-headless-cli' } },
     { params: { slug: 'agent-reading-test' } },
     { params: { slug: 'project-glasswing-securing-critical-software-for-t' } },
+    { params: { slug: 'claude-managed-agents-get-to-production-10x-faster' } },
   ];
 }
 
@@ -1871,6 +1872,43 @@ lms chat google/gemma-4-26b-a4b --stats</code></pre>
       <p>Read the full article at <a href="https://www.anthropic.com/glasswing">https://www.anthropic.com/glasswing</a></p>
     `,
     tags: ['Anthropic', 'AI-Agents', 'Security'],
+    source: 'Anthropic'
+  },
+  'claude-managed-agents-get-to-production-10x-faster': {
+    titleZh: 'Claude Managed Agents：让智能体部署速度提升 10 倍',
+    titleEn: 'Claude Managed Agents: get to production 10x faster',
+    date: '2026-04-09',
+    contentZh: `
+      <p>Anthropic 推出 Claude Managed Agents，一套用于大规模构建和部署云托管智能体的可组合 API。</p>
+      
+      <p>主要特点包括：</p>
+      <ul>
+        <li>可组合的 API 设计，灵活构建智能体工作流</li>
+        <li>云托管基础设施，无需管理底层资源</li>
+        <li>支持大规模部署，满足企业级需求</li>
+        <li>显著缩短从开发到生产的时间</li>
+      </ul>
+      
+      <p>这是 Anthropic 在智能体基础设施领域的重要进展，旨在让开发者更快地将智能体应用投入生产环境。</p>
+      
+      <p>阅读完整文章：<a href="https://claude.com/blog/claude-managed-agents">https://claude.com/blog/claude-managed-agents</a></p>
+    `,
+    contentEn: `
+      <p>Anthropic introduces Claude Managed Agents, a suite of composable APIs for building and deploying cloud-hosted agents at scale.</p>
+      
+      <p>Key features include:</p>
+      <ul>
+        <li>Composable API design for flexible agent workflow construction</li>
+        <li>Cloud-hosted infrastructure without managing underlying resources</li>
+        <li>Large-scale deployment support for enterprise needs</li>
+        <li>Significantly reduced time from development to production</li>
+      </ul>
+      
+      <p>This represents Anthropic's important advancement in agent infrastructure, aiming to help developers bring agent applications to production faster.</p>
+      
+      <p>Read the full article at <a href="https://claude.com/blog/claude-managed-agents">https://claude.com/blog/claude-managed-agents</a></p>
+    `,
+    tags: ['Anthropic', 'Claude', 'AI-Agents', 'Developer-Tools'],
     source: 'Anthropic'
   }
 };

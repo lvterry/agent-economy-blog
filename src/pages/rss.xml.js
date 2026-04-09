@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Claude Managed Agents: get to production 10x faster',
+      titleZh: 'Claude Managed Agents：让智能体部署速度提升 10 倍',
+      pubDate: new Date('2026-04-09'),
+      description: 'Anthropic introduces composable APIs for building and deploying cloud-hosted agents at scale, significantly reducing time to production.',
+      descriptionZh: 'Anthropic 推出可组合 API 套件，用于大规模构建和部署云托管智能体，显著缩短从开发到生产的时间。',
+      link: '/blog/claude-managed-agents-get-to-production-10x-faster',
+    },
+    {
       title: 'Project Glasswing: Securing critical software for the AI era',
       titleZh: 'Project Glasswing: 为 AI 时代保护关键软件',
       pubDate: new Date('2026-04-08'),
