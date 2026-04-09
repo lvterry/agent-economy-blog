@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Meta Introduces Muse Spark: Scaling Towards Personal Superintelligence',
+      titleZh: 'Meta 发布 Muse Spark：迈向个人超级智能',
+      pubDate: new Date('2026-04-09'),
+      description: 'Meta announces initiative to provide everyone with their own superintelligent assistant, enabling truly personalized AI experiences.',
+      descriptionZh: 'Meta 推出新计划，致力于为每个人提供个人超级智能助手，实现真正的个性化 AI 体验。',
+      link: '/blog/introducing-muse-spark-scaling-towards-personal-su',
+    },
+    {
       title: 'Claude Managed Agents: get to production 10x faster',
       titleZh: 'Claude Managed Agents：让智能体部署速度提升 10 倍',
       pubDate: new Date('2026-04-09'),
