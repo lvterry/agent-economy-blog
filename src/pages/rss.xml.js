@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Instant 1.0: A Backend for AI-Coded Apps',
+      titleZh: 'Instant 1.0：AI 编码应用的最佳后端',
+      pubDate: new Date('2026-04-10'),
+      description: 'Instant 1.0 officially released, turning coding agents into full-stack app builders. Multi-tenant architecture, sync engine, fully open source.',
+      descriptionZh: 'Instant 1.0 正式发布，将编码智能体变成全栈应用构建器。多租户架构、同步引擎、完全开源。',
+      link: '/blog/a-backend-for-ai-coded-apps',
+    },
+    {
       title: 'Meta Introduces Muse Spark: Scaling Towards Personal Superintelligence',
       titleZh: 'Meta 发布 Muse Spark：迈向个人超级智能',
       pubDate: new Date('2026-04-09'),
