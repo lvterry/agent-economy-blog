@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Linux Kernel Releases Official Guidelines for AI Coding Assistants',
+      titleZh: 'Linux 内核发布 AI 编码助手官方指南',
+      pubDate: new Date('2026-04-11'),
+      description: 'Linux kernel establishes first formal AI-assisted programming policy: AI cannot add Signed-off-by, humans bear full responsibility.',
+      descriptionZh: 'Linux 内核首次针对 AI 辅助编程制定正式政策：AI 禁止添加 Signed-off-by，人类需承担全部责任。',
+      link: '/blog/linux-kernel-coding-assistants-guidelines',
+    },
+    {
       title: 'Instant 1.0: A Backend for AI-Coded Apps',
       titleZh: 'Instant 1.0：AI 编码应用的最佳后端',
       pubDate: new Date('2026-04-10'),

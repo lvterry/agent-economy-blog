@@ -66,6 +66,7 @@ export function getStaticPaths() {
     { params: { slug: 'introducing-muse-spark-scaling-towards-personal-su' } },
     { params: { slug: 'instant' } },
     { params: { slug: 'a-backend-for-ai-coded-apps' } },
+    { params: { slug: 'linux-kernel-coding-assistants-guidelines' } },
   ];
 }
 
@@ -2042,6 +2043,81 @@ lms chat google/gemma-4-26b-a4b --stats</code></pre>
     `,
     tags: ['Developer-Tools', 'AI-Agents', 'Backend', 'Open-Source'],
     source: 'Instant'
+  },
+  'linux-kernel-coding-assistants-guidelines': {
+    titleZh: 'Linux 内核发布 AI 编码助手官方指南',
+    titleEn: 'Linux Kernel Releases Official Guidelines for AI Coding Assistants',
+    date: '2026-04-11',
+    contentZh: `
+      <p>Linux 内核官方文档新增《Coding Assistants》指南，为使用 AI 工具参与内核开发的开发者提供规范。这是主流开源项目首次针对 AI 辅助编程制定正式政策。</p>
+
+      <h3>核心要求</h3>
+      <p>AI 工具参与 Linux 内核开发必须遵循标准流程：</p>
+      <ul>
+        <li>遵循内核开发流程文档 (development-process.rst)</li>
+        <li>遵循编码风格指南 (coding-style.rst)</li>
+        <li>遵循补丁提交规范 (submitting-patches.rst)</li>
+      </ul>
+
+      <h3>许可证合规</h3>
+      <p>所有贡献必须符合内核许可证要求：</p>
+      <ul>
+        <li>所有代码必须与 GPL-2.0-only 兼容</li>
+        <li>使用适当的 SPDX 许可证标识符</li>
+      </ul>
+
+      <h3>关键限制</h3>
+      <p><b>AI 智能体禁止添加 Signed-off-by 标签</b>——只有人类才能合法认证开发者原创声明 (DCO)。人类提交者负责：</p>
+      <ul>
+        <li>审查所有 AI 生成的代码</li>
+        <li>确保符合许可证要求</li>
+        <li>添加自己的 Signed-off-by 标签</li>
+        <li>对贡献承担全部责任</li>
+      </ul>
+
+      <h3>AI 贡献标注</h3>
+      <p>为追踪 AI 在开发过程中的作用，贡献应包含 Assisted-by 标签：</p>
+      <pre>Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]</pre>
+      <p>示例：<code>Assisted-by: Claude:claude-3-opus coccinelle sparse</code></p>
+
+      <p>阅读完整文档：<a href="https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst">https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst</a></p>
+    `,
+    contentEn: `
+      <p>The Linux kernel official documentation now includes a "Coding Assistants" guide, providing standards for developers using AI tools to contribute to kernel development. This marks the first formal policy from a major open-source project regarding AI-assisted programming.</p>
+
+      <h3>Core Requirements</h3>
+      <p>AI tools participating in Linux kernel development must follow standard processes:</p>
+      <ul>
+        <li>Follow kernel development process documentation (development-process.rst)</li>
+        <li>Follow coding style guidelines (coding-style.rst)</li>
+        <li>Follow patch submission standards (submitting-patches.rst)</li>
+      </ul>
+
+      <h3>License Compliance</h3>
+      <p>All contributions must comply with kernel licensing requirements:</p>
+      <ul>
+        <li>All code must be compatible with GPL-2.0-only</li>
+        <li>Use appropriate SPDX license identifiers</li>
+      </ul>
+
+      <h3>Key Restrictions</h3>
+      <p><b>AI agents MUST NOT add Signed-off-by tags</b> — only humans can legally certify the Developer Certificate of Origin (DCO). The human submitter is responsible for:</p>
+      <ul>
+        <li>Reviewing all AI-generated code</li>
+        <li>Ensuring compliance with licensing requirements</li>
+        <li>Adding their own Signed-off-by tag</li>
+        <li>Taking full responsibility for the contribution</li>
+      </ul>
+
+      <h3>AI Contribution Attribution</h3>
+      <p>To track AI's role in the development process, contributions should include an Assisted-by tag:</p>
+      <pre>Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]</pre>
+      <p>Example: <code>Assisted-by: Claude:claude-3-opus coccinelle sparse</code></p>
+
+      <p>Read the full document at <a href="https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst">https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst</a></p>
+    `,
+    tags: ['Open-Source', 'Linux', 'AI-Agents', 'Developer-Tools', 'Policy'],
+    source: 'Linux Kernel'
   }
 };
 
