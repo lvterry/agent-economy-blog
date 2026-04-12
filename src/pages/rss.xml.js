@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'OpenAI: Industrial Policy for the Intelligence Age',
+      titleZh: 'OpenAI 发布智能时代工业政策建议',
+      pubDate: new Date('2026-04-12'),
+      description: 'OpenAI proposes people-first policy ideas for the superintelligence era, offering $100K research grants and $1M API credits.',
+      descriptionZh: 'OpenAI 提出以人为本的政策建议，应对超级智能时代挑战，设立 10 万美元研究资助和 100 万美元 API 积分。',
+      link: '/blog/industrial-policy-for-the-intelligence-age',
+    },
+    {
       title: 'Linux Kernel Releases Official Guidelines for AI Coding Assistants',
       titleZh: 'Linux 内核发布 AI 编码助手官方指南',
       pubDate: new Date('2026-04-11'),
