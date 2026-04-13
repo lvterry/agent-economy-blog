@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'How the "AI Loser" May End Up Winning',
+      titleZh: 'AI "输家" 苹果为何可能最终获胜',
+      pubDate: new Date('2026-04-13'),
+      description: 'While everyone burns cash racing for SOTA models, Apple sits on cash reserves. Intelligence commoditization may make the "AI loser" the ultimate winner.',
+      descriptionZh: '当所有人烧钱争夺 SOTA 模型时，苹果坐拥现金储备。智能商品化可能让"AI 输家"成为最终赢家。',
+      link: '/blog/how-the-ai-loser-may-end-up-winning',
+    },
+    {
       title: 'OpenAI: Industrial Policy for the Intelligence Age',
       titleZh: 'OpenAI 发布智能时代工业政策建议',
       pubDate: new Date('2026-04-12'),
