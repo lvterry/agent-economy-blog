@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Stanford Report: Growing Disconnect Between AI Insiders and the Public',
+      titleZh: '斯坦福报告：AI 圈内人士与公众认知差距日益扩大',
+      pubDate: new Date('2026-04-14'),
+      description: 'Stanford annual report shows divergence between AI experts and public opinion, Gen Z leads negative sentiment, misaligned priorities spark industry reflection.',
+      descriptionZh: '斯坦福年度报告显示 AI 专家与公众看法分化，Gen Z 引领负面情绪，关注点错位引发行业反思。',
+      link: '/blog/stanford-report-ai-insiders-public-disconnect',
+    },
+    {
       title: 'How the "AI Loser" May End Up Winning',
       titleZh: 'AI "输家" 苹果为何可能最终获胜',
       pubDate: new Date('2026-04-13'),
