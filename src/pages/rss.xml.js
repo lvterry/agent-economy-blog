@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Skills in Chrome: Turn Your Best AI Prompts into One-Click Tools',
+      titleZh: 'Chrome 推出 Skills：将 AI 提示变成一键工具',
+      pubDate: new Date('2026-04-15'),
+      description: 'Google Chrome launches Skills, letting users save and reuse AI prompts with one-click personalized workflows.',
+      descriptionZh: 'Google Chrome 推出 Skills 功能，让用户保存和重复使用 AI 提示，一键运行个性化工作流。',
+      link: '/blog/skills-in-chrome-ai-workflows',
+    },
+    {
       title: 'Stanford Report: Growing Disconnect Between AI Insiders and the Public',
       titleZh: '斯坦福报告：AI 圈内人士与公众认知差距日益扩大',
       pubDate: new Date('2026-04-14'),
