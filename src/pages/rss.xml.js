@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Introducing Claude Design by Anthropic Labs',
+      titleZh: 'Anthropic 发布 Claude Design：AI 时代的视觉设计工具',
+      pubDate: new Date('2026-04-20'),
+      description: 'Claude Design gives designers room to explore widely and enables non-designers to create polished visual work—from prototypes and wireframes to pitch decks and marketing collateral.',
+      descriptionZh: 'Claude Design 让设计师能够广泛探索创意方向，也让非设计背景的创始人、产品经理和营销人员能够轻松制作视觉作品——从原型、线框图到演示文稿和营销物料。',
+      link: '/blog/claude-design-anthropic-labs',
+    },
+    {
       title: 'The RAM shortage could last years',
       titleZh: 'RAM 短缺可能持续数年：AI 需求下的内存危机',
       pubDate: new Date('2026-04-18'),
