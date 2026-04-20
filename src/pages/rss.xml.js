@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Kimi K2.6 Tech Blog: Advancing Open-Source Coding',
+      titleZh: 'Kimi 发布 K2.6：开源编程与 Agent 能力重大突破',
+      pubDate: new Date('2026-04-20'),
+      description: 'Kimi K2.6 advances open-source coding with long-horizon code generation, design-driven development, agent swarm collaboration, proactive agent interactions, and the Claw Groups research preview.',
+      descriptionZh: 'Kimi K2.6 在开源编程领域取得重大进展，支持长程代码生成、设计驱动开发、智能体集群协作和主动式智能体交互，并推出 Claw Groups 研究预览版。',
+      link: '/blog/kimi-k2-6',
+    },
+    {
       title: 'Introducing Claude Design by Anthropic Labs',
       titleZh: 'Anthropic 发布 Claude Design：AI 时代的视觉设计工具',
       pubDate: new Date('2026-04-20'),
