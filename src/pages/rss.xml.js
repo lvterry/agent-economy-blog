@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'The RAM shortage could last years',
+      titleZh: 'RAM 短缺可能持续数年：AI 需求下的内存危机',
+      pubDate: new Date('2026-04-18'),
+      description: 'According to Nikkei Asia, even as suppliers ramp up DRAM production, manufacturers are only expected to meet 60 percent of demand by the end of 2027.',
+      descriptionZh: '据《日经亚洲》报道，即使供应商增加 DRAM 生产，到 2027 年底制造商预计只能满足 60% 的需求。SK 集团主席甚至表示短缺可能持续到 2030 年。',
+      link: '/blog/the-ram-shortage-could-last-years-the-verge',
+    },
+    {
       title: 'Skills in Chrome: Turn Your Best AI Prompts into One-Click Tools',
       titleZh: 'Chrome 推出 Skills：将 AI 提示变成一键工具',
       pubDate: new Date('2026-04-15'),
