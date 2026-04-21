@@ -3,8 +3,8 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
-      title: 'EXCLUSIVE: Leaked Deck Reveals StackAdapt\'s Playbook for ChatGPT Ads',
-      titleZh: '独家披露：ChatGPT 广告内幕——提示词驱动的精准投放',
+      title: 'StackAdapt ChatGPT ads: prompt-based targeting at $15-60 CPM',
+      titleZh: 'StackAdapt 在 ChatGPT 投放广告：基于提示词匹配，CPM $15-60',
       pubDate: new Date('2026-04-21'),
       description: 'Leaked documents from DSP StackAdapt reveal ChatGPT ad placements driven by prompt relevance, with CPMs ranging from $15-$60 and a $50,000 minimum spend for the pilot program. This marks the official opening of the AI conversation ad market.',
       descriptionZh: 'DSP 平台 StackAdapt 泄露的资料显示，ChatGPT 广告基于用户提示词的相关性进行投放，CPM 价格 $15-$60，试点项目最低预算 $50,000。这标志着 AI 对话广告市场的正式开启。',
