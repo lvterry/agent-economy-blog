@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'EXCLUSIVE: Leaked Deck Reveals StackAdapt\'s Playbook for ChatGPT Ads',
+      titleZh: '独家披露：ChatGPT 广告内幕——提示词驱动的精准投放',
+      pubDate: new Date('2026-04-21'),
+      description: 'Leaked documents from DSP StackAdapt reveal ChatGPT ad placements driven by prompt relevance, with CPMs ranging from $15-$60 and a $50,000 minimum spend for the pilot program. This marks the official opening of the AI conversation ad market.',
+      descriptionZh: 'DSP 平台 StackAdapt 泄露的资料显示，ChatGPT 广告基于用户提示词的相关性进行投放，CPM 价格 $15-$60，试点项目最低预算 $50,000。这标志着 AI 对话广告市场的正式开启。',
+      link: '/blog/chatgpt-ads-stackadapt-leaked',
+    },
+    {
       title: 'Kimi K2.6 Tech Blog: Advancing Open-Source Coding',
       titleZh: 'Kimi 发布 K2.6：开源编程与 Agent 能力重大突破',
       pubDate: new Date('2026-04-20'),
