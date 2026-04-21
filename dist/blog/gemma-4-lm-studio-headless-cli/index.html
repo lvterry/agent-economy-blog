@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Running Google Gemma 4 Locally with LM Studio Headless CLI | Agent Economy</title><meta name="description" content="Running Google Gemma 4 Locally with LM Studio Headless CLI - Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal fo..."><meta name="author" content="George Liu"><meta name="robots" content="index, follow"><link rel="canonical" href="https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli/"><meta property="og:type" content="article"><meta property="og:url" content="https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli/"><meta property="og:title" content="Running Google Gemma 4 Locally with LM Studio Headless CLI | Agent Economy"><meta property="og:description" content="Running Google Gemma 4 Locally with LM Studio Headless CLI - Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal fo..."><meta property="og:image" content="https://agenteconomy.cn/og-image.png"><meta property="og:site_name" content="Agent Economy"><meta property="og:locale" content="zh_CN"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli/"><meta property="twitter:title" content="Running Google Gemma 4 Locally with LM Studio Headless CLI | Agent Economy"><meta property="twitter:description" content="Running Google Gemma 4 Locally with LM Studio Headless CLI - Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal fo..."><meta property="twitter:image" content="https://agenteconomy.cn/og-image.png"><meta property="article:published_time" content="2026-04-06"><meta property="article:tag" content="Google"><meta property="article:tag" content="Gemma"><meta property="article:tag" content="Local-AI"><meta property="article:tag" content="LM-Studio"><meta property="article:tag" content="Developer-Tools"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Agent Economy","url":"https://agenteconomy.cn","description":"Curated news and insights about the AI agent economy","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://agenteconomy.cn/search?q={search_term_string}"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","name":"Agent Economy","url":"https://agenteconomy.cn"}}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script defer data-domain="agenteconomy.cn" src="https://va.vercel-scripts.com/v1/script.js"></script><link rel="stylesheet" href="/_astro/about.D4pCrWNI.css"></head> <body> <header class="site-header"> <div class="header-inner"> <div class="site-logo"> <div class="logo-mark">AE</div> <h1><a href="/">Agent Economy</a></h1> </div> <div class="header-controls"> <div class="lang-selector"> <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)"> <option value="zh">ZH</option> <option value="en">EN</option> </select> </div> </div> </div> <nav class="site-nav"> <a href="/" class="nav-link" data-zh="文章" data-en="Articles">Articles</a> <a href="/about" class="nav-link" data-zh="关于" data-en="About">About</a> <a href="/rss.xml" class="nav-link">RSS</a> </nav> </header> <main>  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Running Google Gemma 4 Locally with LM Studio Headless CLI","datePublished":"2026-04-06","dateModified":"2026-04-06","description":"Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal fo...","image":"https://agenteconomy.cn/og-image.png","url":"https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli","author":{"@type":"Organization","name":"George Liu"},"publisher":{"@type":"Organization","name":"Agent Economy","logo":{"@type":"ImageObject","url":"https://agenteconomy.cn/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli"}}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://agenteconomy.cn"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://agenteconomy.cn/blog/"},{"@type":"ListItem","position":3,"name":"Running Google Gemma 4 Locally with LM Studio Headless CLI","item":"https://agenteconomy.cn/blog/gemma-4-lm-studio-headless-cli"}]}</script> <article class="article-content"> <div class="lang-content lang-zh active"> <h1>用 LM Studio 无头 CLI 本地运行 Google Gemma 4</h1> </div> <div class="lang-content lang-en"> <h1>Running Google Gemma 4 Locally with LM Studio Headless CLI</h1> </div> <time>2026-04-06</time> <div class="lang-content lang-zh active">
+      <p>本地运行大模型的优势：零 API 成本、数据不出本机、随时可用。Google Gemma 4 的 MoE 架构使其成为本地运行的理想选择。</p>
+
+      <h2>为什么选择 Gemma 4 26B-A4B</h2>
+      <p>混合专家架构（MoE）是关键：128 个专家 + 1 个共享专家，但每个 token 只激活 8 个专家（3.8B 参数）。实际推理成本相当于 4B 稠密模型，但质量远超该级别。</p>
+
+      <h3>性能对比</h3>
+      <table>
+        <tr><th>模型</th><th>MMLU Pro</th><th>AIME 2026</th><th>总参数量</th></tr>
+        <tr><td>Gemma 4 26B-A4B</td><td>82.6%</td><td>88.3%</td><td>26B</td></tr>
+        <tr><td>Gemma 4 31B Dense</td><td>85.2%</td><td>89.2%</td><td>31B</td></tr>
+        <tr><td>Qwen 3.5 397B-A17B</td><td>-</td><td>~1450 Elo</td><td>397B</td></tr>
+        <tr><td>Kimi-K2.5</td><td>-</td><td>~1457 Elo</td><td>1000B+</td></tr>
+      </table>
+
+      <p>26B-A4B 以 26B 总参数实现了接近 400B+ 模型的 Elo 分数，内存需求却大幅降低。</p>
+
+      <h2>LM Studio 0.4.0 新特性</h2>
+      <ul>
+        <li><strong>llmster daemon</strong> — 无桌面应用的后台推理服务</li>
+        <li><strong>lms CLI</strong> — 完整的命令行界面</li>
+        <li><strong>并行请求处理</strong> — 连续批处理而非顺序队列</li>
+        <li><strong>有状态 REST API</strong> — /v1/chat 端点保持对话历史</li>
+        <li><strong>MCP 集成</strong> — 本地 Model Context Protocol 支持</li>
+      </ul>
+
+      <h2>快速开始</h2>
+      <pre><code># 安装 lms CLI
+curl -fsSL https://lmstudio.ai/install.sh | bash
+
+# 启动后台服务
+lms daemon up
+
+# 下载 Gemma 4 26B
+lms get google/gemma-4-26b-a4b
+
+# 开始对话（显示性能统计）
+lms chat google/gemma-4-26b-a4b --stats</code></pre>
+
+      <h3>实测性能（M4 Pro 48GB）</h3>
+      <ul>
+        <li>生成速度：51 tokens/秒</li>
+        <li>首 token 延迟：1.5 秒</li>
+        <li>内存占用：17.99 GB（基础）+ 3-4 GB/每倍上下文</li>
+        <li>48K 上下文总内存：约 21 GB</li>
+        <li>最大 256K 上下文：约 37.5 GB</li>
+      </ul>
+
+      <p>原文：<a href="https://ai.georgeliu.com/p/running-google-gemma-4-locally-with">https://ai.georgeliu.com/p/running-google-gemma-4-locally-with</a></p>
+    </div> <div class="lang-content lang-en">
+      <p>Advantages of running LLMs locally: zero API costs, data never leaves your machine, always available. Google Gemma 4's MoE architecture makes it ideal for local deployment.</p>
+
+      <h2>Why Gemma 4 26B-A4B</h2>
+      <p>The Mixture-of-Experts architecture is key: 128 experts + 1 shared expert, but only 8 experts (3.8B parameters) activate per token. Inference cost comparable to a 4B dense model, but quality far exceeds that class.</p>
+
+      <h3>Performance Comparison</h3>
+      <table>
+        <tr><th>Model</th><th>MMLU Pro</th><th>AIME 2026</th><th>Total Params</th></tr>
+        <tr><td>Gemma 4 26B-A4B</td><td>82.6%</td><td>88.3%</td><td>26B</td></tr>
+        <tr><td>Gemma 4 31B Dense</td><td>85.2%</td><td>89.2%</td><td>31B</td></tr>
+        <tr><td>Qwen 3.5 397B-A17B</td><td>-</td><td>~1450 Elo</td><td>397B</td></tr>
+        <tr><td>Kimi-K2.5</td><td>-</td><td>~1457 Elo</td><td>1000B+</td></tr>
+      </table>
+
+      <p>26B-A4B achieves near 400B+ model Elo scores with only 26B total parameters, dramatically reducing memory requirements.</p>
+
+      <h2>LM Studio 0.4.0 New Features</h2>
+      <ul>
+        <li><strong>llmster daemon</strong> — Background inference service without desktop app</li>
+        <li><strong>lms CLI</strong> — Full command-line interface</li>
+        <li><strong>Parallel request processing</strong> — Continuous batching instead of sequential queuing</li>
+        <li><strong>Stateful REST API</strong> — /v1/chat endpoint maintains conversation history</li>
+        <li><strong>MCP integration</strong> — Local Model Context Protocol support</li>
+      </ul>
+
+      <h2>Quick Start</h2>
+      <pre><code># Install lms CLI
+curl -fsSL https://lmstudio.ai/install.sh | bash
+
+# Start daemon
+lms daemon up
+
+# Download Gemma 4 26B
+lms get google/gemma-4-26b-a4b
+
+# Chat with stats
+lms chat google/gemma-4-26b-a4b --stats</code></pre>
+
+      <h3>Real-world Performance (M4 Pro 48GB)</h3>
+      <ul>
+        <li>Generation speed: 51 tokens/sec</li>
+        <li>Time to first token: 1.5 sec</li>
+        <li>Memory: 17.99 GB (base) + 3-4 GB per context doubling</li>
+        <li>48K context total: ~21 GB</li>
+        <li>Max 256K context: ~37.5 GB</li>
+      </ul>
+
+      <p>Source: <a href="https://ai.georgeliu.com/p/running-google-gemma-4-locally-with">https://ai.georgeliu.com/p/running-google-gemma-4-locally-with</a></p>
+    </div> </article> <a href="/" class="back-link" data-zh="← 全部文章" data-en="← All articles">← All articles</a>  </main> <footer class="site-footer"> <p data-zh="关于 AI 智能体经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
+Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
+</p> <div class="footer-controls"> <button class="control-btn" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </footer> <script>
+        (function() {
+            var currentStored = localStorage.getItem('ae-theme');
+            if (currentStored) {
+                document.documentElement.setAttribute('data-theme', currentStored);
+                updateIcons(currentStored === 'dark');
+            }
+
+            function updateIcons(isDark) {
+                var lightIcon = document.querySelector('.theme-icon-light');
+                var darkIcon = document.querySelector('.theme-icon-dark');
+                if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
+                if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
+            }
+
+            window.toggleTheme = function() {
+                var current = document.documentElement.getAttribute('data-theme') || 'dark';
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('ae-theme', next);
+                updateIcons(next === 'dark');
+            };
+
+            updateIcons((document.documentElement.getAttribute('data-theme') || 'dark') === 'dark');
+
+            window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
+            
+            window.switchLang = function(lang) {
+                window.currentLang = lang;
+                localStorage.setItem('preferred-lang', lang);
+                window.updateLanguage();
+            };
+            
+            window.updateLanguage = function() {
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
+                
+                document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+                    el.textContent = el.getAttribute('data-' + window.currentLang);
+                });
+                
+                document.querySelectorAll('.lang-content').forEach(function(el) {
+                    el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
+                });
+            };
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    window.updateLanguage();
+                });
+            } else {
+                window.updateLanguage();
+            }
+
+            var path = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href === path || (path.startsWith('/blog') && href === '/')) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script> </body> </html>

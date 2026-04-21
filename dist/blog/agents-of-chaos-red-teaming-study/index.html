@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Agents of Chaos: Red-Teaming Study on AI Agent Security | Agent Economy</title><meta name="description" content="Agents of Chaos: Red-Teaming Study on AI Agent Security - A research team from Northeastern University, MIT, Harvard, Stanford and other institutions published a red-teaming study on AI agent security. They depl..."><meta name="author" content="BAU Lab / Northeastern University"><meta name="robots" content="index, follow"><link rel="canonical" href="https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study/"><meta property="og:type" content="article"><meta property="og:url" content="https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study/"><meta property="og:title" content="Agents of Chaos: Red-Teaming Study on AI Agent Security | Agent Economy"><meta property="og:description" content="Agents of Chaos: Red-Teaming Study on AI Agent Security - A research team from Northeastern University, MIT, Harvard, Stanford and other institutions published a red-teaming study on AI agent security. They depl..."><meta property="og:image" content="https://agenteconomy.cn/og-image.png"><meta property="og:site_name" content="Agent Economy"><meta property="og:locale" content="zh_CN"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study/"><meta property="twitter:title" content="Agents of Chaos: Red-Teaming Study on AI Agent Security | Agent Economy"><meta property="twitter:description" content="Agents of Chaos: Red-Teaming Study on AI Agent Security - A research team from Northeastern University, MIT, Harvard, Stanford and other institutions published a red-teaming study on AI agent security. They depl..."><meta property="twitter:image" content="https://agenteconomy.cn/og-image.png"><meta property="article:published_time" content="2026-03-31"><meta property="article:tag" content="AI-Agents"><meta property="article:tag" content="AI-Safety"><meta property="article:tag" content="Security"><meta property="article:tag" content="Research"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Agent Economy","url":"https://agenteconomy.cn","description":"Curated news and insights about the AI agent economy","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://agenteconomy.cn/search?q={search_term_string}"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","name":"Agent Economy","url":"https://agenteconomy.cn"}}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script defer data-domain="agenteconomy.cn" src="https://va.vercel-scripts.com/v1/script.js"></script><link rel="stylesheet" href="/_astro/about.D4pCrWNI.css"></head> <body> <header class="site-header"> <div class="header-inner"> <div class="site-logo"> <div class="logo-mark">AE</div> <h1><a href="/">Agent Economy</a></h1> </div> <div class="header-controls"> <div class="lang-selector"> <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)"> <option value="zh">ZH</option> <option value="en">EN</option> </select> </div> </div> </div> <nav class="site-nav"> <a href="/" class="nav-link" data-zh="文章" data-en="Articles">Articles</a> <a href="/about" class="nav-link" data-zh="关于" data-en="About">About</a> <a href="/rss.xml" class="nav-link">RSS</a> </nav> </header> <main>  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Agents of Chaos: Red-Teaming Study on AI Agent Security","datePublished":"2026-03-31","dateModified":"2026-03-31","description":"A research team from Northeastern University, MIT, Harvard, Stanford and other institutions published a red-teaming study on AI agent security. They depl...","image":"https://agenteconomy.cn/og-image.png","url":"https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study","author":{"@type":"Organization","name":"BAU Lab / Northeastern University"},"publisher":{"@type":"Organization","name":"Agent Economy","logo":{"@type":"ImageObject","url":"https://agenteconomy.cn/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study"}}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://agenteconomy.cn"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://agenteconomy.cn/blog/"},{"@type":"ListItem","position":3,"name":"Agents of Chaos: Red-Teaming Study on AI Agent Security","item":"https://agenteconomy.cn/blog/agents-of-chaos-red-teaming-study"}]}</script> <article class="article-content"> <div class="lang-content lang-zh active"> <h1>Agents of Chaos：AI 智能体红队安全研究报告</h1> </div> <div class="lang-content lang-en"> <h1>Agents of Chaos: Red-Teaming Study on AI Agent Security</h1> </div> <time>2026-03-31</time> <div class="lang-content lang-zh active">
+      <p>来自东北大学、MIT、哈佛、斯坦福等机构的研究团队发布了一项关于 AI 智能体安全的红队测试研究。他们在真实环境中部署了具备持久记忆、邮件账户、Discord 访问、文件系统和 shell 执行权限的智能体，进行了为期两周的安全测试。</p>
+      
+      <h2>研究发现</h2>
+      <p>研究团队记录了 11 个典型案例，发现的主要安全问题包括：</p>
+      <ul>
+        <li><strong>非授权遵从</strong>：智能体向非所有者遵从指令，泄露敏感信息</li>
+        <li><strong>破坏性操作</strong>：执行系统级破坏性操作，造成拒绝服务</li>
+        <li><strong>资源滥用</strong>：无控制的资源消耗</li>
+        <li><strong>身份伪造</strong>：身份欺骗漏洞</li>
+        <li><strong>跨智能体传播</strong>：不安全实践在智能体间传播</li>
+        <li><strong>虚假报告</strong>：智能体报告任务完成，但实际系统状态与之矛盾</li>
+      </ul>
+      
+      <h2>实验设置</h2>
+      <p>研究使用 OpenClaw 框架，在隔离的虚拟机环境中部署智能体。每个智能体拥有：</p>
+      <ul>
+        <li>24/7 运行的持久化环境</li>
+        <li>Discord 和邮件通信能力</li>
+        <li>shell 执行权限（包括 sudo）</li>
+        <li>可修改自身配置文件的能力</li>
+      </ul>
+      
+      <h2>关键洞察</h2>
+      <p>研究发现智能体在 L2 自主级别运行：能够自主执行子任务（如发送邮件、执行命令），但缺乏自我模型来识别任务是否超出能力范围，也无法可靠地判断何时应该将控制权交还给人类。</p>
+      
+      <p>这些发现揭示了在真实部署环境中 AI 智能体的安全、隐私和治理漏洞，呼吁法律学者、政策制定者和跨学科研究者紧急关注。</p>
+      
+      <p>阅读完整报告：<a href="https://agentsofchaos.baulab.info/report.html">https://agentsofchaos.baulab.info/report.html</a></p>
+    </div> <div class="lang-content lang-en">
+      <p>A research team from Northeastern University, MIT, Harvard, Stanford and other institutions published a red-teaming study on AI agent security. They deployed agents with persistent memory, email accounts, Discord access, filesystems, and shell execution capabilities in a live environment for a two-week security testing period.</p>
+      
+      <h2>Key Findings</h2>
+      <p>The research team documented 11 representative case studies, revealing major security issues:</p>
+      <ul>
+        <li><strong>Unauthorized Compliance</strong>: Agents complying with non-owners' instructions, disclosing sensitive information</li>
+        <li><strong>Destructive Actions</strong>: Executing system-level destructive operations, causing denial-of-service</li>
+        <li><strong>Resource Abuse</strong>: Uncontrolled resource consumption</li>
+        <li><strong>Identity Spoofing</strong>: Identity spoofing vulnerabilities</li>
+        <li><strong>Cross-Agent Propagation</strong>: Unsafe practices spreading between agents</li>
+        <li><strong>False Reporting</strong>: Agents reporting task completion while actual system state contradicts those reports</li>
+      </ul>
+      
+      <h2>Experimental Setup</h2>
+      <p>The study used the OpenClaw framework, deploying agents in isolated virtual machine environments. Each agent had:</p>
+      <ul>
+        <li>24/7 persistent runtime environment</li>
+        <li>Discord and email communication capabilities</li>
+        <li>Shell execution permissions (including sudo)</li>
+        <li>Ability to modify its own configuration files</li>
+      </ul>
+      
+      <h2>Key Insights</h2>
+      <p>The study found agents operate at Mirsky's L2 autonomy level: capable of autonomously executing sub-tasks (sending emails, executing commands), but lacking the self-model to recognize when tasks exceed their competence or reliably determine when to hand control back to humans.</p>
+      
+      <p>These findings reveal security, privacy, and governance vulnerabilities in realistic AI agent deployments, calling for urgent attention from legal scholars, policymakers, and researchers across disciplines.</p>
+      
+      <p>Read the full report: <a href="https://agentsofchaos.baulab.info/report.html">https://agentsofchaos.baulab.info/report.html</a></p>
+    </div> </article> <a href="/" class="back-link" data-zh="← 全部文章" data-en="← All articles">← All articles</a>  </main> <footer class="site-footer"> <p data-zh="关于 AI 智能体经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
+Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
+</p> <div class="footer-controls"> <button class="control-btn" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </footer> <script>
+        (function() {
+            var currentStored = localStorage.getItem('ae-theme');
+            if (currentStored) {
+                document.documentElement.setAttribute('data-theme', currentStored);
+                updateIcons(currentStored === 'dark');
+            }
+
+            function updateIcons(isDark) {
+                var lightIcon = document.querySelector('.theme-icon-light');
+                var darkIcon = document.querySelector('.theme-icon-dark');
+                if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
+                if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
+            }
+
+            window.toggleTheme = function() {
+                var current = document.documentElement.getAttribute('data-theme') || 'dark';
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('ae-theme', next);
+                updateIcons(next === 'dark');
+            };
+
+            updateIcons((document.documentElement.getAttribute('data-theme') || 'dark') === 'dark');
+
+            window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
+            
+            window.switchLang = function(lang) {
+                window.currentLang = lang;
+                localStorage.setItem('preferred-lang', lang);
+                window.updateLanguage();
+            };
+            
+            window.updateLanguage = function() {
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
+                
+                document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+                    el.textContent = el.getAttribute('data-' + window.currentLang);
+                });
+                
+                document.querySelectorAll('.lang-content').forEach(function(el) {
+                    el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
+                });
+            };
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    window.updateLanguage();
+                });
+            } else {
+                window.updateLanguage();
+            }
+
+            var path = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href === path || (path.startsWith('/blog') && href === '/')) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script> </body> </html>

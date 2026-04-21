@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Codex for (almost) everything | OpenAI | Agent Economy</title><meta name="description" content="OpenAI 发布 Codex 重大更新，支持计算机操作、图像生成、PR 审查等更多功能。"><meta name="author" content="Agent Economy"><meta name="robots" content="index, follow"><link rel="canonical" href="https://agenteconomy.cn/blog/codex-for-almost-everything-openai/"><meta property="og:type" content="article"><meta property="og:url" content="https://agenteconomy.cn/blog/codex-for-almost-everything-openai/"><meta property="og:title" content="Codex for (almost) everything | OpenAI | Agent Economy"><meta property="og:description" content="OpenAI 发布 Codex 重大更新，支持计算机操作、图像生成、PR 审查等更多功能。"><meta property="og:image" content="https://agenteconomy.cn/og-image.png"><meta property="og:site_name" content="Agent Economy"><meta property="og:locale" content="zh_CN"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://agenteconomy.cn/blog/codex-for-almost-everything-openai/"><meta property="twitter:title" content="Codex for (almost) everything | OpenAI | Agent Economy"><meta property="twitter:description" content="OpenAI 发布 Codex 重大更新，支持计算机操作、图像生成、PR 审查等更多功能。"><meta property="twitter:image" content="https://agenteconomy.cn/og-image.png"><meta property="article:published_time" content="2026-04-16"><meta property="article:tag" content="AI-Agents"><meta property="article:tag" content="Agent-Economy"><meta property="article:tag" content="Future-of-Work"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Agent Economy","url":"https://agenteconomy.cn","description":"Curated news and insights about the AI agent economy","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://agenteconomy.cn/search?q={search_term_string}"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","name":"Agent Economy","url":"https://agenteconomy.cn"}}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script defer data-domain="agenteconomy.cn" src="https://va.vercel-scripts.com/v1/script.js"></script><link rel="stylesheet" href="/_astro/about.D4pCrWNI.css"></head> <body> <header class="site-header"> <div class="header-inner"> <div class="site-logo"> <div class="logo-mark">AE</div> <h1><a href="/">Agent Economy</a></h1> </div> <div class="header-controls"> <div class="lang-selector"> <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)"> <option value="zh">ZH</option> <option value="en">EN</option> </select> </div> </div> </div> <nav class="site-nav"> <a href="/" class="nav-link" data-zh="文章" data-en="Articles">Articles</a> <a href="/about" class="nav-link" data-zh="关于" data-en="About">About</a> <a href="/rss.xml" class="nav-link">RSS</a> </nav> </header> <main>  <article class="article-content"> <h1 class="lang-content lang-zh active">OpenAI 发布 Codex 重大更新</h1> <h1 class="lang-content lang-en">Codex for (almost) everything | OpenAI</h1> <time datetime="2026-04-16">2026-04-16</time> <div class="lang-content lang-zh active"> <p>OpenAI 发布 Codex 重大更新，支持计算机操作、图像生成、PR 审查等更多功能。Codex 现在可以操作你的电脑，与更多日常工具和应用协同工作，生成图像，记住你的偏好，从之前的操作中学习，并承担持续和可重复的工作。</p> <p><a href="https://openai.com/index/codex-for-almost-everything/" target="_blank">阅读原文</a></p> </div> <div class="lang-content lang-en"> <p>OpenAI releases a major update to Codex, making it a more powerful partner for developers. Codex can now operate your computer, work with more tools and apps, generate images, remember preferences, learn from previous actions, and take on ongoing work.</p> <p><a href="https://openai.com/index/codex-for-almost-everything/" target="_blank">Read the full article</a></p> </div> <a href="/" class="back-link">← Back to articles</a> </article>  </main> <footer class="site-footer"> <p data-zh="关于 AI 智能体经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
+Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
+</p> <div class="footer-controls"> <button class="control-btn" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </footer> <script>
+        (function() {
+            var currentStored = localStorage.getItem('ae-theme');
+            if (currentStored) {
+                document.documentElement.setAttribute('data-theme', currentStored);
+                updateIcons(currentStored === 'dark');
+            }
+
+            function updateIcons(isDark) {
+                var lightIcon = document.querySelector('.theme-icon-light');
+                var darkIcon = document.querySelector('.theme-icon-dark');
+                if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
+                if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
+            }
+
+            window.toggleTheme = function() {
+                var current = document.documentElement.getAttribute('data-theme') || 'dark';
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('ae-theme', next);
+                updateIcons(next === 'dark');
+            };
+
+            updateIcons((document.documentElement.getAttribute('data-theme') || 'dark') === 'dark');
+
+            window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
+            
+            window.switchLang = function(lang) {
+                window.currentLang = lang;
+                localStorage.setItem('preferred-lang', lang);
+                window.updateLanguage();
+            };
+            
+            window.updateLanguage = function() {
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
+                
+                document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+                    el.textContent = el.getAttribute('data-' + window.currentLang);
+                });
+                
+                document.querySelectorAll('.lang-content').forEach(function(el) {
+                    el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
+                });
+            };
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    window.updateLanguage();
+                });
+            } else {
+                window.updateLanguage();
+            }
+
+            var path = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href === path || (path.startsWith('/blog') && href === '/')) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script> </body> </html>

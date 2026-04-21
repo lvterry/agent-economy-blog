@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Claude Code Source Leak: Community Analysis &amp; Insights | Agent Economy</title><meta name="description" content="Claude Code Source Leak: Community Analysis &#38; Insights - On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exp..."><meta name="author" content="Community / nblintao"><meta name="robots" content="index, follow"><link rel="canonical" href="https://agenteconomy.cn/blog/claude-code-source-leak-insights/"><meta property="og:type" content="article"><meta property="og:url" content="https://agenteconomy.cn/blog/claude-code-source-leak-insights/"><meta property="og:title" content="Claude Code Source Leak: Community Analysis &#38; Insights | Agent Economy"><meta property="og:description" content="Claude Code Source Leak: Community Analysis &#38; Insights - On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exp..."><meta property="og:image" content="https://agenteconomy.cn/og-image.png"><meta property="og:site_name" content="Agent Economy"><meta property="og:locale" content="zh_CN"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://agenteconomy.cn/blog/claude-code-source-leak-insights/"><meta property="twitter:title" content="Claude Code Source Leak: Community Analysis &#38; Insights | Agent Economy"><meta property="twitter:description" content="Claude Code Source Leak: Community Analysis &#38; Insights - On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exp..."><meta property="twitter:image" content="https://agenteconomy.cn/og-image.png"><meta property="article:published_time" content="2026-04-01"><meta property="article:tag" content="AI-Agents"><meta property="article:tag" content="Security"><meta property="article:tag" content="Claude"><meta property="article:tag" content="Developer-Tools"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml"><link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Agent Economy","url":"https://agenteconomy.cn","description":"Curated news and insights about the AI agent economy","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://agenteconomy.cn/search?q={search_term_string}"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","name":"Agent Economy","url":"https://agenteconomy.cn"}}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><script defer data-domain="agenteconomy.cn" src="https://va.vercel-scripts.com/v1/script.js"></script><link rel="stylesheet" href="/_astro/about.D4pCrWNI.css"></head> <body> <header class="site-header"> <div class="header-inner"> <div class="site-logo"> <div class="logo-mark">AE</div> <h1><a href="/">Agent Economy</a></h1> </div> <div class="header-controls"> <div class="lang-selector"> <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)"> <option value="zh">ZH</option> <option value="en">EN</option> </select> </div> </div> </div> <nav class="site-nav"> <a href="/" class="nav-link" data-zh="文章" data-en="Articles">Articles</a> <a href="/about" class="nav-link" data-zh="关于" data-en="About">About</a> <a href="/rss.xml" class="nav-link">RSS</a> </nav> </header> <main>  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Claude Code Source Leak: Community Analysis & Insights","datePublished":"2026-04-01","dateModified":"2026-04-01","description":"On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exp...","image":"https://agenteconomy.cn/og-image.png","url":"https://agenteconomy.cn/blog/claude-code-source-leak-insights","author":{"@type":"Organization","name":"Community / nblintao"},"publisher":{"@type":"Organization","name":"Agent Economy","logo":{"@type":"ImageObject","url":"https://agenteconomy.cn/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://agenteconomy.cn/blog/claude-code-source-leak-insights"}}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://agenteconomy.cn"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://agenteconomy.cn/blog/"},{"@type":"ListItem","position":3,"name":"Claude Code Source Leak: Community Analysis & Insights","item":"https://agenteconomy.cn/blog/claude-code-source-leak-insights"}]}</script> <article class="article-content"> <div class="lang-content lang-zh active"> <h1>Claude Code 源代码泄露：社区深度分析汇总</h1> </div> <div class="lang-content lang-en"> <h1>Claude Code Source Leak: Community Analysis &amp; Insights</h1> </div> <time>2026-04-01</time> <div class="lang-content lang-zh active">
+      <p>2026年3月31日，安全研究员 Chaofan Shou 发现 Anthropic 在 Claude Code 的 npm 包中意外包含了一个 source map 文件，导致约 1,900 个文件、51.2 万行 TypeScript 源代码被完全暴露。</p>
+
+      <h2>泄露内容亮点</h2>
+      <ul>
+        <li><strong>虚假工具 (Fake Tools)</strong> — 用于特定场景的内部工具</li>
+        <li><strong>沮丧检测正则</strong> — 用正则表达式而非模型检测用户情绪</li>
+        <li><strong>卧底模式 (Undercover Mode)</strong> — 内部开发模式</li>
+        <li><strong>BUDDY 系统</strong> — 即将发布的 Tamagotchi 风格虚拟伙伴（愚人节彩蛋）</li>
+        <li><strong>KAIROS 模式</strong> — "始终在线"的主动式助手</li>
+        <li><strong>ULTRAPLAN 模式</strong> — 30分钟远程编排模式</li>
+        <li><strong>模型代号</strong> — Tengu、Fennec、Capybara 等内部模型变体</li>
+      </ul>
+
+      <h2>技术架构洞察</h2>
+      <ul>
+        <li>基于 Bun + React + Ink 的终端 UI</li>
+        <li>Zod v4 用于类型安全</li>
+        <li>三层上下文压缩管道（MicroCompact → AutoCompact → Full Compact）</li>
+        <li>AutoDream 四阶段记忆整合流程</li>
+        <li>自定义 Bun 运行时和 Zig 编译的 token 生成</li>
+      </ul>
+
+      <h2>根本原因</h2>
+      <p>可能是 Bun 构建工具的一个 bug 导致 source map 文件被包含在发布的 npm 包中。</p>
+
+      <p>社区分析汇总：<a href="https://github.com/nblintao/awesome-claude-code-postleak-insights">https://github.com/nblintao/awesome-claude-code-postleak-insights</a></p>
+    </div> <div class="lang-content lang-en">
+      <p>On March 31, 2026, security researcher Chaofan Shou discovered that Anthropic accidentally included a source map file in the Claude Code npm package, exposing approximately 1,900 files and 512,000 lines of TypeScript source code.</p>
+
+      <h2>Notable Leaked Content</h2>
+      <ul>
+        <li><strong>Fake Tools</strong> — Internal tools for specific scenarios</li>
+        <li><strong>Frustration Regexes</strong> — Using regex instead of models to detect user sentiment</li>
+        <li><strong>Undercover Mode</strong> — Internal development mode</li>
+        <li><strong>BUDDY System</strong> — Upcoming Tamagotchi-style virtual companion (April Fools easter egg)</li>
+        <li><strong>KAIROS Mode</strong> — "Always-on" proactive assistant</li>
+        <li><strong>ULTRAPLAN Mode</strong> — 30-minute remote orchestration mode</li>
+        <li><strong>Model Codenames</strong> — Internal variants: Tengu, Fennec, Capybara</li>
+      </ul>
+
+      <h2>Technical Architecture Insights</h2>
+      <ul>
+        <li>Bun + React + Ink for terminal UI</li>
+        <li>Zod v4 for type safety</li>
+        <li>Three-layer context compression pipeline (MicroCompact → AutoCompact → Full Compact)</li>
+        <li>AutoDream four-phase memory consolidation flow</li>
+        <li>Custom Bun runtime and Zig-compiled token generation</li>
+      </ul>
+
+      <h2>Root Cause</h2>
+      <p>Likely a bug in the Bun build tool that caused source map files to be included in the published npm package.</p>
+
+      <p>Community analysis collection: <a href="https://github.com/nblintao/awesome-claude-code-postleak-insights">https://github.com/nblintao/awesome-claude-code-postleak-insights</a></p>
+    </div> </article> <a href="/" class="back-link" data-zh="← 全部文章" data-en="← All articles">← All articles</a>  </main> <footer class="site-footer"> <p data-zh="关于 AI 智能体经济的精选洞察。" data-en="Curated insights on AI agents and the autonomous economy.">
+Curated insights on AI agents and the autonomous economy. <a href="/rss.xml">Subscribe via RSS</a>.
+</p> <div class="footer-controls"> <button class="control-btn" onclick="toggleTheme()" aria-label="Toggle theme"> <span class="theme-icon-light">☀</span> <span class="theme-icon-dark" style="display: none;">☾</span> </button> </div> </footer> <script>
+        (function() {
+            var currentStored = localStorage.getItem('ae-theme');
+            if (currentStored) {
+                document.documentElement.setAttribute('data-theme', currentStored);
+                updateIcons(currentStored === 'dark');
+            }
+
+            function updateIcons(isDark) {
+                var lightIcon = document.querySelector('.theme-icon-light');
+                var darkIcon = document.querySelector('.theme-icon-dark');
+                if (lightIcon) lightIcon.style.display = isDark ? 'none' : 'inline';
+                if (darkIcon) darkIcon.style.display = isDark ? 'inline' : 'none';
+            }
+
+            window.toggleTheme = function() {
+                var current = document.documentElement.getAttribute('data-theme') || 'dark';
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('ae-theme', next);
+                updateIcons(next === 'dark');
+            };
+
+            updateIcons((document.documentElement.getAttribute('data-theme') || 'dark') === 'dark');
+
+            window.currentLang = localStorage.getItem('preferred-lang') || 'zh';
+            
+            window.switchLang = function(lang) {
+                window.currentLang = lang;
+                localStorage.setItem('preferred-lang', lang);
+                window.updateLanguage();
+            };
+            
+            window.updateLanguage = function() {
+                var langSelect = document.getElementById('lang-select');
+                if (langSelect) langSelect.value = window.currentLang;
+                
+                document.querySelectorAll('[data-zh][data-en]').forEach(function(el) {
+                    el.textContent = el.getAttribute('data-' + window.currentLang);
+                });
+                
+                document.querySelectorAll('.lang-content').forEach(function(el) {
+                    el.classList.toggle('active', el.classList.contains('lang-' + window.currentLang));
+                });
+            };
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    window.updateLanguage();
+                });
+            } else {
+                window.updateLanguage();
+            }
+
+            var path = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href === path || (path.startsWith('/blog') && href === '/')) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script> </body> </html>

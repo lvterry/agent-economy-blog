@@ -561,22 +561,10 @@ const posts = [
 ];
 
 const allCategories = ['全部', ...Object.keys(categoryMap)];
-
-const url = Astro.url;
-const categoryFilter = url.searchParams.get('category');
-
-const filteredPosts = categoryFilter && categoryFilter !== '全部'
-  ? posts.filter(post => getCategories(post.tags).includes(categoryFilter))
-  : posts;
 ---
 
 <Layout title={title} description={description}>
   <section class="hero">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      <span class="lang-content lang-zh active">AI 智能体经济前沿</span>
-      <span class="lang-content lang-en">Frontier of the Agent Economy</span>
-    </div>
     <h2 class="hero-title">
       <span class="lang-content lang-zh active">智能体正在重塑<br/>经济规则</span>
       <span class="lang-content lang-en">Agents are rewriting<br/>the rules of the economy</span>
@@ -585,51 +573,30 @@ const filteredPosts = categoryFilter && categoryFilter !== '全部'
       <span class="lang-content lang-zh active">精选 AI 智能体、自主系统与新兴智能体经济的最新新闻与洞察</span>
       <span class="lang-content lang-en">Curated news & insights on AI agents, autonomous systems, and the emerging agent economy</span>
     </p>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">{posts.length}</span>
-        <span class="stat-label lang-content lang-zh active">篇文章</span>
-        <span class="stat-label lang-content lang-en">Articles</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-value">{allCategories.length - 1}</span>
-        <span class="stat-label lang-content lang-zh active">个分类</span>
-        <span class="stat-label lang-content lang-en">Categories</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-value">2</span>
-        <span class="stat-label lang-content lang-zh active">种语言</span>
-        <span class="stat-label lang-content lang-en">Languages</span>
-      </div>
-    </div>
   </section>
 
-  <div class="category-filter">
+  <div class="category-filter" id="category-filter">
     {allCategories.map(cat => (
-      <a
-        href={cat === '全部' ? '/' : `/?category=${cat}`}
-        class:list={['filter-pill', { active: !categoryFilter && cat === '全部' } || categoryFilter === cat]}
+      <button
+        data-category={cat}
+        class:list={['filter-pill', { active: cat === '全部' }]}
       >
         <span class="lang-content lang-zh active">{cat}</span>
         <span class="lang-content lang-en">{categoryLabelsEn[cat] || cat}</span>
-      </a>
+      </button>
     ))}
   </div>
 
-  <section class="posts-grid">
-    {filteredPosts.map(post => (
+  <section class="posts-grid" id="posts-grid">
+    {posts.map(post => (
       <BlogPost {...post} />
     ))}
   </section>
 
-  {filteredPosts.length === 0 && (
-    <div class="empty-state">
-      <span class="lang-content lang-zh active">暂无该分类的文章</span>
-      <span class="lang-content lang-en">No articles in this category</span>
-    </div>
-  )}
+  <div class="empty-state" id="empty-state" style="display:none">
+    <span class="lang-content lang-zh active">暂无该分类的文章</span>
+    <span class="lang-content lang-en">No articles in this category</span>
+  </div>
 </Layout>
 
 <style>
@@ -653,35 +620,6 @@ const filteredPosts = categoryFilter && categoryFilter !== '全部'
     opacity: 0.5;
   }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--color-glass-border);
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-accent);
-    background: var(--color-glass);
-    margin-bottom: var(--space-md);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .hero-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
   .hero-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -702,50 +640,29 @@ const filteredPosts = categoryFilter && categoryFilter !== '全部'
     margin: 0 auto var(--space-lg);
   }
 
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stat-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    font-family: var(--font-mono);
-    color: var(--color-text);
-  }
-
-  .stat-label {
-    font-size: 0.6875rem;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .stat-divider {
-    width: 1px;
-    height: 28px;
-    background: var(--color-border);
-  }
-
   .category-filter {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: var(--space-lg);
     padding-bottom: var(--space-md);
+    padding-top: var(--space-sm);
     border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(12, 10, 9, 0.82);
+  }
+
+  [data-theme="light"] .category-filter {
+    background: rgba(245, 240, 232, 0.85);
   }
 
   .filter-pill {
     padding: 0.4rem 0.875rem;
+    font-family: var(--font-sans);
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-text-secondary);
@@ -820,3 +737,32 @@ const filteredPosts = categoryFilter && categoryFilter !== '全部'
     }
   }
 </style>
+
+<script>
+  const filterBtns = document.querySelectorAll('#category-filter .filter-pill');
+  const postsGrid = document.getElementById('posts-grid');
+  const emptyState = document.getElementById('empty-state');
+  const posts = postsGrid ? postsGrid.querySelectorAll('.post-card') : [];
+
+  function filterPosts(category: string) {
+    let visibleCount = 0;
+    posts.forEach((post) => {
+      const cats = (post as HTMLElement).dataset.categories || '';
+      const show = category === '全部' || cats.split(',').includes(category);
+      (post as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? '' : 'none';
+    }
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const category = (btn as HTMLElement).dataset.category || '全部';
+      filterPosts(category);
+    });
+  });
+</script>
