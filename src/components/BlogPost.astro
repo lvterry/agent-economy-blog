@@ -36,7 +36,7 @@ const cats = getCategories(tags || []);
 const primaryCat = cats[0];
 ---
 
-<article class="post-card" data-categories={cats.join(',')}>
+<article class="post-card" data-categories={primaryCat}>
   <div class="post-card-inner">
     <div class="post-meta">
       <span class="post-category">
