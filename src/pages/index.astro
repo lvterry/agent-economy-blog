@@ -5,7 +5,6 @@ import BlogPost from '../components/BlogPost.astro';
 const title = 'Articles';
 const description = 'Latest curated news and insights about AI agents, the agent economy, and autonomous systems.';
 
-// Category mapping
 const categoryMap = {
   "AI 模型": ["OpenAI", "Google", "Anthropic", "Claude", "Gemini", "GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4"],
   "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
@@ -15,8 +14,18 @@ const categoryMap = {
   "行业动态": ["X/Twitter", "ChatGPT"]
 };
 
-function getCategories(tags) {
-  const categories = new Set();
+const categoryLabelsEn: Record<string, string> = {
+  "全部": "All",
+  "AI 模型": "AI Models",
+  "AI 智能体": "AI Agents",
+  "AI 应用": "AI Apps",
+  "商业 & 经济": "Business",
+  "安全 & 协议": "Security",
+  "行业动态": "Industry"
+};
+
+function getCategories(tags: string[]) {
+  const categories = new Set<string>();
   for (const tag of tags) {
     for (const [category, categoryTags] of Object.entries(categoryMap)) {
       if (categoryTags.includes(tag)) {
@@ -394,7 +403,7 @@ const posts = [
     titleZh: 'Mistral AI 发布 Forge：企业专有知识驱动的前沿模型系统',
     titleEn: 'Introducing Forge | Mistral AI',
     excerptZh: 'Mistral AI 发布 Forge，让企业基于专有知识构建前沿级 AI 模型。',
-    excerptEn: 'Today, we’re introducing Forge, a system that allows enterprises to build frontier-grade AI models grounded in their proprietary knowledge.',
+    excerptEn: 'Today, we\'re introducing Forge, a system that allows enterprises to build frontier-grade AI models grounded in their proprietary knowledge.',
     date: '2026-03-18',
     tags: ['AI-Agents', 'Agent-Economy', 'Future-of-Work'],
     source: 'Mistral AI'
@@ -541,20 +550,263 @@ const posts = [
   }
 ];
 
-// Get category from URL query param
+const allCategories = ['全部', ...Object.keys(categoryMap)];
+
 const url = Astro.url;
 const categoryFilter = url.searchParams.get('category');
 
-// Filter posts by category if specified
-const filteredPosts = categoryFilter 
+const filteredPosts = categoryFilter && categoryFilter !== '全部'
   ? posts.filter(post => getCategories(post.tags).includes(categoryFilter))
   : posts;
 ---
 
 <Layout title={title} description={description}>
-  <section>
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="lang-content lang-zh active">AI 智能体经济前沿</span>
+      <span class="lang-content lang-en">Frontier of the Agent Economy</span>
+    </div>
+    <h2 class="hero-title">
+      <span class="lang-content lang-zh active">智能体正在重塑<br/>经济规则</span>
+      <span class="lang-content lang-en">Agents are rewriting<br/>the rules of the economy</span>
+    </h2>
+    <p class="hero-desc">
+      <span class="lang-content lang-zh active">精选 AI 智能体、自主系统与新兴智能体经济的最新新闻与洞察</span>
+      <span class="lang-content lang-en">Curated news & insights on AI agents, autonomous systems, and the emerging agent economy</span>
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-value">{posts.length}</span>
+        <span class="stat-label lang-content lang-zh active">篇文章</span>
+        <span class="stat-label lang-content lang-en">Articles</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">{allCategories.length - 1}</span>
+        <span class="stat-label lang-content lang-zh active">个分类</span>
+        <span class="stat-label lang-content lang-en">Categories</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-value">2</span>
+        <span class="stat-label lang-content lang-zh active">种语言</span>
+        <span class="stat-label lang-content lang-en">Languages</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="category-filter">
+    {allCategories.map(cat => (
+      <a
+        href={cat === '全部' ? '/' : `/?category=${cat}`}
+        class:list={['filter-pill', { active: !categoryFilter && cat === '全部' } || categoryFilter === cat]}
+      >
+        <span class="lang-content lang-zh active">{cat}</span>
+        <span class="lang-content lang-en">{categoryLabelsEn[cat] || cat}</span>
+      </a>
+    ))}
+  </div>
+
+  <section class="posts-grid">
     {filteredPosts.map(post => (
       <BlogPost {...post} />
     ))}
   </section>
+
+  {filteredPosts.length === 0 && (
+    <div class="empty-state">
+      <span class="lang-content lang-zh active">暂无该分类的文章</span>
+      <span class="lang-content lang-en">No articles in this category</span>
+    </div>
+  )}
 </Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: var(--space-lg) 0 var(--space-xl);
+    margin-bottom: var(--space-lg);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 1px;
+    opacity: 0.5;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-glass-border);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    background: var(--color-glass);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--space-sm);
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--color-text);
+  }
+
+  .stat-label {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--color-border);
+  }
+
+  .category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .filter-pill {
+    padding: 0.4rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    background: transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+
+  .filter-pill:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: var(--color-accent-glow);
+  }
+
+  .filter-pill.active {
+    background: var(--gradient-accent);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .lang-content {
+    display: none;
+  }
+
+  .lang-content.active {
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 1.75rem;
+    }
+
+    .hero-desc {
+      font-size: 0.875rem;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+    }
+
+    .category-filter {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: var(--space-sm);
+    }
+
+    .category-filter::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-pill {
+      white-space: nowrap;
+    }
+  }
+</style>

@@ -1,19 +1,201 @@
 ---
-const { slug, titleZh, titleEn, excerptZh, excerptEn, date, tags } = Astro.props;
+const { slug, titleZh, titleEn, excerptZh, excerptEn, date, tags, source } = Astro.props;
+
+const categoryMap = {
+  "AI 模型": ["OpenAI", "Google", "Anthropic", "Claude", "Gemini", "GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4"],
+  "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
+  "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Hardware", "Tinygrad", "Deep-Learning", "Computer-Use", "Coding"],
+  "商业 & 经济": ["Agent-Economy", "Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
+  "安全 & 协议": ["AP2", "AI-Advertising", "Security"],
+  "行业动态": ["X/Twitter", "ChatGPT"]
+};
+
+const categoryMapEn = {
+  "AI 模型": "AI Models",
+  "AI 智能体": "AI Agents",
+  "AI 应用": "AI Apps",
+  "商业 & 经济": "Business",
+  "安全 & 协议": "Security",
+  "行业动态": "Industry"
+};
+
+function getCategories(tags) {
+  const categories = new Set();
+  for (const tag of tags) {
+    for (const [category, categoryTags] of Object.entries(categoryMap)) {
+      if (categoryTags.includes(tag)) {
+        categories.add(category);
+      }
+    }
+  }
+  if (categories.size === 0) categories.add("AI 智能体");
+  return Array.from(categories);
+}
+
+const cats = getCategories(tags || []);
+const primaryCat = cats[0];
 ---
 
-<article>
-  <div class="lang-content lang-zh active">
-    <h2><a href={`/blog/${slug}`}>{titleZh}</a></h2>
-  </div>
-  <div class="lang-content lang-en">
-    <h2><a href={`/blog/${slug}`}>{titleEn}</a></h2>
-  </div>
-  <time>{date}</time>
-  <div class="lang-content lang-zh active">
-    <p>{excerptZh}</p>
-  </div>
-  <div class="lang-content lang-en">
-    <p>{excerptEn}</p>
+<article class="post-card">
+  <div class="post-card-inner">
+    <div class="post-meta">
+      <span class="post-category">
+        <span class="lang-content lang-zh active">{primaryCat}</span>
+        <span class="lang-content lang-en">{categoryMapEn[primaryCat] || primaryCat}</span>
+      </span>
+      <time class="post-date" datetime={date}>{date}</time>
+    </div>
+    
+    <div class="lang-content lang-zh active">
+      <h2 class="post-title"><a href={`/blog/${slug}`}>{titleZh}</a></h2>
+    </div>
+    <div class="lang-content lang-en">
+      <h2 class="post-title"><a href={`/blog/${slug}`}>{titleEn}</a></h2>
+    </div>
+    
+    <div class="lang-content lang-zh active">
+      <p class="post-excerpt">{excerptZh}</p>
+    </div>
+    <div class="lang-content lang-en">
+      <p class="post-excerpt">{excerptEn}</p>
+    </div>
+    
+    <div class="post-footer">
+      <div class="tags">
+        {tags.slice(0, 3).map(tag => (
+          <span class="tag">#{tag}</span>
+        ))}
+      </div>
+      {source && <span class="post-source">{source}</span>}
+    </div>
   </div>
 </article>
+
+<style>
+  .post-card {
+    position: relative;
+    border: 1px solid var(--color-card-border);
+    border-radius: 12px;
+    background: var(--color-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+  }
+
+  .post-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-card);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .post-card:hover {
+    border-color: rgba(212, 168, 67, 0.25);
+    box-shadow: 0 4px 24px rgba(212, 168, 67, 0.06), 0 0 0 1px rgba(212, 168, 67, 0.08);
+    transform: translateY(-1px);
+  }
+
+  [data-theme="light"] .post-card:hover {
+    border-color: rgba(160, 124, 30, 0.25);
+    box-shadow: 0 4px 24px rgba(160, 124, 30, 0.06), 0 0 0 1px rgba(160, 124, 30, 0.08);
+  }
+
+  .post-card-inner {
+    position: relative;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-category {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    background: rgba(212, 168, 67, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  [data-theme="light"] .post-category {
+    background: rgba(160, 124, 30, 0.1);
+  }
+
+  .post-date {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .post-title a {
+    color: var(--color-text);
+  }
+
+  .post-title a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .post-excerpt {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.6875rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+  }
+
+  .post-source {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .lang-content {
+    display: none;
+  }
+
+  .lang-content.active {
+    display: block;
+  }
+</style>
