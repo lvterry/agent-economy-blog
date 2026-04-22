@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'google-eighth-generation-tpu-agentic-era',
+    titleZh: 'Google 发布第八代 TPU 为智能体时代打造双芯片架构',
+    titleEn: 'Google releases eighth-generation TPUs with dual-chip architecture for the agentic era',
+    excerptZh: 'Google 发布第八代 TPU 8t 和 TPU 8i，分别针对大规模模型训练和低延迟推理优化。TPU 8t 支持高达 9600 芯片集群，TPU 8i 内存带宽提升 3 倍，为 AI 智能体工作负载提供高效基础设施。',
+    excerptEn: 'Google introduces TPU 8t for massive training workloads and TPU 8i for low-latency inference. TPU 8t scales to 9,600 chips with 121 ExaFlops, while TPU 8i delivers 3x more SRAM for agentic workloads.',
+    date: '2026-04-22',
+    tags: ['Google', 'TPU', 'AI-Infrastructure', 'Hardware', 'Data-Center', 'Agentic-AI'],
+    source: 'Google Cloud Blog'
+  },
+  {
     slug: 'all-your-agents-are-going-async',
     titleZh: 'AI Agents 全面走向异步化 传输层面临重构',
     titleEn: 'All your agents are going async',

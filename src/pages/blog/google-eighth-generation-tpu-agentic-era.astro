@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Google releases eighth-generation TPUs with dual-chip architecture for the agentic era';
+const description = 'Google 发布第八代 TPU 8t 和 TPU 8i，分别针对大规模模型训练和低延迟推理优化，为 AI 智能体时代打造专用基础设施。';
+---
+
+<Layout 
+  title={title}
+  description={description}
+  type="article"
+  publishedTime="2026-04-22"
+  tags={["Google", "TPU", "AI-Infrastructure", "Hardware", "Data-Center", "Agentic-AI"]}
+>
+  <article class="article-content">
+    <h1 class="lang-content lang-zh active">Google 发布第八代 TPU 为智能体时代打造双芯片架构</h1>
+    <h1 class="lang-content lang-en">Google releases eighth-generation TPUs with dual-chip architecture for the agentic era</h1>
+    
+    <time datetime="2026-04-22">2026-04-22</time>
+    
+    <div class="lang-content lang-zh active">
+      <p>Google 在 Cloud Next 大会上正式发布第八代张量处理单元 TPU，推出两款专为不同工作负载设计的芯片：TPU 8t 专注于大规模模型训练，TPU 8i 针对低延迟推理优化。这是 Google 十年芯片研发的集大成之作，专为 AI 智能体时代的需求而生。</p>
+      
+      <p><strong>核心亮点：</strong></p>
+      <ul>
+        <li><strong>TPU 8t 训练芯片</strong>：单集群可扩展至 9,600 颗芯片，2PB 共享高带宽内存，提供 121 ExaFlops 算力，较前代性能提升近 3 倍</li>
+        <li><strong>TPU 8i 推理芯片</strong>：配备 288GB 高带宽内存和 384MB 片上 SRAM（3 倍于前代），专为多智能体协作的低延迟推理设计</li>
+        <li><strong>能效提升</strong>：每瓦性能较前代 Ironwood 提升 2 倍，数据中心的计算密度 5 年内增长 6 倍</li>
+        <li><strong>协同设计</strong>：与 Google DeepMind 合作设计，针对 Gemini 等前沿模型的架构需求优化</li>
+      </ul>
+      
+      <p>在智能体时代，AI 模型需要在连续循环中进行推理、规划、执行和学习，这对基础设施提出了全新挑战。TPU 8t 和 TPU 8i 通过专业化分工解决这一矛盾：训练芯片追求最大计算吞吐量和扩展性，推理芯片则专注于内存带宽和延迟优化。</p>
+      
+      <p>值得关注的是，TPU 8i 采用全新的 Boardfly 架构，将网络直径缩短 50% 以上，并引入片上集合加速引擎（CAE），使延迟降低 5 倍。这些创新使企业能够以相同的成本服务近两倍的客户量。</p>
+      
+      <p>两款芯片均运行 Google 自研的 Axion ARM CPU，并原生支持 JAX、PyTorch、SGLang 和 vLLM 等主流框架。Google 表示，这两款芯片将于今年晚些时候正式商用。</p>
+      
+      <p><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/" target="_blank">阅读原文</a></p>
+    </div>
+    
+    <div class="lang-content lang-en">
+      <p>At Google Cloud Next, Google unveiled its eighth-generation Tensor Processing Units with two purpose-built chips: TPU 8t for massive model training and TPU 8i for low-latency inference. This represents the culmination of over a decade of custom silicon development, specifically engineered for the demands of the AI agentic era.</p>
+      
+      <p><strong>Key highlights:</strong></p>
+      <ul>
+        <li><strong>TPU 8t for training</strong>: Scales to 9,600 chips per cluster with 2PB shared high-bandwidth memory, delivering 121 ExaFlops of compute—nearly 3x performance improvement over the previous generation</li>
+        <li><strong>TPU 8i for inference</strong>: Features 288GB HBM and 384MB on-chip SRAM (3x more than previous gen), purpose-built for latency-sensitive multi-agent collaborative workflows</li>
+        <li><strong>Power efficiency</strong>: Up to 2x better performance-per-watt than Ironwood, with data center compute density increasing 6x over five years</li>
+        <li><strong>Co-designed approach</strong>: Developed in partnership with Google DeepMind, optimized for frontier models like Gemini</li>
+      </ul>
+      
+      <p>In the agentic era, AI models must reason through problems, execute multi-step workflows, and learn from their actions in continuous loops—placing unprecedented demands on infrastructure. TPU 8t and TPU 8i address this through specialization: training chips maximize compute throughput and scale, while inference chips optimize memory bandwidth and latency.</p>
+      
+      <p>Notably, TPU 8i introduces the new Boardfly architecture, reducing network diameter by over 50% and featuring an on-chip Collectives Acceleration Engine (CAE) that reduces latency by up to 5x. These innovations enable businesses to serve nearly twice the customer volume at the same cost.</p>
+      
+      <p>Both chips run on Google's custom Axion ARM-based CPUs and offer native support for JAX, PyTorch, SGLang, and vLLM. Google says both platforms will be generally available later this year.</p>
+      
+      <p><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/" target="_blank">Read the full article</a></p>
+    </div>
+    
+    <a href="/" class="back-link">← Back to articles</a>
+  </article>
+</Layout>
