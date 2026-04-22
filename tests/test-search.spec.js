@@ -3,192 +3,244 @@ import { test, expect } from '@playwright/test';
 test.describe('Search functionality', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    // Wait for page to fully load
-    await page.waitForSelector('#search-input');
+    await page.waitForSelector('#header-search-btn');
   });
 
-  test('search input should be visible on homepage', async ({ page }) => {
+  test('search button should be visible in header', async ({ page }) => {
+    const searchBtn = page.locator('#header-search-btn');
+    await expect(searchBtn).toBeVisible();
+  });
+
+  test('clicking search button opens popup', async ({ page }) => {
+    const searchBtn = page.locator('#header-search-btn');
+    const overlay = page.locator('#search-popup-overlay');
+
+    await expect(overlay).not.toBeVisible();
+    await searchBtn.click();
+    await expect(overlay).toBeVisible();
+
     const searchInput = page.locator('#search-input');
     await expect(searchInput).toBeVisible();
-    await expect(searchInput).toHaveAttribute('placeholder', /搜索文章/);
+    await expect(searchInput).toHaveAttribute('placeholder', '搜索文章...');
   });
 
-  test('search should filter articles by title', async ({ page }) => {
+  test('Ctrl+K opens popup and focuses input', async ({ page }) => {
+    const overlay = page.locator('#search-popup-overlay');
+    await expect(overlay).not.toBeVisible();
+
+    await page.keyboard.press('Control+k');
+    await expect(overlay).toBeVisible();
+
     const searchInput = page.locator('#search-input');
-    
-    // Type "OpenAI" in search
+    const activeId = await page.evaluate(() => document.activeElement?.id);
+    expect(activeId).toBe('search-input');
+  });
+
+  test('search should find articles by title', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
+    const searchInput = page.locator('#search-input');
+
     await searchInput.fill('OpenAI');
-    await page.waitForTimeout(300); // Wait for debounce
-    
-    // Verify that posts are filtered
-    const visiblePosts = page.locator('.post-card:visible');
-    const count = await visiblePosts.count();
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
     expect(count).toBeGreaterThan(0);
-    
-    // Check that at least one OpenAI article is shown
-    const pageContent = await page.textContent('body');
-    expect(pageContent).toMatch(/OpenAI/i);
+
+    const firstTitle = await resultItems.first().locator('.search-result-title').textContent();
+    expect(firstTitle).toMatch(/OpenAI/i);
   });
 
-  test('search should filter articles by keyword', async ({ page }) => {
+  test('search should find articles by keyword', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    
-    // Search for "Claude"
+
     await searchInput.fill('Claude');
-    await page.waitForTimeout(500);
-    
-    // Should show some articles found
-    const visiblePosts = page.locator('.post-card:visible');
-    const count = await visiblePosts.count().catch(() => 0);
-    
-    // Verify at least some filtering happened
-    const allPosts = await page.locator('.post-card').count();
-    expect(count).toBeLessThanOrEqual(allPosts);
-    
-    // If there are Claude articles, at least one should be visible
-    if (count > 0) {
-      const pageContent = await page.textContent('body');
-      expect(pageContent).toMatch(/Claude/i);
-    }
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
+    expect(count).toBeGreaterThan(0);
   });
 
   test('clear button should reset search', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    
-    // First search for something
+
     await searchInput.fill('Claude');
     await page.waitForTimeout(300);
-    
-    // Get initial count of visible posts after search
-    const initialVisible = await page.locator('.post-card:visible').count();
-    
-    // Clear the input
-    await searchInput.clear();
+
+    const clearBtn = page.locator('#search-clear');
+    await clearBtn.click();
     await page.waitForTimeout(300);
-    
-    // Input should be empty
+
     await expect(searchInput).toHaveValue('');
-    
-    // All posts should be visible again
-    const allPosts = page.locator('.post-card');
-    const totalPosts = await allPosts.count();
-    const visibleAfterClear = await page.locator('.post-card:visible').count();
-    
-    expect(visibleAfterClear).toBe(totalPosts);
+    await expect(page.locator('#search-results')).not.toBeVisible();
   });
 
   test('search with no results should show empty message', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    
-    // Search for something very specific that likely doesn't exist
+
     await searchInput.fill('xyzabc123nonexistent');
     await page.waitForTimeout(600);
-    
-    // The search should at least not crash and return to a stable state
-    // In dev mode, the search filtering may behave differently
-    // Just verify the input is still functional
-    await expect(searchInput).toHaveValue('xyzabc123nonexistent');
-    
-    // Clear the search
-    await searchInput.clear();
-    await page.waitForTimeout(300);
-    
-    // After clearing, all posts should be visible again
-    const visibleCount = await page.evaluate(() => {
-      const posts = document.querySelectorAll('.post-card');
-      return Array.from(posts).filter(p => {
-        const style = window.getComputedStyle(p);
-        return style.display !== 'none';
-      }).length;
-    });
-    
-    const allPosts = await page.locator('.post-card').count();
-    expect(visibleCount).toBe(allPosts);
+
+    const noResults = page.locator('.search-no-results');
+    await expect(noResults).toBeVisible();
   });
 
-  test('keyboard shortcut should focus search input', async ({ page }) => {
-    const searchInput = page.locator('#search-input');
-    
-    // Press Ctrl+K to focus search
-    await searchInput.evaluate(el => el.focus());
-    
-    // Alternative: simulate Ctrl+K
-    await page.keyboard.press('Control+k');
-    await page.waitForTimeout(200);
-    
-    // Check if input is focused - this might not work in all browsers
-    // so we'll make the test more lenient
-    const activeElement = await page.evaluate(() => document.activeElement?.id);
-    
-    // The search input should ideally be focused, but we'll accept if it's in the page
-    const isVisible = await searchInput.isVisible();
-    expect(isVisible).toBe(true);
+  test('Escape closes the popup', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
+    const overlay = page.locator('#search-popup-overlay');
+    await expect(overlay).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await page.waitForTimeout(300);
+    await expect(overlay).not.toBeVisible();
   });
 
-  test('escape key should work when input is focused', async ({ page }) => {
-    const searchInput = page.locator('#search-input');
-    const resultsContainer = page.locator('#search-results');
-    
-    // Focus input and type
-    await searchInput.focus();
-    await searchInput.fill('AI');
+  test('clicking backdrop closes the popup', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
+    const overlay = page.locator('#search-popup-overlay');
+    await expect(overlay).toBeVisible();
+
+    await page.locator('.search-popup-backdrop').click();
     await page.waitForTimeout(300);
-    
-    // Press Escape
-    await searchInput.press('Escape');
-    
-    // Results should be hidden
-    const display = await resultsContainer.evaluate(el => window.getComputedStyle(el).display);
-    expect(display).toBe('none');
+    await expect(overlay).not.toBeVisible();
   });
 
   test('search should be case insensitive', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    
-    // Search with lowercase
+
     await searchInput.fill('openai');
-    await page.waitForTimeout(300);
-    
-    // Articles with "OpenAI" should still be found
-    const visiblePosts = page.locator('.post-card:visible');
-    const count = await visiblePosts.count();
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
     expect(count).toBeGreaterThan(0);
   });
 
   test('search results should display stats when articles found', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    
-    // Search for a common term
+
     await searchInput.fill('AI');
-    await page.waitForTimeout(300);
-    
-    // Stats should show number of articles
-    const stats = page.locator('.search-stats');
-    const statsText = await stats.textContent().catch(() => '');
-    
-    // If stats are shown, they should contain article count
-    if (statsText.includes('articles found')) {
-      expect(statsText).toMatch(/\d+ articles found/);
-    }
+    await page.waitForTimeout(400);
+
+    const stats = page.locator('.search-popup-stats .stats-text');
+    const statsText = await stats.textContent();
+    expect(statsText).toMatch(/\d+/);
   });
 
-  test('search filters work with category filter', async ({ page }) => {
+  test('search results should have proper styling with date and source', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    const categoryButtons = page.locator('.filter-pill');
-    
-    // First click a category filter
-    await categoryButtons.first().click();
-    await page.waitForTimeout(200);
-    
-    // Then search within that category
+
+    await searchInput.fill('OpenAI');
+    await page.waitForTimeout(400);
+
+    const firstResult = page.locator('.search-result-item').first();
+    await expect(firstResult.locator('.search-result-title')).toBeVisible();
+    await expect(firstResult.locator('.search-result-excerpt')).toBeVisible();
+    await expect(firstResult.locator('.search-result-date')).toBeVisible();
+    await expect(firstResult.locator('.search-result-source')).toBeVisible();
+  });
+
+  test('search highlights matching text', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
+    const searchInput = page.locator('#search-input');
+
+    await searchInput.fill('OpenAI');
+    await page.waitForTimeout(400);
+
+    const highlights = page.locator('.search-highlight');
+    const count = await highlights.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('search works on blog index page', async ({ page }) => {
+    await page.goto('/blog');
+    await page.waitForSelector('#header-search-btn');
+
+    const searchBtn = page.locator('#header-search-btn');
+    await searchBtn.click();
+
+    const searchInput = page.locator('#search-input');
+    await expect(searchInput).toBeVisible();
+
     await searchInput.fill('Agent');
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('search works on about page', async ({ page }) => {
+    await page.goto('/about');
+    await page.waitForSelector('#header-search-btn');
+
+    const searchBtn = page.locator('#header-search-btn');
+    await searchBtn.click();
+
+    const searchInput = page.locator('#search-input');
+    await expect(searchInput).toBeVisible();
+
+    await searchInput.fill('AI');
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
+  test('placeholder changes when language switches', async ({ page }) => {
+    await page.locator('#header-search-btn').click();
+    const searchInput = page.locator('#search-input');
+    await expect(searchInput).toHaveAttribute('placeholder', '搜索文章...');
+
+    await page.keyboard.press('Escape');
     await page.waitForTimeout(300);
-    
-    // Should have filtered results
-    const visiblePosts = page.locator('.post-card:visible');
-    const count = await visiblePosts.count();
-    
-    // The combination of category + search should work
-    expect(count).toBeGreaterThanOrEqual(0);
+
+    const langSelect = page.locator('#lang-select');
+    await langSelect.selectOption('en');
+    await page.waitForTimeout(200);
+
+    await page.locator('#header-search-btn').click();
+    await expect(searchInput).toHaveAttribute('placeholder', 'Search articles...');
+  });
+});
+
+test.describe('Search popup responsive design', () => {
+  test('popup adapts to mobile viewport', async ({ browser }) => {
+    const context = await browser.newContext({
+      viewport: { width: 375, height: 667 },
+      isMobile: true,
+    });
+    const page = await context.newPage();
+    await page.goto('/');
+    await page.waitForSelector('#header-search-btn');
+
+    await page.locator('#header-search-btn').click();
+    const overlay = page.locator('#search-popup-overlay');
+    await expect(overlay).toBeVisible();
+
+    const panel = page.locator('.search-popup-panel');
+    const panelBox = await panel.boundingBox();
+    expect(panelBox).not.toBeNull();
+    if (panelBox) {
+      expect(panelBox.width).toBeLessThanOrEqual(375);
+    }
+
+    const searchInput = page.locator('#search-input');
+    await searchInput.fill('AI');
+    await page.waitForTimeout(400);
+
+    const resultItems = page.locator('.search-result-item');
+    const count = await resultItems.count();
+    expect(count).toBeGreaterThan(0);
+
+    await context.close();
   });
 });

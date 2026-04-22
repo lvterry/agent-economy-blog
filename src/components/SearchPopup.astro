@@ -1,0 +1,541 @@
+---
+import { posts } from '../data/posts';
+
+const searchIndex = posts.map(p => ({
+  slug: p.slug,
+  titleZh: p.titleZh,
+  titleEn: p.titleEn,
+  excerptZh: p.excerptZh,
+  excerptEn: p.excerptEn,
+  date: p.date,
+  tags: p.tags.join(' '),
+  source: p.source
+}));
+---
+
+<div id="search-popup-overlay" class="search-popup-overlay" role="dialog" aria-modal="true" aria-label="Search" style="display:none;">
+  <div class="search-popup-backdrop"></div>
+  <div class="search-popup-container">
+    <div class="search-popup-panel">
+      <div class="search-popup-header">
+        <svg class="search-popup-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          class="search-popup-input"
+          autocomplete="off"
+        />
+        <button id="search-clear" class="search-popup-clear" style="display:none;" aria-label="Clear search">&times;</button>
+        <kbd class="search-popup-kbd">Esc</kbd>
+      </div>
+      <div id="search-results" class="search-popup-results"></div>
+      <div id="search-stats" class="search-popup-stats" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<script id="search-index-data" type="application/json" set:html={JSON.stringify(searchIndex)} />
+
+<script is:inline>
+(function() {
+  var indexEl = document.getElementById('search-index-data');
+  var SEARCH_INDEX = indexEl ? JSON.parse(indexEl.textContent) : [];
+  var overlay = document.getElementById('search-popup-overlay');
+  var backdrop = overlay ? overlay.querySelector('.search-popup-backdrop') : null;
+  var input = document.getElementById('search-input');
+  var clearBtn = document.getElementById('search-clear');
+  var header = overlay ? overlay.querySelector('.search-popup-header') : null;
+  var resultsContainer = document.getElementById('search-results');
+  var statsContainer = document.getElementById('search-stats');
+  var searchBtn = document.getElementById('header-search-btn');
+
+  if (!overlay || !input) return;
+
+  var isOpen = false;
+
+  function getLang() {
+    return window.currentLang || localStorage.getItem('preferred-lang') || 'zh';
+  }
+
+  function updatePlaceholder() {
+    var lang = getLang();
+    input.placeholder = lang === 'zh' ? '搜索文章...' : 'Search articles...';
+  }
+
+  function updateHeaderBorder(show) {
+    if (header) header.style.borderBottomStyle = show ? 'solid' : 'none';
+  }
+
+  function openPopup() {
+    isOpen = true;
+    overlay.style.display = 'flex';
+    updatePlaceholder();
+    updateHeaderBorder(false);
+    requestAnimationFrame(function() {
+      overlay.classList.add('search-popup-overlay--open');
+      input.focus();
+    });
+  }
+
+  function closePopup() {
+    isOpen = false;
+    overlay.classList.remove('search-popup-overlay--open');
+    setTimeout(function() {
+      if (!isOpen) overlay.style.display = 'none';
+    }, 200);
+    resultsContainer.innerHTML = '';
+    resultsContainer.style.display = 'none';
+    statsContainer.innerHTML = '';
+    statsContainer.style.display = 'none';
+    updateHeaderBorder(false);
+    input.value = '';
+    clearBtn.style.display = 'none';
+    resetLocalPosts();
+  }
+
+  function resetLocalPosts() {
+    var postsGrid = document.getElementById('posts-grid');
+    if (!postsGrid) return;
+    var posts = postsGrid.querySelectorAll('.post-card');
+    posts.forEach(function(post) { post.style.display = ''; });
+  }
+
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (isOpen) closePopup(); else openPopup();
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closePopup);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (isOpen) closePopup(); else openPopup();
+    }
+    if (e.key === 'Escape' && isOpen) {
+      e.preventDefault();
+      closePopup();
+    }
+  });
+
+  function indexSearch(query) {
+    var lang = getLang();
+    var lowerQuery = query.toLowerCase();
+    var results = [];
+
+    for (var i = 0; i < SEARCH_INDEX.length; i++) {
+      var post = SEARCH_INDEX[i];
+      var title = lang === 'zh' ? post.titleZh : post.titleEn;
+      var altTitle = lang === 'zh' ? post.titleEn : post.titleZh;
+      var excerpt = lang === 'zh' ? post.excerptZh : post.excerptEn;
+      var content = (title + ' ' + altTitle + ' ' + excerpt + ' ' + post.tags + ' ' + post.source).toLowerCase();
+
+      if (content.includes(lowerQuery)) {
+        results.push({
+          url: '/blog/' + post.slug,
+          title: title,
+          excerpt: excerpt,
+          date: post.date,
+          source: post.source,
+          relevance: calculateRelevance(content, lowerQuery)
+        });
+      }
+    }
+
+    return results.sort(function(a, b) { return b.relevance - a.relevance; });
+  }
+
+  function calculateRelevance(content, query) {
+    var titleWords = content.split(' ').slice(0, 10).join(' ');
+    var score = 0;
+    if (titleWords.includes(query)) score += 10;
+    var count = (content.match(new RegExp(query, 'g')) || []).length;
+    score += count;
+    return score;
+  }
+
+  function highlightMatch(text, query) {
+    if (!query) return text;
+    var regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+  }
+
+  function filterLocalPosts(query) {
+    var postsGrid = document.getElementById('posts-grid');
+    if (!postsGrid) return;
+    var lang = getLang();
+    var lowerQuery = query.toLowerCase();
+    var cards = postsGrid.querySelectorAll('.post-card');
+
+    cards.forEach(function(card) {
+      if (!query || query.length < 2) {
+        card.style.display = '';
+        return;
+      }
+      var titleZh = (card.querySelector('.lang-zh .post-title') || {}).textContent || '';
+      var titleEn = (card.querySelector('.lang-en .post-title') || {}).textContent || '';
+      var excerptZh = (card.querySelector('.lang-zh .post-excerpt') || {}).textContent || '';
+      var excerptEn = (card.querySelector('.lang-en .post-excerpt') || {}).textContent || '';
+      var tags = Array.from(card.querySelectorAll('.tag')).map(function(t) { return t.textContent; }).join(' ');
+      var content = (titleZh + ' ' + titleEn + ' ' + excerptZh + ' ' + excerptEn + ' ' + tags).toLowerCase();
+      card.style.display = content.includes(lowerQuery) ? '' : 'none';
+    });
+  }
+
+  function performSearch(query) {
+    if (!query || query.length < 2) {
+      resultsContainer.innerHTML = '';
+      resultsContainer.style.display = 'none';
+      statsContainer.style.display = 'none';
+      updateHeaderBorder(false);
+      filterLocalPosts('');
+      return;
+    }
+
+    var results = indexSearch(query);
+    displayResults(results, query);
+    filterLocalPosts(query);
+  }
+
+  function displayResults(results, query) {
+    var lang = getLang();
+    resultsContainer.innerHTML = '';
+
+    if (results.length === 0) {
+      var noMsg = lang === 'zh' ? '未找到结果' : 'No results found';
+      resultsContainer.innerHTML = '<div class="search-no-results">' + noMsg + '</div>';
+      resultsContainer.style.display = 'block';
+      statsContainer.style.display = 'none';
+      updateHeaderBorder(true);
+      return;
+    }
+
+    var html = '';
+    for (var i = 0; i < results.length; i++) {
+      var r = results[i];
+      html += '<a href="' + r.url + '" class="search-result-item">' +
+        '<div class="search-result-main">' +
+          '<div class="search-result-title">' + highlightMatch(r.title, query) + '</div>' +
+          '<div class="search-result-excerpt">' + highlightMatch(r.excerpt, query) + '</div>' +
+        '</div>' +
+        '<div class="search-result-meta">' +
+          '<span class="search-result-date">' + r.date + '</span>' +
+          '<span class="search-result-source">' + r.source + '</span>' +
+        '</div>' +
+      '</a>';
+    }
+
+    resultsContainer.innerHTML = html;
+    resultsContainer.style.display = 'block';
+    updateHeaderBorder(true);
+
+    var statsMsg = lang === 'zh'
+      ? results.length + ' 篇文章'
+      : results.length + ' article' + (results.length !== 1 ? 's' : '') + ' found';
+    statsContainer.innerHTML = '<span class="stats-text">' + statsMsg + '</span>';
+    statsContainer.style.display = 'block';
+  }
+
+  var debounceTimer;
+  input.addEventListener('input', function(e) {
+    var query = e.target.value.trim();
+    clearBtn.style.display = query ? 'flex' : 'none';
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function() {
+      performSearch(query);
+    }, 200);
+  });
+
+  clearBtn.addEventListener('click', function() {
+    input.value = '';
+    clearBtn.style.display = 'none';
+    performSearch('');
+    input.focus();
+  });
+
+  if (window.switchLang) {
+    var origSwitch = window.switchLang;
+    window.switchLang = function(lang) {
+      origSwitch(lang);
+      if (isOpen) updatePlaceholder();
+    };
+  }
+})();
+</script>
+
+<style is:global>
+  .search-popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .search-popup-overlay--open {
+    opacity: 1;
+  }
+
+  .search-popup-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  [data-theme="light"] .search-popup-backdrop {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .search-popup-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    padding: 0 1rem;
+  }
+
+  .search-popup-panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  [data-theme="light"] .search-popup-panel {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  .search-popup-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .search-popup-icon {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  .search-popup-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    outline: none;
+  }
+
+  .search-popup-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .search-popup-clear {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--color-surface-elevated);
+    color: var(--color-text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+
+  .search-popup-clear:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .search-popup-kbd {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text-muted);
+    background: var(--color-glass);
+  }
+
+  .search-popup-results {
+    max-height: 50vh;
+    overflow-y: auto;
+    display: none;
+    padding: 0.5rem 0;
+  }
+
+  .search-popup-results::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .search-popup-results::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .search-popup-results::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  .search-result-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.875rem 1.25rem;
+    text-decoration: none;
+    transition: background 0.15s ease;
+    border-left: 3px solid transparent;
+  }
+
+  .search-result-item:hover {
+    background: var(--color-card-bg);
+    border-left-color: var(--color-accent);
+  }
+
+  .search-result-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .search-result-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+  }
+
+  .search-result-excerpt {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .search-result-meta {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    padding-top: 0.1rem;
+  }
+
+  .search-result-date {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .search-result-source {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-highlight {
+    background: rgba(212, 168, 67, 0.25);
+    color: var(--color-accent);
+    border-radius: 2px;
+    padding: 0 0.1em;
+  }
+
+  [data-theme="light"] .search-highlight {
+    background: rgba(160, 124, 30, 0.2);
+  }
+
+  .search-no-results {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .search-popup-stats {
+    padding: 0.5rem 1.25rem 0.75rem;
+    text-align: right;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .stats-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-card {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @media (max-width: 640px) {
+    .search-popup-overlay {
+      padding-top: 0;
+      align-items: flex-start;
+    }
+
+    .search-popup-container {
+      max-width: 100%;
+      padding: 0;
+      height: 100%;
+    }
+
+    .search-popup-panel {
+      border-radius: 0 0 16px 16px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-popup-header {
+      padding: 0.875rem 1rem;
+    }
+
+    .search-popup-input {
+      font-size: 1rem;
+    }
+
+    .search-popup-results {
+      max-height: none;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      padding: 0.75rem 1rem;
+    }
+
+    .search-result-meta {
+      display: none;
+    }
+  }
+</style>

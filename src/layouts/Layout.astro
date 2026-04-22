@@ -1,4 +1,6 @@
 ---
+import SearchPopup from '../components/SearchPopup.astro';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -288,6 +290,14 @@ const websiteSchema = JSON.stringify({
         .control-btn:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
+        }
+
+        .search-trigger {
+            padding: 0;
+        }
+
+        .search-trigger svg {
+            display: block;
         }
 
         .site-nav {
@@ -703,6 +713,12 @@ const websiteSchema = JSON.stringify({
                 <h1><a href="/">Agent Economy</a></h1>
             </div>
             <div class="header-controls">
+                <button class="control-btn search-trigger" id="header-search-btn" aria-label="Search" title="Search (Ctrl+K)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
                 <div class="lang-selector">
                     <select class="lang-dropdown" id="lang-select" onchange="switchLang(this.value)">
                         <option value="zh">ZH</option>
@@ -717,6 +733,8 @@ const websiteSchema = JSON.stringify({
             <a href="/rss.xml" class="nav-link">RSS</a>
         </nav>
     </header>
+    
+    <SearchPopup />
     
     <main>
         <slot />
