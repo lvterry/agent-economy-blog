@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'zindex Launches: Diagram Infrastructure Protocol for AI Agents',
+      titleZh: 'zindex 发布：为 AI 智能体打造的图表基础设施协议',
+      pubDate: new Date('2026-04-22'),
+      description: 'zindex introduces the Diagram Scene Protocol (DSP), enabling agents to create and edit diagrams as structured, versioned state. This marks a paradigm shift from ephemeral AI-generated output to durable artifacts.',
+      descriptionZh: 'zindex 推出 Diagram Scene Protocol (DSP)，让智能体能够以结构化、可版本化的方式创建和编辑图表。这标志着 AI 生成内容从一次性输出向持久化状态的范式转变。',
+      link: '/blog/zindex-diagram-infrastructure-agents',
+    },
+    {
       title: 'ChatGPT Images 2.0: OpenAI Dives Deep into Visual Creation',
       titleZh: 'ChatGPT Images 2.0 发布：OpenAI 进入视觉创作深水区',
       pubDate: new Date('2026-04-22'),

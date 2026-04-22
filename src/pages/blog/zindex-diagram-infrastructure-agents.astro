@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'zindex Launches: Diagram Infrastructure Protocol for AI Agents';
+const description = 'zindex 推出 Diagram Scene Protocol (DSP)，让智能体能够以结构化、可版本化的方式创建和编辑图表。这标志着 AI 生成内容从一次性输出向持久化状态的范式转变。';
+---
+
+<Layout 
+  title={title}
+  description={description}
+  type="article"
+  publishedTime="2026-04-22"
+  tags={["AI-Agents", "Agent-Infrastructure", "Developer-Tools", "Agent-Economy", "Visualization"]}
+>
+  <article class="article-content">
+    <h1 class="lang-content lang-zh active">zindex 发布：为 AI 智能体打造的图表基础设施协议</h1>
+    <h1 class="lang-content lang-en">zindex Launches: Diagram Infrastructure Protocol for AI Agents</h1>
+    
+    <time datetime="2026-04-22">2026-04-22</time>
+    
+    <div class="lang-content lang-zh active">
+      <p>zindex 的发布代表着一个容易被忽视但至关重要的趋势：AI 基础设施层正在从"生成工具"向"状态管理协议"演进。</p>
+      
+      <p><strong>为什么是图表？为什么是协议？</strong></p>
+      <p>当前大多数 AI 图表生成器（如 Mermaid、各种 GPT wrappers）本质是"一次性渲染器"——输入 prompt，输出 SVG，任务结束。但 zindex 看到了更深层的痛点：当多个智能体协作、当架构图需要随代码演化、当合规审计需要追溯历史版本时，静态输出是不够的。</p>
+      
+      <p>DSP（Diagram Scene Protocol）的核心洞察在于<strong>语义层与几何层分离</strong>。智能体只需要声明"API Gateway 连接到 Job Queue"这样的语义关系，布局引擎自动处理 Sugiyama 层级布局、边线路由和标签定位。这让图表具备了类似数据库的持久化能力：版本历史、增量更新、diff 比对、多格式渲染。</p>
+      
+      <p><strong>关键架构决策的启示</strong></p>
+      <ul>
+        <li><strong>Patch 而非 Regenerate：</strong>17 种原子操作（createNode、moveElement 等）让智能体可以增量修改，而不是每次都生成完整新图。这对代码库自动生成架构图的场景至关重要——你只想看到"这次 PR 新增了哪些服务"。</li>
+        <li><strong>40+ 验证规则：</strong>不仅仅是渲染，还包括语义验证（如 ER 图的完整性、BPMN 流程的结构合理性）。这意味着图表从"可视化"升级为"可验证的规范"。</li>
+        <li><strong>修订即审计：</strong>每一次变更都是不可变修订，天然适合合规场景——监管者可以追问"3月15号的系统架构是怎样的"。</li>
+      </ul>
+      
+      <p><strong>对 Agent 经济的信号意义</strong></p>
+      <p>zindex 是"智能体原生基础设施"的早期示例。它不假设人类在画图，而是假设智能体在维护图。这类协议的成熟将催生新的协作模式：架构师智能体维护系统蓝图、合规智能体监控数据流、运维智能体生成事故时间线图——它们共享同一个 zindex 后端，像团队共享 Git 仓库一样协作。</p>
+      
+      <p>这个领域值得关注。当 AI 生成的不仅是内容，而是可协作、可审计、可演化的状态时，真正的 Agent Economy 基础设施才开始浮现。</p>
+      
+      <p><a href="https://zindex.ai/" target="_blank">阅读原文</a></p>
+    </div>
+    
+    <div class="lang-content lang-en">
+      <p>The launch of zindex represents a crucial yet easily overlooked trend: AI infrastructure is evolving from "generation tools" to "state management protocols."</p>
+      
+      <p><strong>Why Diagrams? Why a Protocol?</strong></p>
+      <p>Most current AI diagram generators (Mermaid, various GPT wrappers) are essentially "one-shot renderers"—input prompt, output SVG, task complete. But zindex identifies a deeper pain point: when multiple agents collaborate, when architecture diagrams must evolve with code, when compliance audits require historical traceability, static output is insufficient.</p>
+      
+      <p>The core insight of DSP (Diagram Scene Protocol) lies in the <strong>separation between semantic and geometric layers</strong>. Agents only need to declare semantic relationships like "API Gateway connects to Job Queue," while the layout engine automatically handles Sugiyama hierarchical layout, edge routing, and label placement. This gives diagrams database-like persistence capabilities: version history, incremental updates, diff comparison, and multi-format rendering.</p>
+      
+      <p><strong>Key Architectural Decisions and Their Implications</strong></p>
+      <ul>
+        <li><strong>Patch, Don't Regenerate:</strong> 17 atomic operations (createNode, moveElement, etc.) allow agents to modify incrementally rather than generating complete new diagrams each time. This is crucial for auto-generated architecture diagrams from codebases—you only want to see "what services were added in this PR."</li>
+        <li><strong>40+ Validation Rules:</strong> Beyond rendering, includes semantic validation (ER diagram completeness, BPMN workflow structural soundness). This elevates diagrams from "visualization" to "verifiable specifications."</li>
+        <li><strong>Revisions as Audit Trail:</strong> Every change is an immutable revision, naturally suited for compliance scenarios—regulators can ask "what did the system architecture look like on March 15th?"</li>
+      </ul>
+      
+      <p><strong>Signal for the Agent Economy</strong></p>
+      <p>zindex is an early example of "agent-native infrastructure." It doesn't assume humans are drawing, but rather that agents are maintaining diagrams. The maturation of such protocols will enable new collaboration patterns: architect agents maintaining system blueprints, compliance agents monitoring data flows, operations agents generating incident timeline diagrams—all sharing the same zindex backend, collaborating like a team sharing a Git repository.</p>
+      
+      <p>This space is worth watching. When AI generates not just content but collaborative, auditable, evolvable state, the true infrastructure of the Agent Economy begins to emerge.</p>
+      
+      <p><a href="https://zindex.ai/" target="_blank">Read the original article</a></p>
+    </div>
+    
+    <a href="/" class="back-link">← Back to articles</a>
+  </article>
+</Layout>
