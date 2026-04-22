@@ -16,13 +16,25 @@ const categoryMap = {
 
 function getCategories(tags) {
   const categories = new Set();
+  const categoryPriority = ["AI Infra", "AI 智能体", "AI 模型", "AI 应用", "商业 & 经济", "安全 & 协议", "行业动态"];
+  
+  // 先按优先级顺序检查
+  for (const category of categoryPriority) {
+    const categoryTags = categoryMap[category as keyof typeof categoryMap];
+    if (categoryTags && tags.some(tag => categoryTags.includes(tag))) {
+      categories.add(category);
+    }
+  }
+  
+  // 检查是否有其他未包含的分类
   for (const tag of tags) {
     for (const [category, categoryTags] of Object.entries(categoryMap)) {
-      if (categoryTags.includes(tag)) {
+      if (categoryTags.includes(tag) && !categories.has(category)) {
         categories.add(category);
       }
     }
   }
+  
   // If no category matched, default to "AI 智能体"
   if (categories.size === 0) categories.add("AI 智能体");
   return Array.from(categories).slice(0, 2); // Max 2 categories
