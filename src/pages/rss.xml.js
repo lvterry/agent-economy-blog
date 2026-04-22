@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'ChatGPT Images 2.0: OpenAI Dives Deep into Visual Creation',
+      titleZh: 'ChatGPT Images 2.0 发布：OpenAI 进入视觉创作深水区',
+      pubDate: new Date('2026-04-22'),
+      description: 'OpenAI releases major upgrade to native image generation with multilingual text rendering, complex typography, and diverse artistic styles. This marks AI image generation\'s shift from \'toy\' to professional productivity tool.',
+      descriptionZh: 'OpenAI 发布原生图像生成能力重大升级，支持多语言文本渲染、复杂排版和多种艺术风格。这标志着 AI 图像生成从"玩具"向专业生产力工具的关键转变。',
+      link: '/blog/chatgpt-images-2-openai-release',
+    },
+    {
       title: 'StackAdapt ChatGPT ads: prompt-based targeting at $15-60 CPM',
       titleZh: 'StackAdapt 在 ChatGPT 投放广告：基于提示词匹配，CPM $15-60',
       pubDate: new Date('2026-04-21'),

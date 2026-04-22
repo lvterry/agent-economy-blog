@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const isZh = lang === 'zh';
+
+const title = isZh 
+  ? "ChatGPT Images 2.0 发布：OpenAI 进入视觉创作深水区"
+  : "ChatGPT Images 2.0: OpenAI Dives Deep into Visual Creation";
+const description = isZh
+  ? "OpenAI 发布原生图像生成能力重大升级，支持多语言文本渲染、复杂排版和多种艺术风格。这标志着 AI 图像生成从'玩具'向专业生产力工具的关键转变。"
+  : "OpenAI releases major upgrade to native image generation with multilingual text rendering, complex typography, and diverse artistic styles. This marks AI image generation's shift from 'toy' to professional productivity tool.";
+
+const date = "2026-04-22";
+const source = "OpenAI";
+const sourceUrl = "https://openai.com/index/introducing-chatgpt-images-2-0/";
+const tags = ["OpenAI", "Image-Generation", "AI-Model", "Multimodal", "Design-Tools"];
+
+const contentZh = `<p>OpenAI 发布 ChatGPT Images 2.0，这不仅是图像生成能力的迭代升级，更代表着 AI 视觉创作正式进入专业工作流。</p>
+
+<p><strong>从玩具到工具的关键跨越</strong></p>
+<p>过往 AI 图像生成往往停留在"创意探索"层面——出图好玩但难用。Images 2.0 的突破性在于：它开始真正理解<strong>设计意图</strong>。从展示的案例来看，模型能够处理复杂的图文排版、多语言混合排版（中日韩等）、甚至精确的印刷规范（出血线、安全边距）。这意味着设计师可以直接用自然语言描述品牌物料需求，而不是在 Prompt 工程和后期修图之间反复折腾。</p>
+
+<p><strong>三个值得关注的信号</strong></p>
+<ul>
+<li><strong>文本渲染质变：</strong>准确的多语言文本生成一直是图像模型的阿喀琉斯之踵。Images 2.0 展示的海报、漫画、包装设计中，文字与图像的融合度显著提升，这对亚洲市场尤其重要。</li>
+<li><strong>风格一致性控制：</strong>从角色设定表到多页漫画，模型展现出跨图像保持视觉连贯性的能力——这是商业化应用（如广告系列、IP 开发）的前提条件。</li>
+<li><strong>Thinking Mode 的引入：</strong>模型不再只是"画"，而是先"想"——研究素材、推理需求、再生成。这种端到端的创作流程正在模糊"AI 辅助工具"与"AI 创作者"的边界。</li>
+</ul>
+
+<p><strong>对行业的影响预判</strong></p>
+<p>短期内，初级视觉设计、社交媒体运营、电商物料制作等岗位的工作流将被重塑。中长期看，这可能会改变创意产业的价值链——提示词工程（Prompt Engineering）正在进化为"创意指导"（Creative Direction），而执行层面的技术门槛持续降低。</p>
+
+<p>不过，专业设计师的核心价值并未被消解。相反，当"画出什么"变得容易，"为什么画"和"画给谁看"的判断力将变得更加稀缺。</p>
+
+<p><a href="${sourceUrl}">阅读原文</a></p>`;
+
+const contentEn = `<p>OpenAI's release of ChatGPT Images 2.0 represents more than an incremental upgrade—it's a declaration that AI visual creation is officially entering professional workflows.</p>
+
+<p><strong>From Toy to Tool</strong></p>
+<p>Previous AI image generation often remained in the "creative exploration" phase—fun but impractical. Images 2.0's breakthrough lies in its genuine understanding of <strong>design intent</strong>. The showcased examples demonstrate the model's ability to handle complex typography layouts, multilingual text integration (Chinese, Japanese, Korean, etc.), and even precise print specifications (bleed lines, safe margins). This means designers can now describe brand collateral needs in natural language instead of wrestling between prompt engineering and post-production.</p>
+
+<p><strong>Three Signals Worth Watching</strong></p>
+<ul>
+<li><strong>Text Rendering Quality:</strong> Accurate multilingual text generation has long been the Achilles' heel of image models. Images 2.0's posters, comics, and packaging designs show significantly improved text-image integration—particularly crucial for Asian markets.</li>
+<li><strong>Style Consistency Control:</strong> From character reference sheets to multi-page comics, the model demonstrates the ability to maintain visual coherence across images—a prerequisite for commercial applications like ad campaigns and IP development.</li>
+<li><strong>Introduction of Thinking Mode:</strong> The model doesn't just "draw" anymore—it first "thinks": researching materials, reasoning requirements, then generating. This end-to-end creative process is blurring the boundary between "AI-assisted tool" and "AI creator."</li>
+</ul>
+
+<p><strong>Industry Impact Preview</strong></p>
+<p>In the short term, workflows for junior visual design, social media operations, and e-commerce asset production will be reshaped. Long-term, this may transform the creative industry's value chain—prompt engineering is evolving into "creative direction," while execution-level technical barriers continue to lower.</p>
+
+<p>However, professional designers' core value isn't being eliminated. On the contrary, as "drawing what" becomes easy, the judgment of "why draw" and "for whom" becomes more scarce.</p>
+
+<p><a href="${sourceUrl}">Read the original article</a></p>`;
+
+const content = isZh ? contentZh : contentEn;
+---
+
+<Layout title={title} description={description}>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime={date}>{date}</time>
+        <span class="source">
+          {isZh ? '来源' : 'Source'}: <a href={sourceUrl} target="_blank" rel="noopener noreferrer">{source}</a>
+        </span>
+      </div>
+      <h1>{title}</h1>
+      <div class="tags">
+        {tags.map(tag => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    </header>
+    
+    <div class="post-content" set:html={content} />
+    
+    <footer class="post-footer">
+      <a href="/blog" class="back-link">
+        ← {isZh ? '返回文章列表' : 'Back to articles'}
+      </a>
+    </footer>
+  </article>
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+  }
+  
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-secondary, #666);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-meta a {
+    color: var(--primary-color, #007acc);
+    text-decoration: none;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin: 0.5rem 0;
+    color: var(--text-primary, #1a1a1a);
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background: var(--tag-bg, #f0f0f0);
+    color: var(--text-secondary, #666);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+  
+  .post-content {
+    line-height: 1.8;
+    color: var(--text-primary, #333);
+  }
+  
+  .post-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .post-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .post-content li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .post-content a {
+    color: var(--primary-color, #007acc);
+    text-decoration: underline;
+  }
+  
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color, #e0e0e0);
+  }
+  
+  .back-link {
+    color: var(--primary-color, #007acc);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>
