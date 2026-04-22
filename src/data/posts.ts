@@ -237,7 +237,7 @@ export const posts: Post[] = [
     excerptZh: '将文档助手会话启动时间从 46 秒降至 100 毫秒，边际成本从 $0.0137 降至 $0。基于 just-bash 和 Chroma DB 的虚拟文件系统。',
     excerptEn: 'Reduced doc assistant boot time from 46s to 100ms, marginal cost from $0.0137 to $0. Virtual filesystem built on just-bash and Chroma DB.',
     date: '2026-04-04',
-    tags: ['AI-Agents', 'Developer-Tools', 'Infrastructure', 'RAG', 'Performance'],
+    tags: ['AI-Agents', 'Developer-Tools', 'AI-Infrastructure', 'RAG', 'Performance'],
     source: 'Mintlify'
   },
   {
@@ -257,7 +257,7 @@ export const posts: Post[] = [
     excerptZh: 'AMD 推出的快速开源本地 LLM 服务器，支持 GPU/NPU、多模态、OpenAI API 兼容，仅 2MB 后端，一分钟安装。',
     excerptEn: 'AMD\'s fast open-source local LLM server with GPU/NPU support, multimodal, OpenAI API compatible, 2MB backend, one-minute install.',
     date: '2026-04-03',
-    tags: ['AMD', 'Local-AI', 'Open-Source', 'LLM', 'Hardware'],
+    tags: ['AMD', 'Local-AI', 'Open-Source', 'LLM', 'Hardware', 'AI-Infrastructure'],
     source: 'AMD'
   },
   {
@@ -397,7 +397,7 @@ export const posts: Post[] = [
     excerptZh: '免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。适合应急准备、离网生活或技术爱好者自托管。',
     excerptEn: 'Free open-source offline server to run AI on your own computer. Perfect for emergency prep, off-grid living, or self-hosting.',
     date: '2026-03-23',
-    tags: ['Hardware', 'Open Source', 'Local AI'],
+    tags: ['Hardware', 'Open Source', 'Local AI', 'AI-Infrastructure'],
     source: 'Project NOMAD'
   },
   {
@@ -407,7 +407,7 @@ export const posts: Post[] = [
     excerptZh: 'tinygrad 背后的 Tiny Corp 推出 TinyBox 深度学习超级计算机，4x 9070 XT 版本售价 $12,000，现已发货。',
     excerptEn: 'Tiny Corp launches TinyBox deep learning supercomputer with 4x 9070 XT for $12,000, now shipping.',
     date: '2026-03-22',
-    tags: ['AI', 'Tinygrad', 'Hardware', 'Deep-Learning'],
+    tags: ['AI', 'Tinygrad', 'Hardware', 'Deep-Learning', 'AI-Infrastructure'],
     source: 'TinyCorp'
   },
   {
