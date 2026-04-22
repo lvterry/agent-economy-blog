@@ -1,101 +1,255 @@
 ---
-// Search component using Pagefind
+// Search component - searches both via Pagefind (if available) and local articles
 ---
 
 <div class="search-wrapper">
-  <input 
-    type="text" 
-    id="search-input"
-    placeholder="搜索文章... / Search articles..." 
-    class="search-input"
-  />
+  <div class="search-input-wrapper">
+    <input 
+      type="text" 
+      id="search-input"
+      placeholder="搜索文章... / Search articles..." 
+      class="search-input"
+      autocomplete="off"
+    />
+    <button id="search-clear" class="search-clear" style="display: none;">×</button>
+  </div>
   <div id="search-results" class="search-results"></div>
+  <div id="search-stats" class="search-stats"></div>
 </div>
 
 <script is:inline>
-  (async function() {
+  (function() {
     const input = document.getElementById('search-input');
+    const clearBtn = document.getElementById('search-clear');
     const resultsContainer = document.getElementById('search-results');
+    const statsContainer = document.getElementById('search-stats');
+    const postsGrid = document.getElementById('posts-grid');
     
-    if (!input || !resultsContainer) return;
+    if (!input || !postsGrid) return;
     
-    try {
-      const pagefind = await import('/pagefind/pagefind.js');
-      
-      input.addEventListener('input', async (e) => {
-        const query = e.target.value.trim();
-        
-        if (query.length < 2) {
-          resultsContainer.innerHTML = '';
-          resultsContainer.style.display = 'none';
-          return;
-        }
-        
-        const search = await pagefind.search(query);
-        const results = search.results.slice(0, 5);
-        
-        if (results.length === 0) {
-          resultsContainer.innerHTML = '<p class="search-no-results">No results / 无结果</p>';
-        } else {
-          resultsContainer.innerHTML = '';
-          for (const result of results) {
-            const data = await result.data();
-            const link = document.createElement('a');
-            link.href = data.url;
-            link.className = 'search-result';
-            link.innerHTML = `<h4>${data.meta?.title || 'Untitled'}</h4><p>${data.excerpt || ''}</p>`;
-            resultsContainer.appendChild(link);
-          }
-        }
-        resultsContainer.style.display = 'block';
-      });
-    } catch (err) {
-      console.error('Search init failed:', err);
-      input.placeholder = 'Search unavailable';
+    let pagefind = null;
+    
+    // Try to load Pagefind
+    async function loadPagefind() {
+      try {
+        const pf = await import('/pagefind/pagefind.js');
+        await pf.init();
+        pagefind = pf;
+        console.log('Pagefind loaded');
+      } catch (err) {
+        console.log('Pagefind not available, using local search only');
+      }
     }
+    
+    // Load Pagefind in background
+    loadPagefind();
+    
+    // Local search function - searches visible posts
+    function localSearch(query) {
+      const posts = postsGrid.querySelectorAll('.post-card');
+      const results = [];
+      const lowerQuery = query.toLowerCase();
+      
+      posts.forEach(post => {
+        const titleZh = post.querySelector('.lang-zh .post-title')?.textContent || '';
+        const titleEn = post.querySelector('.lang-en .post-title')?.textContent || '';
+        const excerptZh = post.querySelector('.lang-zh .post-excerpt')?.textContent || '';
+        const excerptEn = post.querySelector('.lang-en .post-excerpt')?.textContent || '';
+        const tags = Array.from(post.querySelectorAll('.tag')).map(t => t.textContent).join(' ');
+        
+        const content = (titleZh + ' ' + titleEn + ' ' + excerptZh + ' ' + excerptEn + ' ' + tags).toLowerCase();
+        
+        if (content.includes(lowerQuery)) {
+          results.push({
+            element: post,
+            title: titleZh || titleEn,
+            excerpt: excerptZh || excerptEn,
+            relevance: calculateRelevance(content, lowerQuery)
+          });
+          post.style.display = ''; // Show matching posts
+        } else {
+          post.style.display = 'none'; // Hide non-matching posts
+        }
+      });
+      
+      return results.sort((a, b) => b.relevance - a.relevance);
+    }
+    
+    function calculateRelevance(content, query) {
+      const title = content.split(' ').slice(0, 10).join(' ');
+      let score = 0;
+      if (title.includes(query)) score += 10;
+      const count = (content.match(new RegExp(query, 'g')) || []).length;
+      score += count;
+      return score;
+    }
+    
+    // Perform search
+    async function performSearch(query) {
+      if (!query || query.length < 2) {
+        // Reset view
+        const posts = postsGrid.querySelectorAll('.post-card');
+        posts.forEach(post => post.style.display = '');
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
+        statsContainer.innerHTML = '';
+        return;
+      }
+      
+      // First, try Pagefind if available
+      let pagefindResults = [];
+      if (pagefind) {
+        try {
+          const search = await pagefind.search(query);
+          pagefindResults = search.results.slice(0, 5);
+        } catch (err) {
+          console.log('Pagefind search failed:', err);
+        }
+      }
+      
+      // Also do local search
+      const localResults = localSearch(query);
+      
+      // Combine results - show pagefind results as links, local results highlight cards
+      displayResults(pagefindResults, localResults, query);
+    }
+    
+    function displayResults(pagefindResults, localResults, query) {
+      resultsContainer.innerHTML = '';
+      
+      // Build results UI
+      let html = '';
+      
+      // Pagefind results section
+      if (pagefindResults.length > 0) {
+        html += '<div class="results-section"><h4>Search Results</h4>';
+        for (const result of pagefindResults) {
+          const data = await result.data();
+          html += `<a href="${data.url}" class="search-result-link">
+            <div class="result-title">${data.meta?.title || 'Untitled'}</div>
+            <div class="result-excerpt">${data.excerpt || ''}</div>
+          </a>`;
+        }
+        html += '</div>';
+      }
+      
+      // Show message if no results
+      if (localResults.length === 0 && pagefindResults.length === 0) {
+        html = '<div class="search-no-results">No results found / 未找到结果</div>';
+        statsContainer.innerHTML = '';
+      } else {
+        statsContainer.innerHTML = `<span class="stats-text">${localResults.length} articles found</span>`;
+      }
+      
+      resultsContainer.innerHTML = html;
+      resultsContainer.style.display = (localResults.length > 0 || pagefindResults.length > 0) ? 'block' : 'none';
+    }
+    
+    // Event listeners
+    let debounceTimer;
+    input.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      clearBtn.style.display = query ? 'flex' : 'none';
+      
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        performSearch(query);
+      }, 200);
+    });
+    
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      clearBtn.style.display = 'none';
+      performSearch('');
+      input.focus();
+    });
+    
+    // Close results when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrapper')) {
+        resultsContainer.style.display = 'none';
+      }
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        input.focus();
+      }
+    });
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        resultsContainer.style.display = 'none';
+        input.blur();
+      }
+    });
   })();
 </script>
 
 <style>
   .search-wrapper {
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--space-lg);
     position: relative;
+  }
+  
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
   
   .search-input {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #e5e5e5;
-    border-radius: 0.5rem;
-    background: #ffffff;
-    color: #171717;
-    font-family: inherit;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
     font-size: 0.9375rem;
     transition: all 0.2s ease;
   }
   
   .search-input:focus {
     outline: none;
-    border-color: #525252;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(212, 168, 67, 0.1);
+  }
+  
+  [data-theme="light"] .search-input:focus {
+    box-shadow: 0 0 0 2px rgba(160, 124, 30, 0.1);
   }
   
   .search-input::placeholder {
-    color: #737373;
+    color: var(--color-text-muted);
   }
   
-  /* Dark mode styles */
-  :global([data-theme="dark"]) .search-input {
-    background: #171717;
-    color: #fafafa;
-    border-color: #262626;
+  .search-clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--color-surface-elevated);
+    color: var(--color-text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+    transition: all 0.2s ease;
   }
   
-  :global([data-theme="dark"]) .search-input:focus {
-    border-color: #a3a3a3;
-  }
-  
-  :global([data-theme="dark"]) .search-input::placeholder {
-    color: #737373;
+  .search-clear:hover {
+    background: var(--color-border);
+    color: var(--color-text);
   }
   
   .search-results {
@@ -104,70 +258,88 @@
     left: 0;
     right: 0;
     margin-top: 0.5rem;
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 0.5rem;
-    max-height: 300px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: 8px;
+    max-height: 400px;
     overflow-y: auto;
     z-index: 100;
     display: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   
-  :global([data-theme="dark"]) .search-results {
-    background: #171717;
-    border-color: #262626;
+  .results-section {
+    padding: 0.75rem;
   }
   
-  .search-result {
+  .results-section h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .search-result-link {
     display: block;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 0.75rem;
+    border-radius: 6px;
     text-decoration: none;
-    color: inherit;
+    transition: background 0.2s ease;
   }
   
-  :global([data-theme="dark"]) .search-result {
-    border-color: #262626;
+  .search-result-link:hover {
+    background: var(--color-card-bg);
   }
   
-  .search-result:last-child {
-    border-bottom: none;
-  }
-  
-  .search-result:hover {
-    background: #f5f5f5;
-  }
-  
-  :global([data-theme="dark"]) .search-result:hover {
-    background: #262626;
-  }
-  
-  .search-result h4 {
+  .result-title {
     font-size: 0.9375rem;
     font-weight: 500;
+    color: var(--color-text);
     margin-bottom: 0.25rem;
-    color: #171717;
   }
   
-  :global([data-theme="dark"]) .search-result h4 {
-    color: #fafafa;
-  }
-  
-  .search-result p {
+  .result-excerpt {
     font-size: 0.8125rem;
-    color: #525252;
-    margin: 0;
-    line-height: 1.5;
-  }
-  
-  :global([data-theme="dark"]) .search-result p {
-    color: #a3a3a3;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
   .search-no-results {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
-    color: #737373;
+    color: var(--color-text-muted);
     font-size: 0.875rem;
+  }
+  
+  .search-stats {
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+  
+  .stats-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+  
+  /* Highlight searched posts on page */
+  :global(.post-card) {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .search-wrapper {
+      margin-bottom: var(--space-md);
+    }
+    
+    .search-results {
+      max-height: 300px;
+    }
   }
 </style>

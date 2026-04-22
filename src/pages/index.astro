@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BlogPost from '../components/BlogPost.astro';
+import Search from '../components/Search.astro';
 
 const title = 'Articles';
 const description = 'Latest curated news and insights about AI agents, the agent economy, and autonomous systems.';
@@ -604,6 +605,8 @@ const allCategories = ['全部', ...Object.keys(categoryMap)];
       <span class="lang-content lang-en">Curated news & insights on AI agents, autonomous systems, and the emerging agent economy</span>
     </p>
   </section>
+
+  <Search />
 
   <div class="category-filter" id="category-filter">
     {allCategories.map(cat => (
