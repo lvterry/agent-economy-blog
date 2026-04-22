@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'All your agents are going async',
+      titleZh: 'AI Agents 全面走向异步化 传输层面临重构',
+      pubDate: new Date('2026-04-22'),
+      description: 'AI agents are shifting from synchronous chat to async background execution, breaking traditional HTTP transport design and requiring new durable transport and durable state solutions.',
+      descriptionZh: 'AI agents 正从同步对话模式转向异步后台运行，这种转变打破了传统的 HTTP 传输层设计，需要新的 durable transport 和 durable state 解决方案。',
+      link: '/blog/all-your-agents-are-going-async',
+    },
+    {
       title: 'zindex builds diagram infrastructure protocol for AI agents',
       titleZh: 'zindex 为 AI 智能体打造图表基础设施协议',
       pubDate: new Date('2026-04-22'),
