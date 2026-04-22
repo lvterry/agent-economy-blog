@@ -39,6 +39,11 @@ function getCategories(tags: string[]) {
 }
 
 const allCategories = ['全部', ...Object.keys(categoryMap)];
+
+// 首页只显示最新12篇文章
+const HOMEPAGE_POST_COUNT = 12;
+const recentPosts = posts.slice(0, HOMEPAGE_POST_COUNT);
+const totalPostCount = posts.length;
 ---
 
 <Layout title={title} description={description}>
@@ -66,10 +71,23 @@ const allCategories = ['全部', ...Object.keys(categoryMap)];
   </div>
 
   <section class="posts-grid" id="posts-grid">
-    {posts.map(post => (
+    {recentPosts.map(post => (
       <BlogPost {...post} />
     ))}
   </section>
+
+  {totalPostCount > HOMEPAGE_POST_COUNT && (
+    <div class="view-all-section">
+      <div class="post-count">
+        <span class="lang-content lang-zh active">显示最新 {HOMEPAGE_POST_COUNT} 篇，共 {totalPostCount} 篇文章</span>
+        <span class="lang-content lang-en">Showing latest {HOMEPAGE_POST_COUNT} of {totalPostCount} articles</span>
+      </div>
+      <a href="/archive" class="view-all-btn">
+        <span class="lang-content lang-zh active">查看全部文章 →</span>
+        <span class="lang-content lang-en">View all articles →</span>
+      </a>
+    </div>
+  )}
 
   <div class="empty-state" id="empty-state" style="display:none">
     <span class="lang-content lang-zh active">暂无该分类的文章</span>
@@ -175,6 +193,35 @@ const allCategories = ['全部', ...Object.keys(categoryMap)];
     padding: var(--space-2xl) 0;
     color: var(--color-text-muted);
     font-size: 0.9375rem;
+  }
+
+  .view-all-section {
+    text-align: center;
+    padding: var(--space-xl) 0;
+    margin-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-count {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .view-all-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-accent);
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .view-all-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 168, 67, 0.3);
   }
 
   .lang-content {
