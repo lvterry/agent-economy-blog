@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'openai-gpt-5-5',
+    titleZh: 'OpenAI 发布 GPT-5.5 迄今最智能的模型',
+    titleEn: 'OpenAI releases GPT-5.5 its smartest model yet',
+    excerptZh: 'OpenAI 发布 GPT-5.5，在编码、知识工作和科学研究方面实现重大飞跃，Terminal-Bench 2.0 达到 82.7%，SWE-Bench Pro 达到 58.6%，同时保持与 GPT-5.4 相同的响应速度。',
+    excerptEn: 'OpenAI releases GPT-5.5 with major breakthroughs in coding, knowledge work, and scientific research, achieving 82.7% on Terminal-Bench 2.0 and 58.6% on SWE-Bench Pro while maintaining GPT-5.4 latency.',
+    date: '2026-04-23',
+    tags: ['OpenAI', 'GPT-5.5', 'AI-Model', 'Coding', 'Agentic-AI'],
+    source: 'OpenAI'
+  },
+  {
     slug: 'openai-privacy-filter',
     titleZh: 'OpenAI 发布 Privacy Filter 开源 PII 检测模型',
     titleEn: 'OpenAI releases Privacy Filter open-source PII detection model',
