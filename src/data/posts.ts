@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'openai-workspace-agents-chatgpt',
+    titleZh: 'OpenAI 发布 Workspace Agents：面向团队的共享智能体',
+    titleEn: 'OpenAI introduces workspace agents in ChatGPT for team collaboration',
+    excerptZh: 'OpenAI 推出面向团队的 Workspace Agents，支持复杂任务和长期工作流。基于 Codex 构建，可在 ChatGPT 和 Slack 中协作使用，并支持按计划触发和自动执行。',
+    excerptEn: 'OpenAI introduces workspace agents in ChatGPT, enabling teams to create shared agents for complex tasks and long-running workflows. Powered by Codex, these agents can work in the cloud, integrate with Slack, and operate on schedules.',
+    date: '2026-04-22',
+    tags: ['AI-Agents', 'OpenAI', 'ChatGPT', 'Workspace', 'Collaboration', 'Codex'],
+    source: 'OpenAI'
+  },
+  {
     slug: 'google-eighth-generation-tpu-agentic-era',
     titleZh: 'Google 发布第八代 TPU 为智能体时代打造双芯片架构',
     titleEn: 'Google releases eighth-generation TPUs with dual-chip architecture for the agentic era',
