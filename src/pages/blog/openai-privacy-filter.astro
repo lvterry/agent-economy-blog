@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="OpenAI 发布 Privacy Filter 开源 PII 检测模型"
+  description="OpenAI releases Privacy Filter, an open-weight model for detecting and redacting PII in text."
+>
+  <article class="blog-post">
+    <header>
+      <h1 data-zh="OpenAI 发布 Privacy Filter 开源 PII 检测模型" data-en="OpenAI Releases Privacy Filter Open-Source PII Detection Model">
+        OpenAI Releases Privacy Filter Open-Source PII Detection Model
+      </h1>
+      <div class="meta">
+        <time datetime="2026-04-23">2026-04-23</time>
+        <span class="source">Source: OpenAI</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="bilingual">
+        <div class="zh">
+          <p>OpenAI 发布 Privacy Filter，一个用于检测和脱敏文本中个人身份信息（PII）的开源模型。这是 OpenAI 支持更具韧性软件生态系统的一部分，为开发者提供构建 AI 安全应用的实用基础设施。</p>
+          
+          <p>Privacy Filter 是一个小型模型（1.5B 参数，50M 活跃参数），但具备前沿的个人数据检测能力。它专为高吞吐量隐私工作流设计，能够在非结构化文本中进行上下文感知的 PII 检测。模型可在本地运行，意味着 PII 可以在不离开设备的情况下进行脱敏处理。</p>
+          
+          <p>该模型支持检测 8 类隐私信息：private_person（个人姓名）、private_address（地址）、private_email（邮箱）、private_phone（电话）、private_url（URL）、private_date（日期）、account_number（账号，包括信用卡和银行账号）、secret（密钥，如密码和 API key）。</p>
+          
+          <p>Privacy Filter 采用双向 token 分类架构，支持长达 128,000 tokens 的上下文，在 PII-Masking-300k 基准上达到 97.43% 的 F1 分数（修正标注问题后）。模型以 Apache 2.0 许可证发布，可在 Hugging Face 和 GitHub 获取。</p>
+        </div>
+        
+        <div class="en">
+          <p>OpenAI released Privacy Filter, an open-weight model for detecting and redacting personally identifiable information (PII) in text. This is part of OpenAI's broader effort to support a more resilient software ecosystem by providing developers practical infrastructure for building with AI safely.</p>
+          
+          <p>Privacy Filter is a small model (1.5B parameters, 50M active) with frontier personal data detection capability. It is designed for high-throughput privacy workflows and can perform context-aware detection of PII in unstructured text. The model can run locally, meaning PII can be masked or redacted without leaving your machine.</p>
+          
+          <p>The model supports detection of 8 privacy categories: private_person, private_address, private_email, private_phone, private_url, private_date, account_number (including credit cards and bank accounts), and secret (passwords and API keys).</p>
+          
+          <p>Privacy Filter uses bidirectional token classification architecture, supports up to 128,000 tokens of context, and achieves 97.43% F1 score on the PII-Masking-300k benchmark (after correcting annotation issues). The model is released under Apache 2.0 license and available on Hugging Face and GitHub.</p>
+        </div>
+      </div>
+
+      <div class="source-link">
+        <a href="https://openai.com/index/introducing-openai-privacy-filter/" target="_blank" rel="noopener">
+          Read original article →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

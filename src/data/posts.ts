@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'openai-privacy-filter',
+    titleZh: 'OpenAI 发布 Privacy Filter 开源 PII 检测模型',
+    titleEn: 'OpenAI releases Privacy Filter open-source PII detection model',
+    excerptZh: 'OpenAI 发布 Privacy Filter，一个 1.5B 参数的开源 PII 检测模型，支持本地运行和 128k 上下文，在 PII-Masking-300k 基准上达到 97.43% F1 分数，以 Apache 2.0 许可证发布。',
+    excerptEn: 'OpenAI releases Privacy Filter, a 1.5B parameter open-source PII detection model that runs locally with 128k context, achieving 97.43% F1 score on PII-Masking-300k benchmark under Apache 2.0 license.',
+    date: '2026-04-23',
+    tags: ['OpenAI', 'Privacy', 'AI-Safety', 'Open-Source', 'PII-Detection'],
+    source: 'OpenAI'
+  },
+  {
     slug: 'openai-workspace-agents-chatgpt',
     titleZh: 'OpenAI 发布 Workspace Agents：面向团队的共享智能体',
     titleEn: 'OpenAI introduces workspace agents in ChatGPT for team collaboration',
