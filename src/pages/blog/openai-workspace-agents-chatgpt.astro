@@ -1,209 +1,34 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const siteURL = 'https://agenteconomy.cn';
-
-const post = {
-  titleZh: 'OpenAI 发布 Workspace Agents：面向团队的共享智能体',
-  titleEn: 'OpenAI introduces workspace agents in ChatGPT for team collaboration',
-  date: '2026-04-22',
-  tags: ['AI-Agents', 'OpenAI', 'ChatGPT', 'Workspace', 'Collaboration', 'Codex'],
-  source: 'OpenAI'
-};
-
-const contentZh = `
-<p>OpenAI 推出面向团队的 Workspace Agents，支持复杂任务和长期工作流。基于 Codex 构建，可在 ChatGPT 和 Slack 中协作使用，并支持按计划触发和自动执行。</p>
-
-<h2>核心功能</h2>
-<ul>
-<li><strong>团队协作</strong>：团队可以创建共享智能体，处理复杂任务和长期工作流</li>
-<li><strong>云端运行</strong>：基于 Codex 构建，在云端运行，即使离线也能持续工作</li>
-<li><strong>多平台集成</strong>：可在 ChatGPT 和 Slack 中使用，支持按计划触发</li>
-<li><strong>企业级安全</strong>：提供权限控制、审批流程和合规 API</li>
-</ul>
-
-<h2>应用场景</h2>
-<p>OpenAI 展示了多个实际应用案例：</p>
-<ul>
-<li><strong>销售助手</strong>：自动研究客户、整理通话记录、起草跟进邮件</li>
-<li><strong>软件审核</strong>：审核员工软件请求，对照批准工具和政策</li>
-<li><strong>产品反馈路由</strong>：监控 Slack 和支持渠道，将反馈转为优先级工单</li>
-<li><strong>周报生成</strong>：每周五自动拉取数据、创建图表、撰写摘要</li>
-</ul>
-
-<h2>定价与可用性</h2>
-<p>Workspace Agents 目前处于研究预览阶段，面向 ChatGPT Business、Enterprise、Edu 和 Teachers 计划用户开放。在 2026 年 5 月 6 日前免费使用，之后将转为基于信用的定价模式。</p>
-
-<p>阅读完整文章：<a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/">https://openai.com/index/introducing-workspace-agents-in-chatgpt/</a></p>
-`;
-
-const contentEn = `
-<p>OpenAI introduces workspace agents in ChatGPT, enabling teams to create shared agents for complex tasks and long-running workflows. Powered by Codex, these agents can work in the cloud, integrate with Slack, and operate on schedules.</p>
-
-<h2>Key Features</h2>
-<ul>
-<li><strong>Team Collaboration</strong>: Teams can create shared agents to handle complex tasks and long-running workflows</li>
-<li><strong>Cloud-Powered</strong>: Built on Codex, running in the cloud so they keep working even when you're offline</li>
-<li><strong>Multi-Platform</strong>: Available in ChatGPT and Slack, with scheduled triggers</li>
-<li><strong>Enterprise Security</strong>: Permission controls, approval workflows, and compliance API</li>
-</ul>
-
-<h2>Use Cases</h2>
-<p>OpenAI showcased several real-world applications:</p>
-<ul>
-<li><strong>Sales Assistant</strong>: Research accounts, summarize calls, draft follow-up emails</li>
-<li><strong>Software Reviewer</strong>: Review employee software requests against approved tools and policies</li>
-<li><strong>Product Feedback Router</strong>: Monitor Slack and support channels, turn feedback into prioritized tickets</li>
-<li><strong>Weekly Metrics Reporter</strong>: Pull data every Friday, create charts, write summaries</li>
-</ul>
-
-<h2>Pricing & Availability</h2>
-<p>Workspace Agents is currently in research preview for ChatGPT Business, Enterprise, Edu, and Teachers plans. Free until May 6, 2026, then switching to credit-based pricing.</p>
-
-<p>Read the full article at <a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/">https://openai.com/index/introducing-workspace-agents-in-chatgpt/</a></p>
-`;
+const title = 'OpenAI introduces workspace agents in ChatGPT for team collaboration';
+const description = 'OpenAI 发布 Workspace Agents：面向团队的共享智能体。';
 ---
 
-<Layout title={post.titleZh} description={post.excerptZh}>
-  <article class="blog-post">
-    <header class="post-header">
-      <div class="post-meta">
-        <time datetime={post.date}>{post.date}</time>
-        <span class="source">{post.source}</span>
-      </div>
-      <h1 class="post-title">
-        <span class="lang-content lang-zh active">{post.titleZh}</span>
-        <span class="lang-content lang-en">{post.titleEn}</span>
-      </h1>
-    </header>
-
-    <div class="post-content">
-      <div class="lang-content lang-zh active" set:html={contentZh} />
-      <div class="lang-content lang-en" set:html={contentEn} />
+<Layout 
+  title={title}
+  description={description}
+  type="article"
+  publishedTime="2026-04-22"
+  tags={["AI-Agents", "OpenAI", "ChatGPT", "Workspace", "Collaboration"]
+}
+>
+  <article class="article-content">
+    <h1 class="lang-content lang-zh active">OpenAI 发布 Workspace Agents：面向团队的共享智能体</h1>
+    <h1 class="lang-content lang-en">OpenAI introduces workspace agents in ChatGPT for team collaboration</h1>
+    
+    <time datetime="2026-04-22">2026-04-22</time>
+    
+    <div class="lang-content lang-zh active">
+      <p>OpenAI 推出面向团队的 Workspace Agents，支持复杂任务和长期工作流。基于 Codex 构建，可在 ChatGPT 和 Slack 中协作使用，并支持按计划触发和自动执行。</p>
+      <p><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/" target="_blank">阅读原文</a></p>
     </div>
-
-    <footer class="post-footer">
-      <a href="/" class="back-link">
-        <span class="lang-content lang-zh active">← 返回首页</span>
-        <span class="lang-content lang-en">← Back to Home</span>
-      </a>
-    </footer>
+    
+    <div class="lang-content lang-en">
+      <p>OpenAI introduces workspace agents in ChatGPT, enabling teams to create shared agents for complex tasks and long-running workflows. Powered by Codex, these agents can work in the cloud, integrate with Slack, and operate on schedules.</p>
+      <p><a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/" target="_blank">Read the full article</a></p>
+    </div>
+    
+    <a href="/" class="back-link">← Back to articles</a>
   </article>
 </Layout>
-
-<style>
-  .blog-post {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .post-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .post-meta {
-    display: flex;
-    gap: 1rem;
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-  }
-
-  .post-title {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    padding: 0.25rem 0.75rem;
-    background: var(--tag-bg);
-    color: var(--tag-color);
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-  }
-
-  .post-content {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: var(--text-primary);
-  }
-
-  .post-content :global(h2) {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-  }
-
-  .post-content :global(h3) {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-primary);
-  }
-
-  .post-content :global(p) {
-    margin-bottom: 1.5rem;
-  }
-
-  .post-content :global(ul) {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-
-  .post-content :global(li) {
-    margin-bottom: 0.5rem;
-  }
-
-  .post-content :global(a) {
-    color: var(--link-color);
-    text-decoration: underline;
-  }
-
-  .post-content :global(a:hover) {
-    color: var(--link-hover-color);
-  }
-
-  .post-footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    color: var(--text-secondary);
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  .back-link:hover {
-    color: var(--text-primary);
-  }
-
-  @media (max-width: 640px) {
-    .post-title {
-      font-size: 1.5rem;
-    }
-
-    .post-content {
-      font-size: 1rem;
-    }
-  }
-</style>
