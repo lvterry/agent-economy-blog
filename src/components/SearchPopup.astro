@@ -110,9 +110,12 @@ const searchIndex = posts.map(p => ({
     });
   }
 
-  if (backdrop) {
-    backdrop.addEventListener('click', closePopup);
-  }
+  overlay.addEventListener('click', function(e) {
+    var panel = overlay.querySelector('.search-popup-panel');
+    if (panel && !panel.contains(e.target)) {
+      closePopup();
+    }
+  });
 
   document.addEventListener('keydown', function(e) {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
