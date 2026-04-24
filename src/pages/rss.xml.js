@@ -3,6 +3,14 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
+      title: 'Google launches TorchTPU to run PyTorch natively on TPUs',
+      titleZh: 'Google 推出 TorchTPU 让 PyTorch 原生跑在 TPU 上',
+      pubDate: new Date('2026-04-24'),
+      description: 'Google introduces TorchTPU to let developers run PyTorch workloads on TPUs with a more native experience, using XLA, StableHLO, and new eager modes to reduce migration friction and improve large-scale performance.',
+      descriptionZh: 'Google 发布 TorchTPU，试图让开发者以接近原生 PyTorch 的方式直接使用 TPU，并通过 XLA、StableHLO 与新的 eager 模式降低迁移成本、提升大规模训练效率。',
+      link: '/blog/google-torchtpu-pytorch-native-tpu',
+    },
+    {
       title: 'All your agents are going async',
       titleZh: 'AI Agents 全面走向异步化 传输层面临重构',
       pubDate: new Date('2026-04-22'),

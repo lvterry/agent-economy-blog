@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'google-torchtpu-pytorch-native-tpu',
+    titleZh: 'Google 推出 TorchTPU 让 PyTorch 原生跑在 TPU 上',
+    titleEn: 'Google launches TorchTPU to run PyTorch natively on TPUs',
+    excerptZh: 'Google 发布 TorchTPU，试图让开发者以接近原生 PyTorch 的方式直接使用 TPU，并通过 XLA、StableHLO 与新的 eager 模式降低迁移成本、提升大规模训练效率。',
+    excerptEn: 'Google introduces TorchTPU to let developers run PyTorch workloads on TPUs with a more native experience, using XLA, StableHLO, and new eager modes to reduce migration friction and improve large-scale performance.',
+    date: '2026-04-24',
+    tags: ['Google', 'TPU', 'PyTorch', 'AI-Infrastructure', 'Developer-Tools'],
+    source: 'Google Developers Blog'
+  },
+  {
     slug: 'openai-gpt-5-5',
     titleZh: 'OpenAI 发布 GPT-5.5 迄今最智能的模型',
     titleEn: 'OpenAI releases GPT-5.5 its smartest model yet',
