@@ -3,12 +3,44 @@ import rss from '@astrojs/rss';
 export async function GET(context) {
   const posts = [
     {
-      title: 'Google launches TorchTPU to run PyTorch natively on TPUs',
-      titleZh: 'Google 推出 TorchTPU 让 PyTorch 原生跑在 TPU 上',
+      title: 'Google launches TorchTPU to make PyTorch migration smoother',
+      titleZh: 'Google 推出 TorchTPU 让 PyTorch 开发者更顺滑迁移',
       pubDate: new Date('2026-04-24'),
-      description: 'Google introduces TorchTPU to let developers run PyTorch workloads on TPUs with a more native experience, using XLA, StableHLO, and new eager modes to reduce migration friction and improve large-scale performance.',
-      descriptionZh: 'Google 发布 TorchTPU，试图让开发者以接近原生 PyTorch 的方式直接使用 TPU，并通过 XLA、StableHLO 与新的 eager 模式降低迁移成本、提升大规模训练效率。',
+      description: 'Google introduces TorchTPU to tie PyTorch ergonomics, XLA compilation, and TPU hardware more tightly together, with the explicit goal of reducing migration friction for developers.',
+      descriptionZh: 'Google 发布 TorchTPU，把 PyTorch 原生体验、XLA 编译链和 TPU 硬件能力更紧地绑在一起，核心目标是降低 TPU 生态的开发者迁移摩擦。',
       link: '/blog/google-torchtpu-pytorch-native-tpu',
+    },
+    {
+      title: 'OpenAI launches GPT-5.5 with a bigger leap in autonomous work',
+      titleZh: 'OpenAI 发布 GPT-5.5 把 AI 工作流推向更高自治',
+      pubDate: new Date('2026-04-23'),
+      description: 'OpenAI launches GPT-5.5 with stronger coding and knowledge-work performance while preserving speed, pushing the model closer to an execution layer for autonomous digital work.',
+      descriptionZh: 'OpenAI 发布 GPT-5.5，在保持速度的同时显著提升编码、知识工作与科研表现，更重要的是把模型进一步推向可独立推进任务的执行层。',
+      link: '/blog/openai-gpt-5-5',
+    },
+    {
+      title: 'OpenAI open-sources Privacy Filter for local PII detection',
+      titleZh: 'OpenAI 开源 Privacy Filter 把 PII 检测推向本地化',
+      pubDate: new Date('2026-04-23'),
+      description: 'OpenAI open-sources Privacy Filter as a smaller specialist model for PII detection and redaction, turning privacy protection into a deployable piece of AI infrastructure.',
+      descriptionZh: 'OpenAI 开源 Privacy Filter，用更小的专用模型处理 PII 检测与脱敏，这意味着隐私保护正从原则讨论走向可部署的 AI 基础设施组件。',
+      link: '/blog/openai-privacy-filter',
+    },
+    {
+      title: 'OpenAI launches workspace agents to own the team workflow layer',
+      titleZh: 'OpenAI 推出 Workspace Agents 抢占团队协作入口',
+      pubDate: new Date('2026-04-22'),
+      description: 'OpenAI pushes agents from personal assistants into shared team workflows, aiming not just at chat but at the workflow layer inside the enterprise stack.',
+      descriptionZh: 'OpenAI 推出 Workspace Agents，把智能体从个人助手推进到团队共享工作流，真正瞄准的是企业内部流程入口而不只是聊天界面。',
+      link: '/blog/openai-workspace-agents-chatgpt',
+    },
+    {
+      title: 'Google unveils eighth-generation TPUs with a dual-chip bet on the agent era',
+      titleZh: 'Google 发布第八代 TPU 用双芯片架构押注智能体时代',
+      pubDate: new Date('2026-04-22'),
+      description: 'Google’s TPU 8t and TPU 8i split training and inference into clearer product paths, reflecting how agent-era infrastructure now demands deeper specialization and system-level optimization.',
+      descriptionZh: 'Google 推出 TPU 8t 和 TPU 8i，把训练和推理拆成两条更清晰的路线，这反映出智能体时代的基础设施已经需要更强的分工与系统级优化。',
+      link: '/blog/google-eighth-generation-tpu-agentic-era',
     },
     {
       title: 'All your agents are going async',
