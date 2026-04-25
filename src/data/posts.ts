@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'scientific-theory-of-deep-learning',
+    titleZh: '深度学习正在逼近一套真正的科学理论',
+    titleEn: 'Deep learning may finally be approaching a real scientific theory',
+    excerptZh: '一篇新的 arXiv 综述提出，深度学习正在形成一套可检验、可量化、以训练动力学为核心的科学理论框架，作者将其称为 learning mechanics。对 AI 产业来说，这意味着模型开发可能逐步从经验主义转向更强的可预测工程。',
+    excerptEn: 'A new arXiv review argues that deep learning is converging toward a falsifiable, quantitative theory centered on training dynamics, which the authors call learning mechanics. For the AI industry, that could shift model development from empiricism toward more predictable engineering.',
+    date: '2026-04-23',
+    tags: ['Deep-Learning', 'AI-Theory', 'Learning-Mechanics', 'Research', 'AI-Infrastructure'],
+    source: 'arXiv'
+  },
+  {
     slug: 'google-anthropic-40-billion-bet',
     titleZh: 'Google 追加押注 Anthropic 抢占模型与算力双重入口',
     titleEn: 'Google deepens its Anthropic bet to own both model access and compute demand',
