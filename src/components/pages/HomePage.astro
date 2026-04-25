@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
 import { categoryMap, categoryLabels, getCategories } from '../../lib/categories.js';
-import { useTranslations } from '../../i18n/utils';
+import { getLocalizedPath, useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -16,7 +16,7 @@ const HOMEPAGE_POST_COUNT = 12;
 const recentPosts = posts.slice(0, HOMEPAGE_POST_COUNT);
 const totalPostCount = posts.length;
 
-const allCategories = [t('filter.all'), ...Object.keys(categoryMap)];
+const allCategories = ['__all', ...Object.keys(categoryMap)];
 ---
 
 <section class="hero">
@@ -28,9 +28,9 @@ const allCategories = [t('filter.all'), ...Object.keys(categoryMap)];
   {allCategories.map(cat => (
     <button
       data-category={cat}
-      class:list={['filter-pill', { active: cat === t('filter.all') }]}
+      class:list={['filter-pill', { active: cat === '__all' }]}
     >
-      {categoryLabels[locale][cat] || cat}
+      {cat === '__all' ? t('filter.all') : categoryLabels[locale][cat] || cat}
     </button>
   ))}
 </div>
@@ -44,7 +44,7 @@ const allCategories = [t('filter.all'), ...Object.keys(categoryMap)];
 {totalPostCount > HOMEPAGE_POST_COUNT && (
   <div class="view-all-section">
     <div class="post-count">{t('postCount', { shown: HOMEPAGE_POST_COUNT, total: totalPostCount })}</div>
-    <a href="/archive" class="view-all-btn">{t('viewAll')} →</a>
+    <a href={getLocalizedPath('/archive', locale)} class="view-all-btn">{t('viewAll')} →</a>
   </div>
 )}
 
@@ -218,7 +218,7 @@ const allCategories = [t('filter.all'), ...Object.keys(categoryMap)];
     let visibleCount = 0;
     posts.forEach((post) => {
       const cats = (post as HTMLElement).dataset.categories || '';
-      const show = category === '全部' || cats.split(',').includes(category);
+      const show = category === '__all' || cats.split(',').includes(category);
       (post as HTMLElement).style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
@@ -231,7 +231,7 @@ const allCategories = [t('filter.all'), ...Object.keys(categoryMap)];
     btn.addEventListener('click', () => {
       filterBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      const category = (btn as HTMLElement).dataset.category || '全部';
+      const category = (btn as HTMLElement).dataset.category || '__all';
       filterPosts(category);
     });
   });

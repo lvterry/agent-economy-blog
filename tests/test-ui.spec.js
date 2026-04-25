@@ -132,4 +132,30 @@ test.describe('Language switching', () => {
     await page.waitForLoadState('networkidle');
     expect(page.url()).toContain('/en/');
   });
+
+  test('English post cards and archive links stay under /en', async ({ page }) => {
+    await page.goto('/en/');
+
+    const firstPost = page.locator('.post-title a').first();
+    await expect(firstPost).toHaveAttribute('href', /^\/en\/blog\//);
+
+    const archiveLink = page.locator('.view-all-btn');
+    await expect(archiveLink).toHaveAttribute('href', '/en/archive');
+  });
+});
+
+test.describe('Category filtering', () => {
+  test('English All filter restores visible posts', async ({ page }) => {
+    await page.goto('/en/');
+
+    const initialVisible = await page.locator('.post-card:visible').count();
+    expect(initialVisible).toBeGreaterThan(0);
+
+    await page.locator('#category-filter .filter-pill', { hasText: 'AI Models' }).click();
+    const filteredVisible = await page.locator('.post-card:visible').count();
+    expect(filteredVisible).toBeLessThanOrEqual(initialVisible);
+
+    await page.locator('#category-filter .filter-pill', { hasText: 'All' }).click();
+    await expect(page.locator('.post-card:visible')).toHaveCount(initialVisible);
+  });
 });

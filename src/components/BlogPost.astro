@@ -1,5 +1,6 @@
 ---
 import { getCategories, categoryLabels } from '../lib/categories.js';
+import { getLocalizedPath } from '../i18n/utils';
 
 const { post, locale } = Astro.props;
 const { data, id } = post;
@@ -7,6 +8,7 @@ const slug = id.replace(`${locale}/`, '').replace('.md', '');
 
 const cats = getCategories(data.tags || []);
 const primaryCat = cats[0];
+const postUrl = getLocalizedPath(`/blog/${slug}`, locale);
 ---
 
 <article class="post-card" data-categories={primaryCat}>
@@ -16,7 +18,7 @@ const primaryCat = cats[0];
       <time class="post-date" datetime={data.date}>{data.date}</time>
     </div>
     
-    <h2 class="post-title"><a href={`/blog/${slug}`}>{data.title}</a></h2>
+    <h2 class="post-title"><a href={postUrl}>{data.title}</a></h2>
     <p class="post-excerpt">{data.excerpt}</p>
     
     <div class="post-footer">

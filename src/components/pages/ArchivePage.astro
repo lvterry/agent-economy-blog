@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
-import { useTranslations } from '../../i18n/utils';
+import { getLocalizedPath, useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -41,7 +41,7 @@ function formatMonth(monthKey: string, lang: string) {
 <section class="archive-header">
   <h1 class="archive-title">{t('archive.title')}</h1>
   <p class="archive-stats">{t('archive.count', { count: posts.length })}</p>
-  <a href="/" class="back-link">← {t('archive.back')}</a>
+  <a href={getLocalizedPath('/', locale)} class="back-link">← {t('archive.back')}</a>
 </section>
 
 <div class="timeline-nav">

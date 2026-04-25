@@ -154,17 +154,43 @@ const statsTemplate = locale === 'zh' ? '{count} 篇文章' : '{count} articles'
 
   function calculateRelevance(content, query) {
     var titleWords = content.split(' ').slice(0, 10).join(' ');
+    var escapedQuery = escapeRegExp(query);
     var score = 0;
     if (titleWords.includes(query)) score += 10;
-    var count = (content.match(new RegExp(query, 'g')) || []).length;
+    var count = (content.match(new RegExp(escapedQuery, 'g')) || []).length;
     score += count;
     return score;
   }
 
-  function highlightMatch(text, query) {
-    if (!query) return text;
-    var regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+  function escapeRegExp(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function appendHighlightedText(parent, text, query) {
+    if (!query) {
+      parent.textContent = text;
+      return;
+    }
+
+    var regex = new RegExp(escapeRegExp(query), 'gi');
+    var lastIndex = 0;
+    var match;
+
+    while ((match = regex.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        parent.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+      }
+
+      var mark = document.createElement('mark');
+      mark.className = 'search-highlight';
+      mark.textContent = match[0];
+      parent.appendChild(mark);
+      lastIndex = regex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      parent.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
   }
 
   function filterLocalPosts(query) {
@@ -205,34 +231,63 @@ const statsTemplate = locale === 'zh' ? '{count} 篇文章' : '{count} articles'
     resultsContainer.innerHTML = '';
 
     if (results.length === 0) {
-      resultsContainer.innerHTML = '<div class="search-no-results">' + LOCALE.noResults + '</div>';
+      var noResults = document.createElement('div');
+      noResults.className = 'search-no-results';
+      noResults.textContent = LOCALE.noResults;
+      resultsContainer.appendChild(noResults);
       resultsContainer.style.display = 'block';
       statsContainer.style.display = 'none';
       updateHeaderBorder(true);
       return;
     }
 
-    var html = '';
     for (var i = 0; i < results.length; i++) {
       var r = results[i];
-      html += '<a href="' + r.url + '" class="search-result-item">' +
-        '<div class="search-result-main">' +
-          '<div class="search-result-title">' + highlightMatch(r.title, query) + '</div>' +
-          '<div class="search-result-excerpt">' + highlightMatch(r.excerpt, query) + '</div>' +
-        '</div>' +
-        '<div class="search-result-meta">' +
-          '<span class="search-result-date">' + r.date + '</span>' +
-          '<span class="search-result-source">' + r.source + '</span>' +
-        '</div>' +
-      '</a>';
+
+      var item = document.createElement('a');
+      item.href = r.url;
+      item.className = 'search-result-item';
+
+      var main = document.createElement('div');
+      main.className = 'search-result-main';
+
+      var title = document.createElement('div');
+      title.className = 'search-result-title';
+      appendHighlightedText(title, r.title, query);
+
+      var excerpt = document.createElement('div');
+      excerpt.className = 'search-result-excerpt';
+      appendHighlightedText(excerpt, r.excerpt, query);
+
+      var meta = document.createElement('div');
+      meta.className = 'search-result-meta';
+
+      var date = document.createElement('span');
+      date.className = 'search-result-date';
+      date.textContent = r.date;
+
+      var source = document.createElement('span');
+      source.className = 'search-result-source';
+      source.textContent = r.source;
+
+      main.appendChild(title);
+      main.appendChild(excerpt);
+      meta.appendChild(date);
+      meta.appendChild(source);
+      item.appendChild(main);
+      item.appendChild(meta);
+      resultsContainer.appendChild(item);
     }
 
-    resultsContainer.innerHTML = html;
     resultsContainer.style.display = 'block';
     updateHeaderBorder(true);
 
     var statsMsg = LOCALE.statsTemplate.replace('{count}', results.length);
-    statsContainer.innerHTML = '<span class="stats-text">' + statsMsg + '</span>';
+    statsContainer.innerHTML = '';
+    var statsText = document.createElement('span');
+    statsText.className = 'stats-text';
+    statsText.textContent = statsMsg;
+    statsContainer.appendChild(statsText);
     statsContainer.style.display = 'block';
   }
 

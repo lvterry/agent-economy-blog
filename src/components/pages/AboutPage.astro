@@ -1,7 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import { render } from 'astro:content';
-import { useTranslations } from '../../i18n/utils';
+import { getLocalizedPath, useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -29,7 +29,7 @@ const { Content } = await render(aboutEntry!);
     <div class="about-section">
       <div class="section-icon">📬</div>
       <h3>{t('about.stayUpdated')}</h3>
-      <p>{t('about.subscribe')} <a href="/rss.xml">RSS</a>.</p>
+      <p>{t('about.subscribe')} <a href={getLocalizedPath('/rss.xml', locale)}>RSS</a>.</p>
     </div>
   </div>
 </div>
