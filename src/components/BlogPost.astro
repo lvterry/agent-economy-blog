@@ -8,10 +8,11 @@ const slug = id.replace(`${locale}/`, '').replace('.md', '');
 
 const cats = getCategories(data.tags || []);
 const primaryCat = cats[0];
+const categoryData = cats.join(',');
 const postUrl = getLocalizedPath(`/blog/${slug}`, locale);
 ---
 
-<article class="post-card" data-categories={primaryCat}>
+<article class="post-card" data-categories={categoryData}>
   <div class="post-card-inner">
     <div class="post-meta">
       <span class="post-category">{categoryLabels[locale][primaryCat] || primaryCat}</span>

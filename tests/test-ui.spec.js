@@ -95,6 +95,14 @@ test.describe('RSS feed', () => {
     expect((body.match(/<item>/g) || []).length).toBeGreaterThan(40);
   });
 
+  test('RSS post links use public article URLs', async ({ request }) => {
+    const response = await request.get('/rss.xml');
+    const body = await response.text();
+
+    expect(body).not.toMatch(/<link>[^<]+\.md<\/link>/);
+    expect(body).toContain('<link>https://agenteconomy.cn/blog/google-anthropic-40-billion-bet/</link>');
+  });
+
   test('English RSS feed exists', async ({ request }) => {
     const response = await request.get('/en/rss.xml');
     expect(response.ok()).toBeTruthy();
@@ -106,6 +114,14 @@ test.describe('RSS feed', () => {
     expect(body).toContain('<title>Agent Economy</title>');
     expect(body).toMatch(/<item>/g);
     expect((body.match(/<item>/g) || []).length).toBeGreaterThan(40);
+  });
+
+  test('English RSS post links use public article URLs', async ({ request }) => {
+    const response = await request.get('/en/rss.xml');
+    const body = await response.text();
+
+    expect(body).not.toMatch(/<link>[^<]+\.md<\/link>/);
+    expect(body).toContain('<link>https://agenteconomy.cn/en/blog/google-anthropic-40-billion-bet/</link>');
   });
 });
 
@@ -157,5 +173,15 @@ test.describe('Category filtering', () => {
 
     await page.locator('#category-filter .filter-pill', { hasText: 'All' }).click();
     await expect(page.locator('.post-card:visible')).toHaveCount(initialVisible);
+  });
+
+  test('posts with multiple categories appear in secondary category filters', async ({ page }) => {
+    await page.goto('/en/');
+
+    const multiCategoryPost = page.locator('.post-title a[href="/en/blog/google-anthropic-40-billion-bet"]');
+    await expect(multiCategoryPost).toBeVisible();
+
+    await page.locator('#category-filter .filter-pill', { hasText: 'AI Models' }).click();
+    await expect(multiCategoryPost).toBeVisible();
   });
 });
