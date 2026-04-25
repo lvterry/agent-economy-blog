@@ -11,6 +11,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'google-anthropic-40-billion-bet',
+    titleZh: 'Google 追加押注 Anthropic 抢占模型与算力双重入口',
+    titleEn: 'Google deepens its Anthropic bet to own both model access and compute demand',
+    excerptZh: 'Google 计划向 Anthropic 投资最高 400 亿美元，其中 100 亿美元立即到账，其余部分与业绩里程碑挂钩。真正值得关注的是这笔交易把股权、云分发和 TPU 需求进一步绑定成了一条基础设施价值链。',
+    excerptEn: 'Google plans to invest up to $40 billion in Anthropic, with $10 billion up front and the rest tied to performance milestones. The bigger story is how the deal binds equity, cloud distribution, and TPU demand into a single infrastructure value chain.',
+    date: '2026-04-24',
+    tags: ['Google', 'Anthropic', 'AI-Infrastructure', 'Cloud', 'TPU', 'AI-Model'],
+    source: 'Bloomberg'
+  },
+  {
     slug: 'google-torchtpu-pytorch-native-tpu',
     titleZh: 'Google 推出 TorchTPU 让 PyTorch 开发者更顺滑迁移',
     titleEn: 'Google launches TorchTPU to make PyTorch migration smoother',
