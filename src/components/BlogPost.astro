@@ -1,86 +1,31 @@
 ---
-const { slug, titleZh, titleEn, excerptZh, excerptEn, date, tags, source } = Astro.props;
+import { getCategories, categoryLabels } from '../lib/categories.js';
 
-const categoryMap = {
-  "AI Infra": ["AI-Infrastructure", "Hardware", "Data-Center", "GPU", "TPU", "Supply-Chain", "Infrastructure", "Tinygrad", "Deep-Learning"],
-  "AI 模型": ["GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4", "LLM"],
-  "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
-  "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Computer-Use", "Coding"],
-  "商业 & 经济": ["Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
-  "安全 & 协议": ["AP2", "AI-Advertising", "Security"],
-  "行业动态": ["X/Twitter", "ChatGPT"]
-};
+const { post, locale } = Astro.props;
+const { data, id } = post;
+const slug = id.replace(`${locale}/`, '').replace('.md', '');
 
-const categoryMapEn = {
-  "AI Infra": "AI Infra",
-  "AI 模型": "AI Models",
-  "AI 智能体": "AI Agents",
-  "AI 应用": "AI Apps",
-  "商业 & 经济": "Business",
-  "安全 & 协议": "Security",
-  "行业动态": "Industry"
-};
-
-function getCategories(tags) {
-  const categories = new Set();
-  const categoryPriority = ["AI Infra", "AI 智能体", "AI 模型", "AI 应用", "商业 & 经济", "安全 & 协议", "行业动态"];
-  
-  // 先按优先级顺序检查
-  for (const category of categoryPriority) {
-    const categoryTags = categoryMap[category];
-    if (categoryTags && tags.some(tag => categoryTags.includes(tag))) {
-      categories.add(category);
-    }
-  }
-  
-  // 检查是否有其他未包含的分类
-  for (const tag of tags) {
-    for (const [category, categoryTags] of Object.entries(categoryMap)) {
-      if (categoryTags.includes(tag) && !categories.has(category)) {
-        categories.add(category);
-      }
-    }
-  }
-  
-  if (categories.size === 0) categories.add("AI 智能体");
-  return Array.from(categories);
-}
-
-const cats = getCategories(tags || []);
+const cats = getCategories(data.tags || []);
 const primaryCat = cats[0];
 ---
 
 <article class="post-card" data-categories={primaryCat}>
   <div class="post-card-inner">
     <div class="post-meta">
-      <span class="post-category">
-        <span class="lang-content lang-zh active">{primaryCat}</span>
-        <span class="lang-content lang-en">{categoryMapEn[primaryCat] || primaryCat}</span>
-      </span>
-      <time class="post-date" datetime={date}>{date}</time>
+      <span class="post-category">{categoryLabels[locale][primaryCat] || primaryCat}</span>
+      <time class="post-date" datetime={data.date}>{data.date}</time>
     </div>
     
-    <div class="lang-content lang-zh active">
-      <h2 class="post-title"><a href={`/blog/${slug}`}>{titleZh}</a></h2>
-    </div>
-    <div class="lang-content lang-en">
-      <h2 class="post-title"><a href={`/blog/${slug}`}>{titleEn}</a></h2>
-    </div>
-    
-    <div class="lang-content lang-zh active">
-      <p class="post-excerpt">{excerptZh}</p>
-    </div>
-    <div class="lang-content lang-en">
-      <p class="post-excerpt">{excerptEn}</p>
-    </div>
+    <h2 class="post-title"><a href={`/blog/${slug}`}>{data.title}</a></h2>
+    <p class="post-excerpt">{data.excerpt}</p>
     
     <div class="post-footer">
       <div class="tags">
-        {tags.slice(0, 3).map(tag => (
+        {data.tags.slice(0, 3).map(tag => (
           <span class="tag">#{tag}</span>
         ))}
       </div>
-      {source && <span class="post-source">{source}</span>}
+      {data.source && <span class="post-source">{data.source}</span>}
     </div>
   </div>
 </article>
@@ -203,13 +148,5 @@ const primaryCat = cats[0];
     color: var(--color-text-muted);
     font-weight: 500;
     text-align: right;
-  }
-
-  .lang-content {
-    display: none;
-  }
-
-  .lang-content.active {
-    display: block;
   }
 </style>

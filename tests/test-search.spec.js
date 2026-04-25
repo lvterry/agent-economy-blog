@@ -195,19 +195,12 @@ test.describe('Search functionality', () => {
     expect(count).toBeGreaterThan(0);
   });
 
-  test('placeholder changes when language switches', async ({ page }) => {
+  test('English search uses English placeholder', async ({ page }) => {
+    await page.goto('/en/');
+    await page.waitForSelector('#header-search-btn');
+
     await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
-    await expect(searchInput).toHaveAttribute('placeholder', '搜索文章...');
-
-    await page.keyboard.press('Escape');
-    await page.waitForTimeout(300);
-
-    const langSelect = page.locator('#lang-select');
-    await langSelect.selectOption('en');
-    await page.waitForTimeout(200);
-
-    await page.locator('#header-search-btn').click();
     await expect(searchInput).toHaveAttribute('placeholder', 'Search articles...');
   });
 });

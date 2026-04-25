@@ -1,18 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import BlogPost from "../../components/BlogPost.astro";
-import { posts } from "../../data/posts";
-
-const title = "All Articles";
-const description = "Browse all curated articles about AI agents, the agent economy, and autonomous systems.";
+import Layout from '../../layouts/Layout.astro';
+import HomePage from '../../components/pages/HomePage.astro';
 ---
 
-<Layout title={title} description={description}>
-  <h1 class="page-title" data-zh="全部文章" data-en="All Articles">All Articles</h1>
-  
-  <section id="posts-grid">
-    {posts.map(post => (
-      <BlogPost {...post} />
-    ))}
-  </section>
+<Layout>
+  <HomePage locale="zh" />
 </Layout>

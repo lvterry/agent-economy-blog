@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import PostPage from '../../../components/pages/PostPage.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const enPosts = posts.filter(p => p.id.startsWith('en/'));
+  return enPosts.map(p => ({ params: { slug: p.id.replace('en/', '').replace('.md', '') } }));
+}
+
+const { slug } = Astro.params;
+---
+
+<PostPage locale="en" slug={slug} />

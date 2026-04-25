@@ -1,0 +1,124 @@
+---
+import { getEntry } from 'astro:content';
+import { render } from 'astro:content';
+import { useTranslations } from '../../i18n/utils';
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const aboutEntry = await getEntry('about', locale);
+const { Content } = await render(aboutEntry!);
+---
+
+<h1 class="page-title">{t('about.title')}</h1>
+
+<div class="article-content">
+  <div class="about-hero">
+    <p class="about-lead">{locale === 'zh' 
+      ? '智能体经济代表着一种新范式，AI 智能体自主执行任务、做出决策并产生经济价值。从软件工程到内容创作，从客户服务到金融交易，AI 智能体正在成为有能力的经济参与者。'
+      : 'The agent economy represents a new paradigm where AI agents autonomously perform tasks, make decisions, and generate economic value. From software engineering to content creation, customer service to financial trading, AI agents are becoming capable economic actors.'}</p>
+  </div>
+
+  <div class="about-sections">
+    <div class="about-section">
+      <div class="section-icon">📡</div>
+      <h3>{t('about.cover')}</h3>
+      <Content />
+    </div>
+
+    <div class="about-section">
+      <div class="section-icon">📬</div>
+      <h3>{t('about.stayUpdated')}</h3>
+      <p>{t('about.subscribe')} <a href="/rss.xml">RSS</a>.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-hero {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+  }
+
+  .about-sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .about-section {
+    padding: var(--space-md);
+    border: 1px solid var(--color-card-border);
+    border-radius: 12px;
+    background: var(--color-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-card);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .section-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .about-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .about-section :global(ul) {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .about-section :global(li) {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.375rem;
+  }
+
+  .about-section :global(p) {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .about-section a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .about-section a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  @media (max-width: 640px) {
+    .about-lead {
+      font-size: 1.0625rem;
+    }
+  }
+</style>

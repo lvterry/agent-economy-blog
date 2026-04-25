@@ -1,37 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { companies, categories } from '../data/companies';
+import { useTranslations } from '../i18n/utils';
+
+const locale = Astro.currentLocale || 'zh';
+const t = useTranslations(locale);
 ---
 
 <Layout>
   <section class="intro">
-    <div class="lang-content lang-zh active">
-      <h2>AI 行业领先公司</h2>
-      <p>探索塑造智能体经济的核心企业，从基础设施提供商到应用开发者。</p>
-    </div>
-    <div class="lang-content lang-en">
-      <h2>Leading AI Companies</h2>
-      <p>Explore the core enterprises shaping the agent economy, from infrastructure providers to application developers.</p>
-    </div>
+    <h2>{locale === 'zh' ? 'AI 行业领先公司' : 'Leading AI Companies'}</h2>
+    <p>{locale === 'zh' ? '探索塑造智能体经济的核心企业，从基础设施提供商到应用开发者。' : 'Explore the core enterprises shaping the agent economy, from infrastructure providers to application developers.'}</p>
   </section>
 
   <section class="companies-section">
-    <!-- Category Filter -->
     <div class="category-filter">
       {categories.map(cat => (
         <button 
           class={`filter-btn ${cat.id === 'all' ? 'active' : ''}`} 
           data-category={cat.id}
-          data-name-en={cat.nameEn}
-          data-name-zh={cat.nameZh}
         >
-          <span class="lang-zh active">{cat.nameZh}</span>
-          <span class="lang-en">{cat.nameEn}</span>
+          {locale === 'zh' ? cat.nameZh : cat.nameEn}
         </button>
       ))}
     </div>
 
-    <!-- Companies Grid -->
     <div class="companies-grid">
       {companies.map(company => (
         <a 
@@ -46,14 +39,8 @@ import { companies, categories } from '../data/companies';
           </div>
           <div class="company-info">
             <h3 class="company-name">{company.name}</h3>
-            <span class="company-category">
-              <span class="lang-zh active">{company.categoryZh}</span>
-              <span class="lang-en">{company.category}</span>
-            </span>
-            <p class="company-description">
-              <span class="lang-content lang-zh active">{company.descriptionZh}</span>
-              <span class="lang-content lang-en">{company.descriptionEn}</span>
-            </p>
+            <span class="company-category">{locale === 'zh' ? company.categoryZh : company.category}</span>
+            <p class="company-description">{locale === 'zh' ? company.descriptionZh : company.descriptionEn}</p>
           </div>
         </a>
       ))}
@@ -62,6 +49,26 @@ import { companies, categories } from '../data/companies';
 </Layout>
 
 <style>
+  .intro {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .intro h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.03em;
+  }
+
+  .intro p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
   .category-filter {
     display: flex;
     flex-wrap: wrap;
@@ -92,14 +99,6 @@ import { companies, categories } from '../data/companies';
     background: var(--color-text);
     color: var(--color-bg);
     border-color: var(--color-text);
-  }
-
-  .filter-btn span {
-    display: none;
-  }
-
-  .filter-btn span.active {
-    display: inline;
   }
 
   .companies-grid {
@@ -163,14 +162,6 @@ import { companies, categories } from '../data/companies';
     display: block;
   }
 
-  .company-category span {
-    display: none;
-  }
-
-  .company-category span.active {
-    display: inline;
-  }
-
   .company-description {
     font-size: 0.875rem;
     color: var(--color-text-secondary);
@@ -187,7 +178,6 @@ import { companies, categories } from '../data/companies';
 
 <script is:inline>
   (function() {
-    // Category filtering
     const filterBtns = document.querySelectorAll('.filter-btn');
     const companyCards = document.querySelectorAll('.company-card');
 
@@ -195,11 +185,9 @@ import { companies, categories } from '../data/companies';
       btn.addEventListener('click', () => {
         const category = btn.dataset.category;
         
-        // Update active button
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        // Filter companies
         companyCards.forEach(card => {
           if (category === 'all' || card.dataset.category === category) {
             card.classList.remove('hidden');
@@ -209,23 +197,5 @@ import { companies, categories } from '../data/companies';
         });
       });
     });
-
-    // Language switch support for filter buttons
-    const originalSwitchLang = window.switchLang;
-    if (originalSwitchLang) {
-      window.switchLang = function(lang) {
-        originalSwitchLang(lang);
-        
-        // Update filter button text
-        document.querySelectorAll('.filter-btn span').forEach(el => {
-          el.classList.toggle('active', el.classList.contains('lang-' + lang));
-        });
-        
-        // Update category labels on cards
-        document.querySelectorAll('.company-category span').forEach(el => {
-          el.classList.toggle('active', el.classList.contains('lang-' + lang));
-        });
-      };
-    }
   })();
 </script>
