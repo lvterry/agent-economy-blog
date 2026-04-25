@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopicPage from '../../components/pages/TopicPage.astro';
+import { getTopicBySlug, topics } from '../../lib/categories.js';
+
+export function getStaticPaths() {
+  return topics.map(topic => ({ params: { slug: topic.slug } }));
+}
+
+const { slug } = Astro.params;
+const topic = getTopicBySlug(slug);
+
+if (!topic) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={topic.labels.zh} description={topic.descriptions.zh}>
+  <TopicPage locale="zh" slug={slug} />
+</Layout>

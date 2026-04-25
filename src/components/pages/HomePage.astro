@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
-import { categoryMap, categoryLabels, getCategories } from '../../lib/categories.js';
+import { categoryMap, categoryLabels, getTopicByKey, getTopicPath } from '../../lib/categories.js';
 import { getLocalizedPath, useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
@@ -28,7 +28,9 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
   {allCategories.map(cat => (
     <button
       data-category={cat}
+      data-topic-url={cat === '__all' ? getLocalizedPath('/topics', locale) : getTopicPath(getTopicByKey(cat) || cat, locale)}
       class:list={['filter-pill', { active: cat === '__all' }]}
+      title={cat === '__all' ? t('topics.title') : `${t('topics.title')}: ${categoryLabels[locale][cat] || cat}`}
     >
       {cat === '__all' ? t('filter.all') : categoryLabels[locale][cat] || cat}
     </button>

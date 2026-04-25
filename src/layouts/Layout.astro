@@ -771,6 +771,7 @@ const alternates = [
         </div>
         <nav class="site-nav">
             <a href={getLocalizedPath('/', locale)} class="nav-link">{t('nav.articles')}</a>
+            <a href={getLocalizedPath('/topics', locale)} class="nav-link">{t('nav.topics')}</a>
             <a href={getLocalizedPath('/about', locale)} class="nav-link">{t('nav.about')}</a>
             <a href={getLocalizedPath('/rss.xml', locale)} class="nav-link">{t('nav.rss')}</a>
         </nav>
@@ -826,7 +827,7 @@ const alternates = [
             var path = window.location.pathname;
             document.querySelectorAll('.nav-link').forEach(function(link) {
                 var href = link.getAttribute('href');
-                if (href === path || (path.startsWith('/blog') && href === '/')) {
+                if (href === path || (path.startsWith('/blog') && href === '/') || (path.startsWith('/en/blog') && href === '/en/') || (path.startsWith('/topics') && href === '/topics') || (path.startsWith('/en/topics') && href === '/en/topics')) {
                     link.classList.add('active');
                 }
             });
