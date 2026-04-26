@@ -6,8 +6,8 @@ export const categoryMap: Record<string, string[]> = {
   "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
   "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Computer-Use", "Coding"],
   "商业 & 经济": ["Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
-  "安全 & 协议": ["AP2", "AI-Advertising", "Security"],
-  "行业动态": ["X/Twitter", "ChatGPT"]
+  "安全 & 协议": ["AP2", "AI-Advertising", "Security", "Privacy"],
+  "行业动态": ["X/Twitter", "ChatGPT", "OpenAI"]
 };
 
 export const categoryLabels: Record<string, Record<string, string>> = {
