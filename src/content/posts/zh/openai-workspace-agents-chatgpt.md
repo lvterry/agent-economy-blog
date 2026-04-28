@@ -3,6 +3,7 @@ title: 'OpenAI 推出 Workspace Agents 抢占团队协作入口'
 excerpt: 'OpenAI 推出 Workspace Agents，把智能体从个人助手推进到团队共享工作流，真正瞄准的是企业内部流程入口而不只是聊天界面。'
 date: "2026-04-22"
 tags: ["AI-Agents", "OpenAI", "ChatGPT", "Workspace", "Collaboration", "Codex"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

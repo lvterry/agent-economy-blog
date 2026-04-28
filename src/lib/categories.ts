@@ -118,8 +118,13 @@ export const topics: TopicMeta[] = [
   },
 ];
 
-export function getCategories(tags: string[]): string[] {
+export function getCategories(tags: string[], explicitCategory?: string): string[] {
   const categories = new Set<string>();
+
+  // If a manual category is set in frontmatter, use it directly
+  if (explicitCategory && categoryMap[explicitCategory]) {
+    return [explicitCategory];
+  }
 
   for (const category of categoryPriority) {
     const categoryTags = categoryMap[category];

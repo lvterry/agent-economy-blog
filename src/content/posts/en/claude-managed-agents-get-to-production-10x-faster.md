@@ -3,6 +3,7 @@ title: 'Claude Managed Agents: get to production 10x faster'
 excerpt: 'Anthropic introduces composable APIs for building and deploying cloud-hosted agents at scale, significantly reducing time to production.'
 date: "2026-04-09"
 tags: ["Anthropic", "Claude", "AI-Agents", "Developer-Tools"]
+category: "AI 智能体"
 source: "Anthropic"
 ---
 

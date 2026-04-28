@@ -3,6 +3,7 @@ title: 'Meta HyperAgents: Self-Referential Self-Improving AI Agents'
 excerpt: 'Meta AI releases HyperAgents, enabling AI agents to autonomously optimize code to complete tasks via self-referential loops.'
 date: "2026-03-27"
 tags: ["AI-Agents", "Agentic AI", "Meta"]
+category: "AI 智能体"
 source: "Meta AI"
 ---
 

@@ -3,6 +3,7 @@ title: 'Linear 发布 Agent Interaction Guidelines：智能体交互设计指南
 excerpt: '智能体与人机交互的 6 条核心设计原则：身份披露、原生融入、即时反馈、状态透明、尊重退出、人类问责。'
 date: "2026-03-31"
 tags: ["AI-Agents", "Product-Design", "UX", "Human-Computer-Interaction"]
+category: "AI 智能体"
 source: "Linear"
 ---
 

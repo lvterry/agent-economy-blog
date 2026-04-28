@@ -3,6 +3,7 @@ title: 'Claude Managed Agents：让智能体部署速度提升 10 倍'
 excerpt: 'Anthropic 推出可组合 API 套件，用于大规模构建和部署云托管智能体，显著缩短从开发到生产的时间。'
 date: "2026-04-09"
 tags: ["Anthropic", "Claude", "AI-Agents", "Developer-Tools"]
+category: "AI 智能体"
 source: "Anthropic"
 ---
 

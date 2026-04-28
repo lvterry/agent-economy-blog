@@ -3,6 +3,7 @@ title: 'Chrome 推出 Skills：将 AI 提示变成一键工具'
 excerpt: 'Google Chrome 推出 Skills 功能，让用户保存和重复使用 AI 提示，一键运行个性化工作流。'
 date: "2026-04-15"
 tags: ["Google", "Chrome", "AI-Agents", "Productivity", "Browser"]
+category: "AI 智能体"
 source: "Google"
 ---
 

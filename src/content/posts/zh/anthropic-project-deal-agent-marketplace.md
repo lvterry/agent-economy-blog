@@ -3,6 +3,7 @@ title: 'Anthropic Project Deal 测试 AI Agent 代理真人完成二手交易'
 excerpt: 'Anthropic 让 Claude 代表员工在内部二手市场中买卖真实物品，结果完成 186 笔交易，交易额超过 4000 美元。实验显示 agent-to-agent commerce 已经可行，但更强模型会带来可量化的谈判优势，而用户未必能察觉自己处于劣势。'
 date: "2026-04-26"
 tags: ["Agent", "Agent-Economy", "Business", "Security"]
+category: "AI 智能体"
 source: "Anthropic"
 ---
 

@@ -3,6 +3,7 @@ title: 'LLMs make surface quality unreliable in knowledge work'
 excerpt: 'One Happy Fellow argues that LLMs break the proxy measures organizations use to judge knowledge work. When spelling, formatting, review rituals, and professional tone can be generated cheaply, teams need better ways to verify whether work is actually true, useful, and decision-grade.'
 date: "2026-04-25"
 tags: ["LLM", "Future-of-Work", "Knowledge-Work", "AI-Agents", "Risk-Assessment"]
+category: "AI 智能体"
 source: "One Happy Fellow"
 ---
 

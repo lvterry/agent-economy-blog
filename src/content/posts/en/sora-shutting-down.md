@@ -3,6 +3,7 @@ title: 'OpenAI Announces Shutting Down Sora'
 excerpt: 'OpenAI announces shutting down Sora app, just months after launching the AI video generation tool.'
 date: "2026-03-26"
 tags: ["AI-Model", "OpenAI", "X/Twitter"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

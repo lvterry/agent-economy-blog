@@ -2,7 +2,8 @@
 title: GitHub Copilot moves to usage-based billing, replacing fixed plans with AI Credits
 excerpt: GitHub announced Copilot will transition to usage-based billing on June 1, replacing premium request units with GitHub AI Credits. Base prices stay unchanged, but agentic usage patterns will now be priced by actual compute consumption.
 date: "2026-04-27"
-tags: ["Business", "GitHub"]
+tags: ["GitHub", "Copilot", "Pricing", "Usage-Based"]
+category: "商业 & 经济"
 source: "GitHub"
 ---
 

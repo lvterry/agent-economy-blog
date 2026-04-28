@@ -2,7 +2,8 @@
 title: GitHub Copilot 转向用量计费：AI Credits 取代固定订阅
 excerpt: GitHub 宣布 Copilot 将于 6 月 1 日起全面转向用量计费，用 GitHub AI Credits 取代原有的 premium request 机制。基础价格不变，但 agent 模式的推理成本终于被计价了。
 date: "2026-04-27"
-tags: ["Business", "GitHub"]
+tags: ["GitHub", "Copilot", "Pricing", "Usage-Based"]
+category: "商业 & 经济"
 source: "GitHub"
 ---
 

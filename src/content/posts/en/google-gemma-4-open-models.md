@@ -3,6 +3,7 @@ title: 'Google Releases Gemma 4: The Most Capable Open Models to Date'
 excerpt: 'Purpose-built for advanced reasoning and agentic workflows. Four sizes: E2B/E4B/26B-MoE/31B. Apache 2.0 license. #3 on Arena AI leaderboard.'
 date: "2026-04-02"
 tags: ["Google", "Gemma", "Open-Source", "AI-Model", "Agentic-AI"]
+category: "AI 模型"
 source: "Google DeepMind"
 ---
 

@@ -3,6 +3,7 @@ title: 'Meta 发布 HyperAgents：自引用、自改进的 AI 智能体'
 excerpt: 'Meta AI 发布 HyperAgents，让 AI 智能体可以自主优化代码完成任务，形成自引用循环。'
 date: "2026-03-27"
 tags: ["AI-Agents", "Agentic AI", "Meta"]
+category: "AI 智能体"
 source: "Meta AI"
 ---
 

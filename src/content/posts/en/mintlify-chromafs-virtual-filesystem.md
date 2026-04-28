@@ -3,6 +3,7 @@ title: 'Mintlify ChromaFs: Virtual Filesystem for AI Assistants'
 excerpt: 'Reduced doc assistant boot time from 46s to 100ms, marginal cost from $0.0137 to $0. Virtual filesystem built on just-bash and Chroma DB.'
 date: "2026-04-04"
 tags: ["AI-Agents", "Developer-Tools", "AI-Infrastructure", "RAG", "Performance"]
+category: "AI Infra"
 source: "Mintlify"
 ---
 

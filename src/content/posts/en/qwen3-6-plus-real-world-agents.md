@@ -3,6 +3,7 @@ title: 'Qwen3.6-Plus: AI Agent for Real-World Applications'
 excerpt: 'Alibaba Tongyi Qianwen releases model for real-world agent scenarios, supporting complex task planning, code generation, multimodal understanding, and tool calling.'
 date: "2026-04-03"
 tags: ["Qwen", "Alibaba", "AI-Agent", "AI-Model", "Multimodal"]
+category: "AI 模型"
 source: "Alibaba / Tongyi Qianwen"
 ---
 

@@ -3,6 +3,7 @@ title: 'Claude Code 源代码泄露：社区深度分析汇总'
 excerpt: 'npm source map 导致 51.2 万行代码泄露，揭示虚假工具、沮丧检测正则、BUDDY 虚拟伙伴、KAIROS/ULTRAPLAN 模式等内部功能。'
 date: "2026-04-01"
 tags: ["AI-Agents", "Security", "Claude", "Developer-Tools"]
+category: "AI 智能体"
 source: "Community / nblintao"
 ---
 

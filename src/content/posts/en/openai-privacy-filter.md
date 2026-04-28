@@ -3,6 +3,7 @@ title: 'OpenAI open-sources Privacy Filter for local PII detection'
 excerpt: 'OpenAI open-sources Privacy Filter as a smaller specialist model for PII detection and redaction, turning privacy protection into a deployable piece of AI infrastructure.'
 date: "2026-04-23"
 tags: ["OpenAI", "Privacy", "AI-Safety", "Open-Source", "PII-Detection"]
+category: "安全 & 协议"
 source: "OpenAI"
 ---
 

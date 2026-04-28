@@ -3,6 +3,7 @@ title: 'TinyBox：深度学习超级计算机现已开售'
 excerpt: 'tinygrad 背后的 Tiny Corp 推出 TinyBox 深度学习超级计算机，4x 9070 XT 版本售价 $12,000，现已发货。'
 date: "2026-03-22"
 tags: ["AI", "Tinygrad", "Hardware", "Deep-Learning", "AI-Infrastructure"]
+category: "AI Infra"
 source: "TinyCorp"
 ---
 

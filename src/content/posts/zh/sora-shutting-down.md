@@ -3,6 +3,7 @@ title: 'OpenAI 宣布关闭 Sora 应用'
 excerpt: 'OpenAI 宣布将关闭 Sora 应用，这款 AI 视频生成工具上线仅数月便停止服务。'
 date: "2026-03-26"
 tags: ["AI-Model", "OpenAI", "X/Twitter"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

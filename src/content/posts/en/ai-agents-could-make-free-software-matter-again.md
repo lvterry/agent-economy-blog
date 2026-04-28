@@ -3,6 +3,7 @@ title: 'AI Agents Could Make Free Software Matter Again'
 excerpt: 'With AI coding assistants, free software may see a renaissance. When AI can read and modify code, source access becomes user capability, not programmer privilege.'
 date: "2026-03-30"
 tags: ["AI-Agents", "Agent-Economy", "Open Source"]
+category: "AI 智能体"
 source: "George London"
 ---
 

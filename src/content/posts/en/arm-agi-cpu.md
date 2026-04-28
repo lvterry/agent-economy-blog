@@ -3,6 +3,7 @@ title: 'Arm AGI CPU: Silicon for the Agentic AI Cloud Era'
 excerpt: 'A software runtime enabling anyone to create apps for themselves and loved ones. Write once, run everywhere.'
 date: "2026-03-24"
 tags: ["Open Source", "Software-Development", "Cross-Platform"]
+category: "AI 智能体"
 source: "Playbit"
 ---
 

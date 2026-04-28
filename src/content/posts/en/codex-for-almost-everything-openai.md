@@ -3,6 +3,7 @@ title: 'Codex for (almost) everything | OpenAI'
 excerpt: 'OpenAI releases a major update to Codex with computer use, image generation, PR reviews, and more.'
 date: "2026-04-16"
 tags: ["OpenAI", "Codex", "AI-Agents", "Developer-Tools"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

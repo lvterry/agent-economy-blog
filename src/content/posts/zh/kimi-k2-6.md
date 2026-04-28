@@ -3,6 +3,7 @@ title: 'Kimi K2.6 带来开源编程与 Agent 能力新突破'
 excerpt: 'Kimi K2.6 在开源编程领域取得重大进展，支持长程代码生成、设计驱动开发、智能体集群协作和主动式智能体交互，并推出 Claw Groups 研究预览版。'
 date: "2026-04-20"
 tags: ["Kimi", "Moonshot", "AI-Coding", "Agent-Swarm", "Open-Source"]
+category: "AI 智能体"
 source: "Moonshot AI"
 ---
 

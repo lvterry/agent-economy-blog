@@ -3,6 +3,7 @@ title: 'Anthropic 推出 Claude Design 作为 AI 时代视觉设计工具'
 excerpt: 'Claude Design 让设计师能够广泛探索创意方向，也让非设计背景的创始人、产品经理和营销人员能够轻松制作视觉作品——从原型、线框图到演示文稿和营销物料。'
 date: "2026-04-20"
 tags: ["AI-Design", "Claude", "Product-Launch"]
+category: "AI 应用"
 source: "Anthropic"
 ---
 

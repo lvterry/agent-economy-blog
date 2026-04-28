@@ -3,6 +3,7 @@ title: 'Linear Agent Interaction Guidelines: Design Principles for Agents'
 excerpt: '6 core design principles for agent-human interaction: identity disclosure, native integration, instant feedback, state transparency, disengagement respect, human accountability.'
 date: "2026-03-31"
 tags: ["AI-Agents", "Product-Design", "UX", "Human-Computer-Interaction"]
+category: "AI 智能体"
 source: "Linear"
 ---
 

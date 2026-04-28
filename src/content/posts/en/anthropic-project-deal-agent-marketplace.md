@@ -3,6 +3,7 @@ title: 'Anthropic Project Deal tests AI agents negotiating real marketplace trad
 excerpt: 'Anthropic let Claude agents represent employees in an internal classifieds market, producing 186 real-world deals worth more than $4000. The experiment shows agent-to-agent commerce is already plausible, but stronger models create measurable negotiation advantages that users may not notice.'
 date: "2026-04-26"
 tags: ["Agent", "Agent-Economy", "Business", "Security"]
+category: "AI 智能体"
 source: "Anthropic"
 ---
 

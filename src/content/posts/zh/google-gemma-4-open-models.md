@@ -3,6 +3,7 @@ title: 'Google 发布 Gemma 4：迄今最智能的开源模型'
 excerpt: '专为高级推理和智能体工作流设计，提供 E2B/E4B/26B-MoE/31B 四种尺寸，Apache 2.0 许可证，Arena AI 排行榜第 3 名。'
 date: "2026-04-02"
 tags: ["Google", "Gemma", "Open-Source", "AI-Model", "Agentic-AI"]
+category: "AI 模型"
 source: "Google DeepMind"
 ---
 

@@ -3,6 +3,7 @@ title: 'Skills in Chrome: Turn Your Best AI Prompts into One-Click Tools'
 excerpt: 'Google Chrome launches Skills, letting users save and reuse AI prompts with one-click personalized workflows.'
 date: "2026-04-15"
 tags: ["Google", "Chrome", "AI-Agents", "Productivity", "Browser"]
+category: "AI 智能体"
 source: "Google"
 ---
 

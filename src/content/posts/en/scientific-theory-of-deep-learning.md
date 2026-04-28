@@ -3,6 +3,7 @@ title: 'Deep learning may finally be approaching a real scientific theory'
 excerpt: 'A new arXiv review argues that deep learning is converging toward a falsifiable, quantitative theory centered on training dynamics, which the authors call learning mechanics. For the AI industry, that could shift model development from empiricism toward more predictable engineering.'
 date: '2026-04-23'
 tags: ['Deep-Learning', 'AI-Theory', 'Learning-Mechanics', 'Research', 'AI-Infrastructure']
+category: "AI 智能体"
 source: 'arXiv'
 ---
 

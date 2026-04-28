@@ -3,6 +3,7 @@ title: 'zindex builds diagram infrastructure protocol for AI agents'
 excerpt: 'zindex introduces the Diagram Scene Protocol (DSP), enabling agents to create and edit diagrams as structured, versioned state. This marks a paradigm shift from ephemeral AI-generated output to durable artifacts.'
 date: "2026-04-22"
 tags: ["AI-Agents", "Agent-Infrastructure", "Developer-Tools", "Agent-Economy", "Visualization"]
+category: "AI 智能体"
 source: "zindex.ai"
 ---
 

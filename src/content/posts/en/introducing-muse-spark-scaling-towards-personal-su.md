@@ -3,6 +3,7 @@ title: 'Meta Introduces Muse Spark: Scaling Towards Personal Superintelligence'
 excerpt: 'Meta announces initiative to provide everyone with their own superintelligent assistant, enabling truly personalized AI experiences.'
 date: "2026-04-09"
 tags: ["Meta", "AI-Agents", "AI-Model", "Personal-AI"]
+category: "AI 智能体"
 source: "Meta"
 ---
 

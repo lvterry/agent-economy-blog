@@ -3,6 +3,7 @@ title: 'Anthropic introduces Claude Design as AI-era visual design tool'
 excerpt: 'Claude Design gives designers room to explore widely and enables non-designers to create polished visual work—from prototypes and wireframes to pitch decks and marketing collateral.'
 date: "2026-04-20"
 tags: ["AI-Design", "Claude", "Product-Launch"]
+category: "AI 应用"
 source: "Anthropic"
 ---
 

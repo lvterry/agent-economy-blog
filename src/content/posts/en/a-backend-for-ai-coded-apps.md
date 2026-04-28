@@ -3,6 +3,7 @@ title: 'Instant 1.0: A Backend for AI-Coded Apps'
 excerpt: 'Instant 1.0 officially released, turning coding agents into full-stack app builders. Multi-tenant architecture, sync engine, fully open source.'
 date: "2026-04-10"
 tags: ["Developer-Tools", "AI-Agents", "Backend", "Open-Source"]
+category: "AI 智能体"
 source: "Instant"
 ---
 

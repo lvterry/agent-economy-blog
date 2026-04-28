@@ -3,6 +3,7 @@ title: 'OpenAI 发布智能时代工业政策建议'
 excerpt: 'OpenAI 提出以人为本的政策建议，应对超级智能时代挑战，设立 10 万美元研究资助和 100 万美元 API 积分。'
 date: "2026-04-12"
 tags: ["OpenAI", "AI-Policy", "Superintelligence", "Economy"]
+category: "商业 & 经济"
 source: "OpenAI"
 ---
 

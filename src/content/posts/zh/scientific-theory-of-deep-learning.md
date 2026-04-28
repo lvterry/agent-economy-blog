@@ -3,6 +3,7 @@ title: '深度学习正在逼近一套真正的科学理论'
 excerpt: '一篇新的 arXiv 综述提出，深度学习正在形成一套可检验、可量化、以训练动力学为核心的科学理论框架，作者将其称为 learning mechanics。对 AI 产业来说，这意味着模型开发可能逐步从经验主义转向更强的可预测工程。'
 date: '2026-04-23'
 tags: ['Deep-Learning', 'AI-Theory', 'Learning-Mechanics', 'Research', 'AI-Infrastructure']
+category: "AI 智能体"
 source: 'arXiv'
 ---
 

@@ -3,6 +3,7 @@ title: 'Google Releases Gemini 3.1 Pro: Next-Gen Multimodal Reasoning Model'
 excerpt: 'Figma introduces Claude Code to Figma, allowing developers to convert code directly into editable designs. In the AI era, the core work of design is finding the best solutions in infinite possibilities.'
 date: "2026-02-18"
 tags: ["Figma", "AI-Design", "Claude", "MCP", "Product-Design"]
+category: "AI 智能体"
 source: "Figma Blog"
 ---
 

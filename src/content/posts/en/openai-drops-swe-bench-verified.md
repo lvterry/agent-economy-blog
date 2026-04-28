@@ -3,6 +3,7 @@ title: 'OpenAI drops SWE-bench Verified after finding widespread contamination'
 excerpt: 'OpenAI found that SWE-bench Verified suffers from flawed test cases and training data contamination across all major models, and is now recommending SWE-bench Pro instead.'
 date: "2026-02-23"
 tags: ["AI-Model", "Coding", "OpenAI"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

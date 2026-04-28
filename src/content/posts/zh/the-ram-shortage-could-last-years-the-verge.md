@@ -3,6 +3,7 @@ title: 'AI 需求推动 RAM 短缺或持续数年'
 excerpt: '据《日经亚洲》报道，即使供应商增加 DRAM 生产，到 2027 年底制造商预计只能满足 60% 的需求。SK 集团主席甚至表示短缺可能持续到 2030 年。'
 date: "2026-04-18"
 tags: ["AI-Infrastructure", "Hardware", "Supply-Chain", "Economy"]
+category: "AI Infra"
 source: "The Verge"
 ---
 

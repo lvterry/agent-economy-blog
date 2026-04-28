@@ -3,6 +3,7 @@ title: 'DeepSeek V4 preview brings 1M context into open model competition'
 excerpt: 'DeepSeek has released and open-sourced the V4 preview, with Pro and Flash variants and 1M context as the default across official services. The release matters less as a benchmark update than as a push to make long-context agent workflows cheaper and more deployable.'
 date: "2026-04-24"
 tags: ["DeepSeek", "AI-Model", "Agentic AI", "Coding", "Long-Context"]
+category: "AI 智能体"
 source: "DeepSeek"
 ---
 

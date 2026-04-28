@@ -3,6 +3,7 @@ title: 'Entire: A Collaboration Platform for Agents and Humans'
 excerpt: 'Entire is going beyond repositories, building a developer platform where agents and humans can collaborate, interact, and grow. The birth of a new galaxy draws near.'
 date: "2026-02-11"
 tags: ["AI-Agents", "Agent-Economy", "Future-of-Work"]
+category: "AI 智能体"
 source: "Entire"
 ---
 

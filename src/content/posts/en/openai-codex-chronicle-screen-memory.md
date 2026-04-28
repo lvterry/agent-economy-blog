@@ -3,6 +3,7 @@ title: 'OpenAI Codex Launches Chronicle Screen Context Memory'
 excerpt: 'OpenAI unveils Chronicle for Codex as an opt-in research preview, using screen capture to build automatic work memories and reduce the need to restate context, while introducing new privacy and prompt injection risks.'
 date: "2026-04-26"
 tags: ["Agent", "Coding", "Security", "Privacy", "OpenAI", "Codex"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

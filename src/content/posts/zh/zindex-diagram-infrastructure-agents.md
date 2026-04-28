@@ -3,6 +3,7 @@ title: 'zindex 为 AI 智能体打造图表基础设施协议'
 excerpt: 'zindex 推出 Diagram Scene Protocol (DSP)，让智能体能够以结构化、可版本化的方式创建和编辑图表。这标志着 AI 生成内容从一次性输出向持久化状态的范式转变。'
 date: "2026-04-22"
 tags: ["AI-Agents", "Agent-Infrastructure", "Developer-Tools", "Agent-Economy", "Visualization"]
+category: "AI 智能体"
 source: "zindex.ai"
 ---
 

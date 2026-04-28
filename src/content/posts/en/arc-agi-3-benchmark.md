@@ -3,6 +3,7 @@ title: 'ARC-AGI-3: The Next-Gen Reasoning Benchmark for Measuring AGI'
 excerpt: 'Third-generation ARC reasoning benchmark testing AI agents interactive reasoning, measuring the gap between AI and human intelligence.'
 date: "2026-03-26"
 tags: ["AI-Model", "Reasoning", "Benchmark"]
+category: "AI 模型"
 source: "ARC Prize"
 ---
 

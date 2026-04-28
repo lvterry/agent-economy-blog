@@ -3,6 +3,7 @@ title: 'Design UI using AI with Stitch from Google Labs'
 excerpt: 'Stitch is evolving into an AI-native platform that allows anyone to create, iterate, and collaborate on high-fidelity UI.'
 date: "2026-03-19"
 tags: ["AI-Agents", "Agent-Economy", "Future-of-Work"]
+category: "AI 智能体"
 source: "Google Blog"
 ---
 

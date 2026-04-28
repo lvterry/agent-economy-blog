@@ -3,6 +3,7 @@ title: 'Project NOMAD: Free Open-Source Offline AI Server'
 excerpt: 'Free open-source offline server to run AI on your own computer. Perfect for emergency prep, off-grid living, or self-hosting.'
 date: "2026-03-23"
 tags: ["Hardware", "Open Source", "Local AI", "AI-Infrastructure"]
+category: "AI Infra"
 source: "Project NOMAD"
 ---
 

@@ -3,6 +3,7 @@ title: 'OpenAI launches GPT-5.5 with a bigger leap in autonomous work'
 excerpt: 'OpenAI launches GPT-5.5 with stronger coding and knowledge-work performance while preserving speed, pushing the model closer to an execution layer for autonomous digital work.'
 date: "2026-04-23"
 tags: ["OpenAI", "GPT-5.5", "AI-Model", "Coding", "Agentic-AI"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

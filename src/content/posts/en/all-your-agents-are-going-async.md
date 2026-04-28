@@ -3,6 +3,7 @@ title: 'All your agents are going async'
 excerpt: 'AI agents are shifting from synchronous chat to async background execution, breaking traditional HTTP transport design and requiring new durable transport and durable state solutions.'
 date: "2026-04-22"
 tags: ["AI-Agents", "Async", "Transport", "Ably", "Architecture"]
+category: "AI 智能体"
 source: "zknill.io"
 ---
 

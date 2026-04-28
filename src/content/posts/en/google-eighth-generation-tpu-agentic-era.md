@@ -3,6 +3,7 @@ title: 'Google unveils eighth-generation TPUs with a dual-chip bet on the agent 
 excerpt: 'Google’s TPU 8t and TPU 8i split training and inference into clearer product paths, reflecting how agent-era infrastructure now demands deeper specialization and system-level optimization.'
 date: "2026-04-22"
 tags: ["Google", "TPU", "AI-Infrastructure", "Hardware", "Data-Center", "Agentic-AI"]
+category: "AI Infra"
 source: "Google Cloud Blog"
 ---
 

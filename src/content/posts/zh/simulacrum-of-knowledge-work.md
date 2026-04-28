@@ -3,6 +3,7 @@ title: 'LLM 让知识工作的表面质量不再可靠'
 excerpt: 'One Happy Fellow 讨论了 LLM 对知识工作评估机制的破坏。过去拼写、格式、代码审查等表面信号还能作为质量代理指标，但当 AI 能廉价生成这些信号时，组织需要重新思考如何判断真实工作质量。'
 date: "2026-04-25"
 tags: ["LLM", "Future-of-Work", "Knowledge-Work", "AI-Agents", "Risk-Assessment"]
+category: "AI 智能体"
 source: "One Happy Fellow"
 ---
 

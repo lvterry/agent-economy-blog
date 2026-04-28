@@ -3,6 +3,7 @@ title: 'AI Agents 全面走向异步化 传输层面临重构'
 excerpt: 'AI agents 正从同步对话模式转向异步后台运行，这种转变打破了传统的 HTTP 传输层设计，需要新的 durable transport 和 durable state 解决方案。'
 date: "2026-04-22"
 tags: ["AI-Agents", "Async", "Transport", "Ably", "Architecture"]
+category: "AI 智能体"
 source: "zknill.io"
 ---
 

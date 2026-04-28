@@ -3,6 +3,7 @@ title: 'Google 发布第八代 TPU 用双芯片架构押注智能体时代'
 excerpt: 'Google 推出 TPU 8t 和 TPU 8i，把训练和推理拆成两条更清晰的路线，这反映出智能体时代的基础设施已经需要更强的分工与系统级优化。'
 date: "2026-04-22"
 tags: ["Google", "TPU", "AI-Infrastructure", "Hardware", "Data-Center", "Agentic-AI"]
+category: "AI Infra"
 source: "Google Cloud Blog"
 ---
 

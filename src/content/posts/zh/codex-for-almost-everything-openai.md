@@ -3,6 +3,7 @@ title: 'OpenAI 发布 Codex 重大更新'
 excerpt: 'OpenAI 发布 Codex 重大更新，支持计算机操作、图像生成、PR 审查等更多功能。'
 date: "2026-04-16"
 tags: ["OpenAI", "Codex", "AI-Agents", "Developer-Tools"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

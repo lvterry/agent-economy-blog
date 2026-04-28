@@ -15,7 +15,7 @@ if (!postEntry) {
 
 const { Content } = await render(postEntry);
 const post = postEntry.data;
-const categories = getCategories(post.tags);
+const categories = getCategories(post.tags, post.category);
 
 const siteURL = 'https://agenteconomy.cn';
 const articleUrl = `${siteURL}${locale === 'zh' ? '' : '/en'}/blog/${slug}`;

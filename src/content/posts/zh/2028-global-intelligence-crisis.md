@@ -3,6 +3,7 @@ title: '2028年全球智能危机：AI 乐观主义的熊市情景'
 excerpt: 'CitriniResearch 发布情景分析，探讨 AI 快速发展可能带来的经济风险：失业率飙升至 10.2%、\\"幽灵 GDP\\"、SaaS 行业崩溃。这是一个未被充分探讨的左尾风险情景。'
 date: "2026-02-27"
 tags: ["AI", "Economy", "Future-of-Work", "Market-Analysis", "Risk-Assessment"]
+category: "商业 & 经济"
 source: "CitriniResearch"
 ---
 

@@ -3,6 +3,7 @@ title: 'Google deepens its Anthropic bet to own both model access and compute de
 excerpt: 'Google plans to invest up to $40 billion in Anthropic, with $10 billion up front and the rest tied to performance milestones. The bigger story is how the deal binds equity, cloud distribution, and TPU demand into a single infrastructure value chain.'
 date: '2026-04-24'
 tags: ['Google', 'Anthropic', 'AI-Infrastructure', 'Cloud', 'TPU', 'AI-Model']
+category: "AI 智能体"
 source: 'Bloomberg'
 ---
 

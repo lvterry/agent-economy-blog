@@ -3,6 +3,7 @@ title: 'AI 雇佣人类：智能体经济的新范式'
 excerpt: 'Rent a Human 提出颠覆性概念：AI 智能体雇佣人类完成物理任务，揭示人机关系的根本性转变。'
 date: "2026-02-09"
 tags: ["AI-Agents", "Agent-Economy", "Future-of-Work"]
+category: "AI 智能体"
 source: "Rent a Human"
 ---
 

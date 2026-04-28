@@ -3,6 +3,7 @@ title: 'Lemonade by AMD：开源本地 LLM 服务器'
 excerpt: 'AMD 推出的快速开源本地 LLM 服务器，支持 GPU/NPU、多模态、OpenAI API 兼容，仅 2MB 后端，一分钟安装。'
 date: "2026-04-03"
 tags: ["Security", "Privacy", "LinkedIn", "Data-Protection", "Trust"]
+category: "安全 & 协议"
 source: "Fairlinked e.V. / BrowserGate"
 ---
 

@@ -3,6 +3,7 @@ title: 'ARC-AGI-3：衡量 AI 通用智能的新一代推理基准'
 excerpt: '第三代 ARC 推理基准，专注测试 AI 智能体的交互式推理能力，衡量 AI 与人类智能的差距。'
 date: "2026-03-26"
 tags: ["AI-Model", "Reasoning", "Benchmark"]
+category: "AI 模型"
 source: "ARC Prize"
 ---
 

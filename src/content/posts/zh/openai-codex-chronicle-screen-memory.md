@@ -3,6 +3,7 @@ title: 'OpenAI Codex 推出 Chronicle 屏幕上下文记忆功能'
 excerpt: 'OpenAI 为 Codex 发布 Chronicle 研究预览，通过屏幕捕捉自动构建工作记忆，减少重复描述上下文的负担，同时带来隐私与注入攻击的新挑战。'
 date: "2026-04-26"
 tags: ["Agent", "Coding", "Security", "Privacy", "OpenAI", "Codex"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

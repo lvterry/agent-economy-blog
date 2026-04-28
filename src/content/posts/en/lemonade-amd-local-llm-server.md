@@ -3,6 +3,7 @@ title: 'Lemonade by AMD: Fast Open Source Local LLM Server'
 excerpt: 'Fairlinked investigation reveals LinkedIn scans browser extensions without consent, collecting sensitive data on religion, politics, job search and transmitting to third parties.'
 date: "2026-04-03"
 tags: ["Security", "Privacy", "LinkedIn", "Data-Protection", "Trust"]
+category: "安全 & 协议"
 source: "Fairlinked e.V. / BrowserGate"
 ---
 

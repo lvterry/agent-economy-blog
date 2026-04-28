@@ -3,6 +3,7 @@ title: 'Stanford Report: Growing Disconnect Between AI Insiders and the Public'
 excerpt: 'Stanford annual report shows divergence between AI experts and public opinion, Gen Z leads negative sentiment, misaligned priorities spark industry reflection.'
 date: "2026-04-14"
 tags: ["Stanford", "AI-Policy", "Public-Opinion", "Trust", "Society"]
+category: "AI 智能体"
 source: "TechCrunch"
 ---
 

@@ -3,6 +3,7 @@ title: 'RynnBrain：阿里巴巴开源具身智能基础模型'
 excerpt: 'Entire 正在超越代码仓库，构建一个开发者平台，让智能体和人类能够协作、互动和成长。一个新星系的诞生即将到来。'
 date: "2026-02-11"
 tags: ["AI-Agents", "Agent-Economy", "Future-of-Work"]
+category: "AI 智能体"
 source: "Entire"
 ---
 

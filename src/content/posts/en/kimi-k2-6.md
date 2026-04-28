@@ -3,6 +3,7 @@ title: 'Kimi K2.6 brings new breakthroughs in open-source coding and agents'
 excerpt: 'Kimi K2.6 advances open-source coding with long-horizon code generation, design-driven development, agent swarm collaboration, proactive agent interactions, and the Claw Groups research preview.'
 date: "2026-04-20"
 tags: ["Kimi", "Moonshot", "AI-Coding", "Agent-Swarm", "Open-Source"]
+category: "AI 智能体"
 source: "Moonshot AI"
 ---
 

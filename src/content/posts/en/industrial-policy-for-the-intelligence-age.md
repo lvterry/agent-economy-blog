@@ -3,6 +3,7 @@ title: 'OpenAI: Industrial Policy for the Intelligence Age'
 excerpt: 'OpenAI proposes people-first policy ideas for the superintelligence era, offering $100K research grants and $1M API credits.'
 date: "2026-04-12"
 tags: ["OpenAI", "AI-Policy", "Superintelligence", "Economy"]
+category: "商业 & 经济"
 source: "OpenAI"
 ---
 

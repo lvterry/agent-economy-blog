@@ -3,6 +3,7 @@ title: 'Coasts: Localhost Service Isolation for Git Worktrees'
 excerpt: 'CLI tool with local UI to run multiple isolated dev environments on one machine. Docker Compose support, AI-agnostic, offline-first.'
 date: "2026-03-31"
 tags: ["AI-Development", "Developer-Tools", "Git", "Docker"]
+category: "AI 智能体"
 source: "Coast Guard"
 ---
 

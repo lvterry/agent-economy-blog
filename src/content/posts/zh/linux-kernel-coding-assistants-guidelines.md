@@ -3,6 +3,7 @@ title: 'Linux 内核发布 AI 编码助手官方指南'
 excerpt: 'Linux 内核首次针对 AI 辅助编程制定正式政策：AI 禁止添加 Signed-off-by，人类需承担全部责任。'
 date: "2026-04-11"
 tags: ["Open-Source", "Linux", "AI-Agents", "Developer-Tools", "Policy"]
+category: "AI 智能体"
 source: "Linux Kernel"
 ---
 

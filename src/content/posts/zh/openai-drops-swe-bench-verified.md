@@ -3,6 +3,7 @@ title: 'OpenAI 放弃 SWE-bench Verified 转向 SWE-bench Pro'
 excerpt: 'OpenAI 审计发现 SWE-bench Verified 存在严重的测试缺陷和训练数据污染问题，已停止报告该基准分数，并建议业界转向 SWE-bench Pro。'
 date: "2026-02-23"
 tags: ["AI-Model", "Coding", "OpenAI"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

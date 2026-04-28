@@ -3,6 +3,7 @@ title: 'Agents of Chaos：AI 智能体红队安全研究报告'
 excerpt: '东北大学等机构的研究团队对 AI 智能体进行红队测试，发现非授权遵从、信息泄露、破坏性操作等严重安全漏洞。'
 date: "2026-03-31"
 tags: ["AI-Agents", "AI-Safety", "Security", "Research"]
+category: "AI 智能体"
 source: "BAU Lab / Northeastern University"
 ---
 

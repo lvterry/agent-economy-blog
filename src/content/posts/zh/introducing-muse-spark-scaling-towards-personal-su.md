@@ -3,6 +3,7 @@ title: 'Meta 发布 Muse Spark：迈向个人超级智能'
 excerpt: 'Meta 推出新计划，致力于为每个人提供个人超级智能助手，实现真正的个性化 AI 体验。'
 date: "2026-04-09"
 tags: ["Meta", "AI-Agents", "AI-Model", "Personal-AI"]
+category: "AI 智能体"
 source: "Meta"
 ---
 

@@ -3,6 +3,7 @@ title: 'AI "输家" 苹果为何可能最终获胜'
 excerpt: '当所有人烧钱争夺 SOTA 模型时，苹果坐拥现金储备。智能商品化可能让\\"AI 输家\\"成为最终赢家。'
 date: "2026-04-13"
 tags: ["Market-Analysis", "Apple", "OpenAI", "AI-Strategy", "Economy"]
+category: "商业 & 经济"
 source: "adlrocha"
 ---
 

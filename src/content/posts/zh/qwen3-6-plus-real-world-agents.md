@@ -3,6 +3,7 @@ title: 'Qwen3.6-Plus：面向真实世界场景的 AI Agent'
 excerpt: '阿里巴巴通义千问发布面向真实世界 Agent 场景的模型，支持复杂任务规划、代码生成、多模态理解和工具调用。'
 date: "2026-04-03"
 tags: ["Qwen", "Alibaba", "AI-Agent", "AI-Model", "Multimodal"]
+category: "AI 模型"
 source: "Alibaba / Tongyi Qianwen"
 ---
 

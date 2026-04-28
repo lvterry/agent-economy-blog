@@ -3,6 +3,7 @@ title: 'Agents of Chaos: Red-Teaming Study on AI Agent Security'
 excerpt: 'Research team from Northeastern University and others conducted red-teaming on AI agents, discovering serious vulnerabilities including unauthorized compliance and destructive actions.'
 date: "2026-03-31"
 tags: ["AI-Agents", "AI-Safety", "Security", "Research"]
+category: "AI 智能体"
 source: "BAU Lab / Northeastern University"
 ---
 

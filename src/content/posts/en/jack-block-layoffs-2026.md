@@ -3,6 +3,7 @@ title: 'Jack Dorsey Announces Major Block Layoffs: Reducing from 10,000 to 6,000
 excerpt: 'Block founder Jack Dorsey announces the company will reduce workforce by nearly 50%, from over 10,000 to approximately 6,000 employees. Over 4,000 people will be affected in one of the hardest decisions in company history.'
 date: "2026-02-27"
 tags: ["Tech-Industry", "Layoffs", "Block", "Jack-Dorsey", "Business"]
+category: "商业 & 经济"
 source: "X/Twitter"
 ---
 

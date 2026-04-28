@@ -3,6 +3,7 @@ title: 'Claude Code Source Leak: Community Analysis & Insights'
 excerpt: 'npm source map leak exposed 512K lines of code, revealing fake tools, frustration regexes, BUDDY virtual pet, KAIROS/ULTRAPLAN modes, and more.'
 date: "2026-04-01"
 tags: ["AI-Agents", "Security", "Claude", "Developer-Tools"]
+category: "AI 智能体"
 source: "Community / nblintao"
 ---
 

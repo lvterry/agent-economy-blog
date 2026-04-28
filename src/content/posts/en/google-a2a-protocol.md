@@ -3,6 +3,7 @@ title: 'Google Introduces A2A Protocol: A New Era of Agent Interoperability'
 excerpt: 'Google announces A2A open protocol enabling agents from different frameworks and vendors to collaborate, ushering in a new era of agent interoperability.'
 date: "2025-04-09"
 tags: ["Google", "A2A", "Agent-Interoperability"]
+category: "AI 智能体"
 source: "Google Developers Blog"
 ---
 

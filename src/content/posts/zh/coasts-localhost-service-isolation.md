@@ -3,6 +3,7 @@ title: 'Coasts：为 Git Worktree 提供本地服务隔离与编排'
 excerpt: 'CLI 工具 + 本地 UI，在单台机器运行多个隔离开发环境。支持 Docker Compose，AI 工具无关，离线优先。'
 date: "2026-03-31"
 tags: ["AI-Development", "Developer-Tools", "Git", "Docker"]
+category: "AI 智能体"
 source: "Coast Guard"
 ---
 

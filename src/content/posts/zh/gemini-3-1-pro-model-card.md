@@ -3,6 +3,7 @@ title: 'Google 发布 Gemini 3.1 Pro：新一代多模态推理模型'
 excerpt: 'Figma 推出 Claude Code to Figma 功能，让开发者可以直接将代码转换为可编辑的设计稿。在 AI 时代，设计的核心工作是在无限可能性中找到最佳解决方案。'
 date: "2026-02-18"
 tags: ["Figma", "AI-Design", "Claude", "MCP", "Product-Design"]
+category: "AI 智能体"
 source: "Figma Blog"
 ---
 

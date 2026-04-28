@@ -3,6 +3,7 @@ title: 'OpenAI 发布 GPT-5.5 把 AI 工作流推向更高自治'
 excerpt: 'OpenAI 发布 GPT-5.5，在保持速度的同时显著提升编码、知识工作与科研表现，更重要的是把模型进一步推向可独立推进任务的执行层。'
 date: "2026-04-23"
 tags: ["OpenAI", "GPT-5.5", "AI-Model", "Coding", "Agentic-AI"]
+category: "AI 模型"
 source: "OpenAI"
 ---
 

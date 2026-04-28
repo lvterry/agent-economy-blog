@@ -3,6 +3,7 @@ title: 'Google 追加押注 Anthropic 抢占模型与算力双重入口'
 excerpt: 'Google 计划向 Anthropic 投资最高 400 亿美元，其中 100 亿美元立即到账，其余部分与业绩里程碑挂钩。真正值得关注的是这笔交易把股权、云分发和 TPU 需求进一步绑定成了一条基础设施价值链。'
 date: '2026-04-24'
 tags: ['Google', 'Anthropic', 'AI-Infrastructure', 'Cloud', 'TPU', 'AI-Model']
+category: "AI 智能体"
 source: 'Bloomberg'
 ---
 

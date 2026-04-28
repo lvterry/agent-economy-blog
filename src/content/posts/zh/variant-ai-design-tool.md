@@ -3,6 +3,7 @@ title: 'Variant：用 AI 无限滚动探索设计灵感'
 excerpt: '输入一个应用或网站的想法，通过滚动即可浏览 AI 生成的无限设计选项。像刷短视频一样探索设计灵感。'
 date: "2026-03-30"
 tags: ["AI-Design", "Product-Design", "AI-Application"]
+category: "AI 应用"
 source: "Variant"
 ---
 

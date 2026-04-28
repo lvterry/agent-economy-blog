@@ -3,6 +3,7 @@ title: 'OpenAI launches ChatGPT Images 2.0 entering deep visual creation'
 excerpt: 'Leaked documents from DSP StackAdapt reveal ChatGPT ad placements driven by prompt relevance, with CPMs ranging from $15-$60 and a $50,000 minimum spend for the pilot program. This marks the official opening of the AI conversation ad market.'
 date: "2026-04-21"
 tags: ["OpenAI", "ChatGPT", "AI-Advertising", "Agent-Economy", "Monetization"]
+category: "AI 智能体"
 source: "Adweek"
 ---
 

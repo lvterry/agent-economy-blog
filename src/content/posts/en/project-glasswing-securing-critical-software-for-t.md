@@ -3,6 +3,7 @@ title: 'Project Glasswing: Securing critical software for the AI era'
 excerpt: 'Gemma 4 26B-A4B achieves 51 tokens/sec on M4 Pro 48GB with 256K context. LM Studio 0.4.0 adds headless CLI, parallel processing, MCP integration.'
 date: "2026-04-06"
 tags: ["Google", "Gemma", "Local-AI", "LM-Studio", "Developer-Tools"]
+category: "AI 智能体"
 source: "George Liu"
 ---
 

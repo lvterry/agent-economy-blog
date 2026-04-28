@@ -3,6 +3,7 @@ title: 'DeepSeek V4 预览版把百万上下文带入开源模型竞争'
 excerpt: 'DeepSeek 发布并开源 V4 预览版，提供 Pro 与 Flash 两个模型，并把 1M 上下文作为官方服务标配。这不仅是一次模型升级，也是在用成本和长上下文能力重新定义开源模型的 agent 场景。'
 date: "2026-04-24"
 tags: ["DeepSeek", "AI-Model", "Agentic AI", "Coding", "Long-Context"]
+category: "AI 智能体"
 source: "DeepSeek"
 ---
 

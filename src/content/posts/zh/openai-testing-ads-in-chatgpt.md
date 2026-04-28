@@ -3,6 +3,7 @@ title: 'OpenAI 开始在 ChatGPT 中测试广告'
 excerpt: 'OpenAI 宣布在美国开始测试 ChatGPT 中的广告功能，仅面向 Free 和 Go 订阅层的登录成年用户，Plus、Pro 等高级订阅将不显示广告。'
 date: "2026-02-09"
 tags: ["OpenAI", "ChatGPT", "AI-Advertising"]
+category: "安全 & 协议"
 source: "OpenAI"
 ---
 

@@ -3,6 +3,7 @@ title: 'OpenAI 发布 ChatGPT Images 2.0 进军视觉创作深水区'
 excerpt: 'OpenAI 发布原生图像生成能力重大升级，支持多语言文本渲染、复杂排版和多种艺术风格。这标志着 AI 图像生成从\\"玩具\\"向专业生产力工具的关键转变。'
 date: "2026-04-21"
 tags: ["OpenAI", "ChatGPT", "AI-Advertising", "Agent-Economy", "Monetization"]
+category: "AI 智能体"
 source: "Adweek"
 ---
 

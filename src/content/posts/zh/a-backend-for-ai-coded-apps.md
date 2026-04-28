@@ -3,6 +3,7 @@ title: 'Instant 1.0：AI 编码应用的最佳后端'
 excerpt: 'Instant 1.0 正式发布，将编码智能体变成全栈应用构建器。多租户架构、同步引擎、完全开源。'
 date: "2026-04-10"
 tags: ["Developer-Tools", "AI-Agents", "Backend", "Open-Source"]
+category: "AI 智能体"
 source: "Instant"
 ---
 

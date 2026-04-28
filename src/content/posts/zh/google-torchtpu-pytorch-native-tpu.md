@@ -3,6 +3,7 @@ title: 'Google 推出 TorchTPU 让 PyTorch 开发者更顺滑迁移'
 excerpt: 'Google 发布 TorchTPU，把 PyTorch 原生体验、XLA 编译链和 TPU 硬件能力更紧地绑在一起，核心目标是降低 TPU 生态的开发者迁移摩擦。'
 date: "2026-04-24"
 tags: ["Google", "TPU", "PyTorch", "AI-Infrastructure", "Developer-Tools"]
+category: "AI Infra"
 source: "Google Developers Blog"
 ---
 

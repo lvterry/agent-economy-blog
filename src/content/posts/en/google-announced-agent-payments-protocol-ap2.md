@@ -3,6 +3,7 @@ title: 'Google Announced Agent Payments Protocol (AP2)'
 excerpt: 'Google announced AP2, an open protocol built on A2A that enables secure payment transactions between AI agents.'
 date: "2025-09-16"
 tags: ["Google", "AP2", "Agent-Economy"]
+category: "AI 智能体"
 source: "Google Cloud Blog"
 ---
 

@@ -3,6 +3,7 @@ title: 'Anthropic Introduces Model Context Protocol (MCP)'
 excerpt: 'Anthropic open-sources MCP, an open standard connecting AI assistants to data systems, solving the isolation between AI and data silos.'
 date: "2024-11-25"
 tags: ["Anthropic", "MCP", "AI-Standards"]
+category: "AI 智能体"
 source: "Anthropic"
 ---
 

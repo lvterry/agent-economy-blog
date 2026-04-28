@@ -6,7 +6,7 @@ const { post, locale } = Astro.props;
 const { data, id } = post;
 const slug = id.replace(`${locale}/`, '').replace('.md', '');
 
-const cats = getCategories(data.tags || []);
+const cats = getCategories(data.tags || [], data.category);
 const primaryCat = cats[0];
 const categoryData = cats.join(',');
 const postUrl = getLocalizedPath(`/blog/${slug}`, locale);

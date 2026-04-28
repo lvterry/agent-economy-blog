@@ -3,6 +3,7 @@ title: 'The 2028 Global Intelligence Crisis: A Bearish Scenario for AI Optimism'
 excerpt: 'CitriniResearch scenario analysis explores economic risks of rapid AI development: unemployment hits 10.2%, \\"Ghost GDP\\", SaaS industry collapse. An underexplored left-tail risk scenario.'
 date: "2026-02-27"
 tags: ["AI", "Economy", "Future-of-Work", "Market-Analysis", "Risk-Assessment"]
+category: "商业 & 经济"
 source: "CitriniResearch"
 ---
 

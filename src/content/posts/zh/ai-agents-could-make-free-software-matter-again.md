@@ -3,6 +3,7 @@ title: 'AI 智能体可能让自由软件重新变得重要'
 excerpt: '随着 AI 编程助手普及，自由软件可能迎来复兴。当 AI 能阅读并修改代码时，源代码访问权从程序员特权变成用户实用能力。'
 date: "2026-03-30"
 tags: ["AI-Agents", "Agent-Economy", "Open Source"]
+category: "AI 智能体"
 source: "George London"
 ---
 

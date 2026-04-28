@@ -3,6 +3,7 @@ title: 'OpenAI 开源 Privacy Filter 把 PII 检测推向本地化'
 excerpt: 'OpenAI 开源 Privacy Filter，用更小的专用模型处理 PII 检测与脱敏，这意味着隐私保护正从原则讨论走向可部署的 AI 基础设施组件。'
 date: "2026-04-23"
 tags: ["OpenAI", "Privacy", "AI-Safety", "Open-Source", "PII-Detection"]
+category: "安全 & 协议"
 source: "OpenAI"
 ---
 

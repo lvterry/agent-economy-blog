@@ -3,6 +3,7 @@ title: 'AI Hires Humans: A New Paradigm in the Agent Economy'
 excerpt: 'Rent a Human introduces a disruptive concept where AI agents hire humans for physical tasks, marking a fundamental shift in human-machine relationships.'
 date: "2026-02-09"
 tags: ["AI-Agents", "Agent-Economy", "Future-of-Work"]
+category: "AI 智能体"
 source: "Rent a Human"
 ---
 

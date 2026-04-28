@@ -2,7 +2,8 @@
 title: 微软 OpenAI 合作重组：取消独家销售权，终结收入分成
 excerpt: 微软与 OpenAI 宣布修订合作协议，微软放弃 OpenAI 模型的独家云销售权，换取不再支付收入分成。OpenAI 从此可将其产品部署在任何云平台上。
 date: "2026-04-27"
-tags: ["OpenAI"]
+tags: ["OpenAI", "Microsoft", "Partnership"]
+category: "行业动态"
 source: "Bloomberg"
 ---
 

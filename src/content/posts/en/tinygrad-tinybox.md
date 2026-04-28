@@ -3,6 +3,7 @@ title: 'TinyBox: Deep Learning Supercomputer Now Shipping'
 excerpt: 'Tiny Corp launches TinyBox deep learning supercomputer with 4x 9070 XT for $12,000, now shipping.'
 date: "2026-03-22"
 tags: ["AI", "Tinygrad", "Hardware", "Deep-Learning", "AI-Infrastructure"]
+category: "AI Infra"
 source: "TinyCorp"
 ---
 

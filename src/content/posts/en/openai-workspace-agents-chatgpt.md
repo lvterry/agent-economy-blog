@@ -3,6 +3,7 @@ title: 'OpenAI launches workspace agents to own the team workflow layer'
 excerpt: 'OpenAI pushes agents from personal assistants into shared team workflows, aiming not just at chat but at the workflow layer inside the enterprise stack.'
 date: "2026-04-22"
 tags: ["AI-Agents", "OpenAI", "ChatGPT", "Workspace", "Collaboration", "Codex"]
+category: "AI 智能体"
 source: "OpenAI"
 ---
 

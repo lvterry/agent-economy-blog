@@ -3,6 +3,7 @@ title: 'Linux Kernel Releases Official Guidelines for AI Coding Assistants'
 excerpt: 'Linux kernel establishes first formal AI-assisted programming policy: AI cannot add Signed-off-by, humans bear full responsibility.'
 date: "2026-04-11"
 tags: ["Open-Source", "Linux", "AI-Agents", "Developer-Tools", "Policy"]
+category: "AI 智能体"
 source: "Linux Kernel"
 ---
 

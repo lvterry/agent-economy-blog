@@ -3,6 +3,7 @@ title: 'Google launches TorchTPU to make PyTorch migration smoother'
 excerpt: 'Google introduces TorchTPU to tie PyTorch ergonomics, XLA compilation, and TPU hardware more tightly together, with the explicit goal of reducing migration friction for developers.'
 date: "2026-04-24"
 tags: ["Google", "TPU", "PyTorch", "AI-Infrastructure", "Developer-Tools"]
+category: "AI Infra"
 source: "Google Developers Blog"
 ---
 

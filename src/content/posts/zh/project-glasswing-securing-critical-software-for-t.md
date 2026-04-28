@@ -3,6 +3,7 @@ title: 'Project Glasswing: 为 AI 时代保护关键软件'
 excerpt: 'Anthropic 推出新计划，旨在保护全球最关键软件，为防御者在 AI 驱动的网络安全时代提供持久优势。'
 date: "2026-04-06"
 tags: ["Google", "Gemma", "Local-AI", "LM-Studio", "Developer-Tools"]
+category: "AI 智能体"
 source: "George Liu"
 ---
 

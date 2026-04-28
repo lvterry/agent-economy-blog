@@ -3,6 +3,7 @@ title: '斯坦福报告：AI 圈内人士与公众认知差距日益扩大'
 excerpt: '斯坦福年度报告显示 AI 专家与公众看法分化，Gen Z 引领负面情绪，关注点错位引发行业反思。'
 date: "2026-04-14"
 tags: ["Stanford", "AI-Policy", "Public-Opinion", "Trust", "Society"]
+category: "AI 智能体"
 source: "TechCrunch"
 ---
 

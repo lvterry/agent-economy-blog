@@ -3,6 +3,7 @@ title: 'Google Releases Nano Banana 2: Next-Gen Image Model Combining Pro Capabi
 excerpt: 'Google DeepMind releases Nano Banana 2, combining Pro features with Flash speed. Supports subject consistency, precise text rendering, 4K resolution, now available across Gemini, Search, Flow and more.'
 date: "2026-02-27"
 tags: ["Google", "Nano-Banana", "Image-Generation", "AI-Model", "Multimodal", "Gemini"]
+category: "AI 模型"
 source: "Google Blog"
 ---
 

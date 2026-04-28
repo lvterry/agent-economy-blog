@@ -3,6 +3,7 @@ title: 'Google 推出 A2A 协议：智能体互操作的新时代'
 excerpt: 'Google 宣布 A2A 开放协议，让不同框架和供应商的智能体能够协作，开启智能体互操作新时代。'
 date: "2025-04-09"
 tags: ["Google", "A2A", "Agent-Interoperability"]
+category: "AI 智能体"
 source: "Google Developers Blog"
 ---
 

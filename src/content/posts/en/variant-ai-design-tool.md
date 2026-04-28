@@ -3,6 +3,7 @@ title: 'Variant: Explore Infinite Design Ideas with AI-Powered Scrolling'
 excerpt: 'Enter an idea for an app or website and browse endless AI-generated design options by scrolling. Explore design inspiration like browsing short videos.'
 date: "2026-03-30"
 tags: ["AI-Design", "Product-Design", "AI-Application"]
+category: "AI 应用"
 source: "Variant"
 ---
 

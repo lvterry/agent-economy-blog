@@ -3,6 +3,7 @@ title: 'AI demand drives RAM shortage that could last for years'
 excerpt: 'According to Nikkei Asia, even as suppliers ramp up DRAM production, manufacturers are only expected to meet 60 percent of demand by the end of 2027.'
 date: "2026-04-18"
 tags: ["AI-Infrastructure", "Hardware", "Supply-Chain", "Economy"]
+category: "AI Infra"
 source: "The Verge"
 ---
 

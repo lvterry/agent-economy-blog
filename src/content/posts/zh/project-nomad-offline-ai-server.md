@@ -3,6 +3,7 @@ title: 'Project NOMAD：免费开源的离线 AI 服务器'
 excerpt: '免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。适合应急准备、离网生活或技术爱好者自托管。'
 date: "2026-03-23"
 tags: ["Hardware", "Open Source", "Local AI", "AI-Infrastructure"]
+category: "AI Infra"
 source: "Project NOMAD"
 ---
 
