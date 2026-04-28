@@ -3,7 +3,7 @@ title: 'OpenAI Begins Testing Ads in ChatGPT'
 excerpt: 'OpenAI announces the beginning of ad testing in ChatGPT in the U.S., for logged-in adult users on Free and Go subscription tiers. Plus, Pro and other premium tiers will not have ads.'
 date: "2026-02-09"
 tags: ["OpenAI", "ChatGPT", "AI-Advertising"]
-category: "安全 & 协议"
+category: "安全与隐私"
 source: "OpenAI"
 ---
 

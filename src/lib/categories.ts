@@ -6,7 +6,7 @@ export const categoryMap: Record<string, string[]> = {
   "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
   "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Computer-Use", "Coding"],
   "商业 & 经济": ["Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
-  "安全 & 协议": ["AP2", "AI-Advertising", "Security", "Privacy"],
+  "安全与隐私": ["AP2", "AI-Advertising", "Security", "Privacy"],
   "行业动态": ["X/Twitter", "ChatGPT", "OpenAI"]
 };
 
@@ -18,7 +18,7 @@ export const categoryLabels: Record<string, Record<string, string>> = {
     "AI 智能体": "AI 智能体",
     "AI 应用": "AI 应用",
     "商业 & 经济": "商业 & 经济",
-    "安全 & 协议": "安全 & 协议",
+    "安全与隐私": "安全与隐私",
     "行业动态": "行业动态"
   },
   en: {
@@ -28,12 +28,12 @@ export const categoryLabels: Record<string, Record<string, string>> = {
     "AI 智能体": "AI Agents",
     "AI 应用": "AI Apps",
     "商业 & 经济": "Business",
-    "安全 & 协议": "Security",
+    "安全与隐私": "Security",
     "行业动态": "Industry"
   }
 };
 
-const categoryPriority = ["AI Infra", "AI 智能体", "AI 模型", "AI 应用", "商业 & 经济", "安全 & 协议", "行业动态"];
+const categoryPriority = ["AI Infra", "AI 智能体", "AI 模型", "AI 应用", "商业 & 经济", "安全与隐私", "行业动态"];
 
 export type TopicKey = keyof typeof categoryMap;
 
@@ -97,14 +97,14 @@ export const topics: TopicMeta[] = [
     tags: categoryMap["商业 & 经济"],
   },
   {
-    key: "安全 & 协议",
+    key: "安全与隐私",
     slug: "security",
-    labels: { zh: "安全 & 协议", en: "Security" },
+    labels: { zh: "安全与隐私", en: "Security" },
     descriptions: {
       zh: "聚焦智能体安全、支付协议、隐私保护与可信协作标准。",
       en: "Agent security, payment protocols, privacy, and standards for trusted collaboration.",
     },
-    tags: categoryMap["安全 & 协议"],
+    tags: categoryMap["安全与隐私"],
   },
   {
     key: "行业动态",
