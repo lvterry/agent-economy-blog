@@ -2,7 +2,7 @@
 title: Microsoft and OpenAI restructure partnership, ending exclusivity and revenue sharing
 excerpt: Microsoft and OpenAI have amended their landmark partnership, ending Microsoft's exclusive right to sell OpenAI's models on Azure in exchange for dropping revenue share payments. OpenAI can now serve customers on any cloud provider.
 date: "2026-04-27"
-tags: ["Business", "OpenAI", "AI-Infrastructure"]
+tags: ["OpenAI"]
 source: "Bloomberg"
 ---
 
