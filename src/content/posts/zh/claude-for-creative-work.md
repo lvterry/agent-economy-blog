@@ -1,5 +1,5 @@
 ---
-title: '克劳德发布创意工具连接器 八款设计软件接入AI能力'
+title: 'Claude 发布创意工具连接器 八款设计软件接入AI能力'
 excerpt: 'Anthropic 为 Claude 推出了一系列创意工具连接器，覆盖 Blender、Adobe、Ableton 等八款主流设计软件，通过 MCP 协议让 AI 助手可以直接操控 3D 建模、音频制作和视觉设计等工作流。'
 date: "2026-04-29"
 tags: ["MCP", "AI-Design", "Product-Design"]
