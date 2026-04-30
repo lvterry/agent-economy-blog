@@ -1,5 +1,5 @@
 ---
-const { observation, locale, eyebrow } = Astro.props;
+const { observation, locale, eyebrow, archiveUrl, archiveLabel } = Astro.props;
 const { data, id } = observation;
 const slug = id.replace(`${locale}/`, '').replace('.md', '');
 const { Content } = await observation.render();
@@ -14,12 +14,8 @@ const { Content } = await observation.render();
   <div class="observation-body">
     <Content />
   </div>
-  {data.tags && data.tags.length > 0 && (
-    <div class="observation-tags">
-      {data.tags.map((tag: string) => (
-        <span class="observation-tag">#{tag}</span>
-      ))}
-    </div>
+  {archiveUrl && archiveLabel && (
+    <a href={archiveUrl} class="observation-archive-link">{archiveLabel} →</a>
   )}
 </article>
 
@@ -116,17 +112,16 @@ const { Content } = await observation.render();
     margin-bottom: var(--space-xs);
   }
 
-  .observation-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .observation-archive-link {
+    display: inline-block;
     margin-top: var(--space-sm);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
   }
 
-  .observation-tag {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
+  .observation-archive-link:hover {
+    color: var(--color-text-secondary);
   }
 
   @media (max-width: 640px) {
