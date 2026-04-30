@@ -22,4 +22,13 @@ const about = defineCollection({
   }),
 });
 
-export const collections = { posts, about };
+const observations = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.string(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { posts, about, observations };

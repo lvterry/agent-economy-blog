@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
+import Observation from '../Observation.astro';
 import { categoryMap, categoryLabels, getTopicByKey, getTopicPath } from '../../lib/categories.js';
 import { getLocalizedPath, useTranslations } from '../../i18n/utils';
 
@@ -16,6 +17,11 @@ const HOMEPAGE_POST_COUNT = 12;
 const recentPosts = posts.slice(0, HOMEPAGE_POST_COUNT);
 const totalPostCount = posts.length;
 
+const allObservations = await getCollection('observations');
+const latestObservation = allObservations
+  .filter(o => o.id.startsWith(`${locale}/`))
+  .sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
+
 const allCategories = ['__all', ...Object.keys(categoryMap)];
 ---
 
@@ -23,6 +29,19 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
   <h2 class="hero-title" style="white-space: pre-line;">{t('hero.title')}</h2>
   <p class="hero-desc">{t('hero.desc')}</p>
 </section>
+
+{latestObservation && (
+  <section class="latest-observation">
+    <Observation
+      observation={latestObservation}
+      locale={locale}
+      eyebrow={t('observations.latest')}
+    />
+    <a href={getLocalizedPath('/observations', locale)} class="observation-archive-link">
+      {t('observations.viewAll')} →
+    </a>
+  </section>
+)}
 
 <div class="category-filter" id="category-filter">
   {allCategories.map(cat => (
@@ -93,6 +112,23 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
     line-height: 1.6;
     max-width: 480px;
     margin: 0 auto var(--space-lg);
+  }
+
+  .latest-observation {
+    margin-bottom: var(--space-lg);
+  }
+
+  .observation-archive-link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.01em;
+  }
+
+  .observation-archive-link:hover {
+    opacity: 0.8;
   }
 
   .category-filter {
