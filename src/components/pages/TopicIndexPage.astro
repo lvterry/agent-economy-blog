@@ -67,13 +67,13 @@ const bubbles = topicCounts.map(({ topic, count }) => {
         <path id={`arc-${b.topic.slug}`} d={b.arcD} fill="none" />
       ))}
     </defs>
-    {bubbles.map(b => (
+    {bubbles.map((b, i) => (
       <a
         href={getTopicPath(b.topic, locale)}
         role="listitem"
         aria-label={`${b.topic.labels[locale]} — ${t('topics.articleCount', { count: b.count })}`}
         class:list={["bubble", b.count === 0 && "bubble-empty"]}
-        style={`--bubble-color: ${b.topic.color}; --bubble-cx: ${b.x}px; --bubble-cy: ${b.y}px;`}
+        style={`--bubble-color: ${b.topic.color}; --bubble-cx: ${b.x}px; --bubble-cy: ${b.y}px; --bubble-delay: ${i * 0.04}s;`}
       >
         <circle cx={b.x} cy={b.y} r={b.r} fill={b.topic.color} />
         <text class="bubble-label" font-size={b.fontSize} fill={b.textColor}>
@@ -152,23 +152,46 @@ const bubbles = topicCounts.map(({ topic, count }) => {
     overflow: visible;
   }
 
+  @keyframes bubble-in {
+    0%   { transform: scale(0.2); opacity: 0; }
+    60%  { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes bubble-in-empty {
+    0%   { transform: scale(0.2); opacity: 0; }
+    60%  { transform: scale(1.08); opacity: 0.55; }
+    100% { transform: scale(1); opacity: 0.55; }
+  }
+
+  @keyframes ring-pulse {
+    0%, 100% { stroke-width: 2; stroke-opacity: 0.55; }
+    50%      { stroke-width: 6; stroke-opacity: 0.15; }
+  }
+
   .bubble {
     cursor: pointer;
     transform-origin: var(--bubble-cx) var(--bubble-cy);
     transition: transform 0.25s ease, filter 0.25s ease;
+    animation: bubble-in 520ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--bubble-delay, 0s) both;
   }
 
   .bubble circle {
-    transition: filter 0.25s ease;
+    transition: filter 0.25s ease, stroke-width 0.25s ease, stroke-opacity 0.25s ease;
     filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.08));
   }
 
   .bubble:hover {
-    transform: scale(1.04);
+    transform: scale(1.06);
+    filter: saturate(1.15) brightness(1.04);
   }
 
   .bubble:hover circle {
-    filter: drop-shadow(0 8px 28px rgba(0, 0, 0, 0.18));
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.22));
+    stroke: var(--bubble-color);
+    stroke-width: 2;
+    stroke-opacity: 0.55;
+    animation: ring-pulse 1.4s ease-in-out infinite;
   }
 
   .bubble:focus-visible {
@@ -182,6 +205,7 @@ const bubbles = topicCounts.map(({ topic, count }) => {
 
   .bubble-empty {
     opacity: 0.55;
+    animation-name: bubble-in-empty;
   }
 
   .bubble-label {
@@ -211,9 +235,14 @@ const bubbles = topicCounts.map(({ topic, count }) => {
     .bubble,
     .bubble circle {
       transition: none;
+      animation: none;
     }
     .bubble:hover {
       transform: none;
+      filter: none;
+    }
+    .bubble:hover circle {
+      animation: none;
     }
   }
 
