@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Observation from '../Observation.astro';
-import { getLocalizedPath, useTranslations } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -10,69 +10,21 @@ const allObservations = await getCollection('observations');
 const observations = allObservations
   .filter(o => o.id.startsWith(`${locale}/`))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
-
-const observationsByMonth: Record<string, typeof observations> = {};
-observations.forEach(obs => {
-  const monthKey = obs.data.date.substring(0, 7);
-  if (!observationsByMonth[monthKey]) {
-    observationsByMonth[monthKey] = [];
-  }
-  observationsByMonth[monthKey].push(obs);
-});
-
-const sortedMonths = Object.keys(observationsByMonth).sort().reverse();
-
-const monthNamesZh: Record<string, string> = {
-  '01': '一月', '02': '二月', '03': '三月', '04': '四月',
-  '05': '五月', '06': '六月', '07': '七月', '08': '八月',
-  '09': '九月', '10': '十月', '11': '十一月', '12': '十二月'
-};
-
-function formatMonth(monthKey: string, lang: string) {
-  const [year, month] = monthKey.split('-');
-  if (lang === 'zh') {
-    return `${year}年${monthNamesZh[month]}`;
-  }
-  const date = new Date(parseInt(year), parseInt(month) - 1);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-}
 ---
 
 <section class="archive-header">
   <h1 class="archive-title">{t('observations.title')}</h1>
   <p class="archive-stats">{t('observations.count', { count: observations.length })}</p>
-  <a href={getLocalizedPath('/', locale)} class="back-link">← {t('archive.back')}</a>
 </section>
 
 {observations.length === 0 ? (
   <div class="empty-state">{t('observations.empty')}</div>
 ) : (
-  <>
-    <div class="timeline-nav">
-      {sortedMonths.map(month => (
-        <a href={`#${month}`} class="timeline-link">
-          {formatMonth(month, locale)}
-          <span class="article-count">({observationsByMonth[month].length})</span>
-        </a>
-      ))}
-    </div>
-
-    <div class="archive-content">
-      {sortedMonths.map(month => (
-        <section class="month-section" id={month}>
-          <h2 class="month-title">
-            {formatMonth(month, locale)}
-            <span class="month-count">{t('observations.monthCount', { count: observationsByMonth[month].length })}</span>
-          </h2>
-          <div class="observations-list">
-            {observationsByMonth[month].map(obs => (
-              <Observation observation={obs} locale={locale} />
-            ))}
-          </div>
-        </section>
-      ))}
-    </div>
-  </>
+  <div class="observations-list">
+    {observations.map(obs => (
+      <Observation observation={obs} locale={locale} />
+    ))}
+  </div>
 )}
 
 <style>
@@ -80,7 +32,6 @@ function formatMonth(monthKey: string, lang: string) {
     text-align: center;
     padding: var(--space-lg) 0 var(--space-xl);
     margin-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--color-border);
   }
 
   .archive-title {
@@ -97,86 +48,6 @@ function formatMonth(monthKey: string, lang: string) {
   .archive-stats {
     font-size: 0.9375rem;
     color: var(--color-text-secondary);
-    margin-bottom: var(--space-md);
-  }
-
-  .back-link {
-    display: inline-block;
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    transition: color 0.2s ease;
-  }
-
-  .back-link:hover {
-    color: var(--color-accent);
-  }
-
-  .timeline-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: var(--space-md) 0;
-    margin-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(12, 10, 9, 0.9);
-  }
-
-  :global([data-theme="light"]) .timeline-nav {
-    background: rgba(245, 240, 232, 0.9);
-  }
-
-  .timeline-link {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.8125rem;
-    color: var(--color-text-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .timeline-link:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-  }
-
-  .article-count {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    margin-left: 0.25rem;
-  }
-
-  .archive-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-  }
-
-  .month-section {
-    scroll-margin-top: 80px;
-  }
-
-  .month-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-sm);
-    border-bottom: 2px solid var(--color-accent);
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-  }
-
-  .month-count {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
   }
 
   .observations-list {
@@ -195,21 +66,6 @@ function formatMonth(monthKey: string, lang: string) {
   @media (max-width: 640px) {
     .archive-title {
       font-size: 1.5rem;
-    }
-
-    .timeline-nav {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .timeline-nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .month-title {
-      font-size: 1.125rem;
     }
   }
 </style>
