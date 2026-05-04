@@ -14,7 +14,6 @@ const posts = allPosts
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
 const HOMEPAGE_POST_COUNT = 12;
-const recentPosts = posts.slice(0, HOMEPAGE_POST_COUNT);
 const totalPostCount = posts.length;
 
 const allObservations = await getCollection('observations');
@@ -56,13 +55,19 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
 </div>
 
 <section class="posts-grid" id="posts-grid">
-  {recentPosts.map(post => (
-    <BlogPost post={post} locale={locale} />
+  {posts.map((post, index) => (
+    <div
+      class="post-item"
+      data-extra={index >= HOMEPAGE_POST_COUNT ? 'true' : null}
+      style={index >= HOMEPAGE_POST_COUNT ? 'display:none' : undefined}
+    >
+      <BlogPost post={post} locale={locale} />
+    </div>
   ))}
 </section>
 
 {totalPostCount > HOMEPAGE_POST_COUNT && (
-  <div class="view-all-section">
+  <div class="view-all-section" id="view-all-section">
     <div class="post-count">{t('postCount', { shown: HOMEPAGE_POST_COUNT, total: totalPostCount })}</div>
     <a href={getLocalizedPath('/archive', locale)} class="view-all-btn">{t('viewAll')} →</a>
   </div>
@@ -236,18 +241,26 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
   const filterBtns = document.querySelectorAll('#category-filter .filter-pill');
   const postsGrid = document.getElementById('posts-grid');
   const emptyState = document.getElementById('empty-state');
-  const posts = postsGrid ? postsGrid.querySelectorAll('.post-card') : [];
+  const viewAllSection = document.getElementById('view-all-section');
+  const items = postsGrid ? postsGrid.querySelectorAll('.post-item') : [];
 
   function filterPosts(category) {
+    const isAll = category === '__all';
     let visibleCount = 0;
-    posts.forEach((post) => {
-      const cats = (post as HTMLElement).dataset.categories || '';
-      const show = category === '__all' || cats.split(',').includes(category);
-      (post as HTMLElement).style.display = show ? '' : 'none';
+    items.forEach((item) => {
+      const el = item as HTMLElement;
+      const card = el.querySelector('.post-card') as HTMLElement | null;
+      const cats = card?.dataset.categories || '';
+      const isExtra = el.dataset.extra === 'true';
+      const show = isAll ? !isExtra : cats.split(',').includes(category);
+      el.style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
     if (emptyState) {
       emptyState.style.display = visibleCount === 0 ? '' : 'none';
+    }
+    if (viewAllSection) {
+      viewAllSection.style.display = isAll ? '' : 'none';
     }
   }
 
@@ -259,4 +272,6 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
       filterPosts(category);
     });
   });
+
+  filterPosts('__all');
 </script>
