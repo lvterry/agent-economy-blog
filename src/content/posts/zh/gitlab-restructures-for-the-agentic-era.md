@@ -1,5 +1,5 @@
 ---
-title: 'GitLab 重构：迎接智能体时代'
+title: 'GitLab 全面重构迎接智能体时代'
 excerpt: 'GitLab CEO Bill Staples 发布了一份详细的战略声明，宣布对公司进行全面重组——从基础设施到商业模式，全面为 AI 智能体时代重构 DevSecOps 平台。'
 date: "2026-05-12"
 tags: ["Agentic AI", "AI-Agents", "Business", "GitLab", "DevOps"]
