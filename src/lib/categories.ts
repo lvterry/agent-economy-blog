@@ -2,12 +2,12 @@ import type { Lang } from '../i18n/ui';
 
 export const categoryMap: Record<string, string[]> = {
   "AI Infra": ["AI-Infrastructure", "Hardware", "Data-Center", "GPU", "TPU", "Supply-Chain", "Infrastructure", "Tinygrad", "Deep-Learning"],
-  "AI 模型": ["GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4", "LLM"],
+  "AI 模型": ["GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4", "LLM", "Gemini"],
   "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards"],
   "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Computer-Use", "Coding", "Healthcare-AI"],
   "商业 & 经济": ["Market-Analysis", "Business", "Layoffs", "Tech-Industry", "Jack-Dorsey", "Block", "Rent a Human", "Economy", "Risk-Assessment", "Future-of-Work"],
   "安全与隐私": ["AP2", "AI-Advertising", "Security", "Privacy", "AI-Safety"],
-  "行业动态": ["X/Twitter", "ChatGPT", "OpenAI", "Spotify", "AI-Music", "Cloudflare"]
+  "行业动态": ["X/Twitter", "ChatGPT", "OpenAI", "Spotify", "AI-Music", "Cloudflare", "Google"]
 };
 
 export const categoryLabels: Record<string, Record<string, string>> = {
