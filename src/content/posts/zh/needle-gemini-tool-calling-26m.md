@@ -3,7 +3,7 @@ title: "团队将 Gemini 工具调用能力蒸馏进 26M 参数的小模型"
 excerpt: "Cactus Compute 团队发布 Needle，一个仅 26M 参数的纯工具调用模型，可在手机、手表等小型设备上运行，为 AI 智能体的边缘部署开辟新路径。"
 date: "2026-05-13"
 tags: ["Agent", "AI-Agents", "Tool-Calling", "Model-Distillation"]
-category: "AI 智能体"
+category: "AI 模型"
 source: "Cactus Compute"
 ---
 

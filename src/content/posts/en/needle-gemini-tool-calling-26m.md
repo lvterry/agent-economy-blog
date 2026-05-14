@@ -3,7 +3,7 @@ title: "Team Distills Gemini Tool Calling into a 26M Parameter Model"
 excerpt: "Cactus Compute releases Needle, a 26M parameter tool-calling model that runs on tiny devices like phones and watches, opening new possibilities for edge AI agent deployment."
 date: "2026-05-13"
 tags: ["Agent", "AI-Agents", "Tool-Calling", "Model-Distillation"]
-category: "AI 智能体"
+category: "AI 模型"
 source: "Cactus Compute"
 ---
 
