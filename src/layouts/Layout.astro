@@ -1,7 +1,6 @@
 ---
 import SearchPopup from '../components/SearchPopup.astro';
-import { useTranslations, getLocalizedPath, getOppositeLocale } from '../i18n/utils';
-import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
 export interface Props {
   title?: string;
@@ -27,7 +26,7 @@ const {
   canonicalURL,
 } = Astro.props;
 
-const locale = (Astro.currentLocale || 'zh') as Lang;
+const locale = 'zh' as const;
 const t = useTranslations(locale);
 
 const siteTitle = 'Agent Economy';
@@ -35,15 +34,6 @@ const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const siteURL = 'https://agenteconomy.cn';
 const ogImage = image.startsWith('http') ? image : `${siteURL}${image}`;
 const canonical = canonicalURL || Astro.url.pathname;
-
-// Locale switch link
-const oppositeLocale = getOppositeLocale(locale);
-let switchPath = Astro.url.pathname;
-if (locale === 'en') {
-  switchPath = switchPath.replace(/^\/en/, '') || '/';
-} else {
-  switchPath = '/en' + switchPath;
-}
 
 const websiteSchema = JSON.stringify({
   "@context": "https://schema.org",
@@ -66,11 +56,7 @@ const websiteSchema = JSON.stringify({
   }
 });
 
-// Alternate hreflang links
-const alternates = [
-  { lang: 'zh', url: `${siteURL}${Astro.url.pathname.replace(/^\/en/, '') || '/'}` },
-  { lang: 'en', url: `${siteURL}${locale === 'en' ? Astro.url.pathname : '/en' + Astro.url.pathname}` },
-];
+
 ---
 
 <!DOCTYPE html>
@@ -86,17 +72,13 @@ const alternates = [
     
     <link rel="canonical" href={`${siteURL}${canonical}`}>
     
-    {alternates.map(alt => (
-      <link rel="alternate" hreflang={alt.lang} href={alt.url} />
-    ))}
-    
     <meta property="og:type" content={type}>
     <meta property="og:url" content={`${siteURL}${canonical}`}>
     <meta property="og:title" content={fullTitle}>
     <meta property="og:description" content={description}>
     <meta property="og:image" content={ogImage}>
     <meta property="og:site_name" content={siteTitle}>
-    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'}>
+    <meta property="og:locale" content="zh_CN">
     
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content={`${siteURL}${canonical}`}>
@@ -115,7 +97,7 @@ const alternates = [
     ))}
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href={locale === 'zh' ? '/rss.xml' : '/en/rss.xml'}>
+    <link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml">
     
     <script type="application/ld+json" set:html={websiteSchema} />
@@ -324,21 +306,7 @@ const alternates = [
             display: block;
         }
 
-        .lang-switch {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--color-text-secondary);
-            padding: 0.3rem 0.6rem;
-            border: 1px solid var(--color-glass-border);
-            border-radius: 6px;
-            background: var(--color-glass);
-            transition: all 0.2s ease;
-        }
 
-        .lang-switch:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-        }
 
         .site-nav {
             max-width: var(--max-width);
@@ -757,7 +725,7 @@ const alternates = [
         <div class="header-inner">
             <div class="site-logo">
                 <div class="logo-mark">AE</div>
-                <h1><a href={getLocalizedPath('/', locale)}>Agent Economy</a></h1>
+                <h1><a href="/">Agent Economy</a></h1>
             </div>
             <div class="header-controls">
                 <button class="control-btn search-trigger" id="header-search-btn" aria-label="Search" title="Search (Ctrl+K)">
@@ -766,14 +734,14 @@ const alternates = [
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </button>
-                <a href={switchPath} class="lang-switch">{oppositeLocale.toUpperCase()}</a>
+
             </div>
         </div>
         <nav class="site-nav">
-            <a href={getLocalizedPath('/', locale)} class="nav-link">{t('nav.articles')}</a>
-            <a href={getLocalizedPath('/topics', locale)} class="nav-link">{t('nav.topics')}</a>
-            <a href={getLocalizedPath('/observations', locale)} class="nav-link">{t('nav.observations')}</a>
-            <a href={getLocalizedPath('/about', locale)} class="nav-link">{t('nav.about')}</a>
+            <a href="/" class="nav-link">{t('nav.articles')}</a>
+            <a href="/topics" class="nav-link">{t('nav.topics')}</a>
+            <a href="/observations" class="nav-link">{t('nav.observations')}</a>
+            <a href="/about" class="nav-link">{t('nav.about')}</a>
         </nav>
     </header>
     
@@ -784,7 +752,7 @@ const alternates = [
     </main>
     
     <footer class="site-footer">
-        <p>{t('footer.text')} <a href={getLocalizedPath('/rss.xml', locale)}>{t('footer.subscribe')}</a>.</p>
+        <p>{t('footer.text')} <a href="/rss.xml">{t('footer.subscribe')}</a>.</p>
         <div class="footer-controls">
             <button class="control-btn" onclick="toggleTheme()" aria-label="Toggle theme">
                 <span class="theme-icon-light">☀</span>
@@ -827,7 +795,7 @@ const alternates = [
             var path = window.location.pathname;
             document.querySelectorAll('.nav-link').forEach(function(link) {
                 var href = link.getAttribute('href');
-                if (href === path || (path.startsWith('/blog') && href === '/') || (path.startsWith('/en/blog') && href === '/en/') || (path.startsWith('/topics') && href === '/topics') || (path.startsWith('/en/topics') && href === '/en/topics')) {
+                if (href === path || (path.startsWith('/blog') && href === '/') || (path.startsWith('/topics') && href === '/topics')) {
                     link.classList.add('active');
                 }
             });

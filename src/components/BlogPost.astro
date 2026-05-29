@@ -1,6 +1,5 @@
 ---
 import { getCategories, categoryLabels, getTopicByKey, getTopicPath } from '../lib/categories.js';
-import { getLocalizedPath } from '../i18n/utils';
 
 const { post, locale } = Astro.props;
 const { data, id } = post;
@@ -9,15 +8,15 @@ const slug = id.replace(`${locale}/`, '').replace('.md', '');
 const cats = getCategories(data.tags || [], data.category);
 const primaryCat = cats[0];
 const categoryData = cats.join(',');
-const postUrl = getLocalizedPath(`/blog/${slug}`, locale);
+const postUrl = `/blog/${slug}`;
 const topic = getTopicByKey(primaryCat);
-const topicUrl = topic ? getTopicPath(topic, locale) : getLocalizedPath('/topics', locale);
+const topicUrl = topic ? getTopicPath(topic) : '/topics';
 ---
 
 <article class="post-card" data-categories={categoryData}>
   <div class="post-card-inner">
     <div class="post-meta">
-      <a class="post-category" href={topicUrl}>{categoryLabels[locale][primaryCat] || primaryCat}</a>
+      <a class="post-category" href={topicUrl}>{categoryLabels[primaryCat] || primaryCat}</a>
       <time class="post-date" datetime={data.date}>{data.date}</time>
     </div>
     

@@ -3,10 +3,9 @@ import { getEntry } from 'astro:content';
 import { render } from 'astro:content';
 import { useTranslations } from '../../i18n/utils';
 
-const { locale } = Astro.props;
-const t = useTranslations(locale);
+const t = useTranslations('zh');
 
-const aboutEntry = await getEntry('about', locale);
+const aboutEntry = await getEntry('about', 'zh');
 const { Content } = await render(aboutEntry!);
 ---
 

@@ -1,4 +1,4 @@
-import { ui, defaultLang, showDefaultLang } from './ui';
+import { ui, defaultLang } from './ui';
 import type { Lang } from './ui';
 
 export function useTranslations(lang: Lang) {
@@ -11,17 +11,4 @@ export function useTranslations(lang: Lang) {
     }
     return translation;
   };
-}
-
-export function getLocalizedPath(path: string, lang: Lang) {
-  if (!showDefaultLang && lang === defaultLang) {
-    return path;
-  }
-  // Ensure path starts with /
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return `/${lang}${normalizedPath}`;
-}
-
-export function getOppositeLocale(lang: Lang): Lang {
-  return lang === 'zh' ? 'en' : 'zh';
 }

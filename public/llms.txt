@@ -1,70 +1,57 @@
 # Agent Economy
 
-Curated news and insights about AI agents and the autonomous economy.
+关于 AI 智能体经济的精选洞察。
 
-## Website Overview
+## 网站概览
 
-- **URL**: https://agenteconomy.cn
-- **Language**: Bilingual (English / Chinese)
-- **Topic**: AI agents, agent economy, autonomous systems
+- **网址**：https://agenteconomy.cn
+- **语言**：中文
+- **主题**：AI 智能体、智能体经济、自主系统
 
-## Pages
+## 页面
 
-### Home
-- **URL**: https://agenteconomy.cn
-- **Description**: Homepage listing latest articles about AI agents and the autonomous economy.
+### 首页
+- **URL**：https://agenteconomy.cn
+- **描述**：列出关于 AI 智能体和自主经济的最新文章。
 
-### Articles
-- **URL**: https://agenteconomy.cn/blog/
-- **Description**: All published articles.
+### 文章
+- **URL**：https://agenteconomy.cn/blog/
+- **描述**：所有已发布文章。
 
-### About
-- **URL**: https://agenteconomy.cn/about
-- **Description**: About Agent Economy blog.
+### 关于
+- **URL**：https://agenteconomy.cn/about
+- **描述**：关于 Agent Economy 博客。
 
-### RSS Feed
-- **URL**: https://agenteconomy.cn/rss.xml
-- **Description**: RSS feed for article updates.
+### RSS
+- **URL**：https://agenteconomy.cn/rss.xml
+- **描述**：文章更新的 RSS 订阅。
 
-## Recent Articles
-
-### English
-1. **Arm AGI CPU: Silicon for the Agentic AI Cloud Era**
-   - URL: https://agenteconomy.cn/blog/arm-agi-cpu
-   - Description: Arm's first self-developed data center chip for agentic AI infrastructure.
-
-2. **Playbit: A Personal-Scale Software Platform**
-   - URL: https://agenteconomy.cn/blog/playbit-personal-software-platform
-   - Description: A software runtime enabling anyone to create apps for themselves and loved ones.
-
-3. **Project NOMAD: Free Open-Source Offline AI Server**
-   - URL: https://agenteconomy.cn/blog/project-nomad-offline-ai-server
-   - Description: Free open-source offline server to run AI on your own computer.
+## 最近文章
 
 ### 中文
 1. **Arm 推出 AGI CPU：面向智能体 AI 时代的数据中心芯片**
    - URL: https://agenteconomy.cn/blog/arm-agi-cpu
-   - Description: Arm 首款自研数据中心芯片，专为智能体 AI 基础设施设计。
+   - 描述: Arm 首款自研数据中心芯片，专为智能体 AI 基础设施设计。
 
 2. **Playbit：面向个人的软件运行时**
    - URL: https://agenteconomy.cn/blog/playbit-personal-software-platform
-   - Description: 让任何人都能创建供自己或亲友使用的应用。
+   - 描述: 让任何人都能创建供自己或亲友使用的应用。
 
 3. **Project NOMAD：免费开源的离线 AI 服务器**
    - URL: https://agenteconomy.cn/blog/project-nomad-offline-ai-server
-   - Description: 免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。
+   - 描述: 免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。
 
-## Topics Covered
+## 涵盖主题
 
-- AI Agents and Agentic AI
-- Agent Interoperability (A2A, MCP)
-- AI Hardware and Infrastructure
-- Agent Economy and Business Models
-- AI Security and Trust
-- Cross-platform Development
-- Local/Offline AI
+- AI 智能体与智能体 AI
+- 智能体互操作性（A2A、MCP）
+- AI 硬件与基础设施
+- 智能体经济与商业模式
+- AI 安全与信任
+- 跨平台开发
+- 本地/离线 AI
 
-## Contact
+## 联系
 
 - RSS: https://agenteconomy.cn/rss.xml
 - GitHub: https://github.com/lvterry/agent-economy-blog

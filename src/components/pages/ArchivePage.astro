@@ -3,12 +3,11 @@ import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
 import { useTranslations } from '../../i18n/utils';
 
-const { locale } = Astro.props;
-const t = useTranslations(locale);
+const t = useTranslations('zh');
 
 const allPosts = await getCollection('posts');
 const posts = allPosts
-  .filter(p => p.id.startsWith(`${locale}/`))
+  .filter(p => p.id.startsWith('zh/'))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
 const postsByMonth: Record<string, typeof posts> = {};
@@ -28,13 +27,9 @@ const monthNamesZh: Record<string, string> = {
   '09': '九月', '10': '十月', '11': '十一月', '12': '十二月'
 };
 
-function formatMonth(monthKey: string, lang: string) {
+function formatMonth(monthKey: string) {
   const [year, month] = monthKey.split('-');
-  if (lang === 'zh') {
-    return `${year}年${monthNamesZh[month]}`;
-  }
-  const date = new Date(parseInt(year), parseInt(month) - 1);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+  return `${year}年${monthNamesZh[month]}`;
 }
 ---
 
@@ -46,7 +41,7 @@ function formatMonth(monthKey: string, lang: string) {
 <div class="timeline-nav">
   {sortedMonths.map(month => (
     <a href={`#${month}`} class="timeline-link">
-      {formatMonth(month, locale)}
+      {formatMonth(month)}
       <span class="article-count">({postsByMonth[month].length})</span>
     </a>
   ))}
@@ -56,12 +51,12 @@ function formatMonth(monthKey: string, lang: string) {
   {sortedMonths.map(month => (
     <section class="month-section" id={month}>
       <h2 class="month-title">
-        {formatMonth(month, locale)}
+        {formatMonth(month)}
         <span class="month-count">{t('archive.monthCount', { count: postsByMonth[month].length })}</span>
       </h2>
       <div class="posts-grid">
         {postsByMonth[month].map(post => (
-          <BlogPost post={post} locale={locale} />
+          <BlogPost post={post} locale="zh" />
         ))}
       </div>
     </section>

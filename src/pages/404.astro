@@ -2,15 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import { useTranslations } from '../i18n/utils';
 
-const locale = Astro.currentLocale || 'zh';
-const t = useTranslations(locale);
+const t = useTranslations('zh');
 ---
 
 <Layout title="404 - Page Not Found" description="The page you are looking for does not exist.">
   <div class="not-found">
     <h1 class="error-code">404</h1>
     <p class="error-message">{t('404.message')}</p>
-    <a href={locale === 'zh' ? '/' : '/en/'} class="back-home">{t('404.back')}</a>
+    <a href="/" class="back-home">{t('404.back')}</a>
   </div>
 </Layout>
 

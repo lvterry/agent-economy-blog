@@ -8,10 +8,10 @@ import {
   getTopicRssPath,
   postMatchesTopic,
 } from '../../lib/categories.js';
-import { getLocalizedPath, useTranslations } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 
-const { locale, slug } = Astro.props;
-const t = useTranslations(locale);
+const { slug } = Astro.props;
+const t = useTranslations('zh');
 const topic = getTopicBySlug(slug);
 
 if (!topic) {
@@ -20,7 +20,7 @@ if (!topic) {
 
 const allPosts = await getCollection('posts');
 const posts = allPosts
-  .filter(p => p.id.startsWith(`${locale}/`))
+  .filter(p => p.id.startsWith('zh/'))
   .filter(post => postMatchesTopic(post.data.tags || [], topic))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
@@ -30,14 +30,14 @@ const latestDate = posts[0]?.data.date;
 ---
 
 <section class="topic-header">
-  <a href={getLocalizedPath('/topics', locale)} class="topic-back">← {t('topics.back')}</a>
+  <a href="/topics" class="topic-back">← {t('topics.back')}</a>
   <p class="topic-eyebrow">{t('topics.eyebrow')}</p>
-  <h1 class="topic-title">{topic.labels[locale]}</h1>
-  <p class="topic-desc">{topic.descriptions[locale]}</p>
+  <h1 class="topic-title">{topic.label}</h1>
+  <p class="topic-desc">{topic.description}</p>
   <div class="topic-stats">
     <span>{t('topics.articleCount', { count: posts.length })}</span>
     {latestDate && <span>{t('topics.latest', { date: latestDate })}</span>}
-    <a href={getTopicRssPath(topic, locale)}>{t('topics.rss')}</a>
+    <a href={getTopicRssPath(topic)}>{t('topics.rss')}</a>
   </div>
 </section>
 
@@ -70,7 +70,7 @@ const latestDate = posts[0]?.data.date;
   <h2>{t('topics.posts')}</h2>
   {posts.length > 0 ? (
     <div class="posts-grid">
-      {posts.map(post => <BlogPost post={post} locale={locale} />)}
+      {posts.map(post => <BlogPost post={post} locale="zh" />)}
     </div>
   ) : (
     <div class="topic-empty">{t('topics.empty')}</div>

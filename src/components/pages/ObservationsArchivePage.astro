@@ -3,12 +3,11 @@ import { getCollection } from 'astro:content';
 import Observation from '../Observation.astro';
 import { useTranslations } from '../../i18n/utils';
 
-const { locale } = Astro.props;
-const t = useTranslations(locale);
+const t = useTranslations('zh');
 
 const allObservations = await getCollection('observations');
 const observations = allObservations
-  .filter(o => o.id.startsWith(`${locale}/`))
+  .filter(o => o.id.startsWith('zh/'))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
@@ -22,7 +21,7 @@ const observations = allObservations
 ) : (
   <div class="observations-list">
     {observations.map(obs => (
-      <Observation observation={obs} locale={locale} />
+      <Observation observation={obs} locale="zh" />
     ))}
   </div>
 )}

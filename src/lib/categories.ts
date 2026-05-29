@@ -1,5 +1,3 @@
-import type { Lang } from '../i18n/ui';
-
 export const categoryMap: Record<string, string[]> = {
   "AI Infra": ["AI-Infrastructure", "Hardware", "Data-Center", "GPU", "TPU", "Supply-Chain", "Infrastructure", "Tinygrad", "Deep-Learning"],
   "AI 模型": ["GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4", "LLM", "Gemini"],
@@ -10,27 +8,15 @@ export const categoryMap: Record<string, string[]> = {
   "行业动态": ["X/Twitter", "ChatGPT", "OpenAI", "Spotify", "AI-Music", "Cloudflare", "Google", "Anthropic"]
 };
 
-export const categoryLabels: Record<string, Record<string, string>> = {
-  zh: {
-    "全部": "全部",
-    "AI Infra": "AI Infra",
-    "AI 模型": "AI 模型",
-    "AI 智能体": "AI 智能体",
-    "AI 应用": "AI 应用",
-    "商业 & 经济": "商业 & 经济",
-    "安全与隐私": "安全与隐私",
-    "行业动态": "行业动态"
-  },
-  en: {
-    "全部": "All",
-    "AI Infra": "AI Infra",
-    "AI 模型": "AI Models",
-    "AI 智能体": "AI Agents",
-    "AI 应用": "AI Apps",
-    "商业 & 经济": "Business",
-    "安全与隐私": "Security",
-    "行业动态": "Industry"
-  }
+export const categoryLabels: Record<string, string> = {
+  "全部": "全部",
+  "AI Infra": "AI Infra",
+  "AI 模型": "AI 模型",
+  "AI 智能体": "AI 智能体",
+  "AI 应用": "AI 应用",
+  "商业 & 经济": "商业 & 经济",
+  "安全与隐私": "安全与隐私",
+  "行业动态": "行业动态"
 };
 
 const categoryPriority = ["AI Infra", "AI 智能体", "AI 模型", "AI 应用", "商业 & 经济", "安全与隐私", "行业动态"];
@@ -40,8 +26,8 @@ export type TopicKey = keyof typeof categoryMap;
 export interface TopicMeta {
   key: TopicKey;
   slug: string;
-  labels: Record<Lang, string>;
-  descriptions: Record<Lang, string>;
+  label: string;
+  description: string;
   tags: string[];
   color: string;
 }
@@ -50,77 +36,56 @@ export const topics: TopicMeta[] = [
   {
     key: "AI Infra",
     slug: "ai-infra",
-    labels: { zh: "AI Infra", en: "AI Infra" },
-    descriptions: {
-      zh: "追踪支撑智能体时代的算力、芯片、数据中心与开发基础设施。",
-      en: "Compute, chips, data centers, and developer infrastructure powering the agent era.",
-    },
+    label: "AI Infra",
+    description: "追踪支撑智能体时代的算力、芯片、数据中心与开发基础设施。",
     tags: categoryMap["AI Infra"],
     color: "#5b6dba",
   },
   {
     key: "AI 模型",
     slug: "ai-models",
-    labels: { zh: "AI 模型", en: "AI Models" },
-    descriptions: {
-      zh: "关注基础模型、多模态、推理能力与模型发布带来的产品变化。",
-      en: "Foundation models, multimodal systems, reasoning, and product shifts from new model releases.",
-    },
+    label: "AI 模型",
+    description: "关注基础模型、多模态、推理能力与模型发布带来的产品变化。",
     tags: categoryMap["AI 模型"],
     color: "#1f4e3d",
   },
   {
     key: "AI 智能体",
     slug: "ai-agents",
-    labels: { zh: "AI 智能体", en: "AI Agents" },
-    descriptions: {
-      zh: "覆盖智能体协议、工具调用、异步工作流与智能体经济的关键进展。",
-      en: "Agent protocols, tool use, async workflows, and the key moves shaping the agent economy.",
-    },
+    label: "AI 智能体",
+    description: "覆盖智能体协议、工具调用、异步工作流与智能体经济的关键进展。",
     tags: categoryMap["AI 智能体"],
     color: "#d8c0e0",
   },
   {
     key: "AI 应用",
     slug: "ai-apps",
-    labels: { zh: "AI 应用", en: "AI Apps" },
-    descriptions: {
-      zh: "记录 AI 在设计、编程、机器人与电脑使用等实际场景中的落地。",
-      en: "Applied AI across design, coding, robotics, computer use, and practical product workflows.",
-    },
+    label: "AI 应用",
+    description: "记录 AI 在设计、编程、机器人与电脑使用等实际场景中的落地。",
     tags: categoryMap["AI 应用"],
     color: "#e69138",
   },
   {
     key: "商业 & 经济",
     slug: "business",
-    labels: { zh: "商业 & 经济", en: "Business" },
-    descriptions: {
-      zh: "观察 AI 对公司战略、劳动力市场、产业政策与商业模式的影响。",
-      en: "Company strategy, labor markets, industrial policy, and business models reshaped by AI.",
-    },
+    label: "商业 & 经济",
+    description: "观察 AI 对公司战略、劳动力市场、产业政策与商业模式的影响。",
     tags: categoryMap["商业 & 经济"],
     color: "#e07856",
   },
   {
     key: "安全与隐私",
     slug: "security",
-    labels: { zh: "安全与隐私", en: "Security" },
-    descriptions: {
-      zh: "聚焦智能体安全、支付协议、隐私保护与可信协作标准。",
-      en: "Agent security, payment protocols, privacy, and standards for trusted collaboration.",
-    },
+    label: "安全与隐私",
+    description: "聚焦智能体安全、支付协议、隐私保护与可信协作标准。",
     tags: categoryMap["安全与隐私"],
     color: "#7c5fb8",
   },
   {
     key: "行业动态",
     slug: "industry",
-    labels: { zh: "行业动态", en: "Industry" },
-    descriptions: {
-      zh: "汇总影响 AI 行业方向的产品发布、平台变化与公司动向。",
-      en: "Product launches, platform changes, and company moves that shape the AI industry.",
-    },
+    label: "行业动态",
+    description: "汇总影响 AI 行业方向的产品发布、平台变化与公司动向。",
     tags: categoryMap["行业动态"],
     color: "#3a8a8a",
   },
@@ -161,13 +126,13 @@ export function getTopicByKey(key: string): TopicMeta | undefined {
   return topics.find(topic => topic.key === key);
 }
 
-export function getTopicPath(topic: TopicMeta | string, lang: Lang): string {
+export function getTopicPath(topic: TopicMeta | string): string {
   const slug = typeof topic === 'string' ? topic : topic.slug;
-  return lang === 'en' ? `/en/topics/${slug}` : `/topics/${slug}`;
+  return `/topics/${slug}`;
 }
 
-export function getTopicRssPath(topic: TopicMeta | string, lang: Lang): string {
-  return `${getTopicPath(topic, lang)}/rss.xml`;
+export function getTopicRssPath(topic: TopicMeta | string): string {
+  return `${getTopicPath(topic)}/rss.xml`;
 }
 
 export function postMatchesTopic(tags: string[], topic: TopicMeta): boolean {

@@ -6,11 +6,4 @@ export default defineConfig({
   site: 'https://agenteconomy.cn',
   integrations: [mdx(), sitemap()],
   viewTransitions: true,
-  i18n: {
-    defaultLocale: 'zh',
-    locales: ['zh', 'en'],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
 });

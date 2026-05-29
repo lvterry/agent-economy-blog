@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BlogPost from '../BlogPost.astro';
 import Observation from '../Observation.astro';
 import { categoryMap, categoryLabels, getTopicByKey, getTopicPath } from '../../lib/categories.js';
-import { getLocalizedPath, useTranslations } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -35,7 +35,7 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
       observation={latestObservation}
       locale={locale}
       eyebrow={t('observations.latest')}
-      archiveUrl={getLocalizedPath('/observations', locale)}
+      archiveUrl="/observations"
       archiveLabel={t('observations.viewAll')}
     />
   </section>
@@ -45,11 +45,11 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
   {allCategories.map(cat => (
     <button
       data-category={cat}
-      data-topic-url={cat === '__all' ? getLocalizedPath('/topics', locale) : getTopicPath(getTopicByKey(cat) || cat, locale)}
+      data-topic-url={cat === '__all' ? '/topics' : getTopicPath(getTopicByKey(cat) || cat)}
       class:list={['filter-pill', { active: cat === '__all' }]}
-      title={cat === '__all' ? t('topics.title') : `${t('topics.title')}: ${categoryLabels[locale][cat] || cat}`}
+      title={cat === '__all' ? t('topics.title') : `${t('topics.title')}: ${categoryLabels[cat] || cat}`}
     >
-      {cat === '__all' ? t('filter.all') : categoryLabels[locale][cat] || cat}
+      {cat === '__all' ? t('filter.all') : categoryLabels[cat] || cat}
     </button>
   ))}
 </div>
@@ -69,7 +69,7 @@ const allCategories = ['__all', ...Object.keys(categoryMap)];
 {totalPostCount > HOMEPAGE_POST_COUNT && (
   <div class="view-all-section" id="view-all-section">
     <div class="post-count">{t('postCount', { shown: HOMEPAGE_POST_COUNT, total: totalPostCount })}</div>
-    <a href={getLocalizedPath('/archive', locale)} class="view-all-btn">{t('viewAll')} →</a>
+    <a href="/archive" class="view-all-btn">{t('viewAll')} →</a>
   </div>
 )}
 

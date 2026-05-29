@@ -34,8 +34,8 @@ export async function GET(context) {
   );
 
   return rss({
-    title: `Agent Economy - ${topic.labels.zh}`,
-    description: topic.descriptions.zh,
+    title: `Agent Economy - ${topic.label}`,
+    description: topic.description,
     site: context.site,
     items,
     customData: `<language>zh-cn</language><lastBuildDate>${lastBuild.toUTCString()}</lastBuildDate>`,

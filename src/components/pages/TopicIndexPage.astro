@@ -3,11 +3,10 @@ import { getCollection } from 'astro:content';
 import { topics, getTopicPath, postMatchesTopic, packTopicBubbles } from '../../lib/categories.js';
 import { useTranslations } from '../../i18n/utils';
 
-const { locale } = Astro.props;
-const t = useTranslations(locale);
+const t = useTranslations('zh');
 
 const allPosts = await getCollection('posts');
-const posts = allPosts.filter(p => p.id.startsWith(`${locale}/`));
+const posts = allPosts.filter(p => p.id.startsWith('zh/'));
 
 const topicCounts = topics.map(topic => ({
   topic,
@@ -39,7 +38,7 @@ function textColorFor(hex: string): string {
 
 const bubbles = topicCounts.map(({ topic, count }) => {
   const p = packedById.get(topic.slug)!;
-  const labelLength = topic.labels[locale].length;
+  const labelLength = topic.label.length;
   const fontSize = Math.max(14, Math.min(22, p.r / Math.max(3.8, labelLength * 0.48)));
   const arcRadius = Math.max(p.r * 0.4, p.r - fontSize - 16);
   const arcCy = p.y;
@@ -69,16 +68,16 @@ const bubbles = topicCounts.map(({ topic, count }) => {
     </defs>
     {bubbles.map((b, i) => (
       <a
-        href={getTopicPath(b.topic, locale)}
+        href={getTopicPath(b.topic)}
         role="listitem"
-        aria-label={`${b.topic.labels[locale]} — ${t('topics.articleCount', { count: b.count })}`}
+        aria-label={`${b.topic.label} — ${t('topics.articleCount', { count: b.count })}`}
         class:list={["bubble", b.count === 0 && "bubble-empty"]}
         style={`--bubble-color: ${b.topic.color}; --bubble-cx: ${b.x}px; --bubble-cy: ${b.y}px; --bubble-delay: ${i * 0.04}s;`}
       >
         <circle cx={b.x} cy={b.y} r={b.r} fill={b.topic.color} />
         <text class="bubble-label" font-size={b.fontSize} fill={b.textColor}>
           <textPath href={`#arc-${b.topic.slug}`} startOffset="50%" text-anchor="middle">
-            {b.topic.labels[locale]}
+            {b.topic.label}
           </textPath>
         </text>
         <text
@@ -98,8 +97,8 @@ const bubbles = topicCounts.map(({ topic, count }) => {
   <ul class="topics-fallback">
     {bubbles.map(({ topic, count }) => (
       <li>
-        <a href={getTopicPath(topic, locale)}>
-          {topic.labels[locale]} — {t('topics.articleCount', { count })}
+        <a href={getTopicPath(topic)}>
+          {topic.label} — {t('topics.articleCount', { count })}
         </a>
       </li>
     ))}

@@ -18,7 +18,7 @@ const post = postEntry.data;
 const categories = getCategories(post.tags, post.category);
 
 const siteURL = 'https://agenteconomy.cn';
-const articleUrl = `${siteURL}${locale === 'zh' ? '' : '/en'}/blog/${slug}`;
+const articleUrl = `${siteURL}/blog/${slug}`;
 const description = post.excerpt;
 
 const articleSchema = JSON.stringify({
@@ -65,5 +65,5 @@ const breadcrumbSchema = JSON.stringify({
     <time datetime={post.date}>{post.date}</time>
     <Content />
   </article>
-  <a href={locale === 'zh' ? '/' : '/en/'} class="back-link">← {locale === 'zh' ? '全部文章' : 'All articles'}</a>
+  <a href="/" class="back-link">← 全部文章</a>
 </Layout>

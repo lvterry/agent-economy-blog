@@ -15,9 +15,9 @@ const searchIndex = posts.map(p => ({
   source: p.data.source
 }));
 
-const placeholder = locale === 'zh' ? '搜索文章...' : 'Search articles...';
-const noResults = locale === 'zh' ? '未找到结果' : 'No results found';
-const statsTemplate = locale === 'zh' ? '{count} 篇文章' : '{count} articles';
+const placeholder = '搜索文章...';
+const noResults = '未找到结果';
+const statsTemplate = '{count} 篇文章';
 ---
 
 <div id="search-popup-overlay" class="search-popup-overlay" role="dialog" aria-modal="true" aria-label="Search" style="display:none;">
@@ -139,7 +139,7 @@ const statsTemplate = locale === 'zh' ? '{count} 篇文章' : '{count} articles'
 
       if (content.includes(lowerQuery)) {
         results.push({
-          url: (LOCALE.locale === 'en' ? '/en' : '') + '/blog/' + post.slug,
+          url: '/blog/' + post.slug,
           title: post.title,
           excerpt: post.excerpt,
           date: post.date,

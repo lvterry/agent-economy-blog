@@ -1,16 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { companies, categories } from '../data/companies';
-import { useTranslations } from '../i18n/utils';
-
-const locale = Astro.currentLocale || 'zh';
-const t = useTranslations(locale);
 ---
 
 <Layout>
   <section class="intro">
-    <h2>{locale === 'zh' ? 'AI 行业领先公司' : 'Leading AI Companies'}</h2>
-    <p>{locale === 'zh' ? '探索塑造智能体经济的核心企业，从基础设施提供商到应用开发者。' : 'Explore the core enterprises shaping the agent economy, from infrastructure providers to application developers.'}</p>
+    <h2>AI 行业领先公司</h2>
+    <p>探索塑造智能体经济的核心企业，从基础设施提供商到应用开发者。</p>
   </section>
 
   <section class="companies-section">
@@ -20,7 +16,7 @@ const t = useTranslations(locale);
           class={`filter-btn ${cat.id === 'all' ? 'active' : ''}`} 
           data-category={cat.id}
         >
-          {locale === 'zh' ? cat.nameZh : cat.nameEn}
+          {cat.nameZh}
         </button>
       ))}
     </div>
@@ -39,8 +35,8 @@ const t = useTranslations(locale);
           </div>
           <div class="company-info">
             <h3 class="company-name">{company.name}</h3>
-            <span class="company-category">{locale === 'zh' ? company.categoryZh : company.category}</span>
-            <p class="company-description">{locale === 'zh' ? company.descriptionZh : company.descriptionEn}</p>
+            <span class="company-category">{company.categoryZh}</span>
+            <p class="company-description">{company.descriptionZh}</p>
           </div>
         </a>
       ))}
