@@ -51,44 +51,40 @@
     <p class="lede">基于真实文章数据做的三套首页设计稿，核心都是把文章「铺开」而非单列堆叠。点开任意一张卡片预览完整效果，挑一个方向，我再把它落到 Astro 站点上。</p>
   </header>
 
-  <section class="grid" id="grid"></section>
+  <section class="grid" id="grid">
+    <a class="card" href="./editorial-magazine.html">
+      <div class="thumb"><svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c2703a"/><stop offset="1" stop-color="#8a3d1a"/></linearGradient></defs><rect width="400" height="200" fill="url(#ga)" opacity="0.9"/><g stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none"><line x1="0" y1="0" x2="0" y2="200"/><line x1="50" y1="0" x2="50" y2="200"/><line x1="100" y1="0" x2="100" y2="200"/><line x1="150" y1="0" x2="150" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/><line x1="250" y1="0" x2="250" y2="200"/><line x1="300" y1="0" x2="300" y2="200"/><line x1="350" y1="0" x2="350" y2="200"/></g></svg></div>
+      <div class="body">
+        <div class="tagn">Magazine</div>
+        <h3>方案 A · 杂志铺开式</h3>
+        <p>奶油纸质感、衬线大标题。头条占据视觉重心，下方多栏网格把文章铺开，右侧固定「本周观察」专栏。最像一本印刷杂志的封面与目录跨页。</p>
+        <div class="go">查看预览 →</div>
+      </div>
+    </a>
+    <a class="card" href="./editorial-broadsheet.html">
+      <div class="thumb"><svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6dba"/><stop offset="1" stop-color="#1f3a6e"/></linearGradient></defs><rect width="400" height="200" fill="url(#gb)" opacity="0.9"/><g stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none"><line x1="0" y1="0" x2="0" y2="200"/><line x1="50" y1="0" x2="50" y2="200"/><line x1="100" y1="0" x2="100" y2="200"/><line x1="150" y1="0" x2="150" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/><line x1="250" y1="0" x2="250" y2="200"/><line x1="300" y1="0" x2="300" y2="200"/><line x1="350" y1="0" x2="350" y2="200"/></g></svg></div>
+      <div class="body">
+        <div class="tagn">Broadsheet</div>
+        <h3>方案 B · 报刊多栏式</h3>
+        <p>经典报纸排版：报头、双线分隔、头条正文分两栏流动，右栏放观察与编号简讯，底部四栏密集铺开更多报道。信息密度最高。</p>
+        <div class="go">查看预览 →</div>
+      </div>
+    </a>
+    <a class="card" href="./editorial-index.html">
+      <div class="thumb"><svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4a843"/><stop offset="1" stop-color="#7c5fb8"/></linearGradient></defs><rect width="400" height="200" fill="url(#gc)" opacity="0.9"/><g stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none"><line x1="0" y1="0" x2="0" y2="200"/><line x1="50" y1="0" x2="50" y2="200"/><line x1="100" y1="0" x2="100" y2="200"/><line x1="150" y1="0" x2="150" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/><line x1="250" y1="0" x2="250" y2="200"/><line x1="300" y1="0" x2="300" y2="200"/><line x1="350" y1="0" x2="350" y2="200"/></g></svg></div>
+      <div class="body">
+        <div class="tagn">Dark Index</div>
+        <h3>方案 C · 暗色索引式</h3>
+        <p>延续站点深色金调。超大衬线标语开场，文章以排版化的「目录索引」逐行铺开，hover 时展开摘要。最克制、最当代，留白驱动。</p>
+        <div class="go">查看预览 →</div>
+      </div>
+    </a>
+  </section>
 
   <div class="note">
     <b>说明：</b> 三套稿都用了真实文章 + 最新「观察」内容，但链接是占位的。配色延续站点的暖金调，并引入衬线字体（思源宋体）营造 editorial 质感。本地预览：进入 <code>design/</code> 目录后运行 <code>python3 -m http.server</code>，再访问 <code>localhost:8000</code>。
   </div>
 </div>
 
-<script>
-  const grad = (a,b)=>`<svg viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="g${a}" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
-    <rect width="400" height="200" fill="url(#g${a})" opacity="0.9"/>
-    <g stroke="rgba(255,255,255,.18)" stroke-width="1" fill="none">
-      ${Array.from({length:9},(_,i)=>`<line x1="${i*50}" y1="0" x2="${i*50}" y2="200"/>`).join('')}
-    </g></svg>`;
-
-  const cards = [
-    { f:'editorial-magazine.html', t:'方案 A · 杂志铺开式', tag:'Magazine',
-      d:'奶油纸质感、衬线大标题。头条占据视觉重心，下方多栏网格把文章铺开，右侧固定「本周观察」专栏。最像一本印刷杂志的封面与目录跨页。',
-      a:'#c2703a', b:'#8a3d1a' },
-    { f:'editorial-broadsheet.html', t:'方案 B · 报刊多栏式', tag:'Broadsheet',
-      d:'经典报纸排版：报头、双线分隔、头条正文分两栏流动，右栏放观察与编号简讯，底部四栏密集铺开更多报道。信息密度最高。',
-      a:'#5b6dba', b:'#1f3a6e' },
-    { f:'editorial-index.html', t:'方案 C · 暗色索引式', tag:'Dark Index',
-      d:'延续站点深色金调。超大衬线标语开场，文章以排版化的「目录索引」逐行铺开，hover 时展开摘要。最克制、最当代，留白驱动。',
-      a:'#d4a843', b:'#7c5fb8' },
-  ];
-
-  document.getElementById('grid').innerHTML = cards.map(c=>`
-    <a class="card" href="./${c.f}">
-      <div class="thumb">${grad(c.a,c.b)}</div>
-      <div class="body">
-        <div class="tagn">${c.tag}</div>
-        <h3>${c.t}</h3>
-        <p>${c.d}</p>
-        <div class="go">查看预览 →</div>
-      </div>
-    </a>`).join('');
-</script>
 </body>
 </html>

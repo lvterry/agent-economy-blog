@@ -169,70 +169,103 @@
   <div class="wrap">
     <header class="top">
       <div class="brand"><div class="m">AE</div><b>Agent Economy</b></div>
-      <nav class="t" id="nav"></nav>
+      <nav class="t"><a href="#" class="on">文章</a><a href="#" class="">话题</a><a href="#" class="">观察</a><a href="#" class="">关于</a></nav>
     </header>
-
     <section class="hero">
       <div class="eye">2026 · 智能体经济日报</div>
       <h2>追踪 <em>智能体经济</em> 的每一次结构性位移——<br>从算力、模型，到正在被重写的工作方式。</h2>
       <p>每日精选与深度解读。不卖 token，只卖判断。</p>
     </section>
-
-    <section class="obs" id="obs"></section>
-
-    <div class="filters" id="filters"></div>
-
-    <section class="index" id="index"></section>
-
+    <section class="obs">
+    <div class="lab">本周观察<div class="d">2026-04-30</div></div>
+    <div><h3>Agent Runtime 之争</h3><p>短短三周内，Anthropic、OpenAI（经由 AWS）、微软、Google 几乎同时推出了各自的托管 agent runtime。这种集中并非巧合。过去一年里，企业 agent 落地普遍卡在同样三件事上——长任务的状态管理、沙箱隔离、可观测性。行业最终给出了同一个答案：不再卖 token，改卖 agent-小时。</p><a class="more" href="#">阅读完整观察 →</a></div></section>
+    <div class="filters"><span class="h">筛选</span><span class="pill on" data-c="全部">全部</span><span class="pill " data-c="AI Infra">AI Infra</span><span class="pill " data-c="AI 智能体">AI 智能体</span><span class="pill " data-c="AI 模型">AI 模型</span><span class="pill " data-c="AI 应用">AI 应用</span><span class="pill " data-c="商业 &amp; 经济">商业 &amp; 经济</span><span class="pill " data-c="安全与隐私">安全与隐私</span><span class="pill " data-c="行业动态">行业动态</span></div>
+    <section class="index" id="index">
+      <a class="row" href="#" data-cat="AI Infra">
+        <span class="num">01</span>
+        <div class="main"><span class="cat">AI Infra</span><h4>48,000 美元的 GPU 服务器到底值不值——一份真实成本分析</h4><p>一位独立 AI 研究员详细拆解了自建 6×RTX 6000 Ada GPU 服务器与租用云 GPU 的真实经济账，数据跨度 18 个月。</p></div>
+        <div class="aside"><div class="src">Rosmine AI</div><div>2026-05-22</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 智能体">
+        <span class="num">02</span>
+        <div class="main"><span class="cat">AI 智能体</span><h4>Qwen3.7-Max：专为智能体时代打造的前沿模型</h4><p>阿里的 Qwen3.7-Max 在代码智能体、MCP 集成和超长自主执行上实现突破，并在 35 小时连续运行中独立完成 GPU 内核优化，达到 10 倍加速。</p></div>
+        <div class="aside"><div class="src">Qwen</div><div>2026-05-21</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 模型">
+        <span class="num">03</span>
+        <div class="main"><span class="cat">AI 模型</span><h4>Scott Alexander 论 AI 发展曲线为何不会轻易触顶</h4><p>Astral Codex Ten 反驳「所有指数增长终将变成 S 曲线」的 AI 怀疑论，指出历史上一再出现过早宣告增长见顶的错误预测。</p></div>
+        <div class="aside"><div class="src">Astral Codex Ten</div><div>2026-05-16</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="安全与隐私">
+        <span class="num">04</span>
+        <div class="main"><span class="cat">安全与隐私</span><h4>Google Project Zero 在 Pixel 10 上实现零点击远程 Root 攻击</h4><p>团队复现了零点击远程利用链，发现 Tensor G5 芯片 VPU 驱动的严重内核漏洞，仅需 5 行代码即可实现任意内核读写。</p></div>
+        <div class="aside"><div class="src">Google Project Zero</div><div>2026-05-16</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="商业 &amp; 经济">
+        <span class="num">05</span>
+        <div class="main"><span class="cat">商业 &amp; 经济</span><h4>美国在 AI 商业化竞赛中领先，关键在于基础设施与平台生态</h4><p>深度分析指出，美国的领先不在论文数量或工程师规模，而是从芯片、数据中心到云平台和开发者生态的全栈整合能力。</p></div>
+        <div class="aside"><div class="src">avkcode</div><div>2026-05-14</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 智能体">
+        <span class="num">06</span>
+        <div class="main"><span class="cat">AI 智能体</span><h4>Theo 发现 Claude Code 会扫描 Git 历史中的 OpenClaw 并据此拒绝执行</h4><p>Claude Code 会在 Git 提交历史中检测 OpenClaw 关键词，一旦发现就拒绝执行请求或额外收费，引发关于编码 Agent 竞争行为的讨论。</p></div>
+        <div class="aside"><div class="src">X (Theo)</div><div>2026-04-30</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 智能体">
+        <span class="num">07</span>
+        <div class="main"><span class="cat">AI 智能体</span><h4>zindex 为 AI 智能体打造图表基础设施协议</h4><p>Diagram Scene Protocol 让智能体以结构化、可版本化的方式创建和编辑图表，标志 AI 生成内容从一次性输出向持久化状态的转变。</p></div>
+        <div class="aside"><div class="src">zindex.ai</div><div>2026-04-22</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI Infra">
+        <span class="num">08</span>
+        <div class="main"><span class="cat">AI Infra</span><h4>AI 需求推动 RAM 短缺或持续数年</h4><p>即使供应商增加 DRAM 生产，到 2027 年底制造商预计只能满足 60% 的需求。SK 集团主席甚至表示短缺可能持续到 2030 年。</p></div>
+        <div class="aside"><div class="src">The Verge</div><div>2026-04-18</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 模型">
+        <span class="num">09</span>
+        <div class="main"><span class="cat">AI 模型</span><h4>Gemini 应用现已登陆 macOS</h4><p>Google 将 Gemini 应用带到 macOS，提供原生桌面体验。</p></div>
+        <div class="aside"><div class="src">Google</div><div>2026-04-16</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="行业动态">
+        <span class="num">10</span>
+        <div class="main"><span class="cat">行业动态</span><h4>VS Code 默认启用 AI 共同作者提交标注</h4><p>微软在一项仅改动两行的合并请求中，将 git 提交自动添加 AI 共同作者的功能默认开启，引发大规模社区不满。</p></div>
+        <div class="aside"><div class="src">GitHub</div><div>2026-04-16</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 模型">
+        <span class="num">11</span>
+        <div class="main"><span class="cat">AI 模型</span><h4>Qwen3.6-Plus：面向真实世界场景的 AI Agent</h4><p>阿里通义千问发布面向真实世界 Agent 场景的模型，支持复杂任务规划、代码生成、多模态理解和工具调用。</p></div>
+        <div class="aside"><div class="src">Alibaba</div><div>2026-04-03</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI 应用">
+        <span class="num">12</span>
+        <div class="main"><span class="cat">AI 应用</span><h4>Variant：用 AI 无限滚动探索设计灵感</h4><p>输入一个应用或网站的想法，通过滚动即可浏览 AI 生成的无限设计选项。像刷短视频一样探索设计灵感。</p></div>
+        <div class="aside"><div class="src">Variant</div><div>2026-03-30</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI Infra">
+        <span class="num">13</span>
+        <div class="main"><span class="cat">AI Infra</span><h4>Project NOMAD：免费开源的离线 AI 服务器</h4><p>免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。适合应急准备、离网生活或技术爱好者自托管。</p></div>
+        <div class="aside"><div class="src">Project NOMAD</div><div>2026-03-23</div><div class="arrow">阅读 →</div></div>
+      </a>
+      <a class="row" href="#" data-cat="AI Infra">
+        <span class="num">14</span>
+        <div class="main"><span class="cat">AI Infra</span><h4>TinyBox：深度学习超级计算机现已开售</h4><p>tinygrad 背后的 Tiny Corp 推出 TinyBox 深度学习超级计算机，4×9070 XT 版本售价 $12,000，现已发货。</p></div>
+        <div class="aside"><div class="src">TinyCorp</div><div>2026-03-22</div><div class="arrow">阅读 →</div></div>
+      </a></section>
     <div class="foot"><a href="#">查看全部 142 篇 →</a></div>
   </div>
   <footer class="end"><div class="wrap">AGENT ECONOMY · 设计稿 · agenteconomy.cn</div></footer>
-
-<script src="./data.js"></script>
-<script>
-  document.getElementById('nav').innerHTML = ['文章','话题','观察','关于']
-    .map((c,i)=>`<a href="#" class="${i===0?'on':''}">${c}</a>`).join('');
-
-  const o = AE_OBSERVATION;
-  document.getElementById('obs').innerHTML = `
-    <div class="lab">${o.eyebrow}<div class="d">${o.date}</div></div>
-    <div>
-      <h3>${o.title}</h3>
-      <p>${o.body}</p>
-      <a class="more" href="#">阅读完整观察 →</a>
-    </div>`;
-
-  document.getElementById('filters').innerHTML =
-    `<span class="h">筛选</span>` +
-    AE_CATEGORIES.map((c,i)=>`<span class="pill ${i===0?'on':''}" data-c="${c}">${c}</span>`).join('');
-
-  const index = document.getElementById('index');
-  function render(cat){
-    const list = AE_POSTS.filter(p => cat==='全部' || p.cat===cat);
-    index.innerHTML = list.map((p,i)=>`
-      <a class="row" href="#">
-        <span class="num">${String(i+1).padStart(2,'0')}</span>
-        <div class="main">
-          <span class="cat">${p.cat}</span>
-          <h4>${p.title}</h4>
-          <p>${p.excerpt}</p>
-        </div>
-        <div class="aside">
-          <div class="src">${p.source}</div>
-          <div>${p.date}</div>
-          <div class="arrow">阅读 →</div>
-        </div>
-      </a>`).join('');
-  }
-  render('全部');
-
-  document.querySelectorAll('.pill').forEach(pill=>{
-    pill.addEventListener('click', ()=>{
-      document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
-      pill.classList.add('on');
-      render(pill.dataset.c);
+  <script>
+    // progressive enhancement: filter the already-rendered rows (works only if JS allowed)
+    document.querySelectorAll('.pill').forEach(function(pill){
+      pill.addEventListener('click', function(){
+        document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('on');});
+        pill.classList.add('on');
+        var c = pill.dataset.c;
+        document.querySelectorAll('.row').forEach(function(r){
+          r.style.display = (c==='全部' || r.dataset.cat===c) ? '' : 'none';
+        });
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>

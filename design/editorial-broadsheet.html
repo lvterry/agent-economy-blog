@@ -176,76 +176,103 @@
 <body>
   <header class="nameplate">
     <div class="wrap">
-      <div class="np-bar">
-        <span id="dateline"></span>
-        <span>独立策展 · 无广告</span>
-        <span>定价 ¥0.00</span>
-      </div>
-      <div class="np-title">
-        <h1>The Agent Economy</h1>
-        <div class="np-sub"><span>智能体经济日报</span><span>Vol. XII</span><span>agenteconomy.cn</span></div>
-      </div>
-      <nav class="kios" id="nav"></nav>
+      <div class="np-bar"><span>2026年5月29日 星期五</span><span>独立策展 · 无广告</span><span>定价 ¥0.00</span></div>
+      <div class="np-title"><h1>The Agent Economy</h1>
+        <div class="np-sub"><span>智能体经济日报</span><span>Vol. XII</span><span>agenteconomy.cn</span></div></div>
+      <nav class="kios"><a href="#" class="on">全部</a><a href="#" class="">AI Infra</a><a href="#" class="">AI 智能体</a><a href="#" class="">AI 模型</a><a href="#" class="">AI 应用</a><a href="#" class="">商业 &amp; 经济</a><a href="#" class="">安全与隐私</a><a href="#" class="">行业动态</a></nav>
     </div>
   </header>
-
   <div class="wrap">
     <section class="columns">
-      <div class="col-left" id="lead"></div>
-      <aside class="col-right">
-        <div class="rail-box" id="obs"></div>
-        <div class="rail-h">简讯 · BRIEFS</div>
-        <div id="briefs"></div>
-      </aside>
-    </section>
-
-    <div class="deck-head">更多报道 · MORE STORIES</div>
-    <section class="deck" id="deck"></section>
-  </div>
-
-  <footer class="wrap">AGENT ECONOMY · 设计稿 · © 2026</footer>
-
-<script src="./data.js"></script>
-<script>
-  document.getElementById('dateline').textContent =
-    new Date('2026-05-29').toLocaleDateString('zh-CN', { year:'numeric', month:'long', day:'numeric', weekday:'long' }).toUpperCase();
-
-  document.getElementById('nav').innerHTML = AE_CATEGORIES
-    .map((c,i) => `<a href="#" class="${i===0?'on':''}">${c}</a>`).join('');
-
-  const posts = AE_POSTS, lead = posts[0];
-  document.getElementById('lead').innerHTML = `
-    <span class="top-kicker">${lead.cat} · 今日头条</span>
-    <h2 class="headline"><a href="#">${lead.title}</a></h2>
-    <p class="subhead">${lead.excerpt}</p>
+      <div class="col-left">
+    <span class="top-kicker">AI Infra · 今日头条</span>
+    <h2 class="headline"><a href="#">48,000 美元的 GPU 服务器到底值不值——一份真实成本分析</a></h2>
+    <p class="subhead">一位独立 AI 研究员详细拆解了自建 6×RTX 6000 Ada GPU 服务器与租用云 GPU 的真实经济账，数据跨度 18 个月。</p>
     <div class="lead-body">
-      <p>${lead.excerpt} 这篇分析覆盖了从硬件采购、电力与机房成本，到模型训练吞吐与折旧周期的完整账目，并把自建方案与按需租用的云 GPU 做了逐月对比。</p>
+      <p>一位独立 AI 研究员详细拆解了自建 6×RTX 6000 Ada GPU 服务器与租用云 GPU 的真实经济账，数据跨度 18 个月。 这篇分析覆盖了从硬件采购、电力与机房成本，到模型训练吞吐与折旧周期的完整账目，并把自建方案与按需租用的云 GPU 做了逐月对比。</p>
       <p>作者强调，决定盈亏平衡点的并不只是显卡单价，而是利用率：当 GPU 长期闲置时，自建的折旧很快吞掉表面上的单价优势；而当负载饱和、且任务对延迟与数据合规敏感时，自建则迅速反超。</p>
       <p>结论指向一个正在重塑行业的事实——在智能体时代，算力既是成本中心，也是战略护城河。</p>
     </div>
-    <div class="lead-meta">来源 ${lead.source} · ${lead.date} · 全文 →</div>`;
-
-  const o = AE_OBSERVATION;
-  document.getElementById('obs').innerHTML = `
-    <span class="tag">${o.eyebrow}</span>
-    <h3>${o.title}</h3>
-    <p>${o.body}</p>
-    <a class="more" href="#">读完整观察 →</a>`;
-
-  document.getElementById('briefs').innerHTML = posts.slice(1,5).map((p,i)=>`
-    <div class="brief">
-      <span class="no">${String(i+1).padStart(2,'0')}</span>
-      <div><h6><a href="#">${p.title}</a></h6>
-      <span class="m">${p.cat} · ${p.source}</span></div>
-    </div>`).join('');
-
-  document.getElementById('deck').innerHTML = posts.slice(5).map(p=>`
-    <article class="story">
-      <div class="k">${p.cat}</div>
-      <h5><a href="#">${p.title}</a></h5>
-      <p>${p.excerpt}</p>
-      <div class="src">${p.source} · ${p.date}</div>
-    </article>`).join('');
-</script>
+    <div class="lead-meta">来源 Rosmine AI · 2026-05-22 · 全文 →</div></div>
+      <aside class="col-right">
+        <div class="rail-box">
+    <span class="tag">本周观察</span>
+    <h3>Agent Runtime 之争</h3>
+    <p>短短三周内，Anthropic、OpenAI（经由 AWS）、微软、Google 几乎同时推出了各自的托管 agent runtime。这种集中并非巧合。过去一年里，企业 agent 落地普遍卡在同样三件事上——长任务的状态管理、沙箱隔离、可观测性。行业最终给出了同一个答案：不再卖 token，改卖 agent-小时。</p>
+    <a class="more" href="#">读完整观察 →</a></div>
+        <div class="rail-h">简讯 · BRIEFS</div>
+        <div>
+      <div class="brief"><span class="no">01</span>
+        <div><h6><a href="#">Qwen3.7-Max：专为智能体时代打造的前沿模型</a></h6><span class="m">AI 智能体 · Qwen</span></div>
+      </div>
+      <div class="brief"><span class="no">02</span>
+        <div><h6><a href="#">Scott Alexander 论 AI 发展曲线为何不会轻易触顶</a></h6><span class="m">AI 模型 · Astral Codex Ten</span></div>
+      </div>
+      <div class="brief"><span class="no">03</span>
+        <div><h6><a href="#">Google Project Zero 在 Pixel 10 上实现零点击远程 Root 攻击</a></h6><span class="m">安全与隐私 · Google Project Zero</span></div>
+      </div>
+      <div class="brief"><span class="no">04</span>
+        <div><h6><a href="#">美国在 AI 商业化竞赛中领先，关键在于基础设施与平台生态</a></h6><span class="m">商业 &amp; 经济 · avkcode</span></div>
+      </div></div>
+      </aside>
+    </section>
+    <div class="deck-head">更多报道 · MORE STORIES</div>
+    <section class="deck">
+      <article class="story">
+        <div class="k">AI 智能体</div>
+        <h5><a href="#">Theo 发现 Claude Code 会扫描 Git 历史中的 OpenClaw 并据此拒绝执行</a></h5>
+        <p>Claude Code 会在 Git 提交历史中检测 OpenClaw 关键词，一旦发现就拒绝执行请求或额外收费，引发关于编码 Agent 竞争行为的讨论。</p>
+        <div class="src">X (Theo) · 2026-04-30</div>
+      </article>
+      <article class="story">
+        <div class="k">AI 智能体</div>
+        <h5><a href="#">zindex 为 AI 智能体打造图表基础设施协议</a></h5>
+        <p>Diagram Scene Protocol 让智能体以结构化、可版本化的方式创建和编辑图表，标志 AI 生成内容从一次性输出向持久化状态的转变。</p>
+        <div class="src">zindex.ai · 2026-04-22</div>
+      </article>
+      <article class="story">
+        <div class="k">AI Infra</div>
+        <h5><a href="#">AI 需求推动 RAM 短缺或持续数年</a></h5>
+        <p>即使供应商增加 DRAM 生产，到 2027 年底制造商预计只能满足 60% 的需求。SK 集团主席甚至表示短缺可能持续到 2030 年。</p>
+        <div class="src">The Verge · 2026-04-18</div>
+      </article>
+      <article class="story">
+        <div class="k">AI 模型</div>
+        <h5><a href="#">Gemini 应用现已登陆 macOS</a></h5>
+        <p>Google 将 Gemini 应用带到 macOS，提供原生桌面体验。</p>
+        <div class="src">Google · 2026-04-16</div>
+      </article>
+      <article class="story">
+        <div class="k">行业动态</div>
+        <h5><a href="#">VS Code 默认启用 AI 共同作者提交标注</a></h5>
+        <p>微软在一项仅改动两行的合并请求中，将 git 提交自动添加 AI 共同作者的功能默认开启，引发大规模社区不满。</p>
+        <div class="src">GitHub · 2026-04-16</div>
+      </article>
+      <article class="story">
+        <div class="k">AI 模型</div>
+        <h5><a href="#">Qwen3.6-Plus：面向真实世界场景的 AI Agent</a></h5>
+        <p>阿里通义千问发布面向真实世界 Agent 场景的模型，支持复杂任务规划、代码生成、多模态理解和工具调用。</p>
+        <div class="src">Alibaba · 2026-04-03</div>
+      </article>
+      <article class="story">
+        <div class="k">AI 应用</div>
+        <h5><a href="#">Variant：用 AI 无限滚动探索设计灵感</a></h5>
+        <p>输入一个应用或网站的想法，通过滚动即可浏览 AI 生成的无限设计选项。像刷短视频一样探索设计灵感。</p>
+        <div class="src">Variant · 2026-03-30</div>
+      </article>
+      <article class="story">
+        <div class="k">AI Infra</div>
+        <h5><a href="#">Project NOMAD：免费开源的离线 AI 服务器</a></h5>
+        <p>免费开源的离线服务器，让任何人在自己电脑上运行完整 AI 系统。适合应急准备、离网生活或技术爱好者自托管。</p>
+        <div class="src">Project NOMAD · 2026-03-23</div>
+      </article>
+      <article class="story">
+        <div class="k">AI Infra</div>
+        <h5><a href="#">TinyBox：深度学习超级计算机现已开售</a></h5>
+        <p>tinygrad 背后的 Tiny Corp 推出 TinyBox 深度学习超级计算机，4×9070 XT 版本售价 $12,000，现已发货。</p>
+        <div class="src">TinyCorp · 2026-03-22</div>
+      </article></section>
+  </div>
+  <footer class="wrap">AGENT ECONOMY · 设计稿 · © 2026</footer>
 </body>
 </html>
