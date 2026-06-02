@@ -49,12 +49,6 @@ const bubbles = topicCounts.map(({ topic, count }) => {
 });
 ---
 
-<section class="topics-header">
-  <p class="topics-eyebrow">{t('topics.eyebrow')}</p>
-  <h1 class="topics-title">{t('topics.title')}</h1>
-  <p class="topics-desc">{t('topics.desc')}</p>
-</section>
-
 <section class="topics-bubbles" aria-label={t('topics.title')}>
   <svg
     viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
@@ -106,38 +100,6 @@ const bubbles = topicCounts.map(({ topic, count }) => {
 </section>
 
 <style>
-  .topics-header {
-    padding: var(--space-lg) 0 var(--space-xl);
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: var(--space-lg);
-  }
-
-  .topics-eyebrow {
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-xs);
-  }
-
-  .topics-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    margin-bottom: var(--space-sm);
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .topics-desc {
-    max-width: 620px;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
   .topics-bubbles {
     margin: 0 auto;
     max-width: 1100px;
@@ -209,7 +171,7 @@ const bubbles = topicCounts.map(({ topic, count }) => {
 
   .bubble-label {
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     pointer-events: none;
   }
 
@@ -246,10 +208,6 @@ const bubbles = topicCounts.map(({ topic, count }) => {
   }
 
   @media (max-width: 640px) {
-    .topics-title {
-      font-size: 1.75rem;
-    }
-
     .topics-bubbles svg {
       max-height: none;
     }

@@ -24,11 +24,6 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
     <p class="post-excerpt">{data.excerpt}</p>
     
     <div class="post-footer">
-      <div class="tags">
-        {data.tags.slice(0, 3).map(tag => (
-          <span class="tag">#{tag}</span>
-        ))}
-      </div>
       {data.source && <span class="post-source">{data.source}</span>}
     </div>
   </div>
@@ -37,39 +32,27 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
 <style>
   .post-card {
     position: relative;
-    border: 1px solid var(--color-card-border);
-    border-radius: 12px;
-    background: var(--color-card-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    background: transparent;
+    transition: border-color 0.2s ease;
+    margin-bottom: 0;
   }
 
   .post-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-card);
-    border-radius: 12px;
-    pointer-events: none;
+    content: none;
   }
 
   .post-card:hover {
-    border-color: rgba(212, 168, 67, 0.25);
-    box-shadow: 0 4px 24px rgba(212, 168, 67, 0.06), 0 0 0 1px rgba(212, 168, 67, 0.08);
-    transform: translateY(-1px);
+    border-color: var(--color-rule);
   }
 
   [data-theme="light"] .post-card:hover {
-    border-color: rgba(160, 124, 30, 0.25);
-    box-shadow: 0 4px 24px rgba(160, 124, 30, 0.06), 0 0 0 1px rgba(160, 124, 30, 0.08);
+    border-color: var(--color-rule);
   }
 
   .post-card-inner {
     position: relative;
-    padding: 1.25rem 1.5rem;
+    padding: 1.15rem 0;
   }
 
   .post-meta {
@@ -81,17 +64,16 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
 
   .post-category {
     font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-weight: 500;
+    letter-spacing: 0;
     color: var(--color-accent);
-    background: rgba(212, 168, 67, 0.1);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
   }
 
   [data-theme="light"] .post-category {
-    background: rgba(160, 124, 30, 0.1);
+    background: transparent;
   }
 
   .post-date {
@@ -101,11 +83,11 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
   }
 
   .post-title {
-    font-size: 1.25rem;
+    font-size: 1.12rem;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.45;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   .post-title a {
@@ -135,22 +117,22 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
     gap: 0.5rem;
   }
 
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    font-size: 0.6875rem;
-    font-family: var(--font-mono);
-    color: var(--color-text-muted);
-  }
-
   .post-source {
     font-size: 0.6875rem;
     color: var(--color-text-muted);
     font-weight: 500;
     text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .post-meta,
+    .post-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .post-source {
+      text-align: left;
+    }
   }
 </style>

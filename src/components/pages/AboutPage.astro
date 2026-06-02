@@ -9,8 +9,6 @@ const aboutEntry = await getEntry('about', 'zh');
 const { Content } = await render(aboutEntry!);
 ---
 
-<h1 class="page-title">{t('about.title')}</h1>
-
 <div class="article-content">
   <Content />
 </div>
@@ -23,7 +21,6 @@ const { Content } = await render(aboutEntry!);
     color: var(--color-text-secondary);
     max-width: 560px;
     padding: var(--space-lg) 0;
-    border-bottom: 1px solid var(--color-border);
     margin-bottom: var(--space-lg);
   }
 
@@ -32,7 +29,7 @@ const { Content } = await render(aboutEntry!);
     font-weight: 600;
     margin-top: var(--space-lg);
     margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   .article-content :global(ul) {
@@ -57,7 +54,7 @@ const { Content } = await render(aboutEntry!);
     color: var(--color-accent);
     text-decoration: underline;
     text-underline-offset: 0.15em;
-    text-decoration-color: rgba(0, 212, 255, 0.3);
+    text-decoration-color: var(--color-border);
   }
 
   .article-content :global(a:hover) {

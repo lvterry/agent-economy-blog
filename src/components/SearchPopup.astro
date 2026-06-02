@@ -330,13 +330,11 @@ const statsTemplate = '{count} 篇文章';
   .search-popup-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.42);
   }
 
   [data-theme="light"] .search-popup-backdrop {
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(36, 33, 28, 0.22);
   }
 
   .search-popup-container {
@@ -350,13 +348,13 @@ const statsTemplate = '{count} 篇文章';
   .search-popup-panel {
     background: var(--color-surface);
     border: 1px solid var(--color-card-border);
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
   }
 
   [data-theme="light"] .search-popup-panel {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 36px rgba(36, 33, 28, 0.08);
   }
 
   .search-popup-header {

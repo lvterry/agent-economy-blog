@@ -33,11 +33,6 @@ function formatMonth(monthKey: string) {
 }
 ---
 
-<section class="archive-header">
-  <h1 class="archive-title">{t('archive.title')}</h1>
-  <p class="archive-stats">{t('archive.count', { count: posts.length })}</p>
-</section>
-
 <div class="timeline-nav">
   {sortedMonths.map(month => (
     <a href={`#${month}`} class="timeline-link">
@@ -64,30 +59,6 @@ function formatMonth(monthKey: string) {
 </div>
 
 <style>
-  .archive-header {
-    text-align: center;
-    padding: var(--space-lg) 0 var(--space-xl);
-    margin-bottom: var(--space-lg);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .archive-title {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: var(--space-sm);
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .archive-stats {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-md);
-  }
-
   .timeline-nav {
     display: flex;
     flex-wrap: wrap;
@@ -97,13 +68,11 @@ function formatMonth(monthKey: string) {
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(12, 10, 9, 0.9);
+    background: var(--color-bg);
   }
 
   :global([data-theme="light"]) .timeline-nav {
-    background: rgba(245, 240, 232, 0.9);
+    background: var(--color-bg);
   }
 
   .timeline-link {
@@ -143,7 +112,7 @@ function formatMonth(monthKey: string) {
     color: var(--color-text);
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-sm);
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     align-items: baseline;
     gap: 0.75rem;
@@ -162,10 +131,6 @@ function formatMonth(monthKey: string) {
   }
 
   @media (max-width: 640px) {
-    .archive-title {
-      font-size: 1.5rem;
-    }
-
     .timeline-nav {
       overflow-x: auto;
       flex-wrap: nowrap;

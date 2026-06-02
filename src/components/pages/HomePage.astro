@@ -1,8 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogPost from '../BlogPost.astro';
-import Observation from '../Observation.astro';
-import { categoryMap, categoryLabels, getTopicByKey, getTopicPath } from '../../lib/categories.js';
+import {
+  categoryLabels,
+  getCategories,
+  getTopicPath,
+  topics,
+} from '../../lib/categories.js';
 import { useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
@@ -13,265 +16,281 @@ const posts = allPosts
   .filter(p => p.id.startsWith(`${locale}/`))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
-const HOMEPAGE_POST_COUNT = 12;
-const totalPostCount = posts.length;
-
 const allObservations = await getCollection('observations');
 const latestObservation = allObservations
   .filter(o => o.id.startsWith(`${locale}/`))
   .sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
 
-const allCategories = ['__all', ...Object.keys(categoryMap)];
+let LatestObservationContent;
+if (latestObservation) {
+  const rendered = await latestObservation.render();
+  LatestObservationContent = rendered.Content;
+}
+
+const latestObservationSlug = latestObservation
+  ? latestObservation.id.replace(`${locale}/`, '').replace(/\.mdx?$/, '')
+  : '';
+
+const categorySections = topics
+  .map(topic => {
+    const categoryPosts = posts.filter(post =>
+      getCategories(post.data.tags || [], post.data.category).includes(topic.key)
+    );
+
+    return {
+      topic,
+      label: categoryLabels[topic.key] || topic.label,
+      count: categoryPosts.length,
+      posts: categoryPosts.slice(0, 8),
+    };
+  })
+  .filter(section => section.posts.length > 0);
+
+function getPostSlug(post) {
+  return post.id.replace(`${locale}/`, '').replace(/\.mdx?$/, '');
+}
+
+function getPostUrl(post) {
+  return `/blog/${getPostSlug(post)}`;
+}
 ---
 
-<section class="hero">
-  <h2 class="hero-title" style="white-space: pre-line;">{t('hero.title')}</h2>
-  <p class="hero-desc">{t('hero.desc')}</p>
-</section>
+<div class="minimal-home">
+  {latestObservation && LatestObservationContent && (
+    <section class="latest-observation" aria-label={t('observations.latest')}>
+      <article>
+        <div class="observation-meta">
+          <span>{t('observations.latest')}</span>
+          <span class="meta-separator" aria-hidden="true"></span>
+          <time datetime={latestObservation.data.date}>{latestObservation.data.date}</time>
+        </div>
+        <h3>
+          <a href={`/observations#obs-${latestObservationSlug}`}>
+            {latestObservation.data.title}
+          </a>
+        </h3>
+        <div class="observation-body">
+          <LatestObservationContent />
+        </div>
+      </article>
+    </section>
+  )}
 
-{latestObservation && (
-  <section class="latest-observation">
-    <Observation
-      observation={latestObservation}
-      locale={locale}
-      eyebrow={t('observations.latest')}
-      archiveUrl="/observations"
-      archiveLabel={t('observations.viewAll')}
-    />
-  </section>
-)}
-
-<div class="category-filter" id="category-filter">
-  {allCategories.map(cat => (
-    <button
-      data-category={cat}
-      data-topic-url={cat === '__all' ? '/topics' : getTopicPath(getTopicByKey(cat) || cat)}
-      class:list={['filter-pill', { active: cat === '__all' }]}
-      title={cat === '__all' ? t('topics.title') : `${t('topics.title')}: ${categoryLabels[cat] || cat}`}
-    >
-      {cat === '__all' ? t('filter.all') : categoryLabels[cat] || cat}
-    </button>
-  ))}
-</div>
-
-<section class="posts-grid" id="posts-grid">
-  {posts.map((post, index) => (
-    <div
-      class="post-item"
-      data-extra={index >= HOMEPAGE_POST_COUNT ? 'true' : null}
-      style={index >= HOMEPAGE_POST_COUNT ? 'display:none' : undefined}
-    >
-      <BlogPost post={post} locale={locale} />
+  <section class="category-index" aria-label="分类文章">
+    <div class="section-heading">
+      <h2>文章分类</h2>
+      <a href="/archive">{t('viewAll')}</a>
     </div>
-  ))}
-</section>
 
-{totalPostCount > HOMEPAGE_POST_COUNT && (
-  <div class="view-all-section" id="view-all-section">
-    <div class="post-count">{t('postCount', { shown: HOMEPAGE_POST_COUNT, total: totalPostCount })}</div>
-    <a href="/archive" class="view-all-btn">{t('viewAll')} →</a>
-  </div>
-)}
+    <div class="category-list">
+      {categorySections.map(section => (
+        <section class="category-section">
+          <header class="category-header">
+            <h3>
+              <a href={getTopicPath(section.topic)}>{section.label}</a>
+            </h3>
+          </header>
 
-<div class="empty-state" id="empty-state" style="display:none">
-  {t('emptyState')}
+          <ol class="post-list">
+            {section.posts.map(post => (
+              <li>
+                <time datetime={post.data.date}>{post.data.date}</time>
+                <a href={getPostUrl(post)}>{post.data.title}</a>
+              </li>
+            ))}
+          </ol>
+
+          {section.count > section.posts.length && (
+            <a class="topic-more" href={getTopicPath(section.topic)}>
+              查看更多
+            </a>
+          )}
+        </section>
+      ))}
+    </div>
+  </section>
 </div>
 
 <style>
-  .hero {
-    text-align: center;
-    padding: var(--space-lg) 0 var(--space-xl);
-    margin-bottom: var(--space-lg);
-    position: relative;
+  :global(main) {
+    max-width: var(--max-width);
+    padding-top: var(--space-lg);
   }
 
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: var(--gradient-accent);
-    border-radius: 1px;
-    opacity: 0.5;
+  .minimal-home {
+    display: grid;
+    gap: var(--space-xl);
   }
 
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.04em;
-    margin-bottom: var(--space-sm);
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  h1,
+  h2,
+  h3 {
+    color: var(--color-text);
+    letter-spacing: 0;
+    text-wrap: balance;
   }
 
-  .hero-desc {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    max-width: 480px;
-    margin: 0 auto var(--space-lg);
+  .latest-observation,
+  .category-index {
+    display: grid;
+    gap: var(--space-md);
   }
 
-  .latest-observation {
-    margin-bottom: var(--space-lg);
-  }
-
-  .category-filter {
+  .section-heading {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: var(--space-lg);
-    padding-bottom: var(--space-md);
-    padding-top: var(--space-sm);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.65rem;
     border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(12, 10, 9, 0.82);
   }
 
-  :global([data-theme="light"]) .category-filter {
-    background: rgba(245, 240, 232, 0.85);
+  .section-heading h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
-  .filter-pill {
-    padding: 0.4rem 0.875rem;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: 9999px;
-    background: transparent;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    letter-spacing: 0.01em;
+  .section-heading a,
+  .topic-more {
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 0.18em;
   }
 
-  .filter-pill:hover {
+  .section-heading a:hover,
+  .topic-more:hover,
+  .category-header a:hover,
+  .post-list a:hover,
+  .latest-observation h3 a:hover {
     color: var(--color-accent);
-    border-color: var(--color-accent);
-    background: var(--color-accent-glow);
+    text-decoration-color: var(--color-accent);
   }
 
-  .filter-pill.active {
-    background: var(--gradient-accent);
-    color: #fff;
-    border-color: transparent;
+  .latest-observation article {
+    padding: var(--space-md) 0;
   }
 
-  .posts-grid {
+  .observation-meta {
     display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: var(--space-2xl) 0;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.6rem;
     color: var(--color-text-muted);
-    font-size: 0.9375rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
-  .view-all-section {
-    text-align: center;
-    padding: var(--space-xl) 0;
-    margin-top: var(--space-lg);
-    border-top: 1px solid var(--color-border);
+  .observation-meta time {
+    font: inherit;
+    color: inherit;
   }
 
-  .post-count {
-    font-size: 0.875rem;
+  .meta-separator {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+    opacity: 0.55;
+  }
+
+  .latest-observation h3 {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 4vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.32;
+  }
+
+  .observation-body {
+    color: var(--color-text);
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+
+  .observation-body :global(p) {
+    margin: 0 0 0.9rem;
+  }
+
+  .observation-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .observation-body :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .category-list {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .category-section {
+    padding-bottom: var(--space-lg);
+  }
+
+  .category-header {
+    margin-bottom: 0.9rem;
+  }
+
+  .category-header h3 {
+    margin: 0;
+    font-size: 1.12rem;
+    font-weight: 700;
+  }
+
+  .post-list {
+    display: grid;
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .post-list li {
+    display: grid;
+    grid-template-columns: 6.2rem minmax(0, 1fr);
+    gap: 0.85rem;
+    align-items: baseline;
+    line-height: 1.55;
+  }
+
+  .post-list time {
     color: var(--color-text-muted);
-    margin-bottom: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
   }
 
-  .view-all-btn {
+  .post-list a {
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+
+  .topic-more {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: var(--gradient-accent);
-    color: #fff;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-  }
-
-  .view-all-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(212, 168, 67, 0.3);
+    margin-top: 0.9rem;
   }
 
   @media (max-width: 640px) {
-    .hero-title {
-      font-size: 1.75rem;
+    :global(main) {
+      padding-top: var(--space-md);
     }
 
-    .hero-desc {
-      font-size: 0.875rem;
+    .minimal-home {
+      gap: var(--space-lg);
     }
 
-    .category-filter {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: var(--space-sm);
+    .section-heading {
+      align-items: flex-start;
     }
 
-    .category-filter::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-pill {
-      white-space: nowrap;
+    .post-list li {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
     }
   }
 </style>
-
-<script>
-  const filterBtns = document.querySelectorAll('#category-filter .filter-pill');
-  const postsGrid = document.getElementById('posts-grid');
-  const emptyState = document.getElementById('empty-state');
-  const viewAllSection = document.getElementById('view-all-section');
-  const items = postsGrid ? postsGrid.querySelectorAll('.post-item') : [];
-
-  function filterPosts(category) {
-    const isAll = category === '__all';
-    let visibleCount = 0;
-    items.forEach((item) => {
-      const el = item as HTMLElement;
-      const card = el.querySelector('.post-card') as HTMLElement | null;
-      const cats = card?.dataset.categories || '';
-      const isExtra = el.dataset.extra === 'true';
-      const show = isAll ? !isExtra : cats.split(',').includes(category);
-      el.style.display = show ? '' : 'none';
-      if (show) visibleCount++;
-    });
-    if (emptyState) {
-      emptyState.style.display = visibleCount === 0 ? '' : 'none';
-    }
-    if (viewAllSection) {
-      viewAllSection.style.display = isAll ? '' : 'none';
-    }
-  }
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      const category = (btn as HTMLElement).dataset.category || '__all';
-      filterPosts(category);
-    });
-  });
-
-  filterPosts('__all');
-</script>
