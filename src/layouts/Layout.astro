@@ -152,10 +152,10 @@ const websiteSchema = JSON.stringify({
             --color-text-muted: #958b7b;
             --color-border: #39342e;
             --color-rule: #4a4238;
-            --color-accent: #d5bd88;
-            --color-accent-secondary: #9aaf97;
-            --color-accent-glow: rgba(213, 189, 136, 0.12);
-            --color-accent-warm: #d5bd88;
+            --color-accent: #3b82f6;
+            --color-accent-secondary: #60a5fa;
+            --color-accent-glow: rgba(59, 130, 246, 0.12);
+            --color-accent-warm: #3b82f6;
             --color-card-bg: #191714;
             --color-card-border: #39342e;
             --color-glass: #191714;
@@ -217,10 +217,11 @@ const websiteSchema = JSON.stringify({
         .header-inner {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 1rem var(--space-md) 0.65rem;
+            padding: 1rem var(--space-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: var(--space-md);
         }
 
         .site-logo {
@@ -248,7 +249,7 @@ const websiteSchema = JSON.stringify({
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         .control-btn {
@@ -289,19 +290,16 @@ const websiteSchema = JSON.stringify({
 
 
         .site-nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 var(--space-md);
             display: flex;
-            gap: 1.2rem;
-            border-top: 0;
+            align-items: center;
+            gap: 1.35rem;
         }
 
         .nav-link {
             font-size: 0.86rem;
             font-weight: 500;
             color: var(--color-text-muted);
-            padding: 0 0 0.85rem;
+            padding: 0.35rem 0;
             margin-right: 0;
             position: relative;
             letter-spacing: 0;
@@ -310,7 +308,7 @@ const websiteSchema = JSON.stringify({
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -0.25rem;
             left: 0;
             right: 0;
             height: 1px;
@@ -323,8 +321,7 @@ const websiteSchema = JSON.stringify({
             color: var(--color-text);
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
+        .nav-link:hover::after {
             transform: scaleX(1);
         }
 
@@ -504,7 +501,7 @@ const websiteSchema = JSON.stringify({
             text-decoration: underline;
             text-underline-offset: 0.2em;
             text-decoration-thickness: 1px;
-            text-decoration-color: rgba(212, 168, 67, 0.3);
+            text-decoration-color: rgba(59, 130, 246, 0.3);
         }
 
         .article-content a:hover {
@@ -588,18 +585,27 @@ const websiteSchema = JSON.stringify({
 
         @media (max-width: 640px) {
             .header-inner {
+                flex-wrap: wrap;
                 padding: 0.75rem var(--space-sm);
+                gap: 0.7rem 1rem;
             }
 
             .site-logo h1 {
                 font-size: 1.25rem;
             }
 
+            .header-controls {
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.75rem;
+            }
+
             .site-nav {
-                padding: 0 var(--space-sm);
+                flex: 1;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
+                gap: 1rem;
             }
 
             .site-nav::-webkit-scrollbar {
@@ -607,7 +613,6 @@ const websiteSchema = JSON.stringify({
             }
 
             .nav-link {
-                margin-right: 1.25rem;
                 white-space: nowrap;
             }
 
@@ -699,6 +704,12 @@ const websiteSchema = JSON.stringify({
                 <h1><a href="/">智能体经济观察</a></h1>
             </div>
             <div class="header-controls">
+                <nav class="site-nav">
+                    <a href="/" class="nav-link">{t('nav.articles')}</a>
+                    <a href="/topics" class="nav-link">{t('nav.topics')}</a>
+                    <a href="/observations" class="nav-link">{t('nav.observations')}</a>
+                    <a href="/about" class="nav-link">{t('nav.about')}</a>
+                </nav>
                 <button class="control-btn search-trigger" id="header-search-btn" aria-label="Search" title="Search (Ctrl+K)">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -708,12 +719,6 @@ const websiteSchema = JSON.stringify({
 
             </div>
         </div>
-        <nav class="site-nav">
-            <a href="/" class="nav-link">{t('nav.articles')}</a>
-            <a href="/topics" class="nav-link">{t('nav.topics')}</a>
-            <a href="/observations" class="nav-link">{t('nav.observations')}</a>
-            <a href="/about" class="nav-link">{t('nav.about')}</a>
-        </nav>
     </header>
     
     <SearchPopup locale={locale} />
