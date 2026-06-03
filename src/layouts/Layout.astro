@@ -641,18 +641,6 @@ const websiteSchema = JSON.stringify({
             }
         }
         
-        #reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 200;
-            height: 2px;
-            width: 0%;
-            background: var(--color-accent);
-            pointer-events: none;
-            transition: width 0.1s ease-out;
-        }
-
         .back-to-top-btn {
             position: fixed;
             right: var(--space-xl);
@@ -695,9 +683,6 @@ const websiteSchema = JSON.stringify({
     <script defer data-domain="agenteconomy.cn" src="https://va.vercel-scripts.com/v1/script.js"></script>
 </head>
 <body>
-    {type === 'article' && (
-        <div id="reading-progress" aria-hidden="true"></div>
-    )}
     <header class="site-header">
         <div class="header-inner">
             <div class="site-logo">
@@ -804,27 +789,6 @@ const websiteSchema = JSON.stringify({
                 btt.addEventListener('click', function() {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
-            }
-
-            var rp = document.getElementById('reading-progress');
-            if (rp) {
-                var rpTicking = false;
-                function updateReadingProgress() {
-                    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-                    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                    rp.style.width = Math.min(100, Math.max(0, progress)) + '%';
-                }
-                window.addEventListener('scroll', function() {
-                    if (!rpTicking) {
-                        requestAnimationFrame(function() {
-                            updateReadingProgress();
-                            rpTicking = false;
-                        });
-                        rpTicking = true;
-                    }
-                });
-                updateReadingProgress();
             }
         })();
     </script>
