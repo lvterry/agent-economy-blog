@@ -96,7 +96,8 @@ const websiteSchema = JSON.stringify({
       <meta property="article:tag" content={tag}>
     ))}
     
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
     <link rel="alternate" type="application/rss+xml" title="Agent Economy RSS Feed" href="/rss.xml">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml">
     
@@ -244,6 +245,20 @@ const websiteSchema = JSON.stringify({
 
         .site-logo h1 a:hover {
             color: var(--color-accent);
+        }
+
+        .site-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .site-brand-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: contain;
+            flex: 0 0 auto;
         }
 
         .header-controls {
@@ -594,6 +609,15 @@ const websiteSchema = JSON.stringify({
                 font-size: 1.25rem;
             }
 
+            .site-brand {
+                gap: 0.5rem;
+            }
+
+            .site-brand-image {
+                width: 28px;
+                height: 28px;
+            }
+
             .header-controls {
                 width: 100%;
                 justify-content: space-between;
@@ -686,7 +710,12 @@ const websiteSchema = JSON.stringify({
     <header class="site-header">
         <div class="header-inner">
             <div class="site-logo">
-                <h1><a href="/">智能体经济观察</a></h1>
+                <h1>
+                    <a href="/" class="site-brand" aria-label="智能体经济观察首页">
+                        <img class="site-brand-image" src="/logo.png" alt="" width="32" height="32" decoding="async">
+                        <span>智能体经济观察</span>
+                    </a>
+                </h1>
             </div>
             <div class="header-controls">
                 <nav class="site-nav">
