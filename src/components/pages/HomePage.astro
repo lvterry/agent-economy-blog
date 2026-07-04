@@ -13,23 +13,7 @@ const t = useTranslations(locale);
 
 const allPosts = await getCollection('posts');
 const posts = allPosts
-  .filter(p => p.id.startsWith(`${locale}/`))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
-
-const allObservations = await getCollection('observations');
-const latestObservation = allObservations
-  .filter(o => o.id.startsWith(`${locale}/`))
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))[0];
-
-let LatestObservationContent;
-if (latestObservation) {
-  const rendered = await latestObservation.render();
-  LatestObservationContent = rendered.Content;
-}
-
-const latestObservationSlug = latestObservation
-  ? latestObservation.id.replace(`${locale}/`, '').replace(/\.mdx?$/, '')
-  : '';
 
 const categorySections = topics
   .map(topic => {
@@ -47,7 +31,7 @@ const categorySections = topics
   .filter(section => section.posts.length > 0);
 
 function getPostSlug(post) {
-  return post.id.replace(`${locale}/`, '').replace(/\.mdx?$/, '');
+  return post.id;
 }
 
 function getPostUrl(post) {
@@ -56,26 +40,6 @@ function getPostUrl(post) {
 ---
 
 <div class="minimal-home">
-  {latestObservation && LatestObservationContent && (
-    <section class="latest-observation" aria-label={t('observations.latest')}>
-      <article>
-        <div class="observation-meta">
-          <span>{t('observations.latest')}</span>
-          <span class="meta-separator" aria-hidden="true"></span>
-          <time datetime={latestObservation.data.date}>{latestObservation.data.date}</time>
-        </div>
-        <h3>
-          <a href={`/observations#obs-${latestObservationSlug}`}>
-            {latestObservation.data.title}
-          </a>
-        </h3>
-        <div class="observation-body">
-          <LatestObservationContent />
-        </div>
-      </article>
-    </section>
-  )}
-
   <section class="category-index" aria-label="分类文章">
     <div class="section-heading">
       <h2>文章分类</h2>
@@ -130,17 +94,9 @@ function getPostUrl(post) {
     text-wrap: balance;
   }
 
-  .latest-observation,
   .category-index {
     display: grid;
     gap: var(--space-md);
-  }
-
-  .latest-observation {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--space-md);
   }
 
   .section-heading {
@@ -170,65 +126,9 @@ function getPostUrl(post) {
   .section-heading a:hover,
   .topic-more:hover,
   .category-header a:hover,
-  .post-list a:hover,
-  .latest-observation h3 a:hover {
+  .post-list a:hover {
     color: var(--color-accent);
     text-decoration-color: var(--color-accent);
-  }
-
-  .latest-observation article {
-    padding: var(--space-md) 0;
-  }
-
-  .observation-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin-bottom: 0.6rem;
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-  }
-
-  .observation-meta time {
-    font: inherit;
-    color: inherit;
-  }
-
-  .meta-separator {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--color-text-muted);
-    opacity: 0.55;
-  }
-
-  .latest-observation h3 {
-    margin: 0 0 0.85rem;
-    font-family: var(--font-serif);
-    font-size: clamp(1.35rem, 4vw, 1.9rem);
-    font-weight: 700;
-    line-height: 1.32;
-  }
-
-  .observation-body {
-    color: var(--color-text);
-    font-size: 0.98rem;
-    line-height: 1.85;
-  }
-
-  .observation-body :global(p) {
-    margin: 0 0 0.9rem;
-  }
-
-  .observation-body :global(p:last-child) {
-    margin-bottom: 0;
-  }
-
-  .observation-body :global(a) {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
   }
 
   .category-list {
@@ -289,11 +189,6 @@ function getPostUrl(post) {
 
     .minimal-home {
       gap: var(--space-lg);
-    }
-
-    .latest-observation {
-      padding-left: 0;
-      padding-right: 0;
     }
 
     .section-heading {

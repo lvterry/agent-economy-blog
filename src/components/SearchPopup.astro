@@ -4,10 +4,9 @@ import { getCollection } from 'astro:content';
 const { locale } = Astro.props;
 
 const allPosts = await getCollection('posts');
-const posts = allPosts.filter(p => p.id.startsWith(`${locale}/`));
 
-const searchIndex = posts.map(p => ({
-  slug: p.id.replace(`${locale}/`, '').replace('.md', ''),
+const searchIndex = allPosts.map(p => ({
+  slug: p.id,
   title: p.data.title,
   excerpt: p.data.excerpt,
   date: p.data.date,

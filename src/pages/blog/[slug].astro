@@ -4,8 +4,7 @@ import PostPage from '../../components/pages/PostPage.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  const zhPosts = posts.filter(p => p.id.startsWith('zh/'));
-  return zhPosts.map(p => ({ params: { slug: p.id.replace('zh/', '').replace('.md', '') } }));
+  return posts.map(p => ({ params: { slug: p.id } }));
 }
 
 const { slug } = Astro.params;

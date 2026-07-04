@@ -7,7 +7,6 @@ const t = useTranslations('zh');
 
 const allPosts = await getCollection('posts');
 const posts = allPosts
-  .filter(p => p.id.startsWith('zh/'))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
 const postsByMonth: Record<string, typeof posts> = {};

@@ -18,7 +18,6 @@ if (!topic) {
 
 const allPosts = await getCollection('posts');
 const posts = allPosts
-  .filter(p => p.id.startsWith('zh/'))
   .filter(post => postMatchesTopic(post.data.tags || [], topic))
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
