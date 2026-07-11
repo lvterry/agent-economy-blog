@@ -1,11 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import {
-  categoryLabels,
-  getCategories,
-  getTopicPath,
-  topics,
-} from '../../lib/categories.js';
 import { useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
@@ -15,78 +9,44 @@ const allPosts = await getCollection('posts');
 const posts = allPosts
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
-const categorySections = topics
-  .map(topic => {
-    const categoryPosts = posts.filter(post =>
-      getCategories(post.data.tags || [], post.data.category).includes(topic.key)
-    );
-
-    return {
-      topic,
-      label: categoryLabels[topic.key] || topic.label,
-      count: categoryPosts.length,
-      posts: categoryPosts.slice(0, 8),
-    };
-  })
-  .filter(section => section.posts.length > 0);
-
-function getPostSlug(post) {
-  return post.id;
-}
-
 function getPostUrl(post) {
-  return `/blog/${getPostSlug(post)}`;
+  return `/blog/${post.id}`;
 }
 ---
 
-<div class="minimal-home">
-  <section class="category-index" aria-label="分类文章">
+<div class="feed-home">
+  <section class="feed" aria-label="最新文章">
     <div class="section-heading">
-      <h2>文章分类</h2>
+      <h2>最新文章</h2>
       <a href="/archive">{t('viewAll')}</a>
     </div>
 
-    <div class="category-list">
-      {categorySections.map(section => (
-        <section class="category-section">
-          <header class="category-header">
-            <h3>
-              <a href={getTopicPath(section.topic)}>{section.label}</a>
-            </h3>
-          </header>
-
-          <ol class="post-list">
-            {section.posts.map(post => (
-              <li>
-                <time datetime={post.data.date}>{post.data.date}</time>
-                <a href={getPostUrl(post)}>{post.data.title}</a>
-              </li>
-            ))}
-          </ol>
-
-          {section.count > section.posts.length && (
-            <a class="topic-more" href={getTopicPath(section.topic)}>
-              查看更多
-            </a>
-          )}
-        </section>
+    <ol class="feed-list">
+      {posts.map(post => (
+        <li class="feed-item">
+          <a href={getPostUrl(post)} class="feed-link">
+            <h3 class="feed-title">{post.data.title}</h3>
+            <time class="feed-time" datetime={post.data.date}>{post.data.date}</time>
+            <p class="feed-excerpt">{post.data.excerpt}</p>
+          </a>
+        </li>
       ))}
-    </div>
+    </ol>
   </section>
 </div>
 
 <style>
   :global(main) {
-    max-width: var(--wide-width);
+    max-width: var(--max-width);
+    margin-inline: auto;
     padding-top: var(--space-lg);
   }
 
-  .minimal-home {
+  .feed-home {
     display: grid;
     gap: var(--space-xl);
   }
 
-  h1,
   h2,
   h3 {
     color: var(--color-text);
@@ -94,7 +54,7 @@ function getPostUrl(post) {
     text-wrap: balance;
   }
 
-  .category-index {
+  .feed {
     display: grid;
     gap: var(--space-md);
   }
@@ -114,8 +74,7 @@ function getPostUrl(post) {
     font-weight: 700;
   }
 
-  .section-heading a,
-  .topic-more {
+  .section-heading a {
     color: var(--color-text-muted);
     font-size: 0.86rem;
     text-decoration: underline;
@@ -123,63 +82,64 @@ function getPostUrl(post) {
     text-underline-offset: 0.18em;
   }
 
-  .section-heading a:hover,
-  .topic-more:hover,
-  .category-header a:hover,
-  .post-list a:hover {
+  .section-heading a:hover {
     color: var(--color-accent);
     text-decoration-color: var(--color-accent);
   }
 
-  .category-list {
+  .feed-list {
     display: grid;
-    gap: var(--space-xl) 2.25rem;
-  }
-
-  .category-section {
-    padding-bottom: var(--space-lg);
-  }
-
-  .category-header {
-    margin-bottom: 0.9rem;
-  }
-
-  .category-header h3 {
-    margin: 0;
-    font-size: 1.12rem;
-    font-weight: 700;
-  }
-
-  .post-list {
-    display: grid;
-    gap: 0.55rem;
+    gap: 0;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .post-list li {
-    display: grid;
-    grid-template-columns: 5.6rem minmax(0, 1fr);
-    gap: 0.75rem;
-    align-items: baseline;
-    line-height: 1.55;
+  .feed-item + .feed-item {
+    border-top: 1px solid var(--color-border);
   }
 
-  .post-list time {
+  .feed-link {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem 0;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+  }
+
+  .feed-link:hover {
+    background-color: var(--color-surface);
+  }
+
+  .feed-title {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .feed-link:hover .feed-title {
+    color: var(--color-accent);
+  }
+
+  .feed-time {
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: 0.74rem;
   }
 
-  .post-list a {
-    color: var(--color-text);
-    overflow-wrap: anywhere;
-  }
-
-  .topic-more {
-    display: inline-block;
-    margin-top: 0.9rem;
+  .feed-excerpt {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   @media (max-width: 640px) {
@@ -187,29 +147,12 @@ function getPostUrl(post) {
       padding-top: var(--space-md);
     }
 
-    .minimal-home {
+    .feed-home {
       gap: var(--space-lg);
     }
 
-    .section-heading {
-      align-items: flex-start;
-    }
-
-    .post-list li {
-      grid-template-columns: 1fr;
-      gap: 0.1rem;
-    }
-  }
-
-  @media (min-width: 760px) {
-    .category-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: start;
-    }
-
-    .post-list li {
-      grid-template-columns: 1fr;
-      gap: 0.1rem;
+    .feed-link {
+      padding: 0.85rem 0;
     }
   }
 </style>
