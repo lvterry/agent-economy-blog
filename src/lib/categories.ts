@@ -1,5 +1,5 @@
 export const categoryMap: Record<string, string[]> = {
-  "AI Infra": ["AI-Infrastructure", "Hardware", "Data-Center", "GPU", "TPU", "Supply-Chain", "Infrastructure", "Tinygrad", "Deep-Learning", "Durable-Execution", "PostgreSQL", "Model-Compression", "Edge-Computing", "vLLM", "Vector-Database", "RAG", "Distributed-Computing", "MCP", "Tokenization"],
+  "AI Infra": ["AI-Infrastructure", "Hardware", "Data-Center", "GPU", "TPU", "Supply-Chain", "Infrastructure", "Tinygrad", "Deep-Learning", "Durable-Execution", "PostgreSQL", "Model-Compression", "Edge-Computing", "vLLM", "Vector-Database", "RAG", "Distributed-Computing", "MCP", "Tokenization", "RISC-V", "CUDA"],
   "AI 模型": ["GPT", "Multimodal", "Reasoning", "AI-Model", "Image-Generation", "Foundation Model", "Nano-Banana", "GPT-5.4", "LLM", "Gemini", "SubQ", "Long-Context", "LongCat", "Open-Source", "GLM", "Interpretability", "Qwen"],
   "AI 智能体": ["Agent", "Agentic AI", "A2A", "MCP", "AI-Agents", "Agent-Interoperability", "Agent-Economy", "AI-Standards", "Agent-Tooling", "Kimi", "Claude-Code", "OpenCode"],
   "AI 应用": ["Product-Design", "AI-Design", "Embodied AI", "Robotics", "Computer-Use", "Coding", "Healthcare-AI", "Cursor", "AI-Coding"],
