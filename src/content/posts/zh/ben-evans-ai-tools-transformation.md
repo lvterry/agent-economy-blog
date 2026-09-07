@@ -1,5 +1,5 @@
 ---
-title: "Benedict Evans：AI 不会扫平企业软件，工具与转型是两回事"
+title: 'Benedict Evans 认为 AI 并不会完全取代企业软件'
 excerpt: "Benedict Evans 认为，让人人都能五分钟做出工具，并不能自动改造企业流程——难点仍在发现问题、制度化工作流与组织变革，聊天机器人更像新的即兴工作面，而非一键替代数百套 SaaS。"
 date: "2026-09-07"
 tags: ["Business", "Market-Analysis", "Future-of-Work", "AI-Agents"]
