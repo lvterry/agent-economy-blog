@@ -1,5 +1,5 @@
 ---
-title: 'OKF Agent Memory：Git 原生的智能体持久记忆'
+title: '智能体记忆可以写进 Git，不必再挂一套向量库'
 excerpt: '开源项目 OKF Agent Memory 把 Google OKF v0.2 知识格式落到仓库里的 Markdown，本地 BM25 检索亚毫秒级，内置 MCP，宣称可砍掉约 80% 记忆相关 token。'
 date: "2026-09-06"
 tags: ["AI-Agents", "Agent-Tooling", "MCP", "Memory"]
