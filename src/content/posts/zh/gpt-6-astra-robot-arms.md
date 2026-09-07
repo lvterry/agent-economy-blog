@@ -1,5 +1,5 @@
 ---
-title: 'Robocurve 实测：GPT-6 Astra 操控机械臂显著优于 Fable 5.1'
+title: '同样操控机械臂，Astra 比 Fable 5.1 更稳也更省 token'
 excerpt: '同一智能体策略下，Astra 在积木入碗任务上 19/20 对 Fable 5.1 的 8/20，输出 token 约少 80%；更难的拼图任务两边同为 2/20。'
 date: "2026-09-06"
 tags: ["OpenAI", "GPT", "Embodied AI", "AI-Agents"]
