@@ -126,6 +126,16 @@ export function getTopicByKey(key: string): TopicMeta | undefined {
   return topics.find(topic => topic.key === key);
 }
 
+/**
+ * The post's primary category as a topic slug — the same value the card chip
+ * shows, the homepage sidebar counts, and the feed filters by. Deriving all
+ * three from one function is what keeps a sidebar number from disagreeing with
+ * the posts a click on it renders.
+ */
+export function getPrimaryTopicSlug(tags: string[], explicitCategory?: string): string {
+  return getTopicByKey(getCategories(tags, explicitCategory)[0])?.slug || '';
+}
+
 export function getTopicPath(topic: TopicMeta | string): string {
   const slug = typeof topic === 'string' ? topic : topic.slug;
   return `/topics/${slug}`;

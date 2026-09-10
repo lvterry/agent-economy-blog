@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { topics, getPrimaryTopicSlug } from '../../lib/categories';
 import { useTranslations } from '../../i18n/utils';
 
 const { locale } = Astro.props;
@@ -12,7 +13,44 @@ const posts = allPosts
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
 const initialPosts = posts.slice(0, PAGE_SIZE);
+
+// Bucketed with the same helper /posts.json uses, so a count here can never
+// disagree with the posts that clicking it renders. These are the frontmatter
+// `category` buckets, which partition the archive; /topics matches on tags
+// instead and reads higher for the same label.
+const bucketCounts = new Map();
+posts.forEach((post) => {
+  const slug = getPrimaryTopicSlug(post.data.tags || [], post.data.category);
+  bucketCounts.set(slug, (bucketCounts.get(slug) || 0) + 1);
+});
+
+const categories = topics
+  .map(topic => ({
+    slug: topic.slug,
+    label: topic.label,
+    count: bucketCounts.get(topic.slug) || 0,
+  }))
+  .filter(category => category.count > 0);
 ---
+
+<nav class="cat-nav" id="cat-nav" aria-label={t('home.categories')} hidden>
+  <ul class="cat-nav-list">
+    <li>
+      <button type="button" class="cat-nav-btn" data-category="" aria-pressed="true">
+        <span>{t('filter.all')}</span>
+        <span class="cat-nav-count">{t('topics.articleCount', { count: posts.length })}</span>
+      </button>
+    </li>
+    {categories.map(category => (
+      <li>
+        <button type="button" class="cat-nav-btn" data-category={category.slug} aria-pressed="false">
+          <span>{category.label}</span>
+          <span class="cat-nav-count">{t('topics.articleCount', { count: category.count })}</span>
+        </button>
+      </li>
+    ))}
+  </ul>
+</nav>
 
 <div class="feed-home">
   <section class="feed" aria-label={t('home.latest')}>
@@ -27,6 +65,8 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
         </li>
       ))}
     </ol>
+
+    <p class="feed-empty" id="feed-empty" hidden>{t('emptyState')}</p>
 
     <template id="feed-item-template">
       <li class="feed-item">
@@ -49,7 +89,7 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
         data-label-more={t('home.loadMore')}
         data-label-loading={t('home.loading')}
         data-label-error={t('home.loadError')}
-        data-progress-template={t('postCount', { shown: '__SHOWN__', total: posts.length })}
+        data-progress-template={t('postCount', { shown: '__SHOWN__', total: '__TOTAL__' })}
       >{t('home.loadMore')}</button>
       <p class="feed-progress" id="feed-progress" aria-live="polite">
         {t('postCount', { shown: initialPosts.length, total: posts.length })}
@@ -63,18 +103,38 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
   const button = document.getElementById('feed-more-btn');
   const progress = document.getElementById('feed-progress');
   const template = document.getElementById('feed-item-template');
+  const nav = document.getElementById('cat-nav');
+  const emptyNotice = document.getElementById('feed-empty');
 
-  if (list && button && progress && template) {
+  if (list && button && progress && template && emptyNotice) {
+    const CATEGORY_PARAM = 'category';
     const pageSize = Number(button.dataset.pageSize);
-    const total = Number(button.dataset.total);
     const labels = {
       more: button.dataset.labelMore,
       loading: button.dataset.labelLoading,
       error: button.dataset.labelError,
     };
+    const progressTemplate = button.dataset.progressTemplate;
+    const navButtons = nav ? Array.from(nav.querySelectorAll('.cat-nav-btn')) : [];
 
     let allPosts = null;
+    // The active filter's posts. Null until one is picked — the server has
+    // already rendered the first page of the unfiltered feed.
+    let visible = null;
+    let activeKey = '';
     let shown = list.children.length;
+    let total = Number(button.dataset.total);
+    let requestId = 0;
+
+    // The nav ships hidden so no-JS readers never meet a filter that can't
+    // act; only the wide-screen media query ever displays it.
+    if (nav) nav.hidden = false;
+
+    // Reads the display the CSS actually applied, so the breakpoint never has
+    // to be repeated here.
+    function isNavShown() {
+      return !!nav && getComputedStyle(nav).display !== 'none';
+    }
 
     function createItem(post) {
       const item = template.content.firstElementChild.cloneNode(true);
@@ -89,8 +149,56 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
       return item;
     }
 
+    function createFragment(posts) {
+      const fragment = document.createDocumentFragment();
+      posts.forEach(post => fragment.append(createItem(post)));
+      return fragment;
+    }
+
     function formatProgress() {
-      return button.dataset.progressTemplate.replace('__SHOWN__', String(shown));
+      return progressTemplate
+        .replace('__SHOWN__', String(shown))
+        .replace('__TOTAL__', String(total));
+    }
+
+    // Every control state is derived from (shown, total) here, so switching to
+    // a filter that still has posts revives a button the previous one retired.
+    function syncControls() {
+      emptyNotice.hidden = total > 0;
+      progress.hidden = total === 0;
+      progress.textContent = formatProgress();
+
+      if (shown >= total) {
+        button.hidden = true;
+      } else {
+        button.hidden = false;
+        button.disabled = false;
+        button.textContent = labels.more;
+      }
+    }
+
+    function setActiveButton(key) {
+      navButtons.forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.category === key));
+      });
+    }
+
+    // Guards against a hand-edited or stale slug, which would blank the feed.
+    function readCategoryParam() {
+      const value = new URLSearchParams(location.search).get(CATEGORY_PARAM) || '';
+      return navButtons.some(btn => btn.dataset.category === value) ? value : '';
+    }
+
+    function syncUrl(key, mode) {
+      if (mode === 'none') return;
+
+      const url = new URL(location.href);
+      if (key) url.searchParams.set(CATEGORY_PARAM, key);
+      else url.searchParams.delete(CATEGORY_PARAM);
+
+      const state = { category: key };
+      if (mode === 'push') history.pushState(state, '', url);
+      else history.replaceState(state, '', url);
     }
 
     async function fetchPosts() {
@@ -102,34 +210,101 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
       return allPosts;
     }
 
+    async function applyFilter(key) {
+      const id = ++requestId;
+
+      // The first pick may be the first time the full list is needed, so this
+      // covers the fetch as well as the render.
+      if (!allPosts) {
+        button.disabled = true;
+        button.textContent = labels.loading;
+        progress.textContent = labels.loading;
+      }
+
+      try {
+        const posts = await fetchPosts();
+        if (id !== requestId) return false; // a newer pick won
+
+        visible = key ? posts.filter(post => post.category === key) : posts;
+        total = visible.length;
+        const page = visible.slice(0, pageSize);
+        list.replaceChildren(createFragment(page));
+        shown = page.length;
+        syncControls();
+        return true;
+      } catch (error) {
+        console.error('Failed to filter posts', error);
+        progress.textContent = labels.error;
+        button.textContent = labels.error;
+        button.disabled = false;
+        return false;
+      }
+    }
+
+    async function selectCategory(key, mode) {
+      if (key === activeKey && visible) return;
+
+      const applied = await applyFilter(key);
+      if (!applied) return; // don't claim a filter the feed isn't showing
+
+      activeKey = key;
+      setActiveButton(key);
+      syncUrl(key, mode);
+
+      // The list was swapped under the reader; bring it back into view if they
+      // had scrolled past it. An already-visible list is left alone.
+      if (list.getBoundingClientRect().top < 0) list.scrollIntoView({ block: 'start' });
+    }
+
     button.addEventListener('click', async () => {
       button.disabled = true;
       button.textContent = labels.loading;
 
       try {
         const posts = await fetchPosts();
-        const next = posts.slice(shown, shown + pageSize);
-        const fragment = document.createDocumentFragment();
-        next.forEach(post => fragment.append(createItem(post)));
-        list.append(fragment);
-
-        shown += next.length;
-        progress.textContent = formatProgress();
-
-        // The button is the only way to reach the rest of the feed, so hide it
-        // once every post is on the page rather than leaving a dead control.
-        if (shown >= total) {
-          button.hidden = true;
-        } else {
-          button.disabled = false;
-          button.textContent = labels.more;
+        if (!visible) {
+          visible = posts;
+          total = posts.length;
         }
+
+        const next = visible.slice(shown, shown + pageSize);
+        list.append(createFragment(next));
+        shown += next.length;
+        syncControls();
       } catch (error) {
         console.error('Failed to load more posts', error);
         button.textContent = labels.error;
         button.disabled = false;
       }
     });
+
+    if (nav) {
+      nav.addEventListener('click', (event) => {
+        const target = event.target.closest('.cat-nav-btn');
+        if (target) selectCategory(target.dataset.category, 'push');
+      });
+
+      window.addEventListener('popstate', () => {
+        selectCategory(isNavShown() ? readCategoryParam() : '', 'none');
+      });
+
+      // Filtering is only offered where the nav is, so a resize past the
+      // breakpoint must not strand the reader on a feed they can't unfilter.
+      window.addEventListener('resize', () => {
+        if (activeKey && !isNavShown()) selectCategory('', 'replace');
+      });
+
+      const requested = new URLSearchParams(location.search).get(CATEGORY_PARAM) || '';
+      const initial = isNavShown() ? readCategoryParam() : '';
+
+      if (initial) {
+        selectCategory(initial, 'none');
+      } else if (requested) {
+        // An unknown slug, or a viewport with no nav to control the result —
+        // drop it so the address bar matches the feed on screen.
+        syncUrl('', 'replace');
+      }
+    }
   }
 </script>
 
@@ -211,6 +386,13 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
     -webkit-box-orient: vertical;
   }
 
+  .feed-empty {
+    margin: 0;
+    padding: 1rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+  }
+
   .feed-more {
     display: grid;
     justify-items: center;
@@ -246,6 +428,62 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
     font-size: 0.78rem;
   }
 
+  /* Narrow screens get no category nav at all — it is the wide-screen grid
+     below that reveals it. */
+  .cat-nav {
+    display: none;
+  }
+
+  .cat-nav-list {
+    display: grid;
+    gap: 0.125rem;
+    list-style: none;
+    margin: 0;
+    /* The nav has no heading now, so this is what lines the first category up
+       with the first headline: .feed-link's 1rem top padding, less the
+       button's own 0.35rem. */
+    padding: 0.65rem 0 0;
+  }
+
+  .cat-nav-btn {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    text-align: left;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .cat-nav-btn:hover {
+    color: var(--color-accent);
+    background: var(--color-surface);
+  }
+
+  /* aria-pressed is the single source of truth for the active look, so the
+     visual state can't drift from what a screen reader announces. */
+  .cat-nav-btn[aria-pressed='true'] {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .cat-nav-btn[aria-pressed='true'] .cat-nav-count {
+    color: var(--color-accent);
+  }
+
+  .cat-nav-count {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
   @media (max-width: 640px) {
     :global(main) {
       padding-top: var(--space-md);
@@ -257,6 +495,37 @@ const initialPosts = posts.slice(0, PAGE_SIZE);
 
     .feed-link {
       padding: 0.85rem 0;
+    }
+  }
+
+  /* --wide-width, and the narrowest viewport that still lets main reach the
+     max-width below once a classic scrollbar is accounted for. Lowering it
+     would squeeze the feed column out of line with the header. */
+  @media (min-width: 1240px) {
+    /* Widened by exactly what the two outer tracks consume, so the middle
+       track lands on main's content box — the same box .header-inner and
+       .site-footer align to. The right track stays empty; it is what keeps
+       the feed centred rather than pushed right by the nav. */
+    :global(main) {
+      --cat-nav-width: 160px;
+      max-width: calc(var(--max-width) + 2 * (var(--cat-nav-width) + var(--space-lg)));
+      display: grid;
+      grid-template-columns: var(--cat-nav-width) minmax(0, 1fr) var(--cat-nav-width);
+      column-gap: var(--space-lg);
+      align-items: start;
+    }
+
+    /* Author `display` outranks the UA rule for [hidden], so the attribute the
+       server sets has to be excluded explicitly. */
+    .cat-nav:not([hidden]) {
+      display: block;
+      grid-column: 1;
+      position: sticky;
+      top: var(--space-md);
+    }
+
+    .feed-home {
+      grid-column: 2;
     }
   }
 </style>

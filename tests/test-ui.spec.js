@@ -71,6 +71,202 @@ test.describe('Home feed', () => {
   });
 });
 
+// Counts, slugs and expectations all come from /posts.json, so adding posts
+// never makes these stale.
+async function fetchPosts(request) {
+  return (await request.get('/posts.json')).json();
+}
+
+function countByCategory(allPosts) {
+  return allPosts.reduce((counts, post) => {
+    counts[post.category] = (counts[post.category] || 0) + 1;
+    return counts;
+  }, {});
+}
+
+test.describe('Home category nav', () => {
+  test.describe('wide viewport', () => {
+    // Explicit: the default 1280 only clears the 1240 breakpoint by 40px.
+    test.use({ viewport: { width: 1440, height: 900 } });
+
+    test('lists every category with counts and marks 全部 pressed', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const counts = countByCategory(allPosts);
+
+      await page.goto('/');
+
+      const nav = page.locator('#cat-nav');
+      await expect(nav).toBeVisible();
+
+      const buttons = nav.locator('.cat-nav-btn');
+      await expect(buttons).toHaveCount(Object.keys(counts).length + 1);
+
+      const shownCounts = await nav.locator('.cat-nav-count')
+        .evaluateAll(els => els.map(el => Number(el.textContent.replace(/\D/g, ''))));
+      expect(shownCounts[0]).toBe(allPosts.length);
+      expect(shownCounts.slice(1).reduce((a, b) => a + b, 0)).toBe(allPosts.length);
+
+      await expect(nav.locator('[aria-pressed="true"]')).toHaveCount(1);
+      await expect(buttons.first()).toHaveAttribute('aria-pressed', 'true');
+    });
+
+    test('appears on /blog too, which shares the component', async ({ page }) => {
+      await page.goto('/blog');
+      await expect(page.locator('#cat-nav')).toBeVisible();
+    });
+
+    test('keeps the feed flush with the header and adds no horizontal overflow', async ({ page }) => {
+      await page.goto('/');
+
+      // Comparing left edges is scrollbar-agnostic: both boxes are centred.
+      const feed = await page.locator('.feed-list').boundingBox();
+      const logo = await page.locator('.site-logo').boundingBox();
+      expect(feed).not.toBeNull();
+      expect(logo).not.toBeNull();
+      expect(Math.abs(feed.x - logo.x)).toBeLessThanOrEqual(1);
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow).toBeLessThanOrEqual(1);
+    });
+
+    test('filters the feed and keeps paging inside the filter', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const counts = countByCategory(allPosts);
+      const [slug] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+      const expected = allPosts.filter(post => post.category === slug);
+      expect(expected.length).toBeGreaterThan(30);
+
+      await page.goto('/');
+      await page.locator(`.cat-nav-btn[data-category="${slug}"]`).click();
+
+      // Asserted first: the item count is already 30 from SSR, so counting
+      // items alone would also pass against the unfiltered feed.
+      await expect(page.locator('#feed-progress'))
+        .toHaveText(`显示最新 30 篇，共 ${expected.length} 篇文章`);
+      await expect(page.locator(`.cat-nav-btn[data-category="${slug}"]`))
+        .toHaveAttribute('aria-pressed', 'true');
+
+      const titles = () => page.locator('.feed-title')
+        .evaluateAll(els => els.map(el => el.textContent));
+      expect(await titles()).toEqual(expected.slice(0, 30).map(post => post.title));
+
+      await page.locator('#feed-more-btn').click();
+      await expect(page.locator('.feed-item')).toHaveCount(60);
+      expect(await titles()).toEqual(expected.slice(0, 60).map(post => post.title));
+    });
+
+    test('revives load more after a filter exhausts it', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const counts = countByCategory(allPosts);
+      const [smallest, smallestCount] = Object.entries(counts).sort((a, b) => a[1] - b[1])[0];
+
+      await page.goto('/');
+      const button = page.locator('#feed-more-btn');
+      const items = page.locator('.feed-item');
+
+      await page.locator(`.cat-nav-btn[data-category="${smallest}"]`).click();
+      await expect(page.locator('#feed-progress')).toContainText(`共 ${smallestCount} 篇文章`);
+
+      for (let i = 0; i < 20 && (await button.isVisible()); i++) {
+        const before = await items.count();
+        await button.click();
+        await expect(items).not.toHaveCount(before);
+      }
+
+      await expect(button).toBeHidden();
+      await expect(items).toHaveCount(smallestCount);
+
+      await page.locator('.cat-nav-btn[data-category=""]').click();
+      await expect(items).toHaveCount(30);
+      await expect(button).toBeVisible();
+      await button.click();
+      await expect(items).toHaveCount(60);
+    });
+
+    test('records the filter in the URL and restores it on reload', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const counts = countByCategory(allPosts);
+      const slug = allPosts[0].category;
+
+      await page.goto('/');
+      await page.locator(`.cat-nav-btn[data-category="${slug}"]`).click();
+      await expect(page).toHaveURL(new RegExp(`\\?category=${slug}$`));
+
+      await page.reload();
+
+      await expect(page.locator(`.cat-nav-btn[data-category="${slug}"]`))
+        .toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('#feed-progress'))
+        .toHaveText(`显示最新 ${Math.min(30, counts[slug])} 篇，共 ${counts[slug]} 篇文章`);
+    });
+
+    test('back button returns to the unfiltered feed', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const slug = allPosts[0].category;
+
+      await page.goto('/');
+      await page.locator(`.cat-nav-btn[data-category="${slug}"]`).click();
+      await expect(page).toHaveURL(new RegExp(`category=${slug}$`));
+
+      await page.goBack();
+
+      await expect(page.locator('.cat-nav-btn[data-category=""]'))
+        .toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('#feed-progress'))
+        .toHaveText(`显示最新 30 篇，共 ${allPosts.length} 篇文章`);
+    });
+  });
+
+  test.describe('narrow viewport', () => {
+    test.use({ viewport: { width: 390, height: 844 } });
+
+    test('renders no category nav', async ({ page }) => {
+      await page.goto('/');
+      await expect(page.locator('#cat-nav')).toBeHidden();
+      await expect(page.locator('.cat-nav-btn:visible')).toHaveCount(0);
+      await expect(page.locator('.feed-item')).toHaveCount(30);
+    });
+
+    test('drops a category URL it has no control for', async ({ page, request }) => {
+      const allPosts = await fetchPosts(request);
+      const slug = allPosts[0].category;
+
+      await page.goto(`/?category=${slug}`);
+
+      await expect(page).not.toHaveURL(/category=/);
+      await expect(page.locator('#feed-progress'))
+        .toHaveText(`显示最新 30 篇，共 ${allPosts.length} 篇文章`);
+    });
+  });
+
+  test.describe('below the wide breakpoint', () => {
+    test.use({ viewport: { width: 1024, height: 768 } });
+
+    test('keeps the single-column feed with no nav', async ({ page }) => {
+      await page.goto('/');
+
+      await expect(page.locator('#cat-nav')).toBeHidden();
+
+      const feed = await page.locator('.feed-list').boundingBox();
+      const logo = await page.locator('.site-logo').boundingBox();
+      expect(feed).not.toBeNull();
+      expect(logo).not.toBeNull();
+      expect(Math.abs(feed.x - logo.x)).toBeLessThanOrEqual(1);
+    });
+  });
+
+  test.describe('without JavaScript', () => {
+    test.use({ viewport: { width: 1440, height: 900 }, javaScriptEnabled: false });
+
+    test('hides the nav but still server-renders the first page', async ({ page }) => {
+      await page.goto('/');
+      await expect(page.locator('#cat-nav')).toBeHidden();
+      await expect(page.locator('.feed-item')).toHaveCount(30);
+    });
+  });
+});
+
 test.describe('Archive page', () => {
   test('groups posts by month with timeline anchors', async ({ page }) => {
     await page.goto('/archive');

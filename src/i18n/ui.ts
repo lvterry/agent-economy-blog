@@ -14,6 +14,7 @@ export const ui = {
     'archive.monthCount': '{count} 篇',
     'viewAll': '查看全部文章',
     'home.latest': '最新文章',
+    'home.categories': '类目',
     'home.loadMore': '加载更多',
     'home.loading': '加载中…',
     'home.loadError': '加载失败，请重试',

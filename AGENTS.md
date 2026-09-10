@@ -78,7 +78,10 @@ Topics are derived from `tags` via [src/lib/categories.ts](src/lib/categories.ts
 
 - `categoryMap` maps each topic key (e.g. `"AI 智能体"`) to the tag strings that belong to it.
 - `getCategories(tags, category)` returns the post's topics; `category` frontmatter overrides tag inference.
+- `getPrimaryTopicSlug(tags, category)` collapses that to the post's single primary category, as a topic slug.
 - `topics[]` defines slug, label, description, color for `/topics/*` routes.
+
+The homepage sidebar and [src/pages/posts.json.js](src/pages/posts.json.js) both bucket posts with `getPrimaryTopicSlug`, so a sidebar count can never disagree with the posts that clicking it renders. Those buckets partition the archive by frontmatter `category`, whereas `/topics` matches on tags and reads higher for the same label — that gap is intentional, not a bug to reconcile.
 
 When adding a post with a new tag, decide whether the tag belongs to an existing topic in `categoryMap`. If it does, add it there. Don't create a new top-level topic without asking — it ripples through the bubble chart, RSS, and filter pills.
 
@@ -102,6 +105,7 @@ Short-form notes in [src/content/observations/zh/](src/content/observations/zh/)
 - **Adding routes:** put the page component in `src/components/pages/` and the route wrapper in `src/pages/`. The wrappers stay thin (just `<Layout><FooPage /></Layout>`).
 - **Topic taxonomy changes:** update `categoryMap` AND the `topics[]` array in [src/lib/categories.ts](src/lib/categories.ts). Both feed different parts of the UI.
 - **SEO / meta:** centralized in [src/layouts/Layout.astro](src/layouts/Layout.astro). Per-page `<title>`, `<description>`, OG image come through `Layout` props.
+- **Home feed:** [HomePage.astro](src/components/pages/HomePage.astro) (used by both `/` and `/blog`) renders 30 posts server-side and pages/filters the rest client-side from `/posts.json`, with the active category in `?category=`. Its category sidebar only exists at `min-width: 1240px` — that literal is the `--wide-width` token, and the grid width there is derived so the feed column stays flush with the 820px header.
 - **Don't commit:** `.DS_Store`, `dist/`, `node_modules/`, `tmp/`, anything under `.astro/`. The `.gitignore` is authoritative; if you see one of these in `git status`, fix the ignore rather than committing.
 
 ## Out of scope / do not touch unprompted
