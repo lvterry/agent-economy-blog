@@ -3,17 +3,14 @@ import { getCollection } from 'astro:content';
 import { getPubDate } from '../utils/postCommitDates.js';
 
 export async function GET(context) {
-  const locale = 'zh';
   const posts = await getCollection('posts');
-  const localePosts = posts
-    .filter(p => p.id.startsWith(`${locale}/`))
-    .sort((a, b) => b.data.date.localeCompare(a.data.date));
+  const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
 
-  const items = localePosts.map((post) => ({
+  const items = sorted.map((post) => ({
     title: post.data.title,
     description: post.data.excerpt,
     pubDate: getPubDate(post),
-    link: `/blog/${post.id.replace(`${locale}/`, '').replace('.md', '')}`,
+    link: `/blog/${post.id}`,
   }));
 
   const lastBuild = items.reduce(

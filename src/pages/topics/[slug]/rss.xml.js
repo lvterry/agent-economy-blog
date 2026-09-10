@@ -8,7 +8,6 @@ export function getStaticPaths() {
 }
 
 export async function GET(context) {
-  const locale = 'zh';
   const topic = getTopicBySlug(context.params.slug);
 
   if (!topic) {
@@ -17,7 +16,6 @@ export async function GET(context) {
 
   const posts = await getCollection('posts');
   const topicPosts = posts
-    .filter((post) => post.id.startsWith(`${locale}/`))
     .filter((post) => postMatchesTopic(post.data.tags || [], topic))
     .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
@@ -25,7 +23,7 @@ export async function GET(context) {
     title: post.data.title,
     description: post.data.excerpt,
     pubDate: getPubDate(post),
-    link: `/blog/${post.id.replace(`${locale}/`, '').replace('.md', '')}`,
+    link: `/blog/${post.id}`,
   }));
 
   const lastBuild = items.reduce(

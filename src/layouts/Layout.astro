@@ -231,34 +231,37 @@ const websiteSchema = JSON.stringify({
         }
 
         .site-logo h1 {
-            font-family: 'Noto Serif SC', 'Noto Serif', serif;
-            font-size: 1.45rem;
-            font-weight: 700;
-            letter-spacing: 0;
-            color: var(--color-text);
-            line-height: 1.25;
-        }
-
-        .site-logo h1 a {
-            color: var(--color-text);
-        }
-
-        .site-logo h1 a:hover {
-            color: var(--color-accent);
+            display: flex;
+            align-items: center;
         }
 
         .site-brand {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
         }
 
         .site-brand-image {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: contain;
+            display: block;
+            height: 36px;
+            width: auto;
             flex: 0 0 auto;
+            transition: opacity 0.2s ease;
+        }
+
+        .site-brand-image--dark {
+            display: none;
+        }
+
+        [data-theme="dark"] .site-brand-image--light {
+            display: none;
+        }
+
+        [data-theme="dark"] .site-brand-image--dark {
+            display: block;
+        }
+
+        .site-brand:hover .site-brand-image {
+            opacity: 0.8;
         }
 
         .header-controls {
@@ -605,17 +608,8 @@ const websiteSchema = JSON.stringify({
                 gap: 0.7rem 1rem;
             }
 
-            .site-logo h1 {
-                font-size: 1.25rem;
-            }
-
-            .site-brand {
-                gap: 0.5rem;
-            }
-
             .site-brand-image {
-                width: 28px;
-                height: 28px;
+                height: 31px;
             }
 
             .header-controls {
@@ -713,8 +707,8 @@ const websiteSchema = JSON.stringify({
             <div class="site-logo">
                 <h1>
                     <a href="/" class="site-brand" aria-label="智能体经济观察首页">
-                        <img class="site-brand-image" src="/logo.png" alt="" width="32" height="32" decoding="async">
-                        <span>智能体经济观察</span>
+                        <img class="site-brand-image site-brand-image--light" src="/logo-wordmark.png" alt="Agent Economy" width="365" height="108" decoding="async">
+                        <img class="site-brand-image site-brand-image--dark" src="/logo-wordmark-dark.png" alt="" aria-hidden="true" width="365" height="108" decoding="async">
                     </a>
                 </h1>
             </div>

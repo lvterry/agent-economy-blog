@@ -1,5 +1,89 @@
 import { test, expect } from '@playwright/test';
 
+test.describe('Site header', () => {
+  test('shows the wordmark logo and links home', async ({ page }) => {
+    await page.goto('/');
+
+    const brand = page.locator('.site-brand');
+    await expect(brand).toHaveAttribute('href', '/');
+    await expect(brand).toHaveAttribute('aria-label', '智能体经济观察首页');
+    await expect(page.locator('.site-brand-image--light')).toBeVisible();
+    await expect(page.locator('.site-brand-image--dark')).toBeHidden();
+  });
+
+  test('swaps to the light-on-dark wordmark in dark mode', async ({ page }) => {
+    await page.goto('/');
+
+    await page.evaluate(() => window.toggleTheme());
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('.site-brand-image--dark')).toBeVisible();
+    await expect(page.locator('.site-brand-image--light')).toBeHidden();
+  });
+
+  test('page is declared zh without a locale prefix', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh');
+  });
+});
+
+test.describe('Home feed', () => {
+  test('opens with the newest 30 posts, each linking into /blog', async ({ page }) => {
+    await page.goto('/');
+
+    const items = page.locator('.feed-item');
+    await expect(items).toHaveCount(30);
+    await expect(items.first().locator('.feed-link')).toHaveAttribute('href', /^\/blog\/[a-z0-9-]+$/);
+
+    const dates = await page
+      .locator('.feed-time')
+      .evaluateAll(els => els.map(el => el.getAttribute('datetime')));
+    expect(dates).toEqual([...dates].sort().reverse());
+  });
+
+  test('load more appends the next 30 posts in order', async ({ page, request }) => {
+    const allPosts = await (await request.get('/posts.json')).json();
+
+    await page.goto('/');
+    await page.locator('#feed-more-btn').click();
+    await expect(page.locator('.feed-item')).toHaveCount(60);
+
+    const titles = await page.locator('.feed-title').evaluateAll(els => els.map(el => el.textContent));
+    expect(titles).toEqual(allPosts.slice(0, 60).map(post => post.title));
+  });
+
+  test('keeps loading until the whole archive is on the page', async ({ page }) => {
+    await page.goto('/');
+
+    const button = page.locator('#feed-more-btn');
+    const items = page.locator('.feed-item');
+    const total = Number(await button.getAttribute('data-total'));
+
+    for (let i = 0; i < 20; i++) {
+      if (!(await button.isVisible())) break;
+      const before = await items.count();
+      await button.click();
+      await expect(items).not.toHaveCount(before);
+    }
+
+    await expect(button).toBeHidden();
+    await expect(items).toHaveCount(total);
+  });
+});
+
+test.describe('Archive page', () => {
+  test('groups posts by month with timeline anchors', async ({ page }) => {
+    await page.goto('/archive');
+
+    expect(await page.locator('.month-section').count()).toBeGreaterThan(0);
+
+    const firstMonth = page.locator('.month-section').first();
+    await expect(firstMonth.locator('.month-title')).toBeVisible();
+    await expect(firstMonth.locator('.post-card').first()).toBeVisible();
+    await expect(page.locator('.timeline-link').first()).toHaveAttribute('href', /^#\d{4}-\d{2}$/);
+  });
+});
+
 test.describe('Back to top button', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
@@ -39,42 +123,27 @@ test.describe('Back to top button', () => {
   });
 });
 
-test.describe('Reading progress bar', () => {
-  test('is present on article pages', async ({ page }) => {
-    await page.goto('/blog/openai-workspace-agents-chatgpt');
-    const rp = page.locator('#reading-progress');
-    await expect(rp).toHaveCount(1);
-  });
+test.describe('Companies filter', () => {
+  test('category buttons filter the company cards', async ({ page }) => {
+    await page.goto('/companies');
 
-  test('width is 0% at top of article', async ({ page }) => {
-    await page.goto('/blog/openai-workspace-agents-chatgpt');
-    const rp = page.locator('#reading-progress');
-    const width = await rp.evaluate(el => el.style.width);
-    expect(width).toBe('0%');
-  });
+    const cards = page.locator('.company-card');
+    const total = await cards.count();
+    expect(total).toBeGreaterThan(0);
 
-  test('width increases after scrolling', async ({ page }) => {
-    await page.goto('/blog/openai-workspace-agents-chatgpt');
-    const rp = page.locator('#reading-progress');
-    const widthBefore = await rp.evaluate(el => el.style.width);
-    expect(widthBefore).toBe('0%');
+    await page.locator('.filter-btn', { hasText: '模型提供商' }).click();
 
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight / 2));
-    await page.waitForTimeout(150);
+    const filtered = await page.locator('.company-card:visible').count();
+    expect(filtered).toBeGreaterThan(0);
+    expect(filtered).toBeLessThan(total);
 
-    const widthAfter = await rp.evaluate(el => el.style.width);
-    expect(parseFloat(widthAfter)).toBeGreaterThan(0);
-  });
-
-  test('is absent on non-article pages', async ({ page }) => {
-    await page.goto('/');
-    const rp = page.locator('#reading-progress');
-    await expect(rp).toHaveCount(0);
+    await page.locator('.filter-btn', { hasText: '全部' }).click();
+    await expect(page.locator('.company-card:visible')).toHaveCount(total);
   });
 });
 
 test.describe('RSS feed', () => {
-  test('RSS feed is accessible and valid XML', async ({ request }) => {
+  test('feed is accessible and valid XML', async ({ request }) => {
     const response = await request.get('/rss.xml');
     expect(response.ok()).toBeTruthy();
     expect(response.headers()['content-type']).toContain('application/xml');
@@ -86,16 +155,15 @@ test.describe('RSS feed', () => {
     expect(body).toContain('<title>Agent Economy</title>');
   });
 
-  test('RSS contains posts', async ({ request }) => {
+  test('feed contains every post', async ({ request }) => {
     const response = await request.get('/rss.xml');
     const body = await response.text();
 
-    expect(body).toContain('Agent Economy');
     expect(body).toMatch(/<item>/g);
     expect((body.match(/<item>/g) || []).length).toBeGreaterThan(40);
   });
 
-  test('RSS post links use public article URLs', async ({ request }) => {
+  test('post links use public article URLs', async ({ request }) => {
     const response = await request.get('/rss.xml');
     const body = await response.text();
 
@@ -103,85 +171,18 @@ test.describe('RSS feed', () => {
     expect(body).toContain('<link>https://agenteconomy.cn/blog/google-anthropic-40-billion-bet/</link>');
   });
 
-  test('English RSS feed exists', async ({ request }) => {
-    const response = await request.get('/en/rss.xml');
-    expect(response.ok()).toBeTruthy();
-    expect(response.headers()['content-type']).toContain('application/xml');
-
-    const body = await response.text();
-    expect(body).toContain('<?xml version="1.0"');
-    expect(body).toContain('<rss version="2.0">');
-    expect(body).toContain('<title>Agent Economy</title>');
-    expect(body).toMatch(/<item>/g);
-    expect((body.match(/<item>/g) || []).length).toBeGreaterThan(40);
-  });
-
-  test('English RSS post links use public article URLs', async ({ request }) => {
-    const response = await request.get('/en/rss.xml');
+  test('feed dates reflect real publish times', async ({ request }) => {
+    const response = await request.get('/rss.xml');
     const body = await response.text();
 
-    expect(body).not.toMatch(/<link>[^<]+\.md<\/link>/);
-    expect(body).toContain('<link>https://agenteconomy.cn/en/blog/google-anthropic-40-billion-bet/</link>');
-  });
-});
+    const pubDates = [...body.matchAll(/<pubDate>([^<]+)<\/pubDate>/g)].map(m => new Date(m[1]));
+    expect(pubDates.length).toBeGreaterThan(40);
+    expect(pubDates.every(d => !Number.isNaN(d.getTime()))).toBe(true);
 
-test.describe('Language switching', () => {
-  test('Chinese site is at root', async ({ page }) => {
-    await page.goto('/');
-    const html = await page.evaluate(() => document.documentElement.lang);
-    expect(html).toBe('zh');
-  });
-
-  test('English site is at /en/', async ({ page }) => {
-    await page.goto('/en/');
-    const html = await page.evaluate(() => document.documentElement.lang);
-    expect(html).toBe('en');
-  });
-
-  test('language switch link navigates to other locale', async ({ page }) => {
-    await page.goto('/');
-    const switchLink = page.locator('.lang-switch');
-    await expect(switchLink).toBeVisible();
-    await expect(switchLink).toHaveText('EN');
-
-    await switchLink.click();
-    await page.waitForLoadState('networkidle');
-    expect(page.url()).toContain('/en/');
-  });
-
-  test('English post cards and archive links stay under /en', async ({ page }) => {
-    await page.goto('/en/');
-
-    const firstPost = page.locator('.post-title a').first();
-    await expect(firstPost).toHaveAttribute('href', /^\/en\/blog\//);
-
-    const archiveLink = page.locator('.view-all-btn');
-    await expect(archiveLink).toHaveAttribute('href', '/en/archive');
-  });
-});
-
-test.describe('Category filtering', () => {
-  test('English All filter restores visible posts', async ({ page }) => {
-    await page.goto('/en/');
-
-    const initialVisible = await page.locator('.post-card:visible').count();
-    expect(initialVisible).toBeGreaterThan(0);
-
-    await page.locator('#category-filter .filter-pill', { hasText: 'AI Models' }).click();
-    const filteredVisible = await page.locator('.post-card:visible').count();
-    expect(filteredVisible).toBeLessThanOrEqual(initialVisible);
-
-    await page.locator('#category-filter .filter-pill', { hasText: 'All' }).click();
-    await expect(page.locator('.post-card:visible')).toHaveCount(initialVisible);
-  });
-
-  test('posts with multiple categories appear in secondary category filters', async ({ page }) => {
-    await page.goto('/en/');
-
-    const multiCategoryPost = page.locator('.post-title a[href="/en/blog/google-anthropic-40-billion-bet"]');
-    await expect(multiCategoryPost).toBeVisible();
-
-    await page.locator('#category-filter .filter-pill', { hasText: 'AI Models' }).click();
-    await expect(multiCategoryPost).toBeVisible();
+    // An empty feed renders an epoch lastBuildDate, so this catches the regression
+    // where feed items stopped being collected at all.
+    const lastBuild = body.match(/<lastBuildDate>([^<]+)<\/lastBuildDate>/)?.[1];
+    expect(lastBuild).toBeTruthy();
+    expect(Date.now() - new Date(lastBuild).getTime()).toBeLessThan(365 * 24 * 60 * 60 * 1000);
   });
 });

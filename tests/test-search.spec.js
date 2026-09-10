@@ -109,6 +109,17 @@ test.describe('Search functionality', () => {
     await expect(overlay).not.toBeVisible();
   });
 
+  test('search covers posts beyond the first feed page', async ({ page, request }) => {
+    const posts = await (await request.get('/posts.json')).json();
+    const oldest = posts[posts.length - 1];
+
+    await page.locator('#header-search-btn').click();
+    await page.locator('#search-input').fill(oldest.title);
+    await page.waitForTimeout(400);
+
+    await expect(page.locator(`.search-result-item[href="/blog/${oldest.id}"]`)).toBeVisible();
+  });
+
   test('search should be case insensitive', async ({ page }) => {
     await page.locator('#header-search-btn').click();
     const searchInput = page.locator('#search-input');
@@ -195,14 +206,6 @@ test.describe('Search functionality', () => {
     expect(count).toBeGreaterThan(0);
   });
 
-  test('English search uses English placeholder', async ({ page }) => {
-    await page.goto('/en/');
-    await page.waitForSelector('#header-search-btn');
-
-    await page.locator('#header-search-btn').click();
-    const searchInput = page.locator('#search-input');
-    await expect(searchInput).toHaveAttribute('placeholder', 'Search articles...');
-  });
 });
 
 test.describe('Search popup responsive design', () => {

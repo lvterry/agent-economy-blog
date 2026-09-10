@@ -26,7 +26,9 @@ function buildCommitDateMap() {
       continue;
     }
     if (!currentDate) continue;
-    const match = line.match(/^src\/content\/posts\/((?:zh|en)\/[^/]+\.md)$/);
+    // Keyed by slug, matching `post.id` from the content collection. Restricting
+    // the match to zh/ keeps same-named files from the retired en/ folder out.
+    const match = line.match(/^src\/content\/posts\/zh\/([^/]+)\.md$/);
     if (!match) continue;
     const id = match[1];
     if (!map.has(id)) {

@@ -5,26 +5,21 @@ import { useTranslations } from '../../i18n/utils';
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
+const PAGE_SIZE = 30;
+
 const allPosts = await getCollection('posts');
 const posts = allPosts
   .sort((a, b) => b.data.date.localeCompare(a.data.date));
 
-function getPostUrl(post) {
-  return `/blog/${post.id}`;
-}
+const initialPosts = posts.slice(0, PAGE_SIZE);
 ---
 
 <div class="feed-home">
-  <section class="feed" aria-label="最新文章">
-    <div class="section-heading">
-      <h2>最新文章</h2>
-      <a href="/archive">{t('viewAll')}</a>
-    </div>
-
-    <ol class="feed-list">
-      {posts.map(post => (
+  <section class="feed" aria-label={t('home.latest')}>
+    <ol class="feed-list" id="feed-list">
+      {initialPosts.map(post => (
         <li class="feed-item">
-          <a href={getPostUrl(post)} class="feed-link">
+          <a href={`/blog/${post.id}`} class="feed-link">
             <h3 class="feed-title">{post.data.title}</h3>
             <time class="feed-time" datetime={post.data.date}>{post.data.date}</time>
             <p class="feed-excerpt">{post.data.excerpt}</p>
@@ -32,8 +27,111 @@ function getPostUrl(post) {
         </li>
       ))}
     </ol>
+
+    <template id="feed-item-template">
+      <li class="feed-item">
+        <a class="feed-link">
+          <h3 class="feed-title"></h3>
+          <time class="feed-time"></time>
+          <p class="feed-excerpt"></p>
+        </a>
+      </li>
+    </template>
+
+    <div class="feed-more">
+      <button
+        type="button"
+        id="feed-more-btn"
+        class="feed-more-btn"
+        data-page-size={PAGE_SIZE}
+        data-total={posts.length}
+        data-endpoint="/posts.json"
+        data-label-more={t('home.loadMore')}
+        data-label-loading={t('home.loading')}
+        data-label-error={t('home.loadError')}
+        data-progress-template={t('postCount', { shown: '__SHOWN__', total: posts.length })}
+      >{t('home.loadMore')}</button>
+      <p class="feed-progress" id="feed-progress" aria-live="polite">
+        {t('postCount', { shown: initialPosts.length, total: posts.length })}
+      </p>
+    </div>
   </section>
 </div>
+
+<script>
+  const list = document.getElementById('feed-list');
+  const button = document.getElementById('feed-more-btn');
+  const progress = document.getElementById('feed-progress');
+  const template = document.getElementById('feed-item-template');
+
+  if (list && button && progress && template) {
+    const pageSize = Number(button.dataset.pageSize);
+    const total = Number(button.dataset.total);
+    const labels = {
+      more: button.dataset.labelMore,
+      loading: button.dataset.labelLoading,
+      error: button.dataset.labelError,
+    };
+
+    let allPosts = null;
+    let shown = list.children.length;
+
+    function createItem(post) {
+      const item = template.content.firstElementChild.cloneNode(true);
+      item.querySelector('.feed-link').href = `/blog/${post.id}`;
+      item.querySelector('.feed-title').textContent = post.title;
+
+      const time = item.querySelector('.feed-time');
+      time.dateTime = post.date;
+      time.textContent = post.date;
+
+      item.querySelector('.feed-excerpt').textContent = post.excerpt;
+      return item;
+    }
+
+    function formatProgress() {
+      return button.dataset.progressTemplate.replace('__SHOWN__', String(shown));
+    }
+
+    async function fetchPosts() {
+      if (!allPosts) {
+        const response = await fetch(button.dataset.endpoint);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        allPosts = await response.json();
+      }
+      return allPosts;
+    }
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      button.textContent = labels.loading;
+
+      try {
+        const posts = await fetchPosts();
+        const next = posts.slice(shown, shown + pageSize);
+        const fragment = document.createDocumentFragment();
+        next.forEach(post => fragment.append(createItem(post)));
+        list.append(fragment);
+
+        shown += next.length;
+        progress.textContent = formatProgress();
+
+        // The button is the only way to reach the rest of the feed, so hide it
+        // once every post is on the page rather than leaving a dead control.
+        if (shown >= total) {
+          button.hidden = true;
+        } else {
+          button.disabled = false;
+          button.textContent = labels.more;
+        }
+      } catch (error) {
+        console.error('Failed to load more posts', error);
+        button.textContent = labels.error;
+        button.disabled = false;
+      }
+    });
+  }
+</script>
 
 <style>
   :global(main) {
@@ -47,7 +145,6 @@ function getPostUrl(post) {
     gap: var(--space-xl);
   }
 
-  h2,
   h3 {
     color: var(--color-text);
     letter-spacing: 0;
@@ -57,34 +154,6 @@ function getPostUrl(post) {
   .feed {
     display: grid;
     gap: var(--space-md);
-  }
-
-  .section-heading {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 0.65rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .section-heading h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-  }
-
-  .section-heading a {
-    color: var(--color-text-muted);
-    font-size: 0.86rem;
-    text-decoration: underline;
-    text-decoration-color: var(--color-border);
-    text-underline-offset: 0.18em;
-  }
-
-  .section-heading a:hover {
-    color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
   }
 
   .feed-list {
@@ -140,6 +209,41 @@ function getPostUrl(post) {
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+
+  .feed-more {
+    display: grid;
+    justify-items: center;
+    gap: 0.7rem;
+    padding-top: 0.5rem;
+  }
+
+  .feed-more-btn {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.55rem 1.7rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .feed-more-btn:hover:not(:disabled) {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .feed-more-btn:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  .feed-progress {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
   }
 
   @media (max-width: 640px) {
