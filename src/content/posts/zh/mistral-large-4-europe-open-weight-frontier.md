@@ -1,0 +1,20 @@
+---
+title: 'Mistral 发布 1 万亿参数开源权重模型 Large 4'
+excerpt: '欧洲规模最大的开源权重模型进入公开预览，主打编程、智能体与网络安全，训练全程在自建的欧洲数据中心完成。'
+date: "2026-10-07"
+tags: ["Open-Source", "Multimodal", "LLM"]
+category: "AI 模型"
+source: "Mistral"
+---
+
+**Category is set manually based on editorial judgment, not derived from tags.**
+
+Mistral 放出 Mistral Large 4 的公开预览，内部代号 le Chonk。这是一个 1 万亿参数的稀疏 MoE 模型，490 亿激活参数，原生多模态，覆盖编程、智能体工作流与视觉理解，权重计划在本月末发布。
+
+训练完全在欧洲自己的数据中心完成，用了 3,800 张 NVIDIA Grace Blackwell 显卡。Mistral 把主权 AI 讲得很直白：当供应商层面的拒答能挡住合法的漏洞研究，或者能力在事故响应中途被收回时，访问权本身就是安全问题。这也是 ML4 主打的差异点——官方称它在网络安全基准 CyberGym-E2E 上达到 82%，视觉 grounding 在 Dense 200 上为 42%，略高于闭源的 GPT-6 Astra。
+
+社区反馈比官方数字更有意思。有人在 Plotly 的数据分析基准上测出，它比 4 月的 Mistral Medium 3.5 便宜十倍，准确率从 58% 提升到 74%；也有人指出它的推理档位只有“无”和“高”两档，实测差异很小。更现实的判断是：它未必在整体 Pareto 前沿领先，但对企业而言，一个性能接近前沿、可以自己部署、既不在中国也不在美国的选项，本身就有价值。
+
+4,000 张卡训练出的模型能逼近 Kimi K3 一档，HN 上有人反问：如果这样就够，美国那些超大集群到底在买什么？答案可能不在参数规模里，而在分发、数据和合规上。
+
+[阅读原文](https://mistral.ai/news/mistral-large-4/)
