@@ -83,7 +83,7 @@ vercel --prod
 
 ## 🔗 Links
 
-- Live Site: https://agent-economy.vercel.app (update after deployment)
+- Live Site: https://agenteconomy.cn
 - Astro Docs: https://docs.astro.build/
 
 ---
