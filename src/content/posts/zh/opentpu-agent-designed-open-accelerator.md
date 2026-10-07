@@ -7,8 +7,6 @@ category: "AI Infra"
 source: "openTPU"
 ---
 
-**Category is set manually based on editorial judgment, not derived from tags.**
-
 openTPU 想回答两个问题：AI 智能体在硬件设计上能走多远，以及它们能不能造出跑自己推理的芯片。整个加速器放在一个可以完整读完的 monorepo 里——SystemVerilog 硬件设计、指令集、逐位对齐的模拟器、内核语言与编译器，以及驱动真实 PCIe 卡的主机软件。
 
 结果是实的。项目在一块 Inspur YPCB-00338 FPGA 卡（Xilinx Kintex-7）上跑通了十款现代模型，卡上产出的 token 与模拟器逐位一致。最小的 LFM2.5-230M 用 4-bit 量化能跑到 85 tok/s，Qwen3.5-4B 只有 5.9 tok/s，DDR3 带宽利用率普遍在 91% 到 94% 之间。作者说，早期每个模型每秒只能吐几个 token，是靠一轮轮自动迭代优化堆到现在的水平。

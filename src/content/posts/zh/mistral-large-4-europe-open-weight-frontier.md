@@ -7,8 +7,6 @@ category: "AI 模型"
 source: "Mistral"
 ---
 
-**Category is set manually based on editorial judgment, not derived from tags.**
-
 Mistral 放出 Mistral Large 4 的公开预览，内部代号 le Chonk。这是一个 1 万亿参数的稀疏 MoE 模型，490 亿激活参数，原生多模态，覆盖编程、智能体工作流与视觉理解，权重计划在本月末发布。
 
 训练完全在欧洲自己的数据中心完成，用了 3,800 张 NVIDIA Grace Blackwell 显卡。Mistral 把主权 AI 讲得很直白：当供应商层面的拒答能挡住合法的漏洞研究，或者能力在事故响应中途被收回时，访问权本身就是安全问题。这也是 ML4 主打的差异点——官方称它在网络安全基准 CyberGym-E2E 上达到 82%，视觉 grounding 在 Dense 200 上为 42%，略高于闭源的 GPT-6 Astra。
