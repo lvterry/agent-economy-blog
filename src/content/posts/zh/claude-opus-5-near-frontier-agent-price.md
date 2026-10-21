@@ -3,6 +3,7 @@ title: 'Claude Opus 5 发布，以 Opus 价格实现近前沿智能体性能'
 excerpt: 'Anthropic 发布 Claude Opus 5，在智能体基准测试中接近旗舰 Fable 5 水平，价格保持 Opus 4.8 不变。新模型在 ARC-AGI、Zapier AutomationBench 等任务上大幅领先，并支持对话中动态切换工具。'
 date: "2026-07-25"
 tags: ["Anthropic", "Claude", "AI-Model", "Agent", "AI-Agents"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

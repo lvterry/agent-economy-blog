@@ -3,6 +3,7 @@ title: '微软发布 MXC 1.0 用操作系统给 agent 划定权限边界'
 excerpt: 'MXC 把智能体的权限交给操作系统执行：开发者声明需要哪些文件和网络，容器在运行时拦截越界操作，agent 自己改不了这份策略。'
 date: "2026-10-11"
 tags: ["AI-Safety", "Security", "Microsoft", "AI-Agents"]
+entities: ["微软"]
 category: "安全与隐私"
 source: "Microsoft"
 ---

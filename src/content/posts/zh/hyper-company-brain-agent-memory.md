@@ -3,6 +3,7 @@ title: "Hyper用\"公司大脑\"打通AI智能体的记忆壁垒"
 excerpt: "YC孵化项目Hyper打造了一个连接Slack、文档、邮件和日历的共享知识层，让AI编程助手和智能体能理解公司的业务上下文、设计偏好和历史决策。"
 date: "2026-06-04"
 tags: ["AI 智能体", "AI 工具", "初创公司"]
+entities: ["Hyper"]
 category: "AI 智能体"
 source: "Hyper / Y Combinator"
 ---

@@ -3,6 +3,7 @@ title: 'Codex CLI 默认拉起一个自更新守护进程 官方没给关闭开�
 excerpt: '从 0.157.0 起，打开一次交互式 Codex 会话就会常驻一个后台 daemon，它复制一份 374 MB 的运行时、每小时自我更新，还能打断正在执行的任务。'
 date: "2026-10-13"
 tags: ["OpenAI", "Security", "Agent-Tooling", "AI-Agents", "Privacy"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "OpenAI"
 ---

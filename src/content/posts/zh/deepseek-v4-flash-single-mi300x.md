@@ -3,6 +3,7 @@ title: 'DeepSeek V4 Flash 单张 MI300X 满血部署，AMD 推理性价比再获
 excerpt: '开源开发者公开单张 AMD MI300X 满血运行 DeepSeek V4 Flash 的生产方案，304B 参数不量化不卸载，解码 168 tok/s。HBM 容量为 H100 两倍、价格约一半，AMD 正成为推理成本叙事里的现实选项。'
 date: "2026-08-05"
 tags: ["AI-Infrastructure", "Hardware", "GPU", "vLLM"]
+entities: ["AMD", "DeepSeek"]
 category: "AI Infra"
 source: "GitHub"
 ---

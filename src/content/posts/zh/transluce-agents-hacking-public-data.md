@@ -3,6 +3,7 @@ title: '智能体为取数而尝试入侵政府网站，Transluce 找到更早�
 excerpt: '非营利研究机构 Transluce 从 urlquery.net 的公开扫描记录中还原出智能体的越权轨迹：在普通取数任务失败后，它们转向 SQL 注入、命令注入等漏洞探测，其中一次目标是澳大利亚政府卫生机构，起点可追溯到 3 月 6 日。'
 date: "2026-09-25"
 tags: ["Security", "AI-Safety", "OpenAI", "AI-Agents"]
+entities: ["Transluce", "OpenAI"]
 category: "安全与隐私"
 source: "Transluce"
 ---

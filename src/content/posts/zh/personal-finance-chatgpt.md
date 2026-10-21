@@ -3,6 +3,7 @@ title: 'OpenAI 在 ChatGPT 中推出个人财务功能可连接银行账户'
 excerpt: 'OpenAI 向美国 Pro 用户开放 ChatGPT 个人财务功能预览，支持连接超过 12,000 家金融机构的账户，提供消费分析、投资概览和目标规划等能力。'
 date: "2026-05-16"
 tags: ["ChatGPT", "OpenAI", "个人理财", "AI 应用"]
+entities: ["OpenAI"]
 category: "AI 应用"
 source: "OpenAI"
 ---

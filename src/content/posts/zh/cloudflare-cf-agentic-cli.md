@@ -3,6 +3,7 @@ title: 'Cloudflare 发布智能体原生 CLI cf 一次覆盖全部三千多项 A
 excerpt: 'Wrangler 的智能体使用率上周达到 48%，但只有约 280 条命令。Cloudflare 干脆用 OpenAPI 模式生成了一整条新 CLI，把 3000 多项操作、默认 JSON 输出和自然语言找命令的能力一起交给智能体。'
 date: "2026-09-29"
 tags: ["Agent-Tooling", "Cloudflare", "AI-Infrastructure"]
+entities: ["Cloudflare"]
 category: "AI 智能体"
 source: "Cloudflare"
 ---

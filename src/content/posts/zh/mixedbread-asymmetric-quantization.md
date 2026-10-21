@@ -3,6 +3,7 @@ title: 'Mixedbread 提出非对称量化：多向量检索存储降至 3%，质�
 excerpt: 'Mixedbread 提出非对称量化方案，将查询向量保留 int8 精度而文档向量压缩为二值符号，使多向量文档存储从 393 KiB 降至 12.28 KiB（压缩 97%），召回质量仅下降 0.61 NDCG@10。'
 date: "2026-07-02"
 tags: ["Vector-Database", "RAG", "AI-Infrastructure", "Model-Compression", "Mixedbread"]
+entities: ["Mixedbread"]
 category: "AI Infra"
 source: "Mixedbread"
 ---

@@ -3,6 +3,7 @@ title: '2000 人尝试破解 AI 助手，无一成功'
 excerpt: '一位开发者将 AI 助手设为攻击靶标，开放给所有人尝试提示注入。2000 多人发送了 6000 多封邮件，但秘密文件始终未被泄露。'
 date: "2026-06-26"
 tags: ["Prompt-Injection", "AI-Safety", "Security", "AI-Agents"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Fernando Irarrázaval"
 ---

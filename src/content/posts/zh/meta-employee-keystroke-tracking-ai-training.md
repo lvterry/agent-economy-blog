@@ -3,6 +3,7 @@ title: Meta 开始采集员工鼠标移动和键盘输入用于 AI 训练
 excerpt: Meta 在美国员工电脑上安装监控软件，记录鼠标移动、点击和键盘输入来训练 AI 智能体，同时计划在 5 月裁员 10%。
 date: "2026-04-21"
 tags: ["Meta", "Privacy", "AI-Training", "Workplace-Surveillance"]
+entities: ["Meta"]
 category: "安全与隐私"
 source: "Reuters"
 ---

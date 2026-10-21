@@ -3,6 +3,7 @@ title: "Anthropic 与 SpaceX 达成计算合作，扩容超 220,000 张 NVIDIA G
 excerpt: "Anthropic 与 SpaceX 签署协议，获得 Colossus 1 数据中心超过 300 兆瓦的全部算力（逾 22 万张 NVIDIA GPU），同时大幅提升 Claude Code 和 API 调用上限。这是 AI 基础设施军备竞赛中又一关键布局。"
 date: "2026-05-07"
 tags: ["AI-Infrastructure", "GPU", "Supply-Chain", "Tech-Industry"]
+entities: ["Anthropic", "SpaceX", "英伟达"]
 category: "AI Infra"
 source: "Anthropic"
 ---

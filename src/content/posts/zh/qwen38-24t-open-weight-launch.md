@@ -3,6 +3,7 @@ title: 'Qwen 3.8 发布，2.4 万亿参数开源模型即将开放权重'
 excerpt: '阿里 Qwen 团队今日发布 Qwen 3.8，一款 2.4 万亿参数的开放权重模型，预览版已上线 Token Plan，声称性能仅次于 Anthropic Fable 5。'
 date: "2026-07-19"
 tags: ["Qwen", "Foundation Model", "AI-Model", "Open-Source"]
+entities: ["阿里巴巴"]
 category: "AI 模型"
 source: "Alibaba"
 ---

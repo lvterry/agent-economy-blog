@@ -3,6 +3,7 @@ title: '英美联合评估 Kimi K3 网络攻击能力显著低于前沿模型'
 excerpt: '英国 AI 安全研究院与美国 AI 标准与创新中心联合评估显示，Kimi K3 在网络攻击能力上显著低于前沿模型，但已具备自主攻击小型企业网络的能力，且安全防护措施未能阻止其尝试漏洞利用开发。'
 date: "2026-07-25"
 tags: ["AI-Safety", "Security", "Kimi"]
+entities: ["Moonshot AI"]
 category: "安全与隐私"
 source: "NIST/UK AISI"
 ---

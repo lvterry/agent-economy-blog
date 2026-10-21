@@ -3,6 +3,7 @@ title: OpenAI 采用 Google SynthID 水印 构建多层内容溯源体系
 excerpt: OpenAI 宣布采用 Google DeepMind 的 SynthID 技术为 AI 图像添加隐形水印，同时成为 C2PA 一致性生成器产品，并推出公开验证工具，迈出跨平台溯源的关键一步。
 date: "2026-05-20"
 tags: ["Security", "AI-Safety", "Watermarking", "C2PA", "OpenAI", "Google"]
+entities: ["OpenAI", "谷歌"]
 category: "安全与隐私"
 source: "OpenAI"
 ---

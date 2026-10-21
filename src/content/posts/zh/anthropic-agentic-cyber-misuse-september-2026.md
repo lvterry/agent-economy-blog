@@ -3,6 +3,7 @@ title: "Anthropic 发现多智能体攻击链正在降低复杂入侵的人力�
 excerpt: "Anthropic 的最新威胁报告显示，攻击者已用多智能体框架编排侦察、利用、数据外传和恶意软件重构，让个人和小团体执行过去需要专业团队完成的攻击链。"
 date: "2026-09-11"
 tags: ["Security", "AI-Agents", "Agent", "Agent-Tooling"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Anthropic"
 ---

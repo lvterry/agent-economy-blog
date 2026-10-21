@@ -3,6 +3,7 @@ title: '美国政府解除 Mythos 5 出口限制 批准向百余家美国机构�
 excerpt: '在禁令实施两周后，美国商务部解除对 Anthropic Mythos 5 的出口限制，百余家企业和政府机构获准使用，Fable 5 也在解禁推进中。一个由政府控制前沿模型访问权的新监管框架正在成型。'
 date: "2026-06-27"
 tags: ["Anthropic", "AI-Safety", "Security", "AI-Governance"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Semafor"
 ---

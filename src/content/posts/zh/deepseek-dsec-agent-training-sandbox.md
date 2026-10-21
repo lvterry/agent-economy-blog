@@ -3,6 +3,7 @@ title: 'DeepSeek 公开 DSec 智能体训练沙箱 单日创建三百万个环�
 excerpt: 'DeepSeek 把智能体训练背后的沙箱层完整摊开了：一套 SDK 统一四种隔离后端，160 个节点一天创建约 300 万个沙箱、同时支撑超过 38 万个并发环境，并与强化学习框架联动来抑制 reward hacking。'
 date: "2026-09-27"
 tags: ["AI-Infrastructure", "Agent-Tooling", "Distributed-Computing"]
+entities: ["DeepSeek"]
 category: "AI Infra"
 source: "DeepSeek"
 ---

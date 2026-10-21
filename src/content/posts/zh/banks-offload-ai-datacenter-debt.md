@@ -3,6 +3,7 @@ title: '银行开始转手 AI 数据中心债务，甲骨文 CDS 升到 2009 年
 excerpt: '摩根大通、摩根士丹利、三菱日联等银行正把刚承销的 AI 基建贷款切块转给外部投资者，一笔 380 亿美元的在建工程债挂了半年仍未分销出去，风险从云厂商回流到出钱的银行。'
 date: "2026-10-15"
 tags: ["Market-Analysis", "Business", "Economy", "Data-Center"]
+entities: ["甲骨文"]
 category: "商业 & 经济"
 source: "Startup Fortune"
 ---

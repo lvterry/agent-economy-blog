@@ -3,6 +3,7 @@ title: 'Aleph Alpha 发布主权开源模型 Kolibri，78B 参数只需 3B 激�
 excerpt: '德国 Aleph Alpha 在统一日发布 Kolibri，78B 总参数、3B 激活、百万级上下文、Apache 2.0。它把训练数据和全流程一并公开，也让「主权 AI」的边界问题浮上台面。'
 date: "2026-10-04"
 tags: ["Open-Source", "AI-Model", "AI-Agents", "Aleph Alpha"]
+entities: ["Aleph Alpha"]
 category: "AI 模型"
 source: "Aleph Alpha"
 ---

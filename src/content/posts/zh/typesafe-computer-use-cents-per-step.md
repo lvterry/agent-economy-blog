@@ -3,6 +3,7 @@ title: '有人把 computer use 的单步成本压到了五十分之一美分'
 excerpt: '开源项目 typesafe-computer-use 不再把截图发给大模型，而是用 OCR 和无障碍树把屏幕读成确定性状态，再让小型决策模型在候选动作里选一个，单步花费约 0.0002 美元。'
 date: "2026-09-19"
 tags: ["Computer-Use", "AI-Agents", "Agent-Tooling", "Agent-Economy"]
+entities: ["TypeSafe"]
 category: "AI 智能体"
 source: "typesafe-computer-use"
 ---

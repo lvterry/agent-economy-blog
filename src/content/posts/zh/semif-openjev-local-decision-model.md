@@ -3,6 +3,7 @@ title: '社区用开源模型复现了 Jev 的决策接口，还把它塞进了�
 excerpt: '独立项目 SemIf（原名 OpenJev）跑一次前向传播就直接读出选项概率，不生成任何 token。浏览器 demo 显示 4B 本地模型在公开子集上达到 84.5%，接近 Jev 公布的 88.3%，而 0.6B 只有 40.7%。'
 date: "2026-09-19"
 tags: ["AI-Model", "Agent-Tooling", "Open-Source"]
+entities: ["TypeSafe"]
 category: "AI 模型"
 source: "SemIf"
 ---

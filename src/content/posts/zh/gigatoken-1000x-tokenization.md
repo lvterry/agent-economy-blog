@@ -3,6 +3,7 @@ title: 'GigaToken 将语言模型分词速度提升 1000 倍'
 excerpt: '一款名为 GigaToken 的开源分词器利用 SIMD 和缓存层级优化，在 144 核服务器上实现最高 24 GB/s 的分词吞吐量，较 HuggingFace Tokenizers 提升约 1000 倍。'
 date: "2026-07-23"
 tags: ["LLM", "AI-Infrastructure", "Tokenization"]
+entities: ["Hugging Face"]
 category: "AI Infra"
 source: "Marcel Rød"
 ---

@@ -3,6 +3,7 @@ title: "Cloudflare 裁减 1100 人，重组迎接智能体时代"
 excerpt: "Cloudflare 宣布裁员约 1100 人，CEO 明确表示公司正在为'智能体 AI 时代'重构组织架构。过去三个月内，公司内部 AI 使用量增长超过 600%。"
 date: "2026-05-08"
 tags: ["Cloudflare", "Business", "Layoffs", "Tech-Industry", "Future-of-Work"]
+entities: ["Cloudflare"]
 category: "行业动态"
 source: "Cloudflare"
 ---

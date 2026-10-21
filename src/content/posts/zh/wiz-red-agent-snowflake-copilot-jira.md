@@ -3,6 +3,7 @@ title: 'Wiz 自主红队智能体借 Copilot Autofix 漏洞入侵 Snowflake 内�
 excerpt: 'Wiz 的自主 AI 安全智能体在 Snowflake 公开仓库中发现并利用了一个由 GitHub Copilot Autofix 引入的注入漏洞，成功读取其内部 Jira 敏感数据——AI 生成代码与 AI 审查的双重失灵成为焦点。'
 date: "2026-08-18"
 tags: ["Security", "AI-Agents", "AI-Safety"]
+entities: ["Snowflake", "Wiz", "GitHub"]
 category: "安全与隐私"
 source: "Wiz"
 ---

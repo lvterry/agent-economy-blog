@@ -3,6 +3,7 @@ title: '开发者用 Claude 生成的应用撞车开源项目，连 bug 都复�
 excerpt: '独立开发者用 Claude 生成的星空观测应用，被指与开源项目几乎相同，甚至复刻了原作者已修复的 bug。道歉和下线之后，AI 编程时代的代码溯源与原创性难题才刚刚开始。'
 date: "2026-08-10"
 tags: ["AI-Coding", "Open-Source"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Terry Godier"
 ---

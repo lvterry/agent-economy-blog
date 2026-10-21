@@ -3,6 +3,7 @@ title: Anthropic 收购 Stainless，加码智能体连接层
 excerpt: Anthropic 收购 API SDK 和 MCP 服务器工具公司 Stainless，强化 Claude 与外部系统和数据的连接能力，加速智能体生态布局。
 date: "2026-05-19"
 tags: ["Anthropic", "MCP", "AI-Agents", "Agent-Infrastructure", "AI-Standards"]
+entities: ["Anthropic", "Stainless"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

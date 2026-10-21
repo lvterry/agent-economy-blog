@@ -3,6 +3,7 @@ title: 'WebKit 推出 Safari MCP 服务器，AI 智能体可直连浏览器调�
 excerpt: 'Apple 在 Safari Technology Preview 247 中内置了 MCP 服务器，允许 AI 智能体直接连接浏览器窗口进行 DOM 检查、网络请求分析和性能评测。这是主流浏览器首次原生支持 MCP 协议，智能体驱动的 Web 开发工作流迈出关键一步。'
 date: "2026-07-03"
 tags: ["MCP", "AI-Agents", "Agent-Tooling", "WebKit"]
+entities: ["苹果"]
 category: "AI Infra"
 source: "WebKit Blog"
 ---

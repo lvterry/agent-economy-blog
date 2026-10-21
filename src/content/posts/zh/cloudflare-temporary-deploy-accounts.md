@@ -3,6 +3,7 @@ title: 'Cloudflare 推出临时部署账号 让 AI Agent 无需注册即刻上�
 excerpt: 'Cloudflare 发布临时账号功能，AI Agent 可通过 wrangler deploy --temporary 在无需注册的情况下直接部署 Worker，60 分钟内可迭代更新并最终转为永久账号，彻底打通 Agent 自主上线的最后障碍。'
 date: "2026-06-20"
 tags: ["Cloudflare", "AI-Agents", "Agent-Economy", "Infrastructure"]
+entities: ["Cloudflare"]
 category: "AI 智能体"
 source: "Cloudflare"
 ---

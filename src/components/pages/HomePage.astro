@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { topics, getPrimaryTopicSlug } from '../../lib/categories';
 import { useTranslations } from '../../i18n/utils';
+import EntityTags from '../EntityTags.astro';
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
@@ -61,6 +62,7 @@ const categories = topics
             <h3 class="feed-title">{post.data.title}</h3>
             <time class="feed-time" datetime={post.data.date}>{post.data.date}</time>
             <p class="feed-excerpt">{post.data.excerpt}</p>
+            <EntityTags entities={post.data.entities} class="feed-entities" />
           </a>
         </li>
       ))}
@@ -74,6 +76,7 @@ const categories = topics
           <h3 class="feed-title"></h3>
           <time class="feed-time"></time>
           <p class="feed-excerpt"></p>
+          <ul class="entity-tags feed-entities" aria-label="相关公司" hidden></ul>
         </a>
       </li>
     </template>
@@ -146,6 +149,19 @@ const categories = topics
       time.textContent = post.date;
 
       item.querySelector('.feed-excerpt').textContent = post.excerpt;
+
+      const entities = item.querySelector('.feed-entities');
+      if (post.entities?.length) {
+        entities.append(...post.entities.map((name) => {
+          const tag = document.createElement('li');
+          tag.className = 'entity-tag';
+          tag.textContent = name;
+          return tag;
+        }));
+        entities.hidden = false;
+      } else {
+        entities.remove();
+      }
       return item;
     }
 
@@ -384,6 +400,20 @@ const categories = topics
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+
+  /* The template copy is not scoped by EntityTags, so restate its layout. */
+  .feed-entities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feed-entities[hidden] {
+    display: none;
   }
 
   .feed-empty {

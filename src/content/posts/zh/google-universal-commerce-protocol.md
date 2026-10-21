@@ -3,6 +3,7 @@ title: Google 发布 Universal Commerce Protocol 为 AI 原生商业铺路
 excerpt: Google 推出开放标准 Universal Commerce Protocol，让 AI 搜索和 Gemini 可以直连商家完成交易，打通从对话到购买的最后一公里。
 date: "2026-05-19"
 tags: ["Google", "UCP", "Commerce Protocol", "AI Commerce", "AI Infra"]
+entities: ["谷歌"]
 category: "AI Infra"
 source: "Google"
 ---

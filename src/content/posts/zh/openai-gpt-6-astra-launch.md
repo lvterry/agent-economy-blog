@@ -3,6 +3,7 @@ title: 'OpenAI 正式发布 GPT-6 Astra，称其可能标志 AGI 到来'
 excerpt: 'OpenAI 发布旗舰模型 GPT-6 Astra，动用德州 Stargate 站点超十万张 GPU 完成史上最大规模训练，官方称其为迄今最智能也最对齐的模型；因网络安全评级 Critical，发布采取限量分批策略。'
 date: "2026-09-04"
 tags: ["OpenAI", "GPT", "AI-Model", "AI-Safety"]
+entities: ["OpenAI"]
 category: "AI 模型"
 source: "OpenAI"
 ---

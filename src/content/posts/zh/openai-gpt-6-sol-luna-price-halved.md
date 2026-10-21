@@ -3,6 +3,7 @@ title: 'OpenAI 发布 GPT-6 Sol 和 Luna 并把 API 价格砍掉一半'
 excerpt: '同一天里 OpenAI 把 Sol 与 Luna 的 token 价格减半，Anthropic 也下调了 Opus 5.5 的定价。前沿模型开始按每任务成本而不是能力上限竞争。'
 date: "2026-09-23"
 tags: ["OpenAI", "GPT", "AI-Model", "Market-Analysis"]
+entities: ["OpenAI"]
 category: "商业 & 经济"
 source: "OpenAI"
 ---

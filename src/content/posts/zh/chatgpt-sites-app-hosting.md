@@ -3,6 +3,7 @@ title: 'ChatGPT Sites 公测 把模型能力延伸到网站托管与身份层'
 excerpt: 'OpenAI 让用户用对话直接构建、发布并托管网站与应用，还配上访客登录、只读工具授权和定时任务。真正值得注意的不是生成页面，而是站点外层正在长成一套带身份与权限的运行环境。'
 date: "2026-10-03"
 tags: ["ChatGPT", "OpenAI", "Agent"]
+entities: ["OpenAI"]
 category: "行业动态"
 source: "OpenAI"
 ---

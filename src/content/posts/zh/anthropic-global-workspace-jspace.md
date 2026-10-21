@@ -3,6 +3,7 @@ title: 'Anthropic 发现 AI 模型内部存在「全局工作空间」'
 excerpt: 'Claude 内部自发形成了约 300 个特殊神经模式构成的「雅可比空间」（J-space），可用于内部推理、灵活控制，并能被外部读取以检测隐藏目标和虚构数据。这一发现为 AI 智能体安全监控和模型透明度提供了全新工具。'
 date: "2026-07-07"
 tags: ["Anthropic", "AI-Safety", "Interpretability", "AI-Model"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

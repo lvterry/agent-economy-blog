@@ -3,6 +3,7 @@ title: 'OpenAI 推出首款自研推理芯片 Jalapeño，联手 Broadcom 降低
 excerpt: 'OpenAI 发布与 Broadcom 合作开发的首款自研推理芯片 Jalapeño，专为实时编码和智能体推理场景优化，性能功耗比显著优于现有方案，标志其 AI 基础设施战略进入芯片层面。'
 date: "2026-06-25"
 tags: ["OpenAI", "Hardware", "AI-Infrastructure", "Broadcom"]
+entities: ["OpenAI", "博通"]
 category: "AI Infra"
 source: "TechCrunch"
 ---

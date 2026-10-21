@@ -3,6 +3,7 @@ title: 'OpenAI Codex 加密子代理通信，审计链断裂引争议'
 excerpt: 'OpenAI Codex 的多智能体模式在 0.137.0 版本后加密子代理间的全部消息内容，本地日志不再保留可读任务记录。开发者担忧多智能体工作流的审计能力正在丧失。'
 date: "2026-07-14"
 tags: ["OpenAI", "Codex", "AI-Agents", "Security", "Privacy"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "GitHub Issue #28058"
 ---

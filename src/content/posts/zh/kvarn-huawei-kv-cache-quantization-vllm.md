@@ -3,6 +3,7 @@ title: "华为开源 KVarN 实现 vLLM KV 缓存 3-5 倍增容且不损精度"
 excerpt: "华为 CSL 实验室发布 KVarN，以方差归一化量化技术打破 KV 缓存瓶颈：吞吐量超越 FP16、精度无损、无需校准，专为智能体长上下文场景设计。"
 date: "2026-06-05"
 tags: ["AI-Infrastructure", "Infrastructure", "LLM"]
+entities: ["华为"]
 category: "AI Infra"
 source: "Huawei"
 ---

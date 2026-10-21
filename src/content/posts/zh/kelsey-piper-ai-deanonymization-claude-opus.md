@@ -3,6 +3,7 @@ title: 'Kelsey Piper 发现 Claude Opus 4.7 能从一小段未发表文字中准
 excerpt: '记者 Kelsey Piper 发现 Claude Opus 4.7 能从 125 字的未发表文字中精准识别作者——无论是政治评论、教育报告还是高中申请文书，AI 都能跨体裁完成作者归因。'
 date: "2026-04-21"
 tags: ["Privacy", "AI-Model"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "The Argument"
 ---

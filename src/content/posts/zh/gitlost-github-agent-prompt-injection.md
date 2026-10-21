@@ -3,6 +3,7 @@ title: 'GitHub Agentic Workflows 遭提示注入攻击，私有仓库文件被�
 excerpt: 'Noma Labs 发现 GitHub 新推出的 Agentic Workflows 存在严重提示注入漏洞（GitLost），攻击者无需任何凭据，仅需在公开仓库提交 Issue 即可诱使 AI 代理泄露同组织内的私有仓库数据。'
 date: '2026-07-08'
 tags: ['Prompt-Injection', 'Security', 'GitHub', 'AI-Agents']
+entities: ["GitHub"]
 category: '安全与隐私'
 source: 'Noma Security'
 ---

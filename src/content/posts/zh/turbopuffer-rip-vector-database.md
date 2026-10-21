@@ -3,6 +3,7 @@ title: 'turbopuffer 宣布放弃向量主索引 为通用查询重构存储层'
 excerpt: '服务 Cursor 与 Notion 的检索基础设施 turbopuffer 宣布 v3 重构，不再以向量索引作为主键，把 ANN 降级为普通二级索引，检索层正从专用向量库转向通用查询引擎。'
 date: "2026-10-02"
 tags: ["Vector-Database", "AI-Infrastructure", "RAG"]
+entities: ["turbopuffer", "Cursor", "Notion"]
 category: "AI Infra"
 source: "turbopuffer"
 ---

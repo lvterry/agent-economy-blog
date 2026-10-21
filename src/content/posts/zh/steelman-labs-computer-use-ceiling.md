@@ -3,6 +3,7 @@ title: "Steelman Labs 剖析计算机操控智能体的架构天花板"
 excerpt: "Steelman Labs 研究发现，基于截图—工具调用循环的计算机操控智能体在 OSWorld-V2 仅 20.6% 完成率，多数任务中模型绕过界面直调 API，揭示当前架构的根本局限。"
 date: "2026-07-30"
 tags: ["Computer-Use", "AI-Agents", "Infrastructure"]
+entities: ["Steelman Labs"]
 category: "AI 智能体"
 source: "Steelman Labs"
 ---

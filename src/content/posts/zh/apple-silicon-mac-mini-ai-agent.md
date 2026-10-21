@@ -3,6 +3,7 @@ title: 'Apple 高管：Mac mini 已成 AI 智能体的首选硬件'
 excerpt: 'Apple 硅谷高级产品经理 Doug Brooks 在采访中透露，Mac mini 和 Mac Studio 是运行 AI 智能体的首选设备——整芯片架构、隐私优先和 24/7 运行能力正推动这股需求。'
 date: "2026-07-10"
 tags: ["Apple", "AI-Agents", "Hardware", "Infrastructure"]
+entities: ["苹果"]
 category: "AI 智能体"
 source: "MacRumors"
 ---

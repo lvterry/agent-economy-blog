@@ -3,6 +3,7 @@ title: 'Meta 把个人智能体装进了一台专属云电脑'
 excerpt: 'Meta 发布个人智能体 Muse，用独立云端虚拟机运行浏览器与长期任务，并接入 WhatsApp、Stripe Link 和细粒度授权；它把个人智能体竞争推进到执行环境、支付与信任体系。'
 date: "2026-09-09"
 tags: ["Agent", "AI-Agents", "Computer-Use", "Security", "Privacy"]
+entities: ["Meta", "Stripe"]
 category: "AI 智能体"
 source: "Meta"
 ---

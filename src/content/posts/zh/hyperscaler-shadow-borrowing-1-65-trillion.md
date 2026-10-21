@@ -3,6 +3,7 @@ title: '五大云巨头的表外 AI 债务膨胀至 1.65 万亿美元'
 excerpt: 'Nikkei 分析显示，Alphabet、微软、亚马逊、Meta 与甲骨文的表外债务四年增长约八倍至 1.65 万亿美元，已超过约 1.35 万亿美元的表内债务。数据中心租赁、GPU 采购承诺与私募信贷合资等结构，正在把 AI 基建的杠杆藏进财务脚注。'
 date: "2026-08-04"
 tags: ["Market-Analysis", "Business", "Economy"]
+entities: ["Meta", "甲骨文", "谷歌", "微软"]
 category: "商业 & 经济"
 source: "Fortune"
 ---

@@ -3,6 +3,7 @@ title: 'Atlassian Rovo 漏洞可静默外泄 Jira 与 Confluence 数据'
 excerpt: '安全公司 PromptArmor 披露，Atlassian 企业 AI 助手 Rovo 存在间接提示注入漏洞，可在无需人工确认的情况下将 Jira 工单与 Confluence 文档外泄给攻击者，关闭网页搜索也无法阻止。'
 date: "2026-08-06"
 tags: ["Security", "Prompt-Injection", "AI-Safety"]
+entities: ["Atlassian"]
 category: "安全与隐私"
 source: "PromptArmor"
 ---

@@ -3,6 +3,7 @@ title: "Anthropic 完成 650 亿美元 H 轮融资，估值逼近万亿"
 excerpt: "Anthropic 宣布完成 650 亿美元 H 轮融资，估值达 9650 亿美元，年化收入已突破 470 亿美元。资金将用于扩大计算基础设施、推进安全研究并拓展企业市场。"
 date: "2026-05-28"
 tags: ["Anthropic", "Business", "Funding", "AI-Infrastructure"]
+entities: ["Anthropic"]
 category: "商业 & 经济"
 source: "Anthropic"
 ---

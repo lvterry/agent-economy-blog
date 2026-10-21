@@ -3,6 +3,7 @@ title: 'DeepSeek 用每千次 0.75 美元的搜索和抓取 API 把智能体上�
 excerpt: 'DeepSeek 上线基于自研搜索引擎的 Search 和 Fetch API，每 1,000 次成功请求 0.75 美元，失败和空结果不收费，价格只有 Anthropic、OpenAI 内置联网搜索的十几分之一。'
 date: "2026-10-19"
 tags: ["AI-Infrastructure", "Agent-Tooling", "AI-Agents"]
+entities: ["DeepSeek", "OpenAI", "Anthropic"]
 category: "AI Infra"
 source: "DeepSeek"
 ---

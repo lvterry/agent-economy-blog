@@ -3,6 +3,7 @@ title: '开源项目 Strata 把 125B 大模型塞进 12GB 消费级显卡'
 excerpt: '开源项目 Strata 通过混合专家分层卸载和投机解码，让 Qwen3.8-Flash-Next 这个 125B 模型在 12GB 消费级显卡上以每秒 50 多个 token 运行，本地推理的能力边界又被推远了一步。'
 date: "2026-10-05"
 tags: ["Qwen", "GPU", "Model-Compression", "Open-Source"]
+entities: ["阿里巴巴"]
 category: "AI Infra"
 source: "Strata (GitHub)"
 ---

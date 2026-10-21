@@ -3,6 +3,7 @@ title: 'Google 发布 Nano Banana 2：结合 Pro 能力与闪电速度的新一�
 excerpt: 'Google DeepMind 发布 Nano Banana 2，将 Pro 版本的高级功能与 Flash 的闪电速度相结合。支持主体一致性、精确文本渲染、4K 分辨率，已部署至 Gemini、Search、Flow 等多个平台。'
 date: "2026-02-27"
 tags: ["Google", "Nano-Banana", "Image-Generation", "AI-Model", "Multimodal", "Gemini"]
+entities: ["谷歌"]
 category: "AI 模型"
 source: "Google Blog"
 ---

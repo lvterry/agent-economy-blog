@@ -3,6 +3,7 @@ title: "实时战场暴露了智能体思考过久的代价"
 excerpt: "Brood War Bench 让 19 种模型与推理配置在即时战略游戏里循环对战。领先配置仍只达到初学者水平，长时间推理、行动频率不足和子智能体失联，比单次决策失误更致命。"
 date: "2026-09-20"
 tags: ["AI-Agents", "Agentic AI", "Agent-Tooling"]
+entities: ["OpenAI", "Anthropic"]
 category: "AI 智能体"
 source: "Brood War Bench"
 ---

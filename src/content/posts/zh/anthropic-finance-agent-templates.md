@@ -3,6 +3,7 @@ title: "Anthropic 发布金融行业智能体模板"
 excerpt: "Anthropic 推出十款面向金融服务的智能体模板，涵盖路演书制作、KYC 审核与月终结账等场景，并打通 Excel、PowerPoint 与 Outlook，让 AI 智能体真正进入核心金融工作流。"
 date: "2026-05-06"
 tags: ["Agent", "AI-Agents", "Anthropic", "Agent-Economy"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

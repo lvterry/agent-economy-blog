@@ -3,6 +3,7 @@ title: "智能体可以从失败轨迹中改写自己的执行图"
 excerpt: "Google 等机构提出程序图，用显式步骤关系指导智能体行动，并从成功与失败轨迹中离线改写结构；它在多项基准上优于记忆方法，但会增加额外推理成本。"
 date: "2026-09-10"
 tags: ["Agent", "AI-Agents", "Agent-Tooling", "Reasoning"]
+entities: ["谷歌"]
 category: "AI 智能体"
 source: "Google Research"
 ---

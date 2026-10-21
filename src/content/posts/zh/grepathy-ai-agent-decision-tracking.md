@@ -3,6 +3,7 @@ title: "Grepathy 让 AI 编程智能体的每个决策都可回溯"
 excerpt: "开发者发现 Claude Code 在项目中擅自创建了用户账号却无法解释原因——新开源工具 Grepathy 通过自动提取 AI 智能体的决策记录，将'为什么这样做'写入代码仓库。"
 date: "2026-07-15"
 tags: ["AI-Agents", "Agent-Tooling", "AI-Coding", "Security"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "GitHub / Hacker News"
 ---

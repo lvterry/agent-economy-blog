@@ -3,6 +3,7 @@ title: '大模型实时打星际争霸，没有一个打到新手水平'
 excerpt: '有人把星际争霸改造成只能由智能体来玩，让 Codex、Claude Code 和 Grok Build 在真实时间里对局。18 场全胜的 Codex Astra 每局要花 10.54 美元，而思考时间本身就是失分项。'
 date: '2026-09-20'
 tags: ["AI-Agents", "Agent-Tooling", "Agent-Economy"]
+entities: ["OpenAI", "xAI"]
 category: "AI 智能体"
 source: "Brood War Bench"
 ---

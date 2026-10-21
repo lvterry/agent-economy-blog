@@ -3,6 +3,7 @@ title: 'Munder Difflin 开源智能体办公群，让克隆体替你 24 小时�
 excerpt: '一个名为 Munder Difflin 的本地多智能体编排工具在 HN 走红：它包裹现有的 Claude Code、Codex 等订阅，用「办公室里的克隆人」模拟团队协作，全天候接力干活。'
 date: '2026-08-23'
 tags: ['AI-Agents', 'Agent-Tooling']
+entities: ["OpenAI", "Anthropic"]
 category: 'AI 智能体'
 source: 'Munder Difflin'
 ---

@@ -3,6 +3,7 @@ title: '上诉法院维持五角大楼对 Anthropic 的供应链风险认定'
 excerpt: '华盛顿特区联邦上诉法院以 2 比 1 维持国防部将 Anthropic 列为供应链风险的认定，与旧金山地区法院上月判定该做法违法的结论形成对峙，前沿模型的可用性正被两套并行的司法程序拉扯。'
 date: "2026-09-26"
 tags: ["Anthropic", "AI-Safety", "Security", "Regulation"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "CNBC"
 ---

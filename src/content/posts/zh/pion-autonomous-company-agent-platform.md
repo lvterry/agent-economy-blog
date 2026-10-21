@@ -3,6 +3,7 @@ title: "Pion 想让持续运行的智能体接手公司的日常经营"
 excerpt: "Andon Labs 开放了用于真实自主企业实验的 Pion 平台，让持久智能体使用邮件、电话、银行和浏览器等工具经营公司，同时把现实中的失败与风险纳入监控。"
 date: "2026-09-15"
 tags: ["AI-Agents", "Agent-Economy", "Business", "Future-of-Work"]
+entities: ["Pion"]
 category: "AI 智能体"
 source: "Andon Labs"
 ---

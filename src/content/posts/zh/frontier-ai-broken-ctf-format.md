@@ -3,6 +3,7 @@ title: "前沿 AI 如何摧毁开放式网络安全竞赛"
 excerpt: "随着 Claude Opus 4.5 和 GPT-5.5 等前沿 AI 模型能够自主解决中高级 CTF 挑战，开放式网络安全竞赛作为人类技能标尺的意义正在瓦解。"
 date: "2026-05-17"
 tags: ["Security", "AI-Safety", "AI-Agents"]
+entities: ["OpenAI", "Anthropic"]
 category: "安全与隐私"
 source: "Kabir AU"
 ---

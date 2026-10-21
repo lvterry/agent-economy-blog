@@ -3,6 +3,7 @@ title: 'OpenAI 发布 GPT-5.6 Sol 预览：子智能体模式与政府审核同�
 excerpt: 'OpenAI 预览下一代模型 GPT-5.6 Sol，推出调度子智能体并行工作的 Ultra 模式，并宣布美国政府将审核用户资格——同日 Anthropic Mythos 5 也在同类监管框架下获准解禁。'
 date: "2026-06-27"
 tags: ["OpenAI", "GPT", "AI-Model", "AI-Safety"]
+entities: ["OpenAI", "Anthropic"]
 category: "AI 模型"
 source: "OpenAI"
 ---

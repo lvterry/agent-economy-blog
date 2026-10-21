@@ -3,6 +3,7 @@ title: 'Cursor 智能体集群 Planner-Worker 架构与模型经济学发现'
 excerpt: 'Cursor 发布新一代智能体集群系统，采用 Planner-Worker 分层架构成功从零构建 SQLite Rust 实现，并揭示不同模型组合在产出质量相近但成本差异巨大的关键发现。'
 date: "2026-07-21"
 tags: ["Agent", "AI-Agents", "Cursor", "Agent-Tooling"]
+entities: ["Cursor"]
 category: "AI 智能体"
 source: "Cursor"
 ---

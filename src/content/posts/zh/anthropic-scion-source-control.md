@@ -3,6 +3,7 @@ title: 'Anthropic 自研 Scion 版本控制系统，五个月迁完超大型单�
 excerpt: '当日合并量从 2500 次涨到 3 万次，git 成了瓶颈。Anthropic 用七人团队、五个月自建 Scion，代码检出快了两个数量级，基础设施占用降到原来的 1/200。'
 date: "2026-10-14"
 tags: ["AI-Infrastructure", "Anthropic", "Agent-Tooling", "Coding"]
+entities: ["Anthropic"]
 category: "AI Infra"
 source: "Anthropic"
 ---

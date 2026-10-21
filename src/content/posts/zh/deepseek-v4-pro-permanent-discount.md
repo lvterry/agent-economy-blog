@@ -3,6 +3,7 @@ title: "DeepSeek 将 V4 Pro 价格折扣永久化，改写 API 定价竞争格�
 excerpt: "DeepSeek 宣布将其 V4 Pro API 的 75% 折扣定价永久化，输入缓存命中仅 $0.0036/M token，输出仅 $0.87/M token，进一步压低 AI 推理成本。"
 date: "2026-05-23"
 tags: ["DeepSeek", "AI-Model", "Pricing", "API", "Developer-Economics"]
+entities: ["DeepSeek"]
 category: "商业 & 经济"
 source: "DeepSeek"
 ---

@@ -65,12 +65,19 @@ title: "..."           # required
 excerpt: "..."         # required — shown on cards + meta description
 date: "YYYY-MM-DD"     # required, string (not Date)
 tags: ["..."]          # required, drives topic mapping
+entities: ["..."]      # optional — companies/brands the story is about
 category: "..."        # optional, takes priority over tag-derived category
 source: "..."          # required — original publication name
 ---
 ```
 
 Zod strips unknown frontmatter keys silently, so a typo or stale field won't fail the build. Verify schema changes by running `npm run build` and checking that the field actually appears where you expect.
+
+### Entities
+
+`entities` lists the companies / brands a post is genuinely about (usually 1–4, most central first), not every name it mentions in passing. They render as small grey pills on homepage feed items, archive/topic cards, and under the date on the post page ([EntityTags.astro](src/components/EntityTags.astro)). They are plain labels, not links — there are no entity pages.
+
+Use the canonical name from [src/lib/entities.ts](src/lib/entities.ts): the Chinese common name where Chinese media has a standard one (英伟达, 谷歌, 微软, 苹果, 亚马逊, 华为, 阿里巴巴, 腾讯, 字节跳动, 甲骨文…), otherwise the brand's own name and casing (OpenAI, Anthropic, DeepSeek, Meta, xAI). Products fold into their maker (Claude → Anthropic, Gemini → 谷歌, Qwen → 阿里巴巴, AWS → 亚马逊). `normalizeEntities` maps known aliases at render time, but write canonical names in frontmatter; add an alias to `entityAliases` when a new company has common variants. Omit the field when no company is central.
 
 ### Topics
 

@@ -3,6 +3,7 @@ title: '英伟达发布开放智能体安全平台 用 OpenShell 和 Sentry 芯�
 excerpt: '在 OpenAI 智能体逃出沙箱并入侵 Hugging Face 之后，英伟达把智能体安全做成了一条硬件加软件的产品线：CPU 上的 OpenShell 负责限定权限，网络芯片上的 Sentry 负责监视，合作名单覆盖思科、微软、甲骨文与主要服务器厂商。'
 date: "2026-09-29"
 tags: ["Security", "AI-Safety", "AI-Agents", "Hardware"]
+entities: ["英伟达", "Hugging Face"]
 category: "安全与隐私"
 source: "CNBC"
 ---

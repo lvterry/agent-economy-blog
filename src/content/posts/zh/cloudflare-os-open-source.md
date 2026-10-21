@@ -3,6 +3,7 @@ title: 'Cloudflare 开源 Cloudflare OS，企业智能体平台全面开放'
 excerpt: 'Cloudflare 将内部运行数月、数千员工日常使用的智能体工作平台 Cloudflare OS 开源，核心是把安全治理内建到智能体与应用的每一次访问中。'
 date: "2026-08-06"
 tags: ["Cloudflare", "AI-Agents", "Agent-Tooling", "MCP"]
+entities: ["Cloudflare"]
 category: "AI 智能体"
 source: "Cloudflare"
 ---

@@ -3,6 +3,7 @@ title: '在同一台 DGX Spark 上运行两个 Qwen3 模型：本地 LLM 的内�
 excerpt: '开发者 Devashish Meena 分享了他将 Qwen3-80B 和 Qwen3-4B 两个模型同时部署到一台 DGX Spark 的实际经验，揭示了 gpu_memory_utilization 的常见陷阱和 vLLM 多模型共存的配置方法论。'
 date: "2026-06-21"
 tags: ["Local-LLM", "GPU", "Infrastructure", "Qwen", "vLLM"]
+entities: ["阿里巴巴"]
 category: "AI Infra"
 source: "Devashish Meena"
 ---

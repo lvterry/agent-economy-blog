@@ -3,6 +3,7 @@ title: '两台 Mac Studio 就能跑起 Meta 新开源的 816B 智能体模型 Mu
 excerpt: 'Meta 发布 Muse Spark Open 权重，称其为迄今最强的美国开放权重模型，816B 参数、100 万 token 上下文，两台 M5 Ultra Mac Studio 即可本地运行。'
 date: "2026-10-16"
 tags: ["Meta", "AI-Model", "AI-Agents", "Open-Source"]
+entities: ["Meta"]
 category: "AI 模型"
 source: "Meta"
 ---

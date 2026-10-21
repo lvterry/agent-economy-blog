@@ -3,6 +3,7 @@ title: 'OpenAI 发布 dots 常驻智能体 每个智能体配一台云端电脑'
 excerpt: 'OpenAI 在 DevDay 上发布常驻智能体 dots，每个 dot 拥有自己的云端电脑和浏览器，可接入 4000 多个应用，首个 dot 包含在 Pro 与 Business Premium 套餐中。竞争焦点正从模型能力转向谁掌握用户的工作上下文和授权。'
 date: "2026-09-30"
 tags: ["Agent", "AI-Agents", "OpenAI", "Agent-Tooling"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

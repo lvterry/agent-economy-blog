@@ -3,6 +3,7 @@ title: 'GLM-5.3 一天破解亚马逊平板，中国模型完成 Claude 拒绝�
 excerpt: '一位有安全背景的工程师花 266 美元、用四个 AI 编码模型破解了自己的亚马逊平板。Claude 因护栏拒绝复盘，Kimi K3 挖出内核漏洞，GLM-5.3 一天收尾——中国模型在真实攻防任务上有了最直观的样本。'
 date: "2026-08-24"
 tags: ["AI-Agents", "Kimi", "GLM", "Claude-Code", "Security"]
+entities: ["Anthropic", "智谱", "亚马逊", "Moonshot AI"]
 category: "AI 智能体"
 source: "Eric Pardee"
 ---

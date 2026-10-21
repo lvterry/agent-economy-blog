@@ -3,6 +3,7 @@ title: '推理 API 的供应商锁定正在侵蚀 AI 会话所有权'
 excerpt: 'Earendil 发文指出，推理 API 正通过加密推理、隐藏搜索与服务器端状态，把用户的会话从可移植的文本记录变成供应商锁定的黑盒，并提出检查、导出、重放、审计、删除五项可移植性测试。'
 date: "2026-07-31"
 tags: ["AI-Infrastructure", "Agent-Interoperability", "Privacy"]
+entities: ["Earendil"]
 category: "AI Infra"
 source: "Earendil"
 ---

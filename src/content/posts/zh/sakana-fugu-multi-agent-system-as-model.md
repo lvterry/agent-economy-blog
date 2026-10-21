@@ -3,6 +3,7 @@ title: 'Sakana Fugu 发布：将多智能体编排封装为一个模型 API'
 excerpt: '日本 AI 实验室 Sakana AI 推出 Fugu，将多模型动态编排与角色分配内化为一个 API，基于 ICLR 2026 论文 TRINITY 和 Conductor，实现从"手动编排"到"学习编排"的转变。'
 date: "2026-06-22"
 tags: ["AI-Agents", "Agent", "Agentic AI", "AI-Infrastructure"]
+entities: ["Sakana"]
 category: "AI 智能体"
 source: "Sakana AI"
 ---

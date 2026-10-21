@@ -3,6 +3,7 @@ title: 'Claude Code 自动续行功能引发 AI 工具信任争议'
 excerpt: 'Anthropic 在未告知用户的情况下，于 Claude Code 中加入 60 秒无响应自动续行功能。社区发现后三天内被撤回，但事件暴露了 AI 编程工具在自主性与安全之间的深层矛盾。'
 date: "2026-07-17"
 tags: ["Claude-Code", "Anthropic", "AI-Safety", "Agent-Safety", "Security"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Olaf Alders"
 ---

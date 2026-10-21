@@ -3,6 +3,7 @@ title: 'Qwen 发布 AgentWorld：用语言世界模型推动通用智能体发�
 excerpt: '通义千问团队发布 Qwen-AgentWorld，首次将语言模型作为「世界模型」用于智能体环境模拟和训练，覆盖 7 个领域，并提出 AgentWorldBench 评测基准。'
 date: '2026-06-24'
 tags: ['Agent', 'AI-Agents', 'Foundation Model', 'Qwen']
+entities: ["阿里巴巴"]
 category: 'AI 智能体'
 source: 'Qwen (阿里巴巴)'
 ---

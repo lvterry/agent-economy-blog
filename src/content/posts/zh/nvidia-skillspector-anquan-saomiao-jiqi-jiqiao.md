@@ -3,6 +3,7 @@ title: "NVIDIA 发布 SkillSpector 智能体技能安全扫描器"
 excerpt: "NVIDIA 开源了 SkillSpector，一个专门扫描 AI 智能体技能（skills）安全性的工具，可检测 64 种漏洞模式，涵盖提示注入、数据泄露、权限提升和供应链攻击等 16 个类别。"
 date: "2026-06-13"
 tags: ["Agent", "Security", "NVIDIA", "AI-Safety"]
+entities: ["英伟达"]
 category: "安全与隐私"
 source: "NVIDIA"
 ---

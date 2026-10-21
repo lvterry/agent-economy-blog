@@ -3,6 +3,7 @@ title: 'GLM-5.2 开源 744B 参数模型本地运行'
 excerpt: 'Z.ai 发布 GLM-5.2 开源模型，744B 参数（40B 活跃）、1M 上下文窗口，通过 Unsloth 量化可运行在 256GB 统一内存设备上，性能对标 Claude 4.8 Opus 和 GPT-5.5。'
 date: "2026-06-23"
 tags: ["GLM", "Z.ai", "Open-Source", "AI-Model", "Reasoning", "Local-LLM"]
+entities: ["智谱"]
 category: "AI 模型"
 source: "Unsloth"
 ---

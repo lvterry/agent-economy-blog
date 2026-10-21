@@ -3,6 +3,7 @@ title: 'Cloudflare 发布 Precursor，用行为信号检测 AI 代理流量'
 excerpt: 'Cloudflare 推出 Precursor，一种基于客户端行为的持续检测系统，通过分析鼠标轨迹、键盘节奏等信号在整场会话中区分人类用户与 AI 代理流量。'
 date: "2026-07-13"
 tags: ["Cloudflare", "AI-Agents", "Security"]
+entities: ["Cloudflare"]
 category: "安全与隐私"
 source: "Cloudflare"
 ---

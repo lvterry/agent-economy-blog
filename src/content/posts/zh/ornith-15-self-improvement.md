@@ -3,6 +3,7 @@ title: 'Ornith-1.5 开源模型用自我改进训练逼近 Claude Opus 4.8'
 excerpt: '开源模型 Ornith-1.5 发布：模型自己出题、自己搭脚手架、自己生成训练数据，形成完整的自我改进闭环；3970 亿参数版本在智能体编码基准上与 Claude Opus 4.8 打平，90 亿参数版本可直接部署在手机上。'
 date: "2026-08-20"
 tags: ["AI-Agents", "Agentic AI", "Open-Source", "Reasoning"]
+entities: ["Anthropic", "Ornith"]
 category: "AI 智能体"
 source: "Ornith"
 ---

@@ -3,6 +3,7 @@ title: 'DeepSeek V4 Flash 视觉实验模型上线 多模态补齐'
 excerpt: 'DeepSeek 上线 deepseek-v4-flash-vision-exp 视觉实验模型，支持图片描述、截图文字识别与图表分析，图像按尺寸折算 token 计费。低价主力的 Flash 系列补齐多模态，视觉正在成为 API 默认能力。'
 date: "2026-08-22"
 tags: ["DeepSeek", "Multimodal", "AI-Model"]
+entities: ["DeepSeek"]
 category: "AI 模型"
 source: "DeepSeek"
 ---

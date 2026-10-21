@@ -3,6 +3,7 @@ title: 'Jack Dorsey 宣布 Block 大规模裁员：从 10,000 人减至 6,000 �
 excerpt: 'Block 创始人 Jack Dorsey 宣布公司将裁员近 50%，从超过 10,000 名员工减少至约 6,000 人。这是公司历史上最艰难的决定之一，超过 4,000 名员工将受到影响。'
 date: "2026-02-27"
 tags: ["Tech-Industry", "Layoffs", "Block", "Jack-Dorsey", "Business"]
+entities: ["Block"]
 category: "商业 & 经济"
 source: "X/Twitter"
 ---

@@ -3,6 +3,7 @@ title: "VS Code 默认启用 AI 共同作者提交标注"
 excerpt: "微软在一项仅改动两行的合并请求中，将 git 提交自动添加 AI 共同作者的功能默认开启，引发大规模社区不满。"
 date: "2026-04-16"
 tags: ["VSCode", "Microsoft", "Coding", "AI-Attribution"]
+entities: ["微软"]
 category: "行业动态"
 source: "GitHub"
 ---

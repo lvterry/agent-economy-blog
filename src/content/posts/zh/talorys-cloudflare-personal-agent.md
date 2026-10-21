@@ -3,6 +3,7 @@ title: 'Talorys 把个人 AI 助手装进你自己的 Cloudflare 账号'
 excerpt: '一个开源个人 agent，一条命令部署到自己的 Cloudflare 账号：聊天、记忆、任务和定时提醒都在里面，开发者服务器不碰你的数据。'
 date: "2026-10-11"
 tags: ["AI-Agents", "Agent-Tooling", "Cloudflare", "Open-Source"]
+entities: ["Cloudflare"]
 category: "AI 智能体"
 source: "Talorys"
 ---

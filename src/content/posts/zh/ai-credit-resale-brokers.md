@@ -3,6 +3,7 @@ title: 'AI 信用转售经纪兴起 token 折扣最高打到 80%'
 excerpt: '大量初创公司开始收到折扣收购 API 信用额度的邀约，AI Credits、CheapCredits 等平台公开转售 OpenAI、Anthropic 等额度，折扣 30% 到 80% 不等，token 正在变成可套现的伪货币。'
 date: "2026-08-17"
 tags: ["Market-Analysis", "Business", "Economy", "LLM"]
+entities: ["OpenAI", "Anthropic"]
 category: "商业 & 经济"
 source: "Vectoral"
 ---

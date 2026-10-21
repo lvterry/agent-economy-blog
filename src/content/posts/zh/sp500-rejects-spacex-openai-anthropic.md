@@ -3,6 +3,7 @@ title: "S&P 500 拒绝为 SpaceX 破例，OpenAI 和 Anthropic 也被挡在门�
 excerpt: "S&P 道琼斯指数公司拒绝了 SpaceX 提出的加速纳入要求，这意味着 OpenAI 和 Anthropic 也无法通过快速通道进入这一影响 7.5 万亿美元被动资金的指数。"
 date: "2026-06-07"
 tags: ["OpenAI", "Anthropic", "IPO", "Market-Analysis", "Business"]
+entities: ["SpaceX", "OpenAI", "Anthropic"]
 category: "商业 & 经济"
 source: "Ars Technica"
 ---

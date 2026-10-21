@@ -3,6 +3,7 @@ title: 'Claude Code 的推理摘要背后：加密签名替代真实思考链'
 excerpt: 'Anthropic 的 AI 编码智能体 Claude Code 在本地日志中仅保存推理摘要而非完整思考过程，真实推理被加密签名保护，完整内容仅向企业客户开放。'
 date: "2026-06-22"
 tags: ["AI-Agents", "Anthropic", "Security", "Privacy"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Patrick McCanna"
 ---

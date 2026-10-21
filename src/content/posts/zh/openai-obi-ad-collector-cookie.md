@@ -3,6 +3,7 @@ title: 'OpenAI 广告采集器把站外浏览接回 ChatGPT 账号'
 excerpt: '安全研究者 Jamie Larson 完整复现了 OpenAI 广告采集器的链路，一枚 __obi Cookie 让 OpenAI 能把你在商家网站上的行为对齐到 ChatGPT 账号，而它在 Cookie 政策里被登记为分析类。'
 date: "2026-09-21"
 tags: ["OpenAI", "ChatGPT", "AI-Advertising", "Privacy"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "Buchodi"
 ---

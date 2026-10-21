@@ -3,6 +3,7 @@ title: 'Google 发布 Gemini 3.8 Flash，并推出网络安全专用 Flash Cyber
 excerpt: '六周内第三次迭代，3.8 Flash 以 3.7 的价位逼近旗舰模型的长程编程表现，Cyber 版则将自动漏洞发现与修复带到前沿水平，仅向可信防御方开放。'
 date: "2026-09-03"
 tags: ["Gemini", "Security", "Agentic AI"]
+entities: ["谷歌"]
 category: "AI 模型"
 source: "Google"
 ---

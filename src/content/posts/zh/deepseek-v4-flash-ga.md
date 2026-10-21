@@ -3,6 +3,7 @@ title: 'DeepSeek V4 Flash 公开测试上线，Agent 基准全面超越 V4 Pro �
 excerpt: 'DeepSeek V4 Flash 公开测试版上线，Agent 基准全线大幅提升，原生支持 Responses API 并针对 Codex 适配。更小更便宜的模型正在重新定义 Agent 任务的默认选择。'
 date: "2026-07-31"
 tags: ["DeepSeek", "AI-Agents", "Agentic AI", "API"]
+entities: ["DeepSeek", "OpenAI"]
 category: "AI 智能体"
 source: "DeepSeek"
 ---

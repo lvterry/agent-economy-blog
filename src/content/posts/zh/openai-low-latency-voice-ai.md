@@ -3,6 +3,7 @@ title: "OpenAI 详解低延迟语音 AI 规模化架构"
 excerpt: "OpenAI 工程师团队发表深度技术文章，详解如何重构 WebRTC 协议栈，以 Relay + Transceiver 分层架构支撑 9 亿用户的实时语音 AI 交互。"
 date: "2026-05-05"
 tags: ["OpenAI", "AI-Infrastructure", "WebRTC", "Voice-AI"]
+entities: ["OpenAI"]
 category: "AI Infra"
 source: "OpenAI"
 ---

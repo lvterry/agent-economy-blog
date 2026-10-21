@@ -3,6 +3,7 @@ title: 'DeepSeek 4.1 Flash 把全天编程压到 1 美元，开发者说已经�
 excerpt: '一位开发者把 DeepSeek 4.1 Flash 当主力模型用了一个月，全天编程会话稳定在 1 到 2 美元，且不看模型名就分不出它和 Opus。够用一旦成为默认，前沿实验室的高价订阅开始承压。'
 date: "2026-10-09"
 tags: ["DeepSeek", "Market-Analysis", "AI-Model", "Open-Source"]
+entities: ["DeepSeek"]
 category: "商业 & 经济"
 source: "dgt.is"
 ---

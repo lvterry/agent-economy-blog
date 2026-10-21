@@ -3,6 +3,7 @@ title: "Anthropic 的模型显示 AI 增长红利可能更多流向资本"
 excerpt: "Anthropic 用任务层面的经济模型推演美国到 2030 年的三种 AI 情景：增长越快，知识工作者的工资与就业压力越大，劳动收入占比也可能明显下降。"
 date: "2026-09-10"
 tags: ["Business", "Economy", "Future-of-Work", "Market-Analysis", "AI-Agents"]
+entities: ["Anthropic"]
 category: "商业 & 经济"
 source: "Anthropic"
 ---

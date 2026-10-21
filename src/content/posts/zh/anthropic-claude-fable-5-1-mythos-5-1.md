@@ -3,6 +3,7 @@ title: 'Anthropic 发布 Fable 5.1 与 Mythos 5.1，智能体负载降价最高�
 excerpt: 'Anthropic 推出同一模型两种安全等级的 Fable 5.1 与 Mythos 5.1：缓存读取降价让典型负载成本降约 25%、智能体化负载降约 45%，并推出客户自控基础设施的完全隐私方案 EFS。'
 date: "2026-09-02"
 tags: ["Claude", "LLM", "Anthropic", "Agentic AI"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

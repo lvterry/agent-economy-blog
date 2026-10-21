@@ -3,6 +3,7 @@ title: 'Anthropic 致信白宫指控阿里巴巴发起最大规模模型蒸馏�
 excerpt: 'Anthropic 向美国参议院致信，指控阿里巴巴利用 25000 个虚假账户进行 2880 万次 API 交互，系统性地蒸馏 Claude 模型能力，这是 AI 安全领域迄今披露的最大规模模型能力提取事件。'
 date: "2026-06-25"
 tags: ["Anthropic", "Alibaba", "AI-Safety", "Security"]
+entities: ["Anthropic", "阿里巴巴"]
 category: "安全与隐私"
 source: "CNBC"
 ---

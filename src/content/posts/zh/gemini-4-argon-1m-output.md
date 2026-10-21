@@ -3,6 +3,7 @@ title: 'Gemini 4 Argon 发布，输出窗口拉到 100 万 token'
 excerpt: 'DeepMind 把输出长度推到 100 万 token，让模型一次跑完整个仓库的重构。它在 DeepSWE 和长上下文上领先，却在 Terminal-bench 上输给 Claude Opus 5.5。'
 date: "2026-10-14"
 tags: ["Gemini", "AI-Model", "Coding", "Multimodal"]
+entities: ["谷歌"]
 category: "AI 模型"
 source: "Google DeepMind"
 ---

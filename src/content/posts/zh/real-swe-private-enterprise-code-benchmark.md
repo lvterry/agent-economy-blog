@@ -3,6 +3,7 @@ title: "真实企业代码把编码智能体的解题率压到了四成以下"
 excerpt: "Real-SWE 用获授权的私有生产代码库测试模型与编码工具组合，领先组合的通过率为 38.8%，多数困难来自遗漏业务要求和集成错误。"
 date: "2026-09-13"
 tags: ["AI-Agents", "Agent-Tooling", "AI-Coding", "Coding"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "Specific Labs"
 ---

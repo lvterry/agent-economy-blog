@@ -3,6 +3,7 @@ title: 'Claude Sonnet 5 发布 智能体能力接近旗舰 Opus'
 excerpt: 'Anthropic 发布 Claude Sonnet 5，定位为"最具智能体能力的 Sonnet 模型"，其自主编程、工具调用和多步骤任务能力接近 Opus 4.8，但价格仅为后者一半，为开发者提供了更优的成本性能平衡。'
 date: "2026-07-01"
 tags: ["Anthropic", "Claude", "AI-Model", "Sonnet", "AI-Agents"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

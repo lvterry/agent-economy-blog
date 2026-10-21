@@ -3,6 +3,7 @@ title: 'DeepSeek V4 Flash 获 ARC Prize 认证，ARC-AGI-1 达 89%'
 excerpt: 'ARC Prize 官方认证 DeepSeek V4 Flash 0731 在 ARC-AGI-1 半私有集达到 89%、ARC-AGI-2 达到 61.4%，每任务成本仅约两美分。通用推理正以惊人速度变成廉价商品。'
 date: "2026-08-09"
 tags: ["DeepSeek", "AI-Model", "Reasoning", "Benchmark"]
+entities: ["DeepSeek"]
 category: "AI 模型"
 source: "ARC Prize"
 ---

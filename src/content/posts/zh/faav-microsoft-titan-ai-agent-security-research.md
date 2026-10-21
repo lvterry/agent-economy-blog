@@ -3,6 +3,7 @@ title: '16 岁研究员用 AI 猎洞机器人发现微软 Titan 接口漏洞 可
 excerpt: '一名 16 岁安全研究员用自建的 AI 猎洞机器人发现微软内部分析服务 Titan 完全不校验 JWT 签名，可读取员工邮箱与 Bing 搜索分析数据；但真正补上最后一环的仍是人的直觉。'
 date: "2026-10-01"
 tags: ["Security", "AI-Agents", "Microsoft"]
+entities: ["微软"]
 category: "安全与隐私"
 source: "blog.faav.net"
 ---

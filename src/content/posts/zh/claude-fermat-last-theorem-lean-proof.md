@@ -3,6 +3,7 @@ title: 'Anthropic 称 Claude 用 11 天完成费马大定理的形式化证明'
 excerpt: 'Anthropic 公布费马大定理的首个端到端机器可验证证明：Claude 在 11 天内写出 1300 万行 Lean 代码、证明约 3 万条中间定理，把数学界预计多年的形式化工程压缩成一场多智能体协作。'
 date: "2026-09-06"
 tags: ["Claude", "Reasoning", "AI-Agents", "Anthropic"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

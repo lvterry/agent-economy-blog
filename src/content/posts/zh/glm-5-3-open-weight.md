@@ -3,6 +3,7 @@ title: 'GLM-5.3 开源 753B 权重 网络攻防能力同步跃升'
 excerpt: '智谱 Z.ai 正式开源 GLM-5.3 旗舰模型权重，753B 参数的 MoE 模型在编码与智能体基准上刷新开源 SOTA，并意外涌现出接近闭源前沿的漏洞利用能力。'
 date: "2026-08-29"
 tags: ["GLM", "Open-Source", "LLM"]
+entities: ["智谱"]
 category: "AI 模型"
 source: "Z.ai"
 ---

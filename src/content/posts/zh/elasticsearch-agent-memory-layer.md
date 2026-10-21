@@ -3,6 +3,7 @@ title: 'Elastic 开源智能体记忆层 实现 0.89 召回率与零租户泄漏
 excerpt: 'Elastic 发布基于 Elasticsearch 的智能体持久记忆层架构，采用情景记忆、语义记忆和程序记忆三大认知分类索引，结合混合检索与 RRF 重排序，在 168 个 QA 问题上达到 0.89 召回率，并实现跨租户数据完全隔离。'
 date: '2026-06-18'
 tags: ['Agent', 'AI-Agents', 'MCP']
+entities: ["Elastic"]
 category: 'AI 智能体'
 source: 'Elastic'
 ---

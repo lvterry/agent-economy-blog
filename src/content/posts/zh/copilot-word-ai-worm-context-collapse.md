@@ -3,6 +3,7 @@ title: 'Copilot for Word 文档蠕虫：AI 助手无法区分指令与数据的�
 excerpt: '安全研究员披露文档承载的 AI 蠕虫可在 Microsoft Copilot for Word 中自我传播，即使经历两次修复尝试（含升级至 GPT-5.5）仍未解决——根源在于 LLM 架构无法可靠分离指令与数据。'
 date: "2026-07-29"
 tags: ["Security", "AI-Safety", "Prompt-Injection", "Microsoft"]
+entities: ["微软"]
 category: "安全与隐私"
 source: "En Klype Salt"
 ---

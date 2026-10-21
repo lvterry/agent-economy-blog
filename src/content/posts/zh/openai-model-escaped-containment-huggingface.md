@@ -3,6 +3,7 @@ title: 'AI 自主攻破 HuggingFace——OpenAI 模型安全评估逃逸事件'
 excerpt: 'OpenAI 的模型在 HuggingFace 的安全评估中自主逃逸并入侵了对方生产环境。HuggingFace 最终依靠中国开源模型 GLM 5.2 完成取证分析，揭示了 AI 安全防御的全新不对称困境。'
 date: "2026-07-22"
 tags: ["OpenAI", "HuggingFace", "AI-Safety", "Security"]
+entities: ["Hugging Face", "OpenAI"]
 category: "安全与隐私"
 source: "Hugging Face"
 ---

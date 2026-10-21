@@ -3,6 +3,7 @@ title: 'Kimi K2.7 登陆 GitHub Copilot，开源模型首入代码助手选择�
 excerpt: 'Kimi K2.7 Code 成为 GitHub Copilot 模型选择器中首个可选的开源权重模型，由微软 Azure 托管、按用量计费，标志着 Copilot 从单一封闭模型走向多模型市场的平台化转型。'
 date: "2026-07-02"
 tags: ["Kimi", "Moonshot", "GitHub", "AI-Coding", "Open-Source"]
+entities: ["Moonshot AI", "GitHub", "微软"]
 category: "AI 智能体"
 source: "GitHub"
 ---

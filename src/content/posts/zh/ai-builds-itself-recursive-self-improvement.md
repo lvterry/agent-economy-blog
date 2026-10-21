@@ -3,6 +3,7 @@ title: "Anthropic 披露内部数据：AI 已开始自我加速进化"
 excerpt: "Anthropic 发布深度报告，揭示 AI 撰写 80% 以上代码、自主完成 12 小时工程任务、实验效率超越人类——递归自我改进正从理论走向现实。"
 date: "2026-06-05"
 tags: ["Agent", "AI-Agents", "Future-of-Work", "Anthropic"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

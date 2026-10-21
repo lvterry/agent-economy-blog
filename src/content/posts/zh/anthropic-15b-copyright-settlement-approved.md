@@ -3,6 +3,7 @@ title: 'Anthropic 15 亿美元版权和解获批 仅 350 位作者选择退出'
 excerpt: '法官正式批准 Anthropic 15 亿美元版权集体诉讼和解方案——AI 行业迄今金额最大的版权和解。仅 350 人选择退出，但律师费和原告奖励均被大幅削减。'
 date: "2026-07-22"
 tags: ["Anthropic", "AI-Safety", "Market-Analysis"]
+entities: ["Anthropic"]
 category: "商业 & 经济"
 source: "Ars Technica"
 ---

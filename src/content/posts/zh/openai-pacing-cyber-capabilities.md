@@ -3,6 +3,7 @@ title: 'OpenAI 因模型网络安全能力暂停前沿训练'
 excerpt: 'OpenAI 称即将推出的 Astra 模型可能达到"关键网络安全能力"阈值，为此暂停两周强化学习训练，并上线约占推理算力 20% 开销的监控系统。'
 date: "2026-08-19"
 tags: ["OpenAI", "AI-Safety", "Security"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "OpenAI"
 ---

@@ -3,6 +3,7 @@ title: Claude Code 改用 Rust 版 Bun 运行时
 excerpt: Simon Willison 发现 Anthropic 的 AI 编程助手 Claude Code 已内置 Rust 重写的 Bun v1.4.0 运行时，二进制文件中包含 563 个 .rs 源文件，标志着 AI 智能体工具基础设施的系统级优化。
 date: "2026-07-20"
 tags: ["Claude-Code", "Anthropic", "Agent-Tooling", "AI-Infrastructure"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Simon Willison"
 ---

@@ -3,6 +3,7 @@ title: '企业 AI 需求让 Apple 措手不及，Mac mini 与 Mac Studio 提前�
 excerpt: 'The Information 报道，企业客户对本地 AI 推理硬件的抢购让 Mac mini 与 Mac Studio 提前数月发布，而 Apple 既没有企业 AI 战略，也缺乏面向企业客户的工程团队。'
 date: "2026-09-01"
 tags: ["Apple", "AI-Infrastructure", "Hardware", "Market-Analysis"]
+entities: ["苹果"]
 category: "商业 & 经济"
 source: "The Information"
 ---

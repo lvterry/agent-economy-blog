@@ -3,6 +3,7 @@ title: "Anthropic 秘密提交上市申请，AI 公司 IPO 浪潮将至"
 excerpt: "Anthropic 向 SEC 秘密提交 S-1 上市申请，此时其估值已达 9650 亿美元、年化收入 470 亿美元，成为 AI 商业化进程中最具指标性的事件之一。"
 date: "2026-06-01"
 tags: ["Anthropic", "IPO", "Business"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Anthropic"
 ---

@@ -3,6 +3,7 @@ title: "Qwen3.7-Max：专为智能体时代打造的前沿模型"
 excerpt: "阿里的 Qwen3.7-Max 在代码智能体、MCP 集成和超长自主执行上实现突破，并在 35 小时的连续运行中独立完成了 GPU 内核优化，达到 10 倍加速。"
 date: "2026-05-21"
 tags: ["Agent", "AI-Agents", "MCP", "Coding", "Qwen"]
+entities: ["阿里巴巴"]
 category: "AI 智能体"
 source: "Qwen"
 ---

@@ -3,6 +3,7 @@ title: "西班牙封禁 Polymarket 和 Kalshi，预测市场遭遇监管重击"
 excerpt: "西班牙监管机构以缺乏赌博牌照为由，封禁了预测市场平台 Polymarket 和 Kalshi。这一举动预示着欧洲对去中心化预测市场的态度正在收紧。"
 date: "2026-05-27"
 tags: ["Prediction-Markets", "Regulation", "Market-Analysis", "Business"]
+entities: ["Polymarket", "Kalshi"]
 category: "商业 & 经济"
 source: "Reuters"
 ---

@@ -3,6 +3,7 @@ title: '联邦法官裁定美国政府封禁 Anthropic 违法'
 excerpt: '旧金山联邦法官认定，五角大楼将 Anthropic 标记为"供应链风险"并禁止其承接政府业务，是对该公司受宪法保护言论的非法报复。'
 date: "2026-08-29"
 tags: ["Anthropic", "AI-Safety", "Security", "Regulation"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "NYT"
 ---

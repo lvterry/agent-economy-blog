@@ -3,6 +3,7 @@ title: 'AMD 收购 Taalas 把模型权重蚀刻进芯片'
 excerpt: 'AMD 收购了将模型权重直接蚀刻进硅片的 AI 芯片公司 Taalas，早期测试芯片推理速度达每秒 1.7 万 token，为智能体推理开辟了一条新路线。'
 date: "2026-08-07"
 tags: ["Hardware", "GPU", "AI-Infrastructure"]
+entities: ["Taalas", "AMD"]
 category: "AI Infra"
 source: "The Register"
 ---

@@ -3,6 +3,7 @@ title: "Anthropic 扩大 Project Glasswing，AI 网络安全防线再升级"
 excerpt: "Anthropic 将 Project Glasswing 合作范围从 50 家扩展到 150 家关键基础设施组织，并警告 6 到 12 个月内 Mythos 级能力的 AI 模型将普遍可用，网络安全格局必须提前适应。"
 date: "2026-06-03"
 tags: ["Security", "AI-Safety", "Anthropic"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Anthropic"
 ---

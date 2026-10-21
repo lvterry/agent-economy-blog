@@ -3,6 +3,7 @@ title: '本地模型不是更差的 Opus，而是不同的工具'
 excerpt: 'OpenFaaS 创始人 Alex Ellis 用 12,000 美元的 RTX 6000 Pro 显卡跑了一年本地模型后得出结论：Qwen 27B 在客户支持、代码审查和数据分析等特定任务中有真实价值，但远远无法取代云端前沿模型处理长周期、无监督的智能体编码工作。'
 date: '2026-06-18'
 tags: ['AI-Model', 'Local-LLM', 'Infrastructure', 'Reasoning', 'Qwen']
+entities: ["阿里巴巴"]
 category: 'AI 模型'
 source: 'Alex Ellis'
 ---

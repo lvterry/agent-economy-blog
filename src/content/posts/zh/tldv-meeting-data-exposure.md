@@ -3,6 +3,7 @@ title: 'AI 会议记录平台 tl;dv 泄露 18 万场会议，含 23 国政府通
 excerpt: '安全研究员发现 tl;dv 的 Firestore 数据库缺少租户隔离，任意用户都能枚举 18 万场会议元数据，甚至实时加入未受邀的通话。'
 date: "2026-08-11"
 tags: ["Security", "Privacy", "AI-Agents"]
+entities: ["tl;dv"]
 category: "安全与隐私"
 source: "BobDaHacker"
 ---

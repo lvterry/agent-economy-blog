@@ -3,6 +3,7 @@ title: 'OpenAI 模型、Codex 和托管智能体登陆 AWS'
 excerpt: 'OpenAI 与 AWS 扩大战略合作，通过 Amazon Bedrock 提供 GPT-5.5 等前沿模型、Codex 编程代理以及全新托管智能体服务，让企业客户在现有 AWS 环境中使用 OpenAI 能力。'
 date: "2026-04-28"
 tags: ["OpenAI", "AI-Agents", "GPT"]
+entities: ["OpenAI", "亚马逊"]
 category: "行业动态"
 source: "OpenAI"
 ---

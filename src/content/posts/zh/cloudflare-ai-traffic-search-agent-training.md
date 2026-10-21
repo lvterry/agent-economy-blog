@@ -3,6 +3,7 @@ title: 'Cloudflare 推出 AI 流量三级分类：Search、Agent、Training 独�
 excerpt: 'Cloudflare 发布新版 AI 流量管理系统，将自动化流量按用途分为搜索、代理和训练三类，允许所有客户独立管控。新系统还引入「传递信任」机制和 BotBase 机器人目录，重新定义网站所有者对 AI 爬虫的控制权。'
 date: "2026-07-26"
 tags: ["Cloudflare", "AI-Agents", "Security", "AI-Infrastructure"]
+entities: ["Cloudflare"]
 category: "AI Infra"
 source: "Cloudflare"
 ---

@@ -3,6 +3,7 @@ title: "Ben Thompson 解读 Anthropic 的安全超能力"
 excerpt: 'Stratechery 深度分析 Anthropic 的政府冲突、数据策略和权力野心：当"安全"既是使命也是商业模式，Anthropic 正在成为 AI 行业最值得警惕的玩家。'
 date: "2026-06-15"
 tags: ["Anthropic", "AI-Safety", "Security"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Stratechery"
 ---

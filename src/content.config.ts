@@ -8,6 +8,8 @@ const posts = defineCollection({
     excerpt: z.string(),
     date: z.string(),
     tags: z.array(z.string()),
+    // Companies / brands the story is about, canonical names (see src/lib/entities.ts).
+    entities: z.array(z.string()).optional(),
     category: z.string().optional(),
     source: z.string(),
   }),

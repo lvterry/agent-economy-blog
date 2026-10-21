@@ -3,6 +3,7 @@ title: "奥地利推动欧盟在境内部署 Anthropic 以应对美国 AI 出口
 excerpt: "奥地利正式游说欧盟在境内部署 Anthropic 的 AI 系统，以应对美国对前沿模型实施的出口限制，凸显 AI 模型正成为地缘政治博弈的新焦点。"
 date: "2026-06-28"
 tags: ["Anthropic", "AI-Infrastructure", "Security"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Bloomberg"
 ---

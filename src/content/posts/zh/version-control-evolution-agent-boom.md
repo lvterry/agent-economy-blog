@@ -3,6 +3,7 @@ title: "Entire 提出智能体时代的版本控制新范式 — 用会话日志
 excerpt: "随着 AI 智能体批量生成代码，传统 Git 仅追踪文本变更的模式已显不足。Entire 主张将会话日志、工具调用和决策记录作为与代码并列的一等公民，构建分布式 Git 托管网络以适应智能体时代的协作规模。"
 date: "2026-07-09"
 tags: ["AI-Agents", "Agent-Tooling", "version-control"]
+entities: ["Entire"]
 category: "AI 智能体"
 source: "Entire"
 ---

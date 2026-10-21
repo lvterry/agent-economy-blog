@@ -3,6 +3,7 @@ title: 'Reflection 发布 501B 开放权重模型 Beam 用推理效率切入智�
 excerpt: 'Reflection 发布首个开放权重模型 Beam，501B 稀疏 MoE、每 token 仅激活 23B，官方称达到 GLM 5.2 相近水平只需三分之一到四分之一的推理算力，把开放权重竞赛的焦点从跑分推向单位 token 的经济性。'
 date: "2026-10-06"
 tags: ["Open-Source", "AI-Model", "Reasoning", "Agentic AI"]
+entities: ["Reflection", "智谱"]
 category: "AI 模型"
 source: "Reflection"
 ---

@@ -3,6 +3,7 @@ title: 'Anthropic 发布 Claude Haiku 5.5 小模型运行成本直降约 75%'
 excerpt: 'Claude Haiku 5.5 定位于高并发、成本敏感的任务，官方称平均运行成本比上一代低约 75%，并把可调投入档位下放到 Haiku 系列，直接改写智能体的单位经济账。'
 date: "2026-10-08"
 tags: ["AI-Model", "LLM", "Agentic AI", "Anthropic"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

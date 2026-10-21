@@ -3,6 +3,7 @@ title: '智谱发布 GLM-Legal 用轻量底座把法律任务全通过率提到 
 excerpt: 'GLM-Legal 基于 GLM-5.3-Flash，在 Harvey LAB 上把全通过率从底座模型提高 12.5 个百分点，中文法律任务追平前沿闭源模型。'
 date: "2026-10-13"
 tags: ["GLM", "AI-Model", "AI-Agents"]
+entities: ["智谱"]
 category: "AI 模型"
 source: "Z.ai"
 ---

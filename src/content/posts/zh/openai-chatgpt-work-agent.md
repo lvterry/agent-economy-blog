@@ -3,6 +3,7 @@ title: 'OpenAI 推出 ChatGPT Work 智能体，交付成品而非回答'
 excerpt: 'ChatGPT Work 是 OpenAI 在 ChatGPT 内新增的 agent 模式，能自主跨应用收集上下文、分步执行任务，直接交付文档、表格、演示文稿和网页应用，标志着 ChatGPT 从对话工具向生产力 agent 的正式转型。'
 date: "2026-07-10"
 tags: ["ChatGPT", "OpenAI", "GPT", "Codex", "AI-Agents"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

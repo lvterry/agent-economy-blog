@@ -3,6 +3,7 @@ title: "Miasma 蠕虫利用 AI 编程智能体配置文件发起供应链攻击"
 excerpt: "安全研究机构 SafeDep 披露 Miasma 蠕虫通过 GitHub 仓库中的配置文件，在 Claude Code、Cursor 和 Gemini CLI 启动时自动执行恶意代码，已感染 121 个仓库。"
 date: "2026-06-08"
 tags: ["Security", "AI-Agents", "Coding", "Supply-Chain"]
+entities: ["Anthropic", "Cursor", "GitHub"]
 category: "安全与隐私"
 source: "SafeDep"
 ---

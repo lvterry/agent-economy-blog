@@ -3,6 +3,7 @@ title: 与 Claude Fable 5 共事——从魔法师到赞助人
 excerpt: Ethan Mollick 提前体验了 Claude Fable 5，发现这款 Mythos 级模型不仅能自主运行数小时、调度多个子智能体完成研究，还从根本上改变了人类与 AI 的协作关系——从操作者变成了赞助人。
 date: "2026-06-10"
 tags: ["Anthropic", "AI-Agents", "Future-of-Work"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "One Useful Thing"
 ---

@@ -3,6 +3,7 @@ title: Anthropic 发布 Claude Fable 5 和 Mythos 5，Mythos 级模型首次向�
 excerpt: Anthropic 推出 Mythos 级模型 Claude Fable 5（公众）和 Mythos 5（安全合作伙伴），Stripe 仅用一天完成 5000 万行代码库迁移，定价仅为 Mythos Preview 的一半
 date: "2026-06-10"
 tags: ["Claude", "LLM", "Anthropic"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

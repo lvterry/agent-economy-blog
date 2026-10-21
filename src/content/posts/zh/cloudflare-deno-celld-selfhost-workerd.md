@@ -3,6 +3,7 @@ title: 'Cloudflare 收下 Deno 团队，让 Workers 编程模型可以自托管'
 excerpt: 'Deno runtime 一年后停止开发、Deno Deploy 半年后关停，Ryan Dahl 和 Bert Belder 转去做一件事，把 celld 并回 workerd，让分布式 Durable Objects 能在自己的机房里跑起来。'
 date: "2026-10-10"
 tags: ["AI-Infrastructure", "Durable-Execution", "Edge-Computing", "Cloudflare"]
+entities: ["Cloudflare"]
 category: "AI Infra"
 source: "Cloudflare"
 ---

@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { getPrimaryTopicSlug } from '../lib/categories.js';
+import { normalizeEntities } from '../lib/entities';
 
 // Backing data for the homepage feed. The first page is rendered into the HTML
 // for crawlers and no-JS readers; the client fetches this once and appends the
@@ -14,6 +15,7 @@ export async function GET() {
     title: post.data.title,
     date: post.data.date,
     excerpt: post.data.excerpt,
+    entities: normalizeEntities(post.data.entities),
     // Topic slug rather than the Chinese label, so the sidebar's data-category
     // and the ?category= param stay readable. Same helper the sidebar counts
     // with, so the numbers always match what filtering actually yields.

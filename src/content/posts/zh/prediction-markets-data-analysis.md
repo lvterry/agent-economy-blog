@@ -3,6 +3,7 @@ title: "数十亿美金的押注是否真正提升了预测市场的信息价值
 excerpt: "Asterisk Magazine 深入分析了 Polymarket 和 Kalshi 上数十亿美元交易的数据后发现，除风险监测外，大部分预测市场尚未兑现其作为公共信息工具的承诺。"
 date: "2026-05-09"
 tags: ["Market-Analysis", "Risk-Assessment", "Economy"]
+entities: ["Polymarket", "Kalshi"]
 category: "商业 & 经济"
 source: "Asterisk Magazine"
 ---

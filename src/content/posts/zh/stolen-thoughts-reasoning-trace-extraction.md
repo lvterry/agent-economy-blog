@@ -3,6 +3,7 @@ title: '前沿模型思维链加密被攻破，API 密钥与密码随隐藏推�
 excerpt: '研究者把前沿模型的加密思维链重放给同厂弱模型并加以越狱，成功逐字还原 Anthropic、OpenAI、Google 的隐藏推理，还从公开智能体数据中挖出数百个密钥与密码。加密并非隐私，智能体的“思考”正在成为新的泄密面。'
 date: "2026-08-12"
 tags: ["Security", "Privacy", "Reasoning", "LLM"]
+entities: ["OpenAI", "Anthropic", "谷歌"]
 category: "安全与隐私"
 source: "Stolen Thoughts"
 ---

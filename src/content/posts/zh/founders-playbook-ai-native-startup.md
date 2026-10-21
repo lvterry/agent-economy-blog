@@ -3,6 +3,7 @@ title: "Anthropic 发布 AI 原生创业实战手册指导创始人用 Claude �
 excerpt: "Anthropic 发布《The Founder's Playbook》，围绕 Idea、MVP、Launch、Scale 四个阶段，为 AI 原生创业者提供从市场验证到规模化运营的完整方法论和 Claude 实战框架。"
 date: "2026-05-15"
 tags: ["Claude", "Coding", "Startup", "Future-of-Work"]
+entities: ["Anthropic"]
 category: "AI 应用"
 source: "Anthropic"
 ---

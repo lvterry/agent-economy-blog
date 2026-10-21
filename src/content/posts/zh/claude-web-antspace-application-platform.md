@@ -3,6 +3,7 @@ title: "Claude 网页端已经内置了一套应用部署平台"
 excerpt: "第三方逆向分析显示，Claude 网页端使用 Firecracker 微型虚拟机运行编码任务，并包含未公开的 Antspace 部署协议、应用生成器和企业自带云环境支持。"
 date: "2026-09-14"
 tags: ["AI-Infrastructure", "Claude-Code", "MCP"]
+entities: ["Anthropic"]
 category: "AI Infra"
 source: "AprilNEA"
 ---

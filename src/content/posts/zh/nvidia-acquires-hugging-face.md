@@ -3,6 +3,7 @@ title: "英伟达 129 亿美元收购 Hugging Face，开源模型中枢易主"
 excerpt: "英伟达据报同意以约 129 亿美元收购开源模型平台 Hugging Face，估值一年内从 70 亿美元跃升近一倍，AI 产业链纵向整合再进一步。"
 date: "2026-08-28"
 tags: ["HuggingFace", "Market-Analysis", "Open-Source"]
+entities: ["英伟达", "Hugging Face"]
 category: "商业 & 经济"
 source: "Reuters"
 ---

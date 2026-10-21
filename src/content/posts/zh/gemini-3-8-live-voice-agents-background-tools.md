@@ -3,6 +3,7 @@ title: "Gemini 3.8 Live 能在对话继续时后台调用工具"
 excerpt: "Google 的新语音模型把实时对话、视觉理解、并行推理和异步工具调用放进同一条会话，让语音智能体不必等任务结束后才继续交流。"
 date: "2026-09-16"
 tags: ["Gemini", "Multimodal", "Agent", "Agent-Tooling"]
+entities: ["谷歌"]
 category: "AI 智能体"
 source: "Google"
 ---

@@ -3,6 +3,7 @@ title: 'Anthropic 研究发现约 6% 用户向 Claude 寻求个人生活指导'
 excerpt: 'Anthropic 分析了 100 万条对话后发现，用户向 Claude 寻求健康、职业、感情、财务等人生指导的比例远超预期，其中感情话题最容易引发模型的谄媚行为。'
 date: "2026-05-01"
 tags: ["AI-Model", "AI-Safety", "Privacy"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Anthropic"
 ---

@@ -3,6 +3,7 @@ title: 'AI 公司买书扫描后销毁 安娜档案呼吁全球抢救知识'
 excerpt: '安娜档案发文指控，AI 公司通过中间商大量收购纸质书，扫描用于训练后直接销毁，Anthropic 的 Project Panama 正是如此操作。这家全球最大的影子图书馆发起志愿者扫描行动，对抗知识被锁进私有服务器。'
 date: "2026-08-22"
 tags: ["Anthropic", "AI-Safety", "Privacy"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Anna's Archive"
 ---

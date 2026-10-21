@@ -3,6 +3,7 @@ title: 'Claude Code 隐写标记与 AI 安全信任新警示'
 excerpt: '研究员逆向分析发现，Anthropic 的 Claude Code 在系统提示中隐写嵌入 Unicode 标记，用于检测 API 代理转接和模型蒸馏攻击。这一发现引发了对 AI 开发工具透明性与信任边界的深度思考。'
 date: "2026-06-30"
 tags: ["AI-Safety", "AI-Agents", "Developer-Tools", "Security", "Privacy"]
+entities: ["Anthropic"]
 category: "AI 安全"
 source: "thereallo.dev"
 ---

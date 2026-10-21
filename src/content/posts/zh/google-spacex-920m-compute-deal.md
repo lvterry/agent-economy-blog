@@ -3,6 +3,7 @@ title: "Google 每月 9.2 亿美元租用 SpaceX 算力"
 excerpt: "Google 与 SpaceX 签署了一份史无前例的计算资源租赁协议，每月支付 9.2 亿美元租用约 11 万块 NVIDIA GPU，用于应对 AI 产品的超额需求。"
 date: "2026-06-07"
 tags: ["Google", "SpaceX", "AI-Infrastructure", "GPU", "Data-Center"]
+entities: ["谷歌", "SpaceX"]
 category: "AI Infra"
 source: "TechCrunch"
 ---

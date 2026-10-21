@@ -3,6 +3,7 @@ title: 'LongCat-2.0：美团开源 1.6T 参数模型，全程国产芯片训练'
 excerpt: '美团发布 LongCat-2.0，1.6 万亿参数 MoE 模型，使用 5 万块华为昇腾芯片完成预训练和推理，成为首个在国产芯片上完成全流程训练的万亿级开源模型，面向智能体编程场景设计。'
 date: "2026-06-30"
 tags: ["AI-Infrastructure", "Hardware", "AI-Model", "Foundation Model", "LongCat"]
+entities: ["美团", "华为"]
 category: "AI Infra"
 source: "Meituan"
 ---

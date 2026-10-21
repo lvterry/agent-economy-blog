@@ -3,6 +3,7 @@ title: '苹果起诉OpenAI窃取商业机密'
 excerpt: '苹果在北加州联邦法院正式起诉OpenAI，指控其通过挖角前高管和工程师系统性地窃取硬件设计与制造工艺机密，涉及iPhone前设计副总裁及多名核心员工。这起诉讼可能对OpenAI的硬件战略与IPO计划造成重大冲击。'
 date: "2026-07-11"
 tags: ["OpenAI", "Security", "Privacy", "Business"]
+entities: ["OpenAI", "苹果"]
 category: "安全与隐私"
 source: "9to5Mac"
 ---

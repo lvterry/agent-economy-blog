@@ -3,6 +3,7 @@ title: "Microsoft 开源 pg_durable，将持久化执行引擎嵌入 PostgreSQL"
 excerpt: "Microsoft 发布开源 PostgreSQL 扩展 pg_durable，将持久化执行模式直接引入数据库内部，无需外部编排系统即可实现容错工作流——这对智能体状态管理意义重大。"
 date: "2026-06-06"
 tags: ["Infrastructure", "Durable-Execution", "PostgreSQL", "Microsoft"]
+entities: ["微软"]
 category: "AI Infra"
 source: "GitHub/Microsoft"
 ---

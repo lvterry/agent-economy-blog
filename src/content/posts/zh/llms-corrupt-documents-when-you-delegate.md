@@ -3,6 +3,7 @@ title: "委托智能体编辑文档的代价：前沿LLM也会破坏25%的内容
 excerpt: "研究表明，即使是最先进的AI模型（Gemini 3.1 Pro、Claude 4.6 Opus、GPT 5.4）在长时间委托工作流中也会破坏约四分之一的文档内容，且代理工具并不能改善这一状况。"
 date: "2026-05-10"
 tags: ["Agent", "AI-Agents", "Trust", "LLM", "AI-Safety"]
+entities: ["Anthropic", "谷歌"]
 category: "AI 智能体"
 source: "arXiv"
 ---

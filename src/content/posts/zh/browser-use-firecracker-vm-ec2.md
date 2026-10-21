@@ -3,6 +3,7 @@ title: 'Browser Use 用 Firecracker 微虚拟机将浏览器 Agent 成本降低�
 excerpt: 'Browser Use 团队重构了云浏览器基础设施，在普通 EC2 实例上运行 Firecracker 微虚拟机，将浏览器冷启动时间压缩至 400ms 以下、每小时成本降至 2 美分——为 AI 浏览器 Agent 的大规模部署提供了新的效率标杆。'
 date: '2026-06-18'
 tags: ['AI-Infrastructure', 'Infrastructure', 'Agentic AI', 'Computer-Use', 'Browser-Use']
+entities: ["Browser Use"]
 category: 'AI Infra'
 source: 'Browser Use'
 ---

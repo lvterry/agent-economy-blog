@@ -3,6 +3,7 @@ title: 'Laya 用 33 毫秒的开源决策模型，翻出了一年前的论文反
 excerpt: '一年前就发表过论文的开发者，把非自回归决策模型重做成 Apache 2.0 权重，单卡 33 毫秒、覆盖一百多种语言、自托管零成本；但他也主动承认选项超过 20 个就会掉分，开箱即用的基座模型接近随机。'
 date: '2026-09-20'
 tags: ["AI-Model", "Agent-Tooling", "Open-Source", "Reasoning"]
+entities: ["Laya", "TypeSafe"]
 category: "AI 模型"
 source: "ConvAI Innovations"
 ---

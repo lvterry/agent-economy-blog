@@ -3,6 +3,7 @@ title: 'Cloudflare 上线 Web Search API 让智能体用实时搜索替代猜测
 excerpt: 'Cloudflare 在 AI Gateway 中上线 Web Search API 测试版，首批接入 Ceramic.ai、Exa、Linkup 三家搜索服务商，承诺零数据留存、不加价转发，试图成为智能体访问实时网络的统一入口。'
 date: "2026-10-06"
 tags: ["Cloudflare", "AI-Infrastructure", "Agent-Tooling", "RAG"]
+entities: ["Cloudflare"]
 category: "AI Infra"
 source: "Cloudflare"
 ---

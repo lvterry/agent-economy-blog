@@ -3,6 +3,7 @@ title: 'Cloudflare 以量化优化把 Kimi 与 GLM 推理成本压低约三成'
 excerpt: 'Cloudflare 公开了在 Workers AI 上规模化运行 Kimi K 系列与 GLM 的三项工程优化：FP8 量化 KV 缓存、INT4 权重压缩与缓存完整性校验，在不损失精度的前提下把单 token 成本降低约 30%。'
 date: "2026-08-04"
 tags: ["Cloudflare", "AI-Infrastructure", "Model-Compression"]
+entities: ["Cloudflare", "Moonshot AI", "智谱"]
 category: "AI Infra"
 source: "Cloudflare"
 ---

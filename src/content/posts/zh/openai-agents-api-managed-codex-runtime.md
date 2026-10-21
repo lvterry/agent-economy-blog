@@ -3,6 +3,7 @@ title: "OpenAI 把 Codex 智能体的完整运行时开放成了 API"
 excerpt: "OpenAI 推出 Agents API，把会话、编排、上下文压缩、故障恢复和沙箱交给托管的 Codex harness，开发者可以通过 API 构建可持续运行并调用工具的云端智能体。"
 date: "2026-09-11"
 tags: ["OpenAI", "AI-Agents", "Agent-Tooling", "MCP", "Durable-Execution"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

@@ -3,6 +3,7 @@ title: 'Docker 发布 Agent 构建器与运行时 智能体可以像镜像一样
 excerpt: 'Docker 工程团队开源了 docker-agent，用声明式 YAML 定义智能体与多智能体协作，并支持把智能体推送到任意 OCI 仓库像容器镜像一样拉取运行。'
 date: "2026-10-08"
 tags: ["Agent", "Agent-Tooling", "AI-Agents", "MCP"]
+entities: ["Docker"]
 category: "AI 智能体"
 source: "Docker"
 ---

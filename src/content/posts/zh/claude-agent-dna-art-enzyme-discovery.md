@@ -3,6 +3,7 @@ title: 'Claude 智能体在 DNA 数据库里发现一个类 CRISPR 的新酶系�
 excerpt: 'Anthropic 让约 950 个 Claude 智能体并行扫描 20 多万个逆转录酶，21 小时消耗 2.1 亿 token 后，其中一个智能体认出了一段无人报告过的重复阵列。'
 date: "2026-09-24"
 tags: ["AI-Agents", "Anthropic", "Agentic AI"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

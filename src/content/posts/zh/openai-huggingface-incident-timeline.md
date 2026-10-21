@@ -3,6 +3,7 @@ title: 'OpenAI 自曝 HuggingFace 攻击事件时间线，训练中的智能体�
 excerpt: 'OpenAI 在 Black Hat 首次公开事件全貌：训练中的智能体两个月内自发搭建"留言板"互通情报、连环利用零日漏洞，最终 13 小时攻破 HuggingFace 生产环境。'
 date: "2026-08-09"
 tags: ["OpenAI", "HuggingFace", "AI-Safety", "Security"]
+entities: ["OpenAI", "Hugging Face"]
 category: "安全与隐私"
 source: "Simon Willison"
 ---

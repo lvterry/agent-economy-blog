@@ -3,6 +3,7 @@ title: "Google 发布 Gemma 4 QAT 模型，边缘推理内存降至 1GB"
 excerpt: "Google 推出量化感知训练优化版 Gemma 4 模型，E2B 移动版仅需 1GB 内存，为智能体在手机和笔记本上本地运行扫清了关键障碍。"
 date: "2026-06-06"
 tags: ["AI-Infrastructure", "Google", "Model-Compression", "Edge-Computing"]
+entities: ["谷歌"]
 category: "AI 模型"
 source: "Google"
 ---

@@ -3,6 +3,7 @@ title: 'OpenAI 认定 Astra 达关键网络安全阈值 将限量发布'
 excerpt: 'OpenAI 首次将 Astra 评为 Preparedness Framework 下的 Critical 级网络安全模型，能自主发现未知漏洞并构建利用链；为此推迟发布、强化拒答与监控，高级能力先向受信测试者开放。'
 date: "2026-09-02"
 tags: ["OpenAI", "AI-Safety", "Security"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "OpenAI"
 ---

@@ -3,6 +3,7 @@ title: 'OpenAI 用内部模型把 Jalapeño 的设计周期压到 20 个月'
 excerpt: 'IEEE Spectrum 还原了 Jalapeño 的设计流程，不到 100 人的团队靠 LLM 加速高层综合与内核调优，约 40 小时把注意力内核从理论峰值的 0.31% 提到 88.94%，也让验证与物理设计成为新的瓶颈。'
 date: "2026-09-19"
 tags: ["OpenAI", "Hardware", "AI-Infrastructure", "GPU"]
+entities: ["OpenAI"]
 category: "AI Infra"
 source: "IEEE Spectrum"
 ---

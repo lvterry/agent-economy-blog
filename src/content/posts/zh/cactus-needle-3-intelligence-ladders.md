@@ -3,6 +3,7 @@ title: 'Cactus 的 Needle 3 用一套权重切出 8MB 到 29MB 的端侧模型'
 excerpt: 'Needle 3 让同一套权重里每一层都是可独立部署的子网络，4 层微调后即可对标 DeepSeek V4 Flash，最小只有 8MB。但开发者实测显示，这类端侧模型的能力边界依然很窄。'
 date: "2026-09-19"
 tags: ["AI-Agents", "AI-Model", "Edge-Computing"]
+entities: ["Cactus", "DeepSeek"]
 category: "AI 模型"
 source: "Cactus"
 ---

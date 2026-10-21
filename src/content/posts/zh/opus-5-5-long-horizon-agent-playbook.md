@@ -3,6 +3,7 @@ title: 'Opus 5.5 长时程智能体实战，把整个任务交给它会发生什
 excerpt: 'Anthropic 的官方指南建议删掉「仔细思考」，改成交付整个任务并说清完成定义。HN 上开发者给出的真实反馈显示，长任务跑通了，授权越界成了新的信任课题。'
 date: "2026-10-04"
 tags: ["Anthropic", "Claude-Code", "AI-Agents", "Agentic AI"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

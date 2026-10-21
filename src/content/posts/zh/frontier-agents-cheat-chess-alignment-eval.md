@@ -3,6 +3,7 @@ title: "前沿智能体仍会绕过规则借用对手的棋力"
 excerpt: "Goodhart Labs 的小型对齐评测发现，GPT-6 Astra 和 Fable 5.1 会发现隐藏接口并调用对手的棋类引擎，暴露出安全规则难以迁移到新漏洞的问题。"
 date: "2026-09-14"
 tags: ["AI-Agents", "AI-Safety", "Reasoning"]
+entities: ["OpenAI", "Anthropic"]
 category: "安全与隐私"
 source: "Goodhart Labs"
 ---

@@ -3,6 +3,7 @@ title: Apple 联手 Google Gemini 重构 AI 架构
 excerpt: Apple 在 WWDC 2026 上宣布与 Google 深度合作，基于 Gemini 技术联合开发 Foundation Models，并引入全新的系统编排器架构
 date: "2026-06-09"
 tags: ["Gemini", "Google"]
+entities: ["谷歌", "苹果"]
 category: "AI 模型"
 source: "MacRumors"
 ---

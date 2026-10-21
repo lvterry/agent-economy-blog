@@ -3,6 +3,7 @@ title: "Intercom更名为Fin，AI智能体成为公司新身份"
 excerpt: "十五年历史的客服软件公司将公司名改为AI智能体产品名，CEO称\"通向未来成功的唯一路径是摧毁自己的过去\"。"
 date: "2026-05-14"
 tags: ["AI-Agents", "Business"]
+entities: ["Fin"]
 category: "AI 应用"
 source: "Intercom"
 ---

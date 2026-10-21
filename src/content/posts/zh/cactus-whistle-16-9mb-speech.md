@@ -3,6 +3,7 @@ title: 'Cactus 把语音识别塞进 16.9 MB，一个二进制从录音直达工
 excerpt: 'Cactus 发布 16.9 MB 的端侧语音模型 Whistle，纯 CPU 运行、首 token 11 毫秒、覆盖七种语言，还能输出语音嵌入。它和 Needle 共用一套 C++ 引擎，两者叠加后一段录音可以直接变成工具调用。'
 date: "2026-10-09"
 tags: ["Cactus", "Edge-Computing", "AI-Infrastructure", "Multimodal"]
+entities: ["Cactus"]
 category: "AI Infra"
 source: "Cactus"
 ---

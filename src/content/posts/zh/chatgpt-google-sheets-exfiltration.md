@@ -3,6 +3,7 @@ title: "ChatGPT 谷歌表格插件被曝可窃取整个工作簿"
 excerpt: "安全研究团队 PromptArmor 发现，OpenAI 新推出的 ChatGPT for Google Sheets 插件存在间接提示注入漏洞，攻击者只需一行隐藏在导入表格中的恶意数据，就能触发批量数据窃取和钓鱼攻击，且用户设置的「手动确认」开关完全无效。"
 date: "2026-05-31"
 tags: ["Security", "AI-Agents", "ChatGPT", "Privacy"]
+entities: ["OpenAI", "谷歌"]
 category: "安全与隐私"
 source: "PromptArmor"
 ---

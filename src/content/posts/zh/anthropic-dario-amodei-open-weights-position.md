@@ -3,6 +3,7 @@ title: 'Anthropic CEO 明确表态不主张全面封禁开源模型'
 excerpt: 'Dario Amodei 发文澄清 Anthropic 对开源权重模型的立场，明确反对全面封禁，同时提出芯片出口管制、打击蒸馏行为和强制安全测试三项具体措施，在开源生态与国家安全之间寻求平衡。'
 date: "2026-07-28"
 tags: ["Anthropic", "Open-Source", "AI-Infrastructure", "AI-Safety"]
+entities: ["Anthropic"]
 category: "AI Infra"
 source: "Anthropic"
 ---

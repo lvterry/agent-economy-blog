@@ -3,6 +3,7 @@ title: 'xAI 开源 Grok Build：一个全功能的终端 AI 编程智能体'
 excerpt: 'xAI 在 GitHub 上开源了 Grok Build（即 grok CLI），一个基于 Rust 构建的全功能终端 AI 编程智能体，支持 TUI 交互、MCP 服务扩展、沙箱执行和无需人工的 headless 模式。'
 date: "2026-07-16"
 tags: ["Agent-Tooling", "AI-Coding", "Open-Source"]
+entities: ["xAI"]
 category: "AI 智能体"
 source: "xAI"
 ---

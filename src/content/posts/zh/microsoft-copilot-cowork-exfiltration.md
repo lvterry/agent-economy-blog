@@ -3,6 +3,7 @@ title: "Microsoft Copilot Cowork 遭提示注入攻击 企业文件可被远程�
 excerpt: "安全研究团队展示了一种针对 Microsoft Copilot Cowork 的间接提示注入攻击，攻击者通过植入恶意技能文件，可在无需人工审批的情况下将 SharePoint 和 OneDrive 中的敏感文件经 Teams 消息外泄。"
 date: "2026-05-26"
 tags: ["Security", "AI-Agents", "Prompt-Injection", "Microsoft"]
+entities: ["微软"]
 category: "安全与隐私"
 source: "PromptArmor"
 ---

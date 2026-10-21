@@ -3,6 +3,7 @@ title: "Claude Opus 4.8 发布：智能体能力全面提升，新增动态工�
 excerpt: "Anthropic 发布 Claude Opus 4.8，在编码、智能体任务和专业工作方面全面超越前代，同时推出动态工作流和努力控制两项重要新功能，让 AI 助手成为更可靠的协作者。"
 date: "2026-05-28"
 tags: ["Anthropic", "Claude", "AI-Model", "Agent", "AI-Agents"]
+entities: ["Anthropic"]
 category: "AI 模型"
 source: "Anthropic"
 ---

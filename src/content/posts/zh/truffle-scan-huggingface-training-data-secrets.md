@@ -3,6 +3,7 @@ title: 'Truffle Security 扫描 7.6 PB 训练数据 发现 22 万个有效凭据
 excerpt: '安全公司扫描了 HuggingFace 全部公开数据集，在 6,003 个数据集中发现 22 万个仍有效的凭据，包括可改写 CI 工作流的 GitHub token 与知名 MCP 仓库创始人的密钥。'
 date: "2026-08-02"
 tags: ["Security", "HuggingFace", "AI-Safety", "Supply-Chain", "MCP"]
+entities: ["Truffle Security", "Hugging Face", "GitHub"]
 category: "安全与隐私"
 source: "Truffle Security"
 ---

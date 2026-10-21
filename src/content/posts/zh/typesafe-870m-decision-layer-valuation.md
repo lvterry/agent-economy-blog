@@ -3,6 +3,7 @@ title: '决策层被商品化，TypeSafe 仍然拿到 8.7 亿美元'
 excerpt: 'Jev 开放不到一个月，开源复现和大厂自研模型同日出现，TypeSafe 还是以 75 亿美元估值完成 8.7 亿美元融资，a16z 领投，Martin Casado 进董事会。'
 date: "2026-10-10"
 tags: ["Business", "AI-Model", "Agent-Tooling"]
+entities: ["TypeSafe"]
 category: "商业 & 经济"
 source: "TypeSafe AI"
 ---

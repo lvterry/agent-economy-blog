@@ -3,6 +3,7 @@ title: 'GLM-5.3-Flash 开源，18B 激活参数逼近 Claude Opus 4.8'
 excerpt: '智谱发布 GLM-5.3-Flash，320B 总参数仅激活 18B，编码与智能体基准逼近 Claude Opus 4.8，成本约为十分之一，并全程跑在中国自研芯片集群上。'
 date: "2026-08-27"
 tags: ["GLM", "Open-Source", "LLM", "Multimodal"]
+entities: ["智谱", "Anthropic"]
 category: "AI 模型"
 source: "Z.ai"
 ---

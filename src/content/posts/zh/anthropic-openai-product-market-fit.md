@@ -3,6 +3,7 @@ title: "Anthropic 与 OpenAI 借编码智能体找到产品市场契合点"
 excerpt: "Simon Willison 用详实数据论证，Anthropic 和 OpenAI 已将企业 AI 定价转向基于 API token 消耗的模式，证明编码智能体已在企业级预算中找到真正的产品市场契合点。"
 date: "2026-05-27"
 tags: ["Business", "AI-Agents", "Coding", "Enterprise", "Anthropic", "OpenAI"]
+entities: ["Anthropic", "OpenAI"]
 category: "商业 & 经济"
 source: "Simon Willison"
 ---

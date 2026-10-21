@@ -3,6 +3,7 @@ title: 'Colibrì 让 744B 参数模型跑在 25GB 笔记本上——纯 C 实现
 excerpt: '开源项目 Colibrì 通过磁盘流式传输专家层，在仅 25GB 内存的笔记本上运行 GLM-5.2（744B MoE），推理引擎仅 2400 行 C 代码——本地 AI 部署的成本门槛再次被拉低。'
 date: "2026-07-10"
 tags: ["GLM", "Open-Source", "AI-Infrastructure", "Hardware", "Model-Compression"]
+entities: ["智谱"]
 category: "AI Infra"
 source: "GitHub / JustVugg"
 ---

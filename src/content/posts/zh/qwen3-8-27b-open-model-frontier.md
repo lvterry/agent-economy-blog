@@ -3,6 +3,7 @@ title: 'Qwen3.8 27B 开源小模型以 52 分追平 DeepSeek V4 Flash'
 excerpt: '阿里最新开源的 Qwen3.8 27B 在 Artificial Analysis 智能指数上拿到 52 分，追平 DeepSeek V4 Flash，成为迄今最强的小尺寸开源模型——前沿能力正在向 27B 规模下探。'
 date: "2026-08-18"
 tags: ["Qwen", "Open-Source", "LLM"]
+entities: ["阿里巴巴", "DeepSeek"]
 category: "AI 模型"
 source: "Artificial Analysis"
 ---

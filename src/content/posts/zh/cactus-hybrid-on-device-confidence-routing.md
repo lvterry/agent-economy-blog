@@ -3,6 +3,7 @@ title: 'Cactus Hybrid 教 Gemma 4 判断自己是否知道答案'
 excerpt: 'Cactus 团队对 Gemma 4 进行后训练改造，让模型每次输出都附带一个置信度分数，仅需路由 15–35% 的查询到云端即可匹配 Gemini 3.1 Flash-Lite 性能。'
 date: "2026-07-23"
 tags: ["AI-Infrastructure", "AI-Agents"]
+entities: ["Cactus", "谷歌"]
 category: "AI Infra"
 source: "Cactus Compute"
 ---

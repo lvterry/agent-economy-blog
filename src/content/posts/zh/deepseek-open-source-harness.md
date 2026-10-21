@@ -3,6 +3,7 @@ title: 'DeepSeek 开源智能体 Harness 一切能力皆插件'
 excerpt: 'DeepSeek 发布 Harness 智能体框架开发者预览版，源码以 MIT 许可证公开，模型、工具、会话、UI 等一切能力皆可插拔替换，并强制记录模型可见的全部轨迹。'
 date: "2026-08-14"
 tags: ["Agent", "AI-Agents", "Agent-Tooling"]
+entities: ["DeepSeek"]
 category: "AI 智能体"
 source: "DeepSeek"
 ---

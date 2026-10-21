@@ -3,6 +3,7 @@ title: 'GPT-5.6 助力证明凸优化 30 年未解难题'
 excerpt: 'UC Berkeley 研究者利用 GPT-5.6 Sol Pro 证明了自 1996 年悬而未决的凸优化复杂度下界问题，初始证明在 148 分钟内完成并经 Lean 形式化验证。'
 date: "2026-07-18"
 tags: ["GPT", "Reasoning", "AI-Model"]
+entities: ["OpenAI"]
 category: "AI 模型"
 source: "arXiv"
 ---

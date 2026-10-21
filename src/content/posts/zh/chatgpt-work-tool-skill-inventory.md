@@ -3,6 +3,7 @@ title: 'ChatGPT Work 的 232 个工具与 44 个技能清单曝光'
 excerpt: 'Simon Willison 用一个 prompt 让 ChatGPT Work 会话自曝全部 232 个工具接口与 44 个技能定义并公开成站，生产级智能体的完整工具面第一次清晰可见。'
 date: "2026-09-01"
 tags: ["ChatGPT", "OpenAI", "AI-Agents", "Agent-Tooling"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "Simon Willison"
 ---

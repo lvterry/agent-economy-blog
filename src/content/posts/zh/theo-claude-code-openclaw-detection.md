@@ -3,6 +3,7 @@ title: 'Theo 发现 Claude Code 会扫描 Git 历史中的 OpenClaw 并据此拒
 excerpt: '开发者 Theo 发现 Claude Code 会在 Git 提交历史中检测 OpenClaw 关键词，一旦发现就拒绝执行请求或额外收费。这一发现引发了关于编码 Agent 隐私和竞争行为的讨论。'
 date: "2026-04-30"
 tags: ["AI-Agents", "Agent-Economy"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "X (Theo)"
 ---

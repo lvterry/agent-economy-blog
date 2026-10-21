@@ -3,6 +3,7 @@ title: '阿里巴巴因安全风险封禁 Claude Code，AI 编程工具信任危
 excerpt: 'Alibaba 宣布将从 7 月 10 日起封禁员工使用 Claude Code，因其被指存在隐式后门风险。这一事件标志着企业级 AI 编程工具首次因安全问题被全面禁用，智能体的透明性信任成为新焦点。'
 date: "2026-07-03"
 tags: ["Security", "AI-Safety", "AI-Agents", "Anthropic"]
+entities: ["Anthropic", "阿里巴巴"]
 category: "安全与隐私"
 source: "Cybersecurity News / Reuters"
 ---

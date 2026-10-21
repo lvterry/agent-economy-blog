@@ -3,6 +3,7 @@ title: 'Fireworks 推出 Ember-1 让推理模型的 token 成本再降四成'
 excerpt: 'Fireworks Research 基于 Kimi K3 训练出 Ember-1，在质量基本持平的前提下把 token 消耗削减约 40%，直指多轮智能体工作流中推理成本被反复计费的结构性问题。'
 date: "2026-09-28"
 tags: ["Fireworks", "Kimi", "AI-Infrastructure", "Reasoning", "Open-Source"]
+entities: ["Fireworks", "Moonshot AI"]
 category: "AI Infra"
 source: "Fireworks AI"
 ---

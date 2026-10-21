@@ -3,6 +3,7 @@ title: '月之暗面发布 Kimi K3，全球首个开源 3T 参数模型'
 excerpt: 'Moonshot AI 正式发布 Kimi K3，这是首个公开的 2.8 万亿参数模型，在编程、知识工作和推理方面达到前沿水平，权重将于 7 月 27 日前开源。'
 date: "2026-07-17"
 tags: ["Kimi", "Moonshot", "AI-Model", "Foundation Model", "Open-Source"]
+entities: ["Moonshot AI"]
 category: "AI 模型"
 source: "Moonshot AI"
 ---

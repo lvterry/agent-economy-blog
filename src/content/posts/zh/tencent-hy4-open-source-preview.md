@@ -3,6 +3,7 @@ title: '腾讯开源混元 Hy4 预览版，剑指开源模型第一梯队'
 excerpt: '腾讯开源混元 Hy4 预览版：770B 总参数、49B 激活的 MoE 模型，盲测小幅领先 GLM-5.3 与 Kimi K3，以接近 5% 的缓存成本上线 OpenRouter，两天处理 token 量已超 GLM-5.3 一周。'
 date: "2026-08-30"
 tags: ["LLM", "Open-Source", "Foundation Model"]
+entities: ["腾讯", "智谱", "Moonshot AI"]
 category: "AI 模型"
 source: "腾讯"
 ---

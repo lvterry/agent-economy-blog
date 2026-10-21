@@ -3,6 +3,7 @@ title: '推测解码让部分模型在 AMD GPU 上快了近三倍'
 excerpt: 'vLLM 在 AMD MI300X 与 MI355X 上测试五种推测解码方法，部分 Gemma、Kimi 和 MiniMax 模型的输出吞吐达到常规解码的两倍以上，但收益高度依赖模型、任务与候选长度。'
 date: "2026-09-08"
 tags: ["vLLM", "AI-Infrastructure", "GPU", "LLM"]
+entities: ["AMD", "Moonshot AI", "MiniMax", "阿里巴巴"]
 category: "AI Infra"
 source: "vLLM"
 ---

@@ -3,6 +3,7 @@ title: "AI 是基础设施，不是产品"
 excerpt: "约翰·格鲁伯撰文反驳「苹果需要杀手级 AI 产品」的观点，认为 AI 更像无线网络——是渗透一切的技术基础设施，而非独立的产品品类。"
 date: "2026-05-18"
 tags: ["AI-Infrastructure", "Business", "Market-Analysis"]
+entities: ["苹果"]
 category: "商业 & 经济"
 source: "Daring Fireball"
 ---

@@ -3,6 +3,7 @@ title: "Jev 放弃生成文本，把模型变成了带置信度的决策函数"
 excerpt: "TypeSafe 发布的 Jev 不生成自由文本，而是直接输出预先定义、带概率的类型安全决策，试图为智能体工作流提供更快、更便宜的判断层。"
 date: "2026-09-16"
 tags: ["AI-Model", "Agent-Tooling", "AI-Infrastructure", "Reasoning"]
+entities: ["TypeSafe"]
 category: "AI 模型"
 source: "TypeSafe AI"
 ---

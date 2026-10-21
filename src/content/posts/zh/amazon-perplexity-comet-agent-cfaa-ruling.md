@@ -3,6 +3,7 @@ title: "美国法院把购物智能体视为用户访问网站的工具"
 excerpt: "第九巡回上诉法院撤销了亚马逊针对 Perplexity Comet 的初步禁令，认为现有事实下是用户借助智能体访问亚马逊，而非 Perplexity 自身侵入网站。"
 date: "2026-09-15"
 tags: ["Agent", "Computer-Use", "Security", "Business"]
+entities: ["亚马逊", "Perplexity"]
 category: "AI 智能体"
 source: "美国第九巡回上诉法院"
 ---

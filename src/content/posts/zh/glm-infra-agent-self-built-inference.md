@@ -3,6 +3,7 @@ title: 'Z.ai 用 GLM 智能体自建十万卡国产芯片推理系统'
 excerpt: '智谱披露 GLM-5.3-Flash 的全部生产推理跑在超过十万张国产加速器上，大量工程由 GLM-5.3 驱动的 Infra Agent 完成，不到两周把端到端吞吐提升到约三倍。'
 date: "2026-09-18"
 tags: ["GLM", "AI-Infrastructure", "AI-Agents", "Hardware"]
+entities: ["智谱"]
 category: "AI Infra"
 source: "Z.ai"
 ---

@@ -3,6 +3,7 @@ title: "Red Hat 云服务遭恶意 npm 包入侵，供应链安全再敲警钟"
 excerpt: "Red Hat 云服务的 npm 包仓库被发现包含恶意代码，影响多个企业级 JavaScript 客户端库。事件再次凸显开源供应链中信任机制的脆弱性。"
 date: "2026-06-01"
 tags: ["Security", "Supply-Chain", "Privacy"]
+entities: ["Red Hat"]
 category: "安全与隐私"
 source: "Red Hat"
 ---

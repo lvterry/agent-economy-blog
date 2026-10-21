@@ -3,6 +3,7 @@ title: 'Stripe 超 70 亿美元收购 OpenRouter 支付巨头入主推理网关'
 excerpt: 'Stripe 敲定以逾 70 亿美元收购 AI 模型网关 OpenRouter，在 OpenAI 转投 Adyen 之际把最大一块 AI 推理支付量收进自家账本，支付轨道与推理路由层正式合流。'
 date: "2026-08-17"
 tags: ["Business", "Market-Analysis", "AI-Infrastructure", "LLM"]
+entities: ["OpenRouter", "Stripe", "OpenAI"]
 category: "商业 & 经济"
 source: "Bloomberg"
 ---

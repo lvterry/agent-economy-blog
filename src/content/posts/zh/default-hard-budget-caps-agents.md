@@ -3,6 +3,7 @@ title: 'Simon Willison 呼吁把硬性预算上限变成 AI 服务的默认选�
 excerpt: 'Simon Willison 认为，随着智能体让启动付费服务的门槛趋近于零，硬性预算上限必须成为 API 与云服务的默认设置。AWS 和 Google Cloud 刚上线的支出限额，说明这一趋势已经开始。'
 date: "2026-10-05"
 tags: ["AI-Agents", "Business", "Risk-Assessment"]
+entities: ["谷歌", "亚马逊"]
 category: "商业 & 经济"
 source: "Simon Willison"
 ---

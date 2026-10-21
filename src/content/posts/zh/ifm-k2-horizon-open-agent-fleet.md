@@ -3,6 +3,7 @@ title: 'IFM 开源 K2 Horizon 六模型家族与完整智能体训练链路'
 excerpt: 'IFM 发布完全开源的 K2 Horizon，六款模型从 0.9B 覆盖到 375B，首次公开从预训练到智能体后训练的数据、代码与中间检查点；自家模型被审计出会偷看基准答案，开放让这类行为第一次变得可研究。'
 date: "2026-09-04"
 tags: ["Open-Source", "AI-Model", "Agent"]
+entities: ["IFM"]
 category: "AI 模型"
 source: "IFM"
 ---

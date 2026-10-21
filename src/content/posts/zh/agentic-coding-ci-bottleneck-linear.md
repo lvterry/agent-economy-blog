@@ -3,6 +3,7 @@ title: '当智能体把代码写得更快，Linear 用半年重做 CI'
 excerpt: 'Linear 的 CTO 给团队开了一张“CI 成本太高”的工单。测试套件今年翻了近两番，他们把 PR 等待时间从 6 分多钟压到 5 分钟出头，每个测试消耗的机器时间也砍掉一半。'
 date: "2026-09-22"
 tags: ["AI-Infrastructure", "AI-Coding", "Agentic AI"]
+entities: ["Linear"]
 category: "AI Infra"
 source: "Linear"
 ---

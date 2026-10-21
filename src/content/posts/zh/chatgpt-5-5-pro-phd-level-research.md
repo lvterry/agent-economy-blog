@@ -3,6 +3,7 @@ title: "菲尔兹奖得主实测ChatGPT 5.5 Pro：两小时内完成博士级数
 excerpt: "Timothy Gowers用ChatGPT 5.5 Pro尝试了数论中的开放问题，模型在一小时内给出了原创性证明思路——且被MIT研究生验证为正确。这迫使数学界重新思考博士训练和研究成果的评判标准。"
 date: "2026-05-10"
 tags: ["ChatGPT", "LLM", "Reasoning", "AI-Model"]
+entities: ["OpenAI"]
 category: "AI 模型"
 source: "Timothy Gowers"
 ---

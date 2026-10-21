@@ -3,6 +3,7 @@ title: "Anthropic 将让外部评估者像员工一样持续审查模型"
 excerpt: "Dario Amodei 提议为前沿模型设置持续的第三方内部审查，并承诺先在 Anthropic 落地，以换取安全评估追上能力增长的时间。"
 date: "2026-09-13"
 tags: ["AI-Safety", "Anthropic", "AI-Model", "Interpretability"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Dario Amodei"
 ---

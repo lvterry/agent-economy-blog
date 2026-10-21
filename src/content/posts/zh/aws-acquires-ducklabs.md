@@ -3,6 +3,7 @@ title: 'AWS 收购 DuckLabs，DuckDB 项目保持 MIT 开源'
 excerpt: 'AWS 将收购分析型数据库 DuckDB 背后的团队 DuckLabs，项目本身仍由非营利基金会掌管、保持 MIT 开源。日下载超百万次的开源资产易主云巨头，为开源与云的合作模式提供新样本。'
 date: "2026-08-27"
 tags: ["AWS", "DuckDB", "Open-Source", "Business"]
+entities: ["亚马逊"]
 category: "商业 & 经济"
 source: "DuckLabs"
 ---

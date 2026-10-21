@@ -3,6 +3,7 @@ title: 'Manus 重回独立运营，监管叫停 Meta 收购并要求删除用户
 excerpt: '中国监管部门叫停 Meta 对 Manus 的 20 亿美元收购后，Manus 宣布回归独立运营，收购期间产生的部分用户数据将在本月下旬删除。这家明星智能体公司成为大国科技监管博弈的样本。'
 date: "2026-08-12"
 tags: ["AI-Agents", "Business", "Tech-Industry"]
+entities: ["Meta"]
 category: "商业 & 经济"
 source: "Manus"
 ---

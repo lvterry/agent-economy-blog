@@ -3,6 +3,7 @@ title: 'Oracle 禁止 OpenJDK 贡献包含 AI 生成内容'
 excerpt: 'OpenJDK 颁布临时政策：社区贡献的代码、文本与图片不得包含任何大模型或扩散模型生成的内容，理由是审查负担、安全风险与版权归属问题。'
 date: "2026-08-08"
 tags: ["Security", "Open-Source", "LLM"]
+entities: ["甲骨文"]
 category: "安全与隐私"
 source: "Oracle"
 ---

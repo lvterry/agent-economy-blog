@@ -3,6 +3,7 @@ title: 'Ramp Sheets AI遭间接提示注入攻击 用户财务数据被静默窃
 excerpt: 'PromptArmor 披露 Ramp 的智能表格 AI 存在间接提示注入漏洞，攻击者可通过恶意电子表格中的隐藏指令操纵 AI 插入带外泄数据的公式，无需用户确认即可将财务数据发送至攻击者服务器。'
 date: "2026-04-29"
 tags: ["Security", "AI-Agents"]
+entities: ["Ramp"]
 category: "安全与隐私"
 source: "PromptArmor"
 ---

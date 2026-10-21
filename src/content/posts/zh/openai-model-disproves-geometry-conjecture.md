@@ -3,6 +3,7 @@ title: "OpenAI 模型自主攻克 80 年未解的几何学难题"
 excerpt: "OpenAI 的内部推理模型独立否定了离散几何中持续近 80 年的 Erdős 猜想，这是首个 AI 系统自主解决重要开放数学问题的案例。"
 date: "2026-05-21"
 tags: ["AI-Model", "Reasoning", "OpenAI"]
+entities: ["OpenAI"]
 category: "AI 模型"
 source: "OpenAI"
 ---

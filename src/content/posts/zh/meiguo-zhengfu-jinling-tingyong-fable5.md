@@ -3,6 +3,7 @@ title: "美国政府下令暂停 Fable 5 对外访问 前沿模型部署遭遇�
 excerpt: "美国政府以国家安全为由，要求 Anthropic 立即暂停 Fable 5 和 Mythos 5 对所有海外用户的访问，包括 Anthropic 的外籍员工。Anthropic 公开抗议，称此举基于一个已被其他公开模型同样具备的、非通用性的越狱漏洞。"
 date: "2026-06-13"
 tags: ["Anthropic", "AI-Safety", "Security"]
+entities: ["Anthropic"]
 category: "行业动态"
 source: "Anthropic"
 ---

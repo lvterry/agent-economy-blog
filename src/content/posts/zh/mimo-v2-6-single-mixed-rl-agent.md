@@ -3,6 +3,7 @@ title: '小米 MiMo V2.6 用一次混合强化学习统合智能体与安全能�
 excerpt: '小米把 MiMo V2.6 的权重和技术报告一起公开，Pro 版 1.02T 参数只激活 42B。它真正的卖点不是分数，而是把编程、通用智能体、视觉和安全放进同一次强化学习，并把训练曲线实时公开。'
 date: "2026-09-22"
 tags: ["Open-Source", "AI-Model", "Multimodal", "Long-Context"]
+entities: ["小米"]
 category: "AI 模型"
 source: "Xiaomi MiMo"
 ---

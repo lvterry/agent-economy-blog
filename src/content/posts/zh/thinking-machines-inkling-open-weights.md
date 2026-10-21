@@ -3,6 +3,7 @@ title: 'Thinking Machines Lab 发布 Inkling：975B 开源多模态 MoE 模型'
 excerpt: '由前 OpenAI 研究员创立的 Thinking Machines Lab 正式发布 Inkling，一款 975B 总参数（41B 活跃）的开源 MoE 模型，原生支持文本、图像和音频推理，上下文窗口达 100 万 token。'
 date: "2026-07-16"
 tags: ["Open-Source", "Multimodal", "Foundation Model", "LLM"]
+entities: ["Thinking Machines"]
 category: "AI 模型"
 source: "Thinking Machines Lab"
 ---

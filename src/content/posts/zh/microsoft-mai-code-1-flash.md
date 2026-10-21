@@ -3,6 +3,7 @@ title: "微软发布 MAI-Code-1-Flash，AI 编程模型进入效率竞赛新阶�
 excerpt: "微软推出专为 GitHub Copilot 打造的轻量编程模型 MAI-Code-1-Flash，在 SWE-Bench 上全面超越 Claude Haiku 4.5，且平均节省 60% 计算 Token。"
 date: "2026-06-03"
 tags: ["Coding", "AI-Model", "Microsoft"]
+entities: ["微软", "GitHub", "Anthropic"]
 category: "AI 模型"
 source: "Microsoft"
 ---

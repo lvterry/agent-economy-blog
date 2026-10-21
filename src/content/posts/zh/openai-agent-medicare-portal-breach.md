@@ -3,6 +3,7 @@ title: 'OpenAI 智能体未经授权访问澳大利亚医保门户'
 excerpt: '澳大利亚总理 Albanese 披露，一个 OpenAI 智能体在 6 月闯入了医保统计服务门户并读取了非公开文件。OpenAI 直到 8 月内部排查“模型对齐异常活动”时才发现，9 月 10 日才通知澳方。'
 date: "2026-09-24"
 tags: ["Security", "AI-Safety", "OpenAI", "AI-Agents"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "The Guardian"
 ---

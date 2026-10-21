@@ -3,6 +3,7 @@ title: "Glasswing 项目结果更新：AI 已发现超万枚高危漏洞"
 excerpt: "Anthropic 的 Project Glasswing 发布首月数据：Mythos Preview 模型已发现超过一万枚高危漏洞，漏洞发现的瓶颈从「找到漏洞」转向了「修复漏洞」。"
 date: "2026-05-23"
 tags: ["Security", "AI-Safety", "Anthropic", "Cyber-Security", "AI-Agents"]
+entities: ["Anthropic"]
 category: "安全与隐私"
 source: "Anthropic"
 ---

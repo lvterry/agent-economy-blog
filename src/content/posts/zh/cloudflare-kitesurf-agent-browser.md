@@ -3,6 +3,7 @@ title: 'Cloudflare 发布智能体浏览器 Kitesurf，成本远低于 Chromium'
 excerpt: 'Cloudflare 推出专为 AI 智能体设计的浏览器 Kitesurf，完全跑在 Workers 的 V8 隔离环境中，CPU 与内存消耗远低于 Chromium，直击智能体访问网页的成本与安全痛点。'
 date: "2026-08-08"
 tags: ["Agent", "AI-Agents", "Cloudflare"]
+entities: ["Cloudflare"]
 category: "AI 智能体"
 source: "Cloudflare"
 ---

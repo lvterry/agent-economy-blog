@@ -3,6 +3,7 @@ title: 'DeepSeek 开源了自家生产环境的推理框架 DeepInfer，支持�
 excerpt: 'DeepSeek 以 Apache 2.0 协议开源推理框架 DeepInfer，目前支持 DeepSeek-V4.1-Flash，硬件清单只列了英伟达 SM100 GPU 和华为昇腾 950 NPU，组成完整推理服务所需的 KV cache 系统、预填充/解码分离和负载均衡没有放出来。'
 date: "2026-10-21"
 tags: ["AI-Infrastructure", "Open-Source", "GPU", "Hardware"]
+entities: ["DeepSeek", "英伟达", "华为"]
 category: "AI Infra"
 source: "GitHub"
 ---

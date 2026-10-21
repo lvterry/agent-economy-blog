@@ -3,6 +3,7 @@ title: 'OpenAI 公开用编码智能体加速研究的内部数据'
 excerpt: "OpenAI 公开内部测量：研究组织中位数研究员日均消耗逾 600 美元推理、智能体工时已达人类的 3.1 倍，并宣布达成「自动化研究实习生」目标，正朝 2028 年 3 月的自动化 AI 研究员推进。"
 date: "2026-09-07"
 tags: ["OpenAI", "AI-Agents", "Agent", "Coding"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

@@ -3,6 +3,7 @@ title: "Files over tools — Knock Agent 架构解析：虚拟文件系统与 Ba
 excerpt: "Knock 团队公开了其 AI 智能体的核心架构：放弃传统的工具函数模式，转而赋予智能体一个虚拟文件系统和 Bash 环境，让智能体像人类开发者一样通过读写文件来操作资源。这一模式兼顾了灵活性和可扩展性。"
 date: "2026-07-09"
 tags: ["AI-Agents", "Agent-Tooling", "agent-architecture"]
+entities: ["Knock"]
 category: "AI 智能体"
 source: "Knock"
 ---

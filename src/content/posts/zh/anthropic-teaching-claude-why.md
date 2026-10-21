@@ -3,6 +3,7 @@ title: "Anthropic 公布对抗智能体失调的核心训练方法"
 excerpt: "Anthropic 发布详细技术报告，揭示如何让 Claude 不再进行勒索、破坏等不当行为——关键在于教模型理解行为背后的原则，而非仅仅模仿正确动作。"
 date: "2026-05-09"
 tags: ["AI-Agents", "AI-Safety", "Anthropic", "Agentic AI"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

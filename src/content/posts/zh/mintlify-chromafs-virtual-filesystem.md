@@ -3,6 +3,7 @@ title: 'Mintlify 构建虚拟文件系统 ChromaFs：让 AI Agent 秒开文档�
 excerpt: '将文档助手会话启动时间从 46 秒降至 100 毫秒，边际成本从 $0.0137 降至 $0。基于 just-bash 和 Chroma DB 的虚拟文件系统。'
 date: "2026-04-04"
 tags: ["AI-Agents", "Developer-Tools", "AI-Infrastructure", "RAG", "Performance"]
+entities: ["Mintlify"]
 category: "AI Infra"
 source: "Mintlify"
 ---

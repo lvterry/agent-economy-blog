@@ -3,6 +3,7 @@ title: 'Meta 开源 Muse Glimmer，一个能跑在消费级 GPU 上的智能体�
 excerpt: 'Meta 开源 30B 参数智能体模型 Muse Glimmer，一张消费级 GPU 即可运行，专为常驻本地的智能体工作流设计。'
 date: "2026-08-11"
 tags: ["Meta", "AI-Model", "AI-Agents", "Open-Source"]
+entities: ["Meta"]
 category: "AI 智能体"
 source: "Meta"
 ---

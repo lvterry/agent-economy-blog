@@ -3,6 +3,7 @@ title: 'Herdr 让一块终端同时管理多台电脑上的智能体'
 excerpt: 'Herdr 0.9 可以通过 SSH 把本地电脑、服务器和 Mac mini 上的工作区与智能体汇入同一个终端界面，让执行留在远端持续运行；跨机器协作与无感连接仍在后续路线图中。'
 date: "2026-09-09"
 tags: ["Agent-Tooling", "AI-Agents", "Coding", "Durable-Execution"]
+entities: ["Herdr"]
 category: "AI 智能体"
 source: "Herdr"
 ---

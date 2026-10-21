@@ -3,6 +3,7 @@ title: "硬件认证正在成为垄断工具"
 excerpt: "Apple 和 Google 以安全为名推广硬件认证，实际上正在锁死操作系统竞争。GrapheneOS 的安全团队揭示了 Play Integrity 与 App Attest 背后的反竞争本质。"
 date: "2026-05-11"
 tags: ["Security", "Privacy", "Tech-Industry"]
+entities: ["谷歌", "苹果"]
 category: "安全与隐私"
 source: "GrapheneOS"
 ---

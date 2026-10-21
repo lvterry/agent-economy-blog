@@ -1,0 +1,37 @@
+---
+import { normalizeEntities } from '../lib/entities';
+
+// Companies / brands a post is about. Plain labels, not links: feed items are
+// a single <a>, and nested anchors would be invalid.
+const { entities = [], class: className } = Astro.props;
+const names = normalizeEntities(entities);
+---
+
+{names.length > 0 && (
+  <ul class:list={['entity-tags', className]} aria-label="相关公司">
+    {names.map(name => <li class="entity-tag">{name}</li>)}
+  </ul>
+)}
+
+<style>
+  .entity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Global so the homepage script can clone the same markup client-side. */
+  :global(.entity-tag) {
+    font-size: 0.6875rem;
+    line-height: 1;
+    padding: 0.28rem 0.5rem;
+    border-radius: 999px;
+    color: var(--color-text-secondary);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+</style>

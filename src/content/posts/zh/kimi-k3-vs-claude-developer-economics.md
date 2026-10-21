@@ -3,6 +3,7 @@ title: '开发者视角：Kimi K3 在编码任务上与 Claude 无异，价格�
 excerpt: '一位开发者对 Kimi K3 和 Claude 进行了数周并排测试，结论是它们在实际编码中几乎无差别——但 K3 的价格低得多，且没有美国出口管制带来的使用限制。'
 date: "2026-07-19"
 tags: ["Kimi", "Market-Analysis", "Foundation Model", "AI-Model"]
+entities: ["Anthropic", "Moonshot AI"]
 category: "商业 & 经济"
 source: "Stephen Bochinski"
 ---

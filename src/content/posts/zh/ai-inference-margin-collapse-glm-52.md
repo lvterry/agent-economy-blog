@@ -3,6 +3,7 @@ title: 'AI 推理利润率面临崩塌 GLM-5.2 改写市场规则'
 excerpt: 'GLM-5.2 在性能上逼近 Claude Opus 和 GPT-5.5，但推理价格仅为后者的 15-20%，且 API 兼容接口让迁移几乎零成本。开源模型从"可用"走向"可替代"，AI 推理的暴利时代可能即将结束。'
 date: "2026-07-07"
 tags: ["GLM", "AI-Economics", "Market-Analysis", "Open-Source", "Inference"]
+entities: ["智谱", "Anthropic", "OpenAI"]
 category: "商业 & 经济"
 source: "Martin Alderson"
 ---

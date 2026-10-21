@@ -3,6 +3,7 @@ title: "Codex 入驻 ChatGPT 手机应用，智能体随时随地可用"
 excerpt: "OpenAI 将编程智能体 Codex 带入手机端，配合远程 SSH、程序化访问令牌和 Hooks 等企业级功能，让开发者从任意设备接入持续运行的 AI 工作流。"
 date: "2026-05-15"
 tags: ["Agent", "Coding", "OpenAI", "AI-Agents"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

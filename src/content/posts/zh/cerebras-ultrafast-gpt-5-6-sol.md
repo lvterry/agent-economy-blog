@@ -3,6 +3,7 @@ title: 'OpenAI 携手 Cerebras 推出 Ultrafast 模式 前沿推理提速 11 倍
 excerpt: 'Cerebras 为 OpenAI API 提供 Ultrafast 推理档位，GPT-5.6 Sol 输出速度达每秒 750 token 且无质量妥协，实测完赛 Humanity Last Exam 比 Anthropic 旗舰快约 7 倍。'
 date: "2026-08-14"
 tags: ["OpenAI", "GPT", "AI-Infrastructure", "Hardware"]
+entities: ["OpenAI", "Cerebras", "Anthropic"]
 category: "AI Infra"
 source: "Cerebras"
 ---

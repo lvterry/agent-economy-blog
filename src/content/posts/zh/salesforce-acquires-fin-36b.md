@@ -3,6 +3,7 @@ title: "Salesforce 以 36 亿美元收购 AI 客服平台 Fin"
 excerpt: "企业智能体市场加速整合：Salesforce 以 36 亿美元收购 AI 客服平台 Fin（原 Intercom），旗下 Agentforce 年化收入已达 12 亿美元。"
 date: "2026-06-15"
 tags: ["AI-Agents", "Agent-Economy", "Salesforce", "Acquisition"]
+entities: ["Fin", "Salesforce"]
 category: "AI 智能体"
 source: "Salesforce"
 ---

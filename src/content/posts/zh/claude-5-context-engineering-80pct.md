@@ -3,6 +3,7 @@ title: 'Anthropic 发布 Claude 5 上下文工程新规则：删除 80% 系统�
 excerpt: 'Anthropic 为 Claude Opus 5 和 Fable 5 重构了上下文工程策略，删除了 Claude Code 80% 的系统提示词。核心转变：让模型使用判断力而非硬性规则，用工具设计替代示例，采用渐进式信息揭示。'
 date: "2026-07-26"
 tags: ["Anthropic", "Claude-Code", "AI-Agents", "Agent-Tooling"]
+entities: ["Anthropic"]
 category: "AI 智能体"
 source: "Anthropic"
 ---

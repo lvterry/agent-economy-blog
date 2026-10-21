@@ -3,6 +3,7 @@ title: '谷歌和 Meta 开源 TorchTPU，让 PyTorch 代码改一行就能跑在
 excerpt: 'TorchTPU 是谷歌与 Meta PyTorch 团队合作开发的原生 PyTorch TPU 后端，把 .to("cuda") 改成 .to("tpu") 就能运行，支持 eager 模式和 torch.compile，并已在下载量最高的 5,000 个 Hugging Face 模型上验证开箱即用。'
 date: "2026-10-21"
 tags: ["TPU", "AI-Infrastructure", "Google", "Open-Source"]
+entities: ["谷歌", "Meta"]
 category: "AI Infra"
 source: "PyTorch Blog"
 ---

@@ -3,6 +3,7 @@ title: xAI GPU 租赁生意年化收入超 260 亿美元
 excerpt: xAI 与 Anthropic 和 Google 达成 GPU 租赁协议，月收入超 21 亿美元，展现出 AI 基础设施从自用到租赁的商业化新范式
 date: "2026-06-09"
 tags: ["Data-Center", "GPU", "Infrastructure"]
+entities: ["xAI", "Anthropic", "谷歌"]
 category: "AI Infra"
 source: "Martin Alderson"
 ---

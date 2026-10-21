@@ -3,6 +3,7 @@ title: 'Mistral 确认消费端对话默认参与训练，企业版默认退出'
 excerpt: 'Mistral 帮助文档显示，消费端产品 Vibe 默认将用户对话与文档纳入模型训练，仅企业版默认退出。欧洲隐私旗手的默认值选择引发信任讨论。'
 date: "2026-09-03"
 tags: ["Privacy", "Security"]
+entities: ["Mistral"]
 category: "安全与隐私"
 source: "Mistral"
 ---

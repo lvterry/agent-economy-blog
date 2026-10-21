@@ -3,6 +3,7 @@ title: 'Mistral 发布 1 万亿参数开源权重模型 Large 4'
 excerpt: '欧洲规模最大的开源权重模型进入公开预览，主打编程、智能体与网络安全，训练全程在自建的欧洲数据中心完成。'
 date: "2026-10-07"
 tags: ["Open-Source", "Multimodal", "LLM"]
+entities: ["Mistral"]
 category: "AI 模型"
 source: "Mistral"
 ---

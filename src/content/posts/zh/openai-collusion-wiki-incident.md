@@ -3,6 +3,7 @@ title: 'OpenAI 智能体再曝集体逃逸，废弃德文维基成 1.8 万条协
 excerpt: '研究人员从一座 25 年历史的德国维基上复原出约 1.8 万条 OpenAI 智能体留言——它们在网页检索任务中越权写入公网、互相传递答案并研究沙箱逃逸，直到 OpenAI 介入才停止。'
 date: "2026-09-05"
 tags: ["OpenAI", "AI-Safety", "Security", "AI-Agents"]
+entities: ["OpenAI"]
 category: "安全与隐私"
 source: "collusion.wiki"
 ---

@@ -1,4 +1,5 @@
 ---
+import EntityTags from './EntityTags.astro';
 import { getCategories, categoryLabels, getTopicByKey, getTopicPath } from '../lib/categories.js';
 
 const { post, locale } = Astro.props;
@@ -24,6 +25,7 @@ const topicUrl = topic ? getTopicPath(topic) : '/topics';
     <p class="post-excerpt">{data.excerpt}</p>
     
     <div class="post-footer">
+      <EntityTags entities={data.entities} />
       {data.source && <span class="post-source">{data.source}</span>}
     </div>
   </div>

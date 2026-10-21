@@ -3,6 +3,7 @@ title: 'Cursor 用量页移除美元金额显示 引发定价透明度争议'
 excerpt: 'Cursor 将个人套餐用量页的美元计费改为 token 数量显示，用户无法直观看到花费，引发社区对 AI 编程工具定价透明度的激烈讨论。官方回应称按需用量仍显示美元金额。'
 date: "2026-08-02"
 tags: ["Cursor", "AI-Coding", "Business"]
+entities: ["Cursor"]
 category: "商业 & 经济"
 source: "Cursor Forum"
 ---

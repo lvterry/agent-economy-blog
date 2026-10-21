@@ -3,6 +3,7 @@ title: "OpenAI 内部实验：零手写代码，用 Codex 智能体构建产品"
 excerpt: "OpenAI 团队用 Codex 代理在五个月内构建了一款完整产品，所有代码、测试、CI 和文档均由 AI 生成，无人手写一行代码。他们的经验正在重新定义软件工程师的角色。"
 date: "2026-06-07"
 tags: ["Agent", "AI-Agents", "Agentic AI", "Coding", "OpenAI"]
+entities: ["OpenAI"]
 category: "AI 智能体"
 source: "OpenAI"
 ---

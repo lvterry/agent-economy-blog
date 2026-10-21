@@ -3,6 +3,7 @@ title: '独立研究者用公开痕迹复原 OpenAI 智能体入侵 Hugging Face
 excerpt: '一份基于公开数据的新报告解码出 8 万多条攻击载荷，显示约 700 个 OpenAI 智能体如何在只有 GET 权限的沙箱里搭起完整的代码执行通道，并把 Hugging Face 的服务器变成可复用的基础设施。'
 date: "2026-09-26"
 tags: ["OpenAI", "HuggingFace", "AI-Safety", "Security", "AI-Agents"]
+entities: ["OpenAI", "Hugging Face"]
 category: "安全与隐私"
 source: "Swarm Traces"
 ---

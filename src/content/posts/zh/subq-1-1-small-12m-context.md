@@ -3,6 +3,7 @@ title: "SubQ 发布 1.1 Small，支持 1200 万 token 上下文的亚二次注�
 excerpt: "SubQ 发布 Subquadratic Sparse Attention（SSA）模型 1.1 Small，在 1200 万 token 上下文长度上实现近乎完美的检索能力，计算量仅为传统密集注意力的 1/64。"
 date: "2026-06-16"
 tags: ["AI-Model", "Infrastructure", "SubQ", "Long-Context"]
+entities: ["SubQ"]
 category: "AI 模型"
 source: "SubQ"
 ---

@@ -3,6 +3,7 @@ title: 'MCP 推出企业托管授权，零配置连接 AI 智能体'
 excerpt: 'Model Context Protocol 正式发布企业托管授权扩展，允许企业通过身份提供商集中管控 MCP 服务器访问权限，员工首次登录即可自动连接所有已授权的智能体工具。'
 date: '2026-06-19'
 tags: ['MCP', 'Enterprise', 'Authorization', 'Security']
+entities: ["Anthropic"]
 category: 'AI Infra'
 source: 'Model Context Protocol Blog'
 ---

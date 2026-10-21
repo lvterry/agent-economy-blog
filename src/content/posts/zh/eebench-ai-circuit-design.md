@@ -3,6 +3,7 @@ title: 'EEBench 给 AI 设计电路板打分，Claude Opus 5 暂居第一'
 excerpt: 'GPT-6 Astra 演示画电路板后，其背后团队 atopile 推出 EEBench 基准：用真实元器件与 SPICE 仿真客观评测 AI 电路设计，Claude Opus 5 以 61.6% 领跑，GPT 系模型明显落后。'
 date: "2026-09-06"
 tags: ["AI-Design", "Hardware", "AI-Agents"]
+entities: ["Anthropic", "OpenAI", "xAI"]
 category: "AI 应用"
 source: "EEBench"
 ---

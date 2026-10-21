@@ -3,6 +3,7 @@ title: 'Cloudflare 联手 Stripe 推出 Projects 协议 让 Agent 自主完成�
 excerpt: 'Cloudflare 与 Stripe 联合推出新协议，让 AI Agent 能在无人值守的情况下完成注册 Cloudflare 账号、创建付费订阅、购买域名并获取 API Token 部署应用的全流程。'
 date: "2026-04-30"
 tags: ["AI-Agents", "Agent-Economy"]
+entities: ["Cloudflare", "Stripe"]
 category: "AI 智能体"
 source: "Cloudflare"
 ---

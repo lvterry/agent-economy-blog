@@ -3,6 +3,7 @@ title: 'Spotify 推出已验证标识区分真人歌手与AI生成音乐'
 excerpt: 'Spotify 开始为真人艺术家添加绿色验证标志，以应对平台上AI生成音乐的泛滥。但倡议者指出，这未必能解决根本问题。'
 date: "2026-05-01"
 tags: ["Spotify", "AI-Music", "Verification"]
+entities: ["Spotify"]
 category: "行业动态"
 source: "BBC"
 ---

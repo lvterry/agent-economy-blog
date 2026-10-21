@@ -3,6 +3,7 @@ title: 'OpenAI 自研芯片 Jalapeño 经独立实测能效超越 Blackwell'
 excerpt: 'SemiAnalysis 受邀进入 OpenAI 实验室实测 Jalapeño，称其在能效比上击败所有已测英伟达、AMD 与 Google 芯片，通用推理芯片路线获得验证。'
 date: "2026-08-26"
 tags: ["OpenAI", "Hardware", "AI-Infrastructure", "Broadcom", "GPU"]
+entities: ["OpenAI", "英伟达"]
 category: "AI Infra"
 source: "SemiAnalysis"
 ---

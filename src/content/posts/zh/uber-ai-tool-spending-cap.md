@@ -3,6 +3,7 @@ title: "Uber限制AI编程工具月消费上限，企业级AI定价信号浮现"
 excerpt: "Uber将每位员工的AI编程工具月消费上限设为1500美元，相当于工程师薪酬的11%。这一数据点首次为企业级AI工具的单位经济学提供了可量化的参考坐标。"
 date: "2026-06-04"
 tags: ["AI 定价", "AI 智能体", "商业"]
+entities: ["Uber"]
 category: "商业 & 经济"
 source: "Simon Willison / Bloomberg"
 ---

@@ -3,6 +3,7 @@ title: 'Anthropic 红队报告指出 GLM-5.3 的防护可被简单手法绕过'
 excerpt: 'Anthropic 前沿红队评估认为，开放权重模型 GLM-5.3 已具备接近受限前沿模型的端到端漏洞利用能力，而其防护可以用掩护说辞、预填思维链或去拒绝版本绕过，成功率最高达 100%。'
 date: "2026-09-30"
 tags: ["GLM", "Security", "AI-Safety", "Open-Source"]
+entities: ["Anthropic", "智谱"]
 category: "安全与隐私"
 source: "Anthropic"
 ---

@@ -3,6 +3,7 @@ title: 'OpenAI 发布 Astra for Law 把 GPT-6 配置成法律专用底座'
 excerpt: '基于 GPT-6 Astra 的法律垂直版本上线，自带超过 2.3 亿条 URL 的法律检索索引与 26 个合作方插件；Harvey、Legora 等应用层公司以 API 客户身份接入，平台与垂直应用的边界被重新划线。'
 date: "2026-09-18"
 tags: ["OpenAI", "Business", "AI-Agents"]
+entities: ["OpenAI"]
 category: "商业 & 经济"
 source: "OpenAI"
 ---

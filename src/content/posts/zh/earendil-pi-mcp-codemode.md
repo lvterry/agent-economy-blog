@@ -3,6 +3,7 @@ title: 'Earendil 推翻不用 MCP 的立场 把 MCP 并入 Pi 核心'
 excerpt: '曾公开声明 Pi 不支持 MCP 的 Earendil 宣布把 MCP 写进核心，理由不是妥协，而是 MCP 本身变了，再配合 Codemode 沙箱，正好补上工具编排与上下文浪费这两个老问题。'
 date: "2026-10-01"
 tags: ["MCP", "Agent-Tooling", "AI-Agents"]
+entities: ["Earendil"]
 category: "AI 智能体"
 source: "Earendil"
 ---

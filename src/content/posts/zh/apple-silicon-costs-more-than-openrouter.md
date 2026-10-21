@@ -3,6 +3,7 @@ title: "Apple Silicon 本地推理成本高于云端 API 三倍"
 excerpt: "数据分析显示，在 Apple M5 Max 上运行本地 LLM 推理，每百万 token 成本约为云端推理的 3 倍，速度慢 3-7 倍——对开发者而言，租比买更划算。"
 date: "2026-05-18"
 tags: ["AI-Infrastructure", "Infrastructure", "Hardware"]
+entities: ["苹果"]
 category: "AI Infra"
 source: "William Angel"
 ---

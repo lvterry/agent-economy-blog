@@ -3,6 +3,7 @@ title: "Google 发布 Googlebook AI 原生笔记本电脑"
 excerpt: "Google 正式发布专为 Gemini 智能设计的笔记本电脑系列 Googlebook，配备 AI 指针、AI 控件生成等原生智能功能，将于 2026 年秋季上市。"
 date: "2026-05-13"
 tags: ["Google", "Hardware", "Gemini"]
+entities: ["谷歌"]
 category: "行业动态"
 source: "Google"
 ---

@@ -3,6 +3,7 @@ title: '英伟达推进 CUDA 支持 RISC-V 服务器芯片'
 excerpt: '英伟达在 Hot Chips 2026 公布将 CUDA 支持扩展到 RISC-V 服务器 CPU，并提出严格的平台要求；RISC-V 得到的是生态兼容，而非摆脱英伟达的钥匙。'
 date: "2026-08-25"
 tags: ["AI-Infrastructure", "Hardware", "GPU", "RISC-V", "CUDA"]
+entities: ["英伟达"]
 category: "AI Infra"
 source: "Chips and Cheese"
 ---

@@ -3,6 +3,7 @@ title: 'Cursor 推出 Origin 代码托管 直接对标 GitHub'
 excerpt: 'Cursor 开始提供代码托管服务 Origin，覆盖仓库、拉取请求与 GitHub 双向同步，并主打"智能体原生"的协作体验，正式向 GitHub 发起正面竞争。'
 date: "2026-08-19"
 tags: ["Cursor", "AI-Coding", "Business"]
+entities: ["GitHub", "Cursor"]
 category: "商业 & 经济"
 source: "Cursor"
 ---

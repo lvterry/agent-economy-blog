@@ -3,6 +3,7 @@ title: "OpenRouter 获 1.13 亿美元 B 轮融资"
 excerpt: "OpenRouter 完成 1.13 亿美元 B 轮融资，CapitalG、NVIDIA、ServiceNow 等战略投资者集体入场，AI 推理路由层正在成为多模型时代的基础设施关键组件。"
 date: "2026-05-30"
 tags: ["AI-Infrastructure", "Market-Analysis", "LLM", "Business"]
+entities: ["OpenRouter", "英伟达"]
 category: "AI Infra"
 source: "OpenRouter"
 ---

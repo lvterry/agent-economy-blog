@@ -3,6 +3,7 @@ title: "SpaceX 以 600 亿收购 AI 编程智能体公司 Cursor"
 excerpt: "SpaceX 在纳斯达克上市仅数日后，宣布以 600 亿美元收购 AI 编程智能体公司 Anysphere（Cursor），将 Cursor 的产品与自家 Colossus 超级计算机结合，标志着 AI 编程智能体的商业价值达到新高度。"
 date: "2026-06-16"
 tags: ["AI-Agents", "Business", "SpaceX", "Cursor", "IPO"]
+entities: ["Cursor", "SpaceX"]
 category: "商业 & 经济"
 source: "BBC"
 ---

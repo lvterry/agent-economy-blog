@@ -3,6 +3,7 @@ title: Modal 将推理冷启动时间压缩 40 倍，挑战无服务器 GPU 极�
 excerpt: Modal 发布技术方案，结合云缓冲、自定义文件系统、进程检查点和 CUDA 检查点技术，将 AI 推理服务冷启动从数十分钟降至数十秒。
 date: "2026-05-19"
 tags: ["AI-Infrastructure", "GPU", "Inference", "Serverless", "Infrastructure"]
+entities: ["Modal"]
 category: "AI Infra"
 source: "Modal"
 ---

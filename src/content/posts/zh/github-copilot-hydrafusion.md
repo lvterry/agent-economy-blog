@@ -3,6 +3,7 @@ title: 'GitHub Copilot 推出 HydraFusion，多模型运行时编排逼近前沿
 excerpt: 'GitHub 在 Copilot CLI 中以研究预览形式推出 HydraFusion，在单模型、级联与独立评审三种模式间做运行时路由，比固定使用 Opus 5 质量更高且成本大幅下降。'
 date: "2026-09-05"
 tags: ["GitHub", "AI-Coding", "Agent-Tooling", "AI-Agents"]
+entities: ["GitHub"]
 category: "AI 智能体"
 source: "GitHub"
 ---

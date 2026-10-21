@@ -3,6 +3,7 @@ title: "Reasonix 为 DeepSeek 打造缓存优先的编程智能体"
 excerpt: "一款围绕 DeepSeek 前缀缓存机制设计的开源终端智能体，在长会话中实现了 94% 的缓存命中率，将输入令牌成本降至常规用量的约五分之一。"
 date: "2026-05-25"
 tags: ["Agent", "AI-Agents", "MCP"]
+entities: ["DeepSeek"]
 category: "AI 智能体"
 source: "Reasonix"
 ---

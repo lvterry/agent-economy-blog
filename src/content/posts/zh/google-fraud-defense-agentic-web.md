@@ -3,6 +3,7 @@ title: "Google 发布 Fraud Defense，为智能体网络构建信任平台"
 excerpt: "Google Cloud 推出 Fraud Defense，作为 reCAPTCHA 的下一代演进，为 AI 智能体时代的网站提供身份验证、流量分类和策略控制能力，包括 AI 抵抗验证挑战。"
 date: "2026-05-07"
 tags: ["Security", "AI-Safety", "AI-Standards"]
+entities: ["谷歌"]
 category: "安全与隐私"
 source: "Google"
 ---

@@ -3,6 +3,7 @@ title: 'Mercor 把 AI 基准映射到美国职业版图后发现九成工作几�
 excerpt: 'Mercor 把 29 个精选 AI 基准映射到 O*NET 的 923 个职业上，发现美国约 90% 的工作时间花在基准几乎没有覆盖的任务上。'
 date: "2026-10-17"
 tags: ["Future-of-Work", "Economy", "AI-Agents"]
+entities: ["Mercor"]
 category: "商业 & 经济"
 source: "Mercor"
 ---

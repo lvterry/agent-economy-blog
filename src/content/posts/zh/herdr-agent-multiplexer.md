@@ -3,6 +3,7 @@ title: Herdr：终端里的智能体多路复用器
 excerpt: Herdr 是一款运行在终端中的智能体多路复用器，支持多工作区、标签页和分屏，让开发者在真实终端中同时运行和管理多个 AI 编程智能体。
 date: "2026-06-29"
 tags: ["Agent-Tooling", "AI-Agents"]
+entities: ["Herdr"]
 category: "AI 智能体"
 source: "HackerNews"
 ---

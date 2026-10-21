@@ -3,6 +3,7 @@ title: "最新爆料：亚马逊CEO向美国政府举报Anthropic模型安全隐
 excerpt: "WSJ独家披露，亚马逊CEO Andy Jassy在与美国财长Bessent的对话中展示了其研究人员成功诱导Anthropic Fable 5模型输出网络攻击相关信息，直接触发了美国政府封禁Anthropic最先进模型境外使用的决定。"
 date: "2026-06-14"
 tags: ["Anthropic", "AI-Safety", "Security", "Regulation"]
+entities: ["Anthropic", "亚马逊"]
 category: "安全与隐私"
 source: "WSJ"
 ---
