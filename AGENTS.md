@@ -83,8 +83,9 @@ Use the canonical name from [src/lib/entities.ts](src/lib/entities.ts): the Chin
 
 Posts should read like Terry's WeChat essays (canonical example: [《AI 正在重新发明广告机器》](https://mp.weixin.qq.com/s/3Ay03IqUZqThVX4acB7m_A)), **not** like a dense news digest that stacks facts and links. Apply this when drafting or publishing any new post; do **not** rewrite existing posts to match.
 
+- **Precise, plain, concise wording.** This is the core requirement. Prefer short, direct sentences; cut filler and hedging that sounds like AI prose ("值得注意的是", "这意味着", stacked abstractions). Say what happened and why it matters in as few words as needed.
 - **Scene opening.** Start from a concrete situation or question the reader can picture — a search query, a product moment, a constraint someone hit — not a press-release lead ("X announced Y today").
-- **Dual-track thesis.** When the story has a natural pair (two companies, two approaches, two halves of one change), set both tracks early and keep returning to how they relate, rather than dumping a single chronology.
+- **Dual-track thesis (optional).** Only when the topic naturally has a pair (two companies, two approaches, two halves of one change). Then set both tracks early and keep returning to how they relate. Do **not** force a dual-track structure onto a single-thread story.
 - **Short unnumbered section titles.** Break the body with brief `##` headings in Chinese. No `1. 2. 3.`, no long abstract titles. Headings name a shift in the argument, not a news beat.
 - **Numbers with caveats.** Cite figures with what they do and don't prove (time window, what else moved, what the source claimed vs. what you inferred). Prefer one well-qualified number over a bare stats dump.
 - **Fewer stacked citation links.** Don't pile inline links to every announcement, HN thread, and docs page. One primary source is enough in the body when needed; the post **must** still end with a single `[阅读原文](url)` pointing at the original.
