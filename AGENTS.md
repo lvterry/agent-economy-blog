@@ -79,6 +79,19 @@ Zod strips unknown frontmatter keys silently, so a typo or stale field won't fai
 
 Use the canonical name from [src/lib/entities.ts](src/lib/entities.ts): the Chinese common name where Chinese media has a standard one (英伟达, 谷歌, 微软, 苹果, 亚马逊, 华为, 阿里巴巴, 腾讯, 字节跳动, 甲骨文…), otherwise the brand's own name and casing (OpenAI, Anthropic, DeepSeek, Meta, xAI). Products fold into their maker (Claude → Anthropic, Gemini → 谷歌, Qwen → 阿里巴巴, AWS → 亚马逊). `normalizeEntities` maps known aliases at render time, but write canonical names in frontmatter; add an alias to `entityAliases` when a new company has common variants. Omit the field when no company is central.
 
+### Writing style
+
+Posts should read like Terry's WeChat essays (canonical example: [《AI 正在重新发明广告机器》](https://mp.weixin.qq.com/s/3Ay03IqUZqThVX4acB7m_A)), **not** like a dense news digest that stacks facts and links. Apply this when drafting or publishing any new post; do **not** rewrite existing posts to match.
+
+- **Scene opening.** Start from a concrete situation or question the reader can picture — a search query, a product moment, a constraint someone hit — not a press-release lead ("X announced Y today").
+- **Dual-track thesis.** When the story has a natural pair (two companies, two approaches, two halves of one change), set both tracks early and keep returning to how they relate, rather than dumping a single chronology.
+- **Short unnumbered section titles.** Break the body with brief `##` headings in Chinese. No `1. 2. 3.`, no long abstract titles. Headings name a shift in the argument, not a news beat.
+- **Numbers with caveats.** Cite figures with what they do and don't prove (time window, what else moved, what the source claimed vs. what you inferred). Prefer one well-qualified number over a bare stats dump.
+- **Fewer stacked citation links.** Don't pile inline links to every announcement, HN thread, and docs page. One primary source is enough in the body when needed; the post **must** still end with a single `[阅读原文](url)` pointing at the original.
+- **Quiet one-sentence ending.** Close with one understated sentence that lands the change — not a slogan, not a "这意味着…" wrap-up paragraph, not a call to action.
+
+Title and excerpt stay one fluent Chinese sentence each (no colon-spliced "Topic: detail" titles). `entities`, tags, and category rules above are unchanged.
+
 ### Topics
 
 Topics are derived from `tags` via [src/lib/categories.ts](src/lib/categories.ts):
