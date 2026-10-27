@@ -1,5 +1,5 @@
 ---
-title: '训练数据干净了吗：从 Bartz 和解到 Cruz 案'
+title: 'Anthropic 盗版书训练，和解之外还有 Cruz 案'
 excerpt: '斯坦福教授作品卷入 Anthropic 训练语料争议：Bartz 案划开合理使用与盗版建库，约 15 亿美元和解后，部分作者退出另诉 Cruz，要更高赔偿和永久禁令。'
 date: "2026-10-28"
 tags: ["Anthropic", "Business", "Tech-Industry"]

@@ -1,5 +1,5 @@
 ---
-title: 'Genie 4：给机器一个可以练手的世界'
+title: 'Genie 4 给机器一个可以练手的世界'
 excerpt: 'DeepMind 发布世界模型 Genie 4：原生多模态、可实时改场景，先给可信测试者当研究预览；想把机器人与 agent 的试错，提前搬进可重置的仿真里。'
 date: "2026-10-28"
 tags: ["Google", "AI-Models", "AI-Agents", "Robotics"]

@@ -1,5 +1,5 @@
 ---
-title: 'Claude 进了药厂流水线，还停在临床前'
+title: 'Claude 走进药厂流水线，还停在临床前'
 excerpt: 'Anthropic 与六家机构把 Claude 塞进找靶、设计、生产和监管文书等环节，早期实验室数字很亮眼；公司自己也说，大多还停在临床前。'
 date: "2026-10-28"
 tags: ["Anthropic", "AI-Agents", "Tech-Industry"]
