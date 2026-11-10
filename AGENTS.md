@@ -4,7 +4,7 @@ Guidance for AI coding agents working in this repo. Keep this file in sync with 
 
 ## What this is
 
-A Chinese-language ([zh-CN](src/layouts/Layout.astro)) static blog about AI agents and the agent economy, built with **Astro 4** + MDX, deployed to Vercel. Content is authored as Markdown in [src/content/posts/zh/](src/content/posts/zh/) and rendered through Astro Content Collections.
+A Chinese-language ([zh-CN](src/layouts/Layout.astro)) static blog about AI agents and the agent economy, built with **Astro 7** and deployed to Vercel. Content is authored as Markdown in [src/content/posts/zh/](src/content/posts/zh/) and rendered through Astro Content Collections, loaded with the `glob` loader in [src/content.config.ts](src/content.config.ts). The `@astrojs/mdx` integration is installed but no `.mdx` content exists — the collection globs only `**/*.md`.
 
 The site was previously bilingual (zh/en). The English locale was removed; do not reintroduce `/en/` routes, `en/` content folders, or per-locale label maps unless the user explicitly asks. Existing `locale` props that are always `"zh"` are legacy seams left for incremental cleanup — don't add new ones.
 
@@ -25,39 +25,44 @@ There is no separate typecheck script; `astro build` is sufficient. `@astrojs/ch
 ## Layout
 
 ```
+astro.config.mjs           # site URL, mdx + sitemap integrations
+vercel.json                # build/output config
+playwright.config.js       # e2e config (starts `npm run dev` on :4321)
 src/
+  content.config.ts        # Zod schemas for the posts / about collections
   content/
-    config.ts              # Zod schemas for posts / about / observations
-    posts/zh/*.md          # blog posts (slug = filename)
-    observations/zh/*.md   # short-form notes (filename = YYYY-MM-DD-slug.md)
+    posts/zh/*.md          # blog posts (slug/id = filename)
     about/zh.md            # single about page
   pages/                   # Astro routes — all zh, no locale prefix
     index.astro            # → HomePage component
     blog/[slug].astro      # → PostPage component
-    blog/index.astro       # archive listing
+    blog/index.astro       # same HomePage feed, at /blog
     topics/[slug].astro    # → TopicPage component
     topics/[slug]/rss.xml.js
     topics/index.astro     # → TopicIndexPage (bubble chart)
-    archive.astro, about.astro, observations.astro, companies.astro
+    archive.astro, about.astro, companies.astro
+    posts.json.js          # client-side feed data — see "Home feed"
     rss.xml.js, 404.astro
   components/
     pages/*.astro          # page-level components (one per route family)
     BlogPost.astro         # post card
-    Observation.astro      # observation card
-    SearchPopup.astro      # pagefind-backed search
+    EntityTags.astro       # entity pills
+    SearchPopup.astro      # in-memory search over the posts collection
   layouts/Layout.astro     # site shell — header, nav, footer, SEO meta, theme
   lib/categories.ts        # topic taxonomy: tag → category mapping, bubble layout
+  lib/entities.ts          # canonical entity names + aliases
   data/companies.ts        # static data for /companies
   i18n/
     ui.ts                  # translation strings (zh only)
     utils.ts               # useTranslations(lang)
   utils/postCommitDates.js # git-log lookup for "first committed" dates
+tests/*.spec.js            # Playwright e2e (search, topics, UI)
 public/                    # static assets, llms.txt, content-api.md
 ```
 
 ## Content authoring
 
-### Post frontmatter ([src/content/config.ts](src/content/config.ts))
+### Post frontmatter ([src/content.config.ts](src/content.config.ts))
 
 ```yaml
 ---
@@ -72,6 +77,8 @@ source: "..."          # required — original publication name
 ```
 
 Zod strips unknown frontmatter keys silently, so a typo or stale field won't fail the build. Verify schema changes by running `npm run build` and checking that the field actually appears where you expect.
+
+The `about` collection uses the same loader/schema shape with `title`, `date`, `source`, and optional `tags` — no `excerpt`, no `entities`.
 
 ### Entities
 
@@ -106,10 +113,6 @@ The homepage sidebar and [src/pages/posts.json.js](src/pages/posts.json.js) both
 
 When adding a post with a new tag, decide whether the tag belongs to an existing topic in `categoryMap`. If it does, add it there. Don't create a new top-level topic without asking — it ripples through the bubble chart, RSS, and filter pills.
 
-### Observations
-
-Short-form notes in [src/content/observations/zh/](src/content/observations/zh/). Filename **must** start with the date: `YYYY-MM-DD-slug.md`. Frontmatter is `title`, `date`, optional `tags` — no excerpt, no source.
-
 ## Conventions
 
 - **Language:** all user-facing strings are zh-CN. Don't add English copy to components — even as a fallback. Translation strings live in [src/i18n/ui.ts](src/i18n/ui.ts).
@@ -118,16 +121,16 @@ Short-form notes in [src/content/observations/zh/](src/content/observations/zh/)
 - **Dark mode:** toggled via `data-theme` attribute on `<html>`, persisted to `localStorage`. Variables are redefined under `[data-theme="dark"]` in Layout.
 - **Client JS:** plain `<script>` tags in Astro files. No bundler-level client framework. Keep it minimal and inline.
 - **Search:** Pagefind indexes `dist/` post-build. The search UI ([SearchPopup.astro](src/components/SearchPopup.astro)) builds its own in-memory index from `getCollection('posts')` — it does not currently use pagefind's runtime. Don't conflate the two without checking.
-- **Dates:** `data.date` is a string and is sorted lexically — keep the `YYYY-MM-DD` format strict. `postCommitDates.js` derives a separate "first published" date from `git log` for posts.
+- **Dates:** `data.date` is a string and is sorted lexically — keep the `YYYY-MM-DD` format strict. `postCommitDates.js` (`getPubDate`) derives a separate "first published" date from `git log`, used by the site and per-topic RSS feeds.
 
 ## When making changes
 
-- **Schema changes** ([src/content/config.ts](src/content/config.ts)): run `npm run build` to catch frontmatter that doesn't match. Don't add a schema field unless a template actually reads it — orphaned fields rot.
+- **Schema changes** ([src/content.config.ts](src/content.config.ts)): run `npm run build` to catch frontmatter that doesn't match. Don't add a schema field unless a template actually reads it — orphaned fields rot.
 - **Adding routes:** put the page component in `src/components/pages/` and the route wrapper in `src/pages/`. The wrappers stay thin (just `<Layout><FooPage /></Layout>`).
 - **Topic taxonomy changes:** update `categoryMap` AND the `topics[]` array in [src/lib/categories.ts](src/lib/categories.ts). Both feed different parts of the UI.
 - **SEO / meta:** centralized in [src/layouts/Layout.astro](src/layouts/Layout.astro). Per-page `<title>`, `<description>`, OG image come through `Layout` props.
-- **Home feed:** [HomePage.astro](src/components/pages/HomePage.astro) (used by both `/` and `/blog`) renders 30 posts server-side and pages/filters the rest client-side from `/posts.json`, with the active category in `?category=`. Its category sidebar only exists at `min-width: 1240px` — that literal is the `--wide-width` token, and the grid width there is derived so the feed column stays flush with the 820px header.
-- **Don't commit:** `.DS_Store`, `dist/`, `node_modules/`, `tmp/`, anything under `.astro/`. The `.gitignore` is authoritative; if you see one of these in `git status`, fix the ignore rather than committing.
+- **Home feed:** [HomePage.astro](src/components/pages/HomePage.astro) (used by both `/` and `/blog`) renders the first `PAGE_SIZE` (30) posts server-side and pages/filters the rest client-side from `/posts.json`, with the active category in `?category=`. Its category sidebar only exists at `min-width: 1240px` — that literal is the `--wide-width` token, and the grid width there is derived so the feed column stays flush with the 820px (`--max-width`) header.
+- **Don't commit:** `.DS_Store`, `dist/`, `node_modules/`, `tmp/`, `.claude/`, `test-results/`, `playwright-report/`, anything under `.astro/`. The `.gitignore` is authoritative; if you see one of these in `git status`, fix the ignore rather than committing.
 
 ## Out of scope / do not touch unprompted
 
