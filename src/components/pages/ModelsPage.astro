@@ -14,6 +14,18 @@ const AXIS_H = 40;
 const PITCH = 30;
 const DOT_R = 5.5;
 
+// Quarter-circle opening centered on 12 o'clock. The arc runs clockwise
+// the long way, so the gap stays off the horizontal rule.
+function topGapPath(cx: number, cy: number, r: number) {
+  const start = -Math.PI / 4;
+  const end = (-3 * Math.PI) / 4;
+  const x0 = cx + r * Math.cos(start);
+  const y0 = cy + r * Math.sin(start);
+  const x1 = cx + r * Math.cos(end);
+  const y1 = cy + r * Math.sin(end);
+  return `M ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 1 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+}
+
 function monthIndex(ym: string) {
   const [year, month] = ym.split('-').map(Number);
   return (year - START_YEAR) * 12 + (month - START_MONTH);
@@ -63,6 +75,7 @@ const rows = labOrder.map((lab, row) => {
         hitY: PAD_TOP + row * ROW_H,
         tabIndex,
         label: `${lab}，${year}年${monthNumber}月，${models}`,
+        limited: models.includes('有限访问'),
       };
     })
     .sort((a, b) => a.col - b.col);
@@ -154,7 +167,7 @@ const years = [2024, 2025, 2026].map((year) => {
             <line class="rule" x1={PAD_L} x2={PAD_L + plotW} y1={row.y} y2={row.y} />
             {row.dots.map((dot) => (
               <g
-                class="release"
+                class:list={['release', { 'is-limited': dot.limited }]}
                 tabindex={dot.tabIndex}
                 role="button"
                 aria-label={dot.label}
@@ -174,6 +187,7 @@ const years = [2024, 2025, 2026].map((year) => {
                 />
                 <circle class="ring" cx={dot.cx} cy={dot.cy} r={DOT_R + 4} />
                 <circle class="mark" cx={dot.cx} cy={dot.cy} r={DOT_R} />
+                {dot.limited && <path class="gap-arc" d={topGapPath(dot.cx, dot.cy, DOT_R)} />}
               </g>
             ))}
           </g>
@@ -201,7 +215,7 @@ const years = [2024, 2025, 2026].map((year) => {
     </div>
   </div>
 
-  <p class="caveat">数据截至 2026 年 11 月 10 日。按首次公开发布归到月份，包含部分预览和有限访问。图像、语音、视频专用模型以及 API 快照没有收录。</p>
+  <p class="caveat">数据截至 2026 年 11 月 11 日。按首次公开发布归到月份，包含部分预览和有限访问，有限访问的圆点上方留一缺口。图像、语音、视频专用模型以及 API 快照没有收录。</p>
 </section>
 
 <style>
@@ -356,6 +370,20 @@ const years = [2024, 2025, 2026].map((year) => {
   }
 
   .release.is-on .mark {
+    stroke-width: 2;
+  }
+
+  .release.is-limited .mark {
+    stroke: none;
+  }
+
+  .gap-arc {
+    fill: none;
+    stroke: var(--ink, var(--color-text));
+    stroke-width: 1.5;
+  }
+
+  .release.is-limited.is-on .gap-arc {
     stroke-width: 2;
   }
 
