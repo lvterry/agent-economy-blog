@@ -1,0 +1,732 @@
+---
+import { labOrder, modelReleases } from '../../data/model-releases';
+
+const START_YEAR = 2024;
+const START_MONTH = 1;
+const END_YEAR = 2026;
+const END_MONTH = 11;
+
+const PAD_L = 2;
+const PAD_R = 14;
+const PAD_TOP = 48;
+const ROW_H = 58;
+const AXIS_H = 40;
+const PITCH = 30;
+const DOT_R = 5.5;
+
+function monthIndex(ym: string) {
+  const [year, month] = ym.split('-').map(Number);
+  return (year - START_YEAR) * 12 + (month - START_MONTH);
+}
+
+const monthCount = monthIndex(`${END_YEAR}-${String(END_MONTH).padStart(2, '0')}`) + 1;
+const plotW = monthCount * PITCH;
+const width = PAD_L + plotW + PAD_R;
+const height = PAD_TOP + labOrder.length * ROW_H + AXIS_H;
+
+function xAt(index: number) {
+  return PAD_L + index * PITCH;
+}
+
+const releasesByLab = new Map<string, Map<string, string>>(
+  labOrder.map((lab) => [lab, new Map()]),
+);
+
+for (const release of modelReleases) {
+  const months = releasesByLab.get(release.lab);
+  if (!months) throw new Error(`Unknown lab: ${release.lab}`);
+  const existing = months.get(release.month);
+  months.set(release.month, existing ? `${existing}；${release.models}` : release.models);
+}
+
+let firstDot = true;
+
+const rows = labOrder.map((lab, row) => {
+  const y = PAD_TOP + row * ROW_H + ROW_H / 2;
+  const dots = [...releasesByLab.get(lab)!.entries()]
+    .map(([month, models]) => {
+      const col = monthIndex(month);
+      if (col < 0 || col >= monthCount) {
+        throw new Error(`Month out of range: ${lab} ${month}`);
+      }
+      const [year, monthNumber] = month.split('-').map(Number);
+      const tabIndex = firstDot ? 0 : -1;
+      firstDot = false;
+      return {
+        month,
+        models,
+        col,
+        row,
+        cx: xAt(col) + PITCH / 2,
+        cy: y,
+        hitX: xAt(col),
+        hitY: PAD_TOP + row * ROW_H,
+        tabIndex,
+        label: `${lab}，${year}年${monthNumber}月，${models}`,
+      };
+    })
+    .sort((a, b) => a.col - b.col);
+
+  return { lab, y, dots };
+});
+
+const firstLineY = rows[0].y;
+const lastLineY = rows[rows.length - 1].y;
+
+// Hairline ink for each lab. OpenAI and xAI publish black-and-white marks, so they follow the text color.
+const brandInk: Record<string, string> = {
+  OpenAI: 'var(--color-text)',
+  Anthropic: 'oklch(0.672 0.131 38.8)',
+  Google: 'oklch(0.63 0.18 260)',
+  xAI: 'var(--color-text)',
+  Meta: 'oklch(0.616 0.204 255.1)',
+  GLM: 'oklch(0.552 0.247 267.9)',
+  Kimi: 'oklch(0.607 0.215 257)',
+  DeepSeek: 'oklch(0.592 0.22 269.6)',
+};
+
+const years = [2024, 2025, 2026].map((year) => {
+  const start = Math.max(0, monthIndex(`${year}-01`));
+  const end = Math.min(monthCount, monthIndex(`${year + 1}-01`));
+  return {
+    year,
+    x: (xAt(start) + xAt(end)) / 2,
+    boundary: year === START_YEAR ? null : xAt(start),
+  };
+});
+---
+
+<section class="models-page">
+  <header class="models-head">
+    <h2 id="models-heading">模型发布时间线</h2>
+  </header>
+
+  <div
+    class="chart"
+    data-models-chart
+    style={`--pad-top:${PAD_TOP}px;--row:${ROW_H}px;--axis:${AXIS_H}px`}
+  >
+    <div class="lab-names" aria-hidden="true">
+      {rows.map((row) => (
+        <div class="lab-name">{row.lab}</div>
+      ))}
+      <div class="lab-axis"></div>
+    </div>
+
+    <div class="plot-scroll">
+      <svg
+        class="plot"
+        viewBox={`0 0 ${width} ${height}`}
+        width={width}
+        height={height}
+        role="group"
+        aria-labelledby="models-heading"
+        data-pad-l={PAD_L}
+        data-pitch={PITCH}
+        data-months={monthCount}
+        data-bar-top={26}
+        data-bar-bottom={lastLineY + 14}
+      >
+        <rect
+          class="plot-hit"
+          x={PAD_L}
+          y="0"
+          width={plotW}
+          height={lastLineY + 18}
+          fill="transparent"
+        />
+        <g class="month-mark" data-month-mark aria-hidden="true">
+          <rect class="month-bar" data-month-bar />
+          <text class="month-label" data-month-label></text>
+        </g>
+        {years.map((year) => year.boundary != null && (
+          <line
+            class="guide"
+            x1={year.boundary}
+            x2={year.boundary}
+            y1={firstLineY}
+            y2={lastLineY}
+          />
+        ))}
+
+        {rows.map((row) => (
+          <g class="lab-row" style={`--ink:${brandInk[row.lab]}`}>
+            <line class="rule" x1={PAD_L} x2={PAD_L + plotW} y1={row.y} y2={row.y} />
+            {row.dots.map((dot) => (
+              <g
+                class="release"
+                tabindex={dot.tabIndex}
+                role="button"
+                aria-label={dot.label}
+                data-models={dot.models}
+                data-cx={dot.cx}
+                data-cy={dot.cy}
+                data-row={dot.row}
+                data-col={dot.col}
+              >
+                <rect
+                  class="hit"
+                  x={dot.hitX}
+                  y={dot.hitY}
+                  width={PITCH}
+                  height={ROW_H}
+                  fill="transparent"
+                />
+                <circle class="ring" cx={dot.cx} cy={dot.cy} r={DOT_R + 4} />
+                <circle class="mark" cx={dot.cx} cy={dot.cy} r={DOT_R} />
+              </g>
+            ))}
+          </g>
+        ))}
+
+        {years.map((year) => year.boundary != null && (
+          <line
+            class="tick"
+            x1={year.boundary}
+            x2={year.boundary}
+            y1={lastLineY}
+            y2={lastLineY + 7}
+          />
+        ))}
+        {years.map((year) => (
+          <text class="year" x={year.x} y={lastLineY + 24}>{year.year}</text>
+        ))}
+
+        <g class="callout" data-callout aria-hidden="true">
+          <path class="callout-line" data-callout-line />
+          <rect class="callout-bg" data-callout-bg />
+          <text class="callout-text" data-callout-text></text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <p class="caveat">数据截至 2026 年 11 月 10 日。按首次公开发布归到月份，包含部分预览和有限访问。图像、语音、视频专用模型以及 API 快照没有收录。</p>
+</section>
+
+<style>
+  :global(html:has(.models-page) .header-inner),
+  :global(html:has(.models-page) main),
+  :global(html:has(.models-page) .site-footer) {
+    max-width: var(--wide-width);
+  }
+
+  .models-head {
+    margin-bottom: 0.5rem;
+  }
+
+  .models-head h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0;
+    margin-bottom: 0;
+  }
+
+  .caveat {
+    max-width: 40rem;
+    line-height: 1.7;
+  }
+
+  .chart {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .lab-names {
+    flex: none;
+    width: 6.5rem;
+    padding-top: var(--pad-top);
+  }
+
+  .lab-name,
+  .lab-axis {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: var(--row);
+    padding-right: 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--color-text);
+  }
+
+  .lab-axis {
+    height: var(--axis);
+  }
+
+  .plot-scroll {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .plot-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .plot-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+
+  :global([data-theme="dark"]) .plot-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .plot {
+    display: block;
+    max-width: none;
+    font-family: var(--font-sans);
+  }
+
+  .tick,
+  .callout-line {
+    stroke: var(--color-text);
+  }
+
+  .rule,
+  .mark,
+  .ring {
+    stroke: var(--ink, var(--color-text));
+  }
+
+  .rule {
+    stroke-width: 1.25;
+  }
+
+  .tick {
+    stroke-width: 1.25;
+  }
+
+  .guide {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+
+  .month-mark {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .month-mark.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .month-bar {
+    fill: color-mix(in srgb, var(--color-text) 10%, transparent);
+  }
+
+  .month-label {
+    fill: var(--color-text);
+    font-size: 12px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: alphabetic;
+  }
+
+  .mark {
+    fill: var(--color-bg);
+    stroke-width: 1.5;
+  }
+
+  .ring {
+    fill: none;
+    stroke: var(--color-text);
+    stroke-width: 1;
+    opacity: 0;
+  }
+
+  .release {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .release:focus {
+    outline: none;
+  }
+
+  .release:focus-visible .ring {
+    opacity: 0.55;
+  }
+
+  .release.is-on .mark {
+    stroke-width: 2;
+  }
+
+  .year {
+    fill: var(--color-text);
+    font-size: 13px;
+    font-weight: 500;
+    text-anchor: middle;
+    dominant-baseline: hanging;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .callout {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform-box: view-box;
+    transform-origin: 0 0;
+    transform: scale(0.97);
+  }
+
+  .callout.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .month-mark {
+      transition:
+        opacity 100ms cubic-bezier(0.4, 0, 1, 1),
+        visibility 0s linear 100ms;
+    }
+
+    .month-mark.is-open {
+      transition:
+        opacity 125ms cubic-bezier(0.32, 0.72, 0, 1),
+        visibility 0s linear 0s;
+    }
+
+    .callout {
+      transition:
+        opacity 100ms cubic-bezier(0.4, 0, 1, 1),
+        transform 100ms cubic-bezier(0.4, 0, 1, 1),
+        visibility 0s linear 100ms;
+    }
+
+    .callout.is-open {
+      transition:
+        opacity 125ms cubic-bezier(0.32, 0.72, 0, 1),
+        transform 125ms cubic-bezier(0.32, 0.72, 0, 1),
+        visibility 0s linear 0s;
+    }
+  }
+
+  .chart.is-instant .month-mark,
+  .chart.is-instant .month-mark.is-open,
+  .chart.is-instant .callout,
+  .chart.is-instant .callout.is-open {
+    transition: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .month-mark,
+    .month-mark.is-open,
+    .callout,
+    .callout.is-open {
+      transition: none;
+    }
+  }
+
+  .callout-line {
+    fill: none;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .callout-bg {
+    fill: var(--color-bg);
+  }
+
+  .callout-text {
+    fill: var(--color-text);
+    font-size: 14px;
+    font-weight: 400;
+    dominant-baseline: text-before-edge;
+  }
+
+  .caveat {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 640px) {
+    .models-head h2 {
+      font-size: 1.5rem;
+    }
+
+    .lab-names {
+      width: 5.25rem;
+    }
+
+    .lab-name {
+      font-size: 0.8125rem;
+      padding-right: 0.55rem;
+    }
+  }
+</style>
+
+<script>
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const LINE_LIMIT = 300;
+
+  function estimate(text: string) {
+    let width = 0;
+    for (const char of text) width += char.charCodeAt(0) > 255 ? 14 : 7.7;
+    return width;
+  }
+
+  function wrapModels(raw: string) {
+    const lines: string[] = [];
+    for (const part of raw.split('；').map((item) => item.trim()).filter(Boolean)) {
+      if (estimate(part) <= LINE_LIMIT) {
+        lines.push(part);
+        continue;
+      }
+      let current = '';
+      for (const bit of part.split(' / ')) {
+        const next = current ? `${current} / ${bit}` : bit;
+        if (current && estimate(next) > LINE_LIMIT) {
+          lines.push(current);
+          current = bit;
+        } else {
+          current = next;
+        }
+      }
+      if (current) lines.push(current);
+    }
+    return lines.length ? lines : [raw];
+  }
+
+  function initModelsChart() {
+    const root = document.querySelector<HTMLElement>('[data-models-chart]');
+    if (!root || root.dataset.bound === '1') return;
+    root.dataset.bound = '1';
+
+    const svg = root.querySelector('svg');
+    const callout = root.querySelector<SVGGElement>('[data-callout]');
+    const calloutLine = root.querySelector<SVGPathElement>('[data-callout-line]');
+    const calloutBg = root.querySelector<SVGRectElement>('[data-callout-bg]');
+    const calloutText = root.querySelector<SVGTextElement>('[data-callout-text]');
+    if (!svg || !callout || !calloutLine || !calloutBg || !calloutText) return;
+
+    const dots = [...svg.querySelectorAll<SVGGElement>('.release')];
+    const svgWidth = svg.viewBox.baseVal.width;
+    const monthMark = svg.querySelector<SVGGElement>('[data-month-mark]');
+    const monthBar = svg.querySelector<SVGRectElement>('[data-month-bar]');
+    const monthLabel = svg.querySelector<SVGTextElement>('[data-month-label]');
+    if (!monthMark || !monthBar || !monthLabel) return;
+
+    const padL = Number(svg.dataset.padL);
+    const pitch = Number(svg.dataset.pitch);
+    const monthCount = Number(svg.dataset.months);
+    const barTop = Number(svg.dataset.barTop);
+    const barBottom = Number(svg.dataset.barBottom);
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let pinned: SVGGElement | null = null;
+
+    function columnFromEvent(event: PointerEvent) {
+      const point = svg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const matrix = svg.getScreenCTM();
+      if (!matrix) return -1;
+      const local = point.matrixTransform(matrix.inverse());
+      const col = Math.floor((local.x - padL) / pitch);
+      if (col < 0 || col >= monthCount) return -1;
+      if (local.y < 0 || local.y > barBottom + 8) return -1;
+      return col;
+    }
+
+    function showMonth(col: number) {
+      if (col < 0) {
+        monthMark.classList.remove('is-open');
+        return;
+      }
+      const x = padL + col * pitch;
+      monthBar.setAttribute('x', String(x));
+      monthBar.setAttribute('y', String(barTop));
+      monthBar.setAttribute('width', String(pitch));
+      monthBar.setAttribute('height', String(barBottom - barTop));
+      monthLabel.setAttribute('x', String(x + pitch / 2));
+      monthLabel.setAttribute('y', String(barTop - 6));
+      monthLabel.textContent = monthNames[col % 12];
+      monthMark.classList.add('is-open');
+    }
+
+    function clearMark() {
+      for (const dot of dots) dot.classList.remove('is-on');
+      callout.classList.remove('is-open');
+    }
+
+    function show(dot: SVGGElement) {
+      for (const item of dots) item.classList.toggle('is-on', item === dot);
+      const cx = Number(dot.dataset.cx);
+      const cy = Number(dot.dataset.cy);
+      const lines = wrapModels(dot.dataset.models || '');
+
+      calloutText.replaceChildren();
+      for (const [index, line] of lines.entries()) {
+        const tspan = document.createElementNS(SVG_NS, 'tspan');
+        tspan.textContent = line;
+        tspan.setAttribute('dy', index === 0 ? '0' : '1.35em');
+        calloutText.appendChild(tspan);
+      }
+
+      const place = (sign: number) => {
+        calloutText.setAttribute('text-anchor', sign === 1 ? 'start' : 'end');
+        calloutText.setAttribute('x', '0');
+        calloutText.setAttribute('y', '0');
+        for (const tspan of calloutText.querySelectorAll('tspan')) tspan.setAttribute('x', '0');
+        const measured = calloutText.getBBox();
+        const textHeight = Math.max(measured.height, 16);
+
+        let top = cy - 34 - textHeight;
+        const lowestTop = cy - 12 - textHeight;
+        if (top < 24) top = Math.max(24, lowestTop);
+
+        const run = 22;
+        const stub = 12;
+        const leaderY = top + Math.min(12, textHeight * 0.55);
+        const elbowX = cx + sign * run;
+        const stubX = elbowX + sign * stub;
+        const dx = elbowX - cx;
+        const dy = leaderY - cy;
+        const length = Math.hypot(dx, dy) || 1;
+        const x0 = cx + (dx / length) * 7.2;
+        const y0 = cy + (dy / length) * 7.2;
+        calloutLine.setAttribute(
+          'd',
+          `M ${x0.toFixed(1)} ${y0.toFixed(1)} L ${elbowX.toFixed(1)} ${leaderY.toFixed(1)} L ${stubX.toFixed(1)} ${leaderY.toFixed(1)}`,
+        );
+
+        const textX = stubX + sign * 5;
+        calloutText.setAttribute('x', String(textX));
+        calloutText.setAttribute('y', String(top));
+        for (const tspan of calloutText.querySelectorAll('tspan')) tspan.setAttribute('x', String(textX));
+        return calloutText.getBBox();
+      };
+
+      callout.style.transformOrigin = `${cx}px ${cy}px`;
+      callout.classList.add('is-open');
+      let box = place(1);
+      if (box.x + box.width > svgWidth - 6) box = place(-1);
+      if (box.x < 4) box = place(1);
+
+      calloutBg.setAttribute('x', String(box.x - 3));
+      calloutBg.setAttribute('y', String(box.y - 1));
+      calloutBg.setAttribute('width', String(Math.max(box.width, 1) + 6));
+      calloutBg.setAttribute('height', String(Math.max(box.height, 1) + 3));
+      showMonth(Number(dot.dataset.col));
+    }
+
+    function hide() {
+      pinned = null;
+      clearMark();
+      showMonth(-1);
+    }
+
+    function focusDot(dot: SVGGElement) {
+      for (const item of dots) item.tabIndex = item === dot ? 0 : -1;
+      dot.focus();
+      show(dot);
+    }
+
+    function move(dot: SVGGElement, key: string) {
+      const row = Number(dot.dataset.row);
+      const col = Number(dot.dataset.col);
+      const inRow = dots.filter((item) => Number(item.dataset.row) === row);
+      if (key === 'Home') return focusDot(inRow[0]);
+      if (key === 'End') return focusDot(inRow[inRow.length - 1]);
+      if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        const index = inRow.indexOf(dot);
+        const next = inRow[index + (key === 'ArrowRight' ? 1 : -1)];
+        if (next) focusDot(next);
+        return;
+      }
+      const targetRow = row + (key === 'ArrowDown' ? 1 : -1);
+      const candidates = dots.filter((item) => Number(item.dataset.row) === targetRow);
+      if (!candidates.length) return;
+      candidates.sort(
+        (a, b) => Math.abs(Number(a.dataset.col) - col) - Math.abs(Number(b.dataset.col) - col),
+      );
+      focusDot(candidates[0]);
+    }
+
+    svg.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      root.classList.remove('is-instant');
+      const col = columnFromEvent(event);
+      showMonth(col);
+      const onDot = (event.target as Element | null)?.closest?.('.release');
+      if (pinned && !onDot && Number(pinned.dataset.col) !== col) {
+        pinned = null;
+        clearMark();
+      }
+    });
+
+    svg.addEventListener('pointerover', (event) => {
+      if (event.pointerType === 'touch') return;
+      const dot = (event.target as Element | null)?.closest?.('.release');
+      if (!(dot instanceof SVGGElement) || dot === pinned) return;
+      root.classList.remove('is-instant');
+      pinned = dot;
+      show(dot);
+    });
+
+    svg.addEventListener('pointerleave', () => {
+      const active = document.activeElement;
+      if (active instanceof SVGGElement && svg.contains(active) && active.classList.contains('release')) {
+        pinned = active;
+        root.classList.add('is-instant');
+        show(active);
+        return;
+      }
+      root.classList.remove('is-instant');
+      hide();
+    });
+
+    svg.addEventListener('click', (event) => {
+      const col = columnFromEvent(event);
+      if (col >= 0) showMonth(col);
+      const dot = (event.target as Element | null)?.closest?.('.release');
+      if (dot instanceof SVGGElement) {
+        pinned = dot;
+        show(dot);
+        return;
+      }
+      if (!(document.activeElement instanceof SVGGElement && svg.contains(document.activeElement))) {
+        pinned = null;
+        clearMark();
+      }
+    });
+
+    svg.addEventListener('focusin', (event) => {
+      const dot = (event.target as Element | null)?.closest?.('.release');
+      if (!(dot instanceof SVGGElement)) return;
+      root.classList.toggle('is-instant', dot.matches(':focus-visible'));
+      pinned = dot;
+      show(dot);
+    });
+
+    svg.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget;
+      if (next instanceof Node && svg.contains(next)) return;
+      hide();
+    });
+
+    svg.addEventListener('keydown', (event) => {
+      const dot = (event.target as Element | null)?.closest?.('.release');
+      if (!(dot instanceof SVGGElement)) return;
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
+        event.preventDefault();
+        move(dot, event.key);
+      }
+    });
+  }
+
+  initModelsChart();
+  document.addEventListener('astro:page-load', initModelsChart);
+</script>
