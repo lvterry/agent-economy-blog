@@ -3,6 +3,8 @@ export type ModelRelease = {
   /** YYYY-MM, the month of the first public release. */
   month: string;
   models: string;
+  /** Limited access only. A month gets the dot gap when every release in it is limited. */
+  limited?: boolean;
 };
 
 export const labOrder = [
@@ -32,7 +34,8 @@ export const modelReleases: ModelRelease[] = [
   { lab: 'OpenAI', month: '2026-07', models: 'GPT-5.6（Sol / Terra / Luna）' },
   { lab: 'OpenAI', month: '2026-09', models: 'GPT-6 Astra / Sol / Luna；GPT-6.1 Sol' },
   { lab: 'OpenAI', month: '2026-10', models: 'GPT-6（ChatGPT 全面推广）；GPT-6.1 Terra' },
-  { lab: 'OpenAI', month: '2026-11', models: 'GPT-6 Cyber（有限访问）' },
+  { lab: 'OpenAI', month: '2026-11', models: 'GPT-6 Cyber（有限访问）', limited: true },
+  { lab: 'OpenAI', month: '2026-11', models: 'GPT-6.2 Astra / Sol' },
 
   { lab: 'Anthropic', month: '2024-03', models: 'Claude 3（Opus / Sonnet / Haiku）' },
   { lab: 'Anthropic', month: '2024-06', models: 'Claude 3.5 Sonnet' },
@@ -44,7 +47,8 @@ export const modelReleases: ModelRelease[] = [
   { lab: 'Anthropic', month: '2025-10', models: 'Claude Haiku 4.5' },
   { lab: 'Anthropic', month: '2025-11', models: 'Claude Opus 4.5' },
   { lab: 'Anthropic', month: '2026-02', models: 'Claude Opus 4.6 / Sonnet 4.6' },
-  { lab: 'Anthropic', month: '2026-04', models: 'Claude Mythos Preview（有限访问）；Opus 4.7' },
+  { lab: 'Anthropic', month: '2026-04', models: 'Claude Mythos Preview（有限访问）', limited: true },
+  { lab: 'Anthropic', month: '2026-04', models: 'Opus 4.7' },
   { lab: 'Anthropic', month: '2026-05', models: 'Claude Opus 4.8' },
   { lab: 'Anthropic', month: '2026-06', models: 'Claude Fable 5 / Mythos 5 / Sonnet 5' },
   { lab: 'Anthropic', month: '2026-07', models: 'Claude Opus 5' },
@@ -62,8 +66,9 @@ export const modelReleases: ModelRelease[] = [
   { lab: 'Google', month: '2026-05', models: 'Gemini 3.5 Flash' },
   { lab: 'Google', month: '2026-07', models: 'Gemini 3.6 Flash' },
   { lab: 'Google', month: '2026-08', models: 'Gemini 3.7 Flash' },
-  { lab: 'Google', month: '2026-09', models: 'Gemini 3.8 Flash / 3.8 Flash Cyber；Gemini 4 Argon（有限访问）' },
-  { lab: 'Google', month: '2026-10', models: 'Gemini 4 Carbon（有限访问）' },
+  { lab: 'Google', month: '2026-09', models: 'Gemini 3.8 Flash / 3.8 Flash Cyber' },
+  { lab: 'Google', month: '2026-09', models: 'Gemini 4 Argon（有限访问）', limited: true },
+  { lab: 'Google', month: '2026-10', models: 'Gemini 4 Carbon（有限访问）', limited: true },
   { lab: 'Google', month: '2026-11', models: 'Gemini 4 Carbon；Gemini 4 Hydrogen' },
 
   { lab: 'xAI', month: '2024-03', models: 'Grok-1（开放权重）' },
