@@ -69,7 +69,7 @@ export const modelReleases: ModelRelease[] = [
   { lab: 'Google', month: '2026-09', models: 'Gemini 3.8 Flash / 3.8 Flash Cyber' },
   { lab: 'Google', month: '2026-09', models: 'Gemini 4 Argon（有限访问）', limited: true },
   { lab: 'Google', month: '2026-10', models: 'Gemini 4 Carbon（有限访问）', limited: true },
-  { lab: 'Google', month: '2026-11', models: 'Gemini 4 Carbon；Gemini 4 Hydrogen' },
+  { lab: 'Google', month: '2026-11', models: 'Gemini 4 Carbon；Gemini 4 Hydrogen；Gemini 4 Neon' },
 
   { lab: 'xAI', month: '2024-03', models: 'Grok-1（开放权重）' },
   { lab: 'xAI', month: '2024-08', models: 'Grok-2' },
