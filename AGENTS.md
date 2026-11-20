@@ -52,6 +52,7 @@ src/
   lib/categories.ts        # topic taxonomy: tag → category mapping, bubble layout
   lib/entities.ts          # canonical entity names + aliases
   data/companies.ts        # static data for /companies
+  data/model-releases.ts   # dated model releases for /models
   i18n/
     ui.ts                  # translation strings (zh only)
     utils.ts               # useTranslations(lang)

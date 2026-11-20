@@ -338,6 +338,138 @@ test.describe('Companies filter', () => {
   });
 });
 
+test.describe('Models timeline', () => {
+  test('renders a vertical timeline with labs across the top, a Today line, and one dot per release', async ({ page }) => {
+    await page.goto('/models');
+
+    const labs = await page.locator('.lab-header .lab-name').allTextContents();
+    expect(labs).toEqual(['OpenAI', 'Anthropic', 'Google', 'xAI', 'Meta', 'GLM', 'Kimi', 'DeepSeek']);
+
+    await expect(page.locator('.today-label')).toBeVisible();
+    await expect(page.locator('.today-label')).toHaveText('Today');
+    const todayLine = page.locator('.today-line');
+    await expect(todayLine).toBeAttached();
+    const todayCoords = await todayLine.evaluate((el) => ({
+      x1: Number(el.getAttribute('x1')),
+      x2: Number(el.getAttribute('x2')),
+      y1: Number(el.getAttribute('y1')),
+      y2: Number(el.getAttribute('y2')),
+    }));
+    expect(todayCoords.y1).toBe(todayCoords.y2);
+    expect(todayCoords.x2).toBeGreaterThan(todayCoords.x1);
+
+    // Vertical orientation: height exceeds width, and newer months sit above older months.
+    const plotBox = await page.locator('svg.plot').boundingBox();
+    expect(plotBox).not.toBeNull();
+    expect(plotBox.height).toBeGreaterThan(plotBox.width);
+
+    // Google Nov 2026 has 3 separate releases spread vertically inside the same month.
+    const googleNovDots = page.locator('.lab-col').nth(2).locator('.release[data-row="0"]');
+    await expect(googleNovDots).toHaveCount(3);
+    const ys = await googleNovDots.evaluateAll((els) => els.map((el) => Number(el.dataset.cy)));
+    expect(ys[0]).toBeLessThan(ys[1]);
+    expect(ys[1]).toBeLessThan(ys[2]);
+
+    // OpenAI Nov 2026 has 1 GA (solid) and 1 limited (dotted) release as separate dots.
+    const openaiNovDots = page.locator('.lab-col').nth(0).locator('.release[data-row="0"]');
+    await expect(openaiNovDots).toHaveCount(2);
+    const limitedClasses = await openaiNovDots.evaluateAll((els) =>
+      els.map((el) => el.classList.contains('is-limited')),
+    );
+    expect(limitedClasses.sort()).toEqual([false, true]);
+
+    const gaDash = await page.locator('.release:not(.is-limited) .mark').first()
+      .evaluate((el) => getComputedStyle(el).strokeDasharray);
+    const limitedDash = await page.locator('.release.is-limited .mark').first()
+      .evaluate((el) => getComputedStyle(el).strokeDasharray);
+    expect(gaDash).toBe('none');
+    expect(limitedDash).not.toBe('none');
+    await expect(page.locator('.gap-arc')).toHaveCount(0);
+  });
+
+  test('runs newest at the top and oldest at the bottom', async ({ page }) => {
+    await page.goto('/models');
+
+    // Reading down the chart must always go back in time, across every column
+    // and inside each month band: up is later, down is earlier.
+    const ordered = await page.locator('.release').evaluateAll((els) =>
+      els
+        .map((el) => ({ date: el.getAttribute('data-date'), cy: Number(el.getAttribute('data-cy')) }))
+        .sort((a, b) => a.cy - b.cy)
+        .map((dot) => dot.date));
+    expect(ordered.length).toBeGreaterThan(90);
+    expect(ordered).toEqual([...ordered].sort().reverse());
+
+    // Concretely: Muse Ember (Nov 4) came before Gemini 4 Carbon (Nov 12),
+    // so Ember has to sit lower on the chart.
+    const emberY = Number(await page.locator('.release[aria-label*="Muse Ember"]').getAttribute('data-cy'));
+    const carbonY = Number(
+      await page.locator('.release[aria-label*="2026年11月12日，Gemini 4 Carbon"]').getAttribute('data-cy'),
+    );
+    expect(emberY).toBeGreaterThan(carbonY);
+
+    // Same-date releases from different labs share one row.
+    const sep22 = await page
+      .locator('.release[data-date="2026-09-22"]')
+      .evaluateAll((els) => els.map((el) => el.getAttribute('data-cy')));
+    expect(sep22.length).toBe(2);
+    expect(new Set(sep22).size).toBe(1);
+  });
+
+  test('stays legible when one lab ships several times in a month', async ({ page }) => {
+    await page.goto('/models');
+
+    // Every month occupies identical vertical space, so the time scale can't skew.
+    const heights = await page
+      .locator('[data-month-row]')
+      .evaluateAll((els) => [...new Set(els.map((el) => el.dataset.height))]);
+    expect(heights).toHaveLength(1);
+
+    // Google shipped three times in November; every dot keeps its own row.
+    const googleNov = page.locator('.lab-col').nth(2).locator('.release[data-row="0"]');
+    await expect(googleNov).toHaveCount(3);
+    const ys = await googleNov.evaluateAll((els) => els.map((el) => Number(el.dataset.cy)));
+    expect(new Set(ys).size).toBe(3);
+
+    // No two dots in a column may come closer than a dot's own diameter.
+    const gaps = await page.locator('.lab-col').evaluateAll((cols) =>
+      cols.flatMap((col) => {
+        const sorted = [...col.querySelectorAll('.release')]
+          .map((el) => Number(el.getAttribute('data-cy')))
+          .sort((a, b) => a - b);
+        return sorted.slice(1).map((y, i) => y - sorted[i]);
+      }));
+    expect(Math.min(...gaps)).toBeGreaterThan(11);
+  });
+
+  test('shows callout on hover and supports vertical keyboard navigation', async ({ page }) => {
+    await page.goto('/models');
+
+    const firstLimited = page.locator('.release.is-limited').first();
+    await firstLimited.hover();
+    await expect(page.locator('[data-callout]')).toHaveClass(/is-open/);
+    await expect(page.locator('[data-callout-text]')).toContainText('GPT-6 Cyber');
+    await expect(page.locator('.month-axis-label[data-month-row="0"]')).toHaveClass(/is-active/);
+
+    // ArrowDown walks down the column, which is back in time.
+    const { start, expected } = await page.evaluate(() => {
+      const col = document.querySelectorAll('.lab-col')[0];
+      const sorted = [...col.querySelectorAll('.release')].sort(
+        (a, b) => Number(a.dataset.cy) - Number(b.dataset.cy),
+      );
+      sorted[0].focus();
+      return {
+        start: sorted[0].getAttribute('data-cy'),
+        expected: sorted[1].getAttribute('data-cy'),
+      };
+    });
+    await page.keyboard.press('ArrowDown');
+    const focused = await page.evaluate(() => document.activeElement?.getAttribute('data-cy'));
+    expect(focused).toBe(expected);
+    expect(Number(focused)).toBeGreaterThan(Number(start));
+  });
+});
+
 test.describe('RSS feed', () => {
   test('feed is accessible and valid XML', async ({ request }) => {
     const response = await request.get('/rss.xml');

@@ -1,101 +1,202 @@
 ---
-import { labOrder, modelReleases } from '../../data/model-releases';
+import { labOrder, modelReleases, type ModelRelease } from '../../data/model-releases';
 
 const START_YEAR = 2024;
 const START_MONTH = 1;
 const END_YEAR = 2026;
 const END_MONTH = 11;
 
-const PAD_L = 2;
-const PAD_R = 14;
-const PAD_TOP = 48;
-const ROW_H = 58;
-const AXIS_H = 40;
-const PITCH = 30;
+const AXIS_W = 72;
+const COL_W = 138;
+const PAD_R = 16;
+const TRACK_TOP = 8;
+const TODAY_Y = 26;
+const MONTHS_TOP = 42;
 const DOT_R = 5.5;
+// Centre-to-centre distance between two release rows inside a month.
+const ROW_PITCH = 14;
+// Vertical breathing room at the top and bottom of each month band.
+const BAND_PAD = 6;
 
-// Quarter-circle opening centered on 12 o'clock. The arc runs clockwise
-// the long way, so the gap stays off the horizontal rule.
-function topGapPath(cx: number, cy: number, r: number) {
-  const start = -Math.PI / 4;
-  const end = (-3 * Math.PI) / 4;
-  const x0 = cx + r * Math.cos(start);
-  const y0 = cy + r * Math.sin(start);
-  const x1 = cx + r * Math.cos(end);
-  const y1 = cy + r * Math.sin(end);
-  return `M ${x0.toFixed(2)} ${y0.toFixed(2)} A ${r} ${r} 0 1 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function yearMonth(date: string) {
+  return date.slice(0, 7);
 }
 
-function monthIndex(ym: string) {
+// Row 0 is the latest month (top); row increases going backward in time.
+function rowForMonth(ym: string) {
   const [year, month] = ym.split('-').map(Number);
-  return (year - START_YEAR) * 12 + (month - START_MONTH);
+  return (END_YEAR - year) * 12 + (END_MONTH - month);
 }
 
-const monthCount = monthIndex(`${END_YEAR}-${String(END_MONTH).padStart(2, '0')}`) + 1;
-const plotW = monthCount * PITCH;
-const width = PAD_L + plotW + PAD_R;
-const height = PAD_TOP + labOrder.length * ROW_H + AXIS_H;
+const monthCount = rowForMonth(`${START_YEAR}-${String(START_MONTH).padStart(2, '0')}`) + 1;
+const plotW = labOrder.length * COL_W;
+const width = AXIS_W + plotW + PAD_R;
 
-function xAt(index: number) {
-  return PAD_L + index * PITCH;
+function colCenterX(col: number) {
+  return AXIS_W + col * COL_W + COL_W / 2;
 }
 
-// A month collapses to one dot. The gap marks limited access, so it only
-// appears when nothing public shipped that month — a preview alongside a
-// real release shouldn't notch the dot.
-const releasesByLab = new Map<
-  string,
-  Map<string, { labels: string[]; limitedOnly: boolean }>
->(labOrder.map((lab) => [lab, new Map()]));
+// Group by lab and month, and collect each month's distinct release dates.
+const releasesByLab = new Map<string, Map<string, ModelRelease[]>>(
+  labOrder.map((lab) => [lab, new Map()]),
+);
+const datesByMonth = new Map<string, string[]>();
+const seenLabDates = new Set<string>();
 
 for (const release of modelReleases) {
-  const months = releasesByLab.get(release.lab);
-  if (!months) throw new Error(`Unknown lab: ${release.lab}`);
-  const limited = release.limited === true;
-  const existing = months.get(release.month);
-  if (existing) {
-    existing.labels.push(release.models);
-    existing.limitedOnly = existing.limitedOnly && limited;
-  } else {
-    months.set(release.month, { labels: [release.models], limitedOnly: limited });
+  const byMonth = releasesByLab.get(release.lab);
+  if (!byMonth) throw new Error(`Unknown lab: ${release.lab}`);
+
+  const month = yearMonth(release.date);
+  const row = rowForMonth(month);
+  if (row < 0 || row >= monthCount) {
+    throw new Error(`Month out of range: ${release.lab} ${release.date}`);
   }
+
+  // Two releases on one date would land on the same dot; fold them into one entry.
+  const key = `${release.lab}|${release.date}`;
+  if (seenLabDates.has(key)) {
+    throw new Error(`Two ${release.lab} releases share ${release.date}; merge them into one entry`);
+  }
+  seenLabDates.add(key);
+
+  const bucket = byMonth.get(month);
+  if (bucket) bucket.push(release);
+  else byMonth.set(month, [release]);
+
+  const dates = datesByMonth.get(month);
+  if (!dates) datesByMonth.set(month, [release.date]);
+  else if (!dates.includes(release.date)) dates.push(release.date);
 }
+
+/**
+ * Every month gets exactly the same height, so the vertical scale can't skew:
+ * one month is always the same amount of space, whatever shipped in it.
+ *
+ * Inside a band, each distinct release date gets its own row, newest at the
+ * top, laid out at a constant pitch and centred vertically. Order is the part
+ * that has to be exact — up is always later, so a lab's release can never look
+ * like it came before another lab's when it actually came after — while the
+ * rows are evenly spaced rather than proportional to the days between them,
+ * because two days apart would be a few pixels at this scale.
+ *
+ * Band height therefore follows the busiest month, which needs the most rows.
+ */
+const maxRows = Math.max(1, ...[...datesByMonth.values()].map((dates) => dates.length));
+const MONTH_H = maxRows * ROW_PITCH + BAND_PAD * 2;
+
+const months = Array.from({ length: monthCount }, (_, row) => {
+  const totalMonths = END_YEAR * 12 + (END_MONTH - 1) - row;
+  const year = Math.floor(totalMonths / 12);
+  const monthNumber = (totalMonths % 12) + 1;
+  const key = `${year}-${String(monthNumber).padStart(2, '0')}`;
+  const dates = [...(datesByMonth.get(key) ?? [])].sort().reverse();
+  const top = MONTHS_TOP + row * MONTH_H;
+
+  return {
+    row,
+    year,
+    monthNumber,
+    key,
+    name: MONTH_NAMES[monthNumber - 1],
+    top,
+    height: MONTH_H,
+    bottom: top + MONTH_H,
+    center: top + MONTH_H / 2,
+    dates,
+    // Sparse months centre their few rows instead of stacking them at the top.
+    inset: (MONTH_H - dates.length * ROW_PITCH) / 2,
+    isJan: monthNumber === 1,
+    // Horizontal divider below Jan separates this year from the previous year below it.
+    hasYearDivider: monthNumber === 1 && year > START_YEAR,
+  };
+});
+
+const trackBottom = MONTHS_TOP + monthCount * MONTH_H + 12;
+const plotH = monthCount * MONTH_H;
+const height = trackBottom + 16;
 
 let firstDot = true;
 
-const rows = labOrder.map((lab, row) => {
-  const y = PAD_TOP + row * ROW_H + ROW_H / 2;
-  const dots = [...releasesByLab.get(lab)!.entries()]
-    .map(([month, release]) => {
-      const col = monthIndex(month);
-      if (col < 0 || col >= monthCount) {
-        throw new Error(`Month out of range: ${lab} ${month}`);
-      }
-      const [year, monthNumber] = month.split('-').map(Number);
-      const tabIndex = firstDot ? 0 : -1;
-      firstDot = false;
-      const models = release.labels.join('；');
-      return {
-        month,
-        models,
+const columns = labOrder.map((lab, col) => {
+  const cx = colCenterX(col);
+  const rawDots: Array<{
+    date: string;
+    models: string;
+    col: number;
+    row: number;
+    cx: number;
+    cy: number;
+    limited: boolean;
+    label: string;
+  }> = [];
+
+  for (const [month, bucket] of releasesByLab.get(lab)!.entries()) {
+    const band = months[rowForMonth(month)];
+    const [year, monthNumber] = month.split('-').map(Number);
+
+    for (const release of bucket) {
+      const day = Number(release.date.slice(8, 10));
+      const slot = band.dates.indexOf(release.date);
+      rawDots.push({
+        date: release.date,
+        models: release.models,
         col,
-        row,
-        cx: xAt(col) + PITCH / 2,
-        cy: y,
-        hitX: xAt(col),
-        hitY: PAD_TOP + row * ROW_H,
-        tabIndex,
-        label: `${lab}，${year}年${monthNumber}月，${models}`,
-        limited: release.limitedOnly,
-      };
-    })
-    .sort((a, b) => a.col - b.col);
+        row: band.row,
+        cx,
+        cy: Number((band.top + band.inset + (slot + 0.5) * ROW_PITCH).toFixed(2)),
+        limited: release.limited === true,
+        label: `${lab}，${year}年${monthNumber}月${day}日，${release.models}`,
+      });
+    }
+  }
 
-  return { lab, y, dots };
+  // Sort top-to-bottom (newest to oldest) so hit boxes partition cleanly without overlap.
+  rawDots.sort((a, b) => a.cy - b.cy);
+
+  const dots = rawDots.map((dot, index) => {
+    const prev = rawDots[index - 1];
+    const next = rawDots[index + 1];
+    const hitTop = prev
+      ? Math.max(dot.cy - 24, (prev.cy + dot.cy) / 2)
+      : Math.max(MONTHS_TOP, dot.cy - 24);
+    const hitBottom = next
+      ? Math.min(dot.cy + 24, (dot.cy + next.cy) / 2)
+      : Math.min(trackBottom, dot.cy + 24);
+    const tabIndex = firstDot ? 0 : -1;
+    firstDot = false;
+    return {
+      ...dot,
+      hitX: cx - COL_W / 2,
+      hitY: Number(hitTop.toFixed(2)),
+      hitH: Number(Math.max(10, hitBottom - hitTop).toFixed(2)),
+      tabIndex,
+    };
+  });
+
+  // Build a vertical track path that pauses cleanly around dotted (limited) rings
+  // so the track never touches the dots and no opaque halo shows over the hover band.
+  const limitedGaps = dots
+    .filter((dot) => dot.limited)
+    .map((dot) => [dot.cy - (DOT_R + 2), dot.cy + (DOT_R + 2)] as const);
+
+  const trackSegments: string[] = [];
+  let cursor = TRACK_TOP;
+  for (const [gapStart, gapEnd] of limitedGaps) {
+    if (gapStart > cursor) {
+      trackSegments.push(`M ${cx} ${cursor.toFixed(2)} V ${gapStart.toFixed(2)}`);
+    }
+    cursor = Math.max(cursor, gapEnd);
+  }
+  if (trackBottom > cursor) {
+    trackSegments.push(`M ${cx} ${cursor.toFixed(2)} V ${trackBottom.toFixed(2)}`);
+  }
+  const trackPath = trackSegments.join(' ');
+
+  return { lab, col, cx, trackPath, dots };
 });
-
-const firstLineY = rows[0].y;
-const lastLineY = rows[rows.length - 1].y;
 
 // Hairline ink for each lab. OpenAI and xAI publish black-and-white marks, so they follow the text color.
 const brandInk: Record<string, string> = {
@@ -109,120 +210,148 @@ const brandInk: Record<string, string> = {
   DeepSeek: 'oklch(0.592 0.22 269.6)',
 };
 
-const years = [2024, 2025, 2026].map((year) => {
-  const start = Math.max(0, monthIndex(`${year}-01`));
-  const end = Math.min(monthCount, monthIndex(`${year + 1}-01`));
-  return {
-    year,
-    x: (xAt(start) + xAt(end)) / 2,
-    boundary: year === START_YEAR ? null : xAt(start),
-  };
-});
+const headerCols = `${AXIS_W}fr repeat(${labOrder.length}, ${COL_W}fr) ${PAD_R}fr`;
 ---
 
 <section class="models-page">
   <header class="models-head">
     <h2 id="models-heading">模型发布时间线</h2>
+    <div class="legend" aria-label="图例">
+      <span class="legend-item">
+        <svg class="legend-dot" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle class="legend-circle legend-circle--ga" cx="8" cy="8" r="5" />
+        </svg>
+        <span>公开发布</span>
+      </span>
+      <span class="legend-item">
+        <svg class="legend-dot" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <circle class="legend-circle legend-circle--limited" cx="8" cy="8" r="5" />
+        </svg>
+        <span>有限访问</span>
+      </span>
+    </div>
   </header>
 
-  <div
-    class="chart"
-    data-models-chart
-    style={`--pad-top:${PAD_TOP}px;--row:${ROW_H}px;--axis:${AXIS_H}px`}
-  >
-    <div class="lab-names" aria-hidden="true">
-      {rows.map((row) => (
-        <div class="lab-name">{row.lab}</div>
-      ))}
-      <div class="lab-axis"></div>
-    </div>
+  <div class="chart" data-models-chart>
+    <div class="chart-scroll">
+      <div class="chart-inner" style={`--chart-w:${width}px`}>
+        <div
+          class="lab-header"
+          aria-hidden="true"
+          style={`grid-template-columns:${headerCols}`}
+        >
+          <div class="lab-axis-spacer"></div>
+          {columns.map((column) => (
+            <div class="lab-name">{column.lab}</div>
+          ))}
+          <div class="lab-pad-spacer"></div>
+        </div>
 
-    <div class="plot-scroll">
-      <svg
-        class="plot"
-        viewBox={`0 0 ${width} ${height}`}
-        width={width}
-        height={height}
-        role="group"
-        aria-labelledby="models-heading"
-        data-pad-l={PAD_L}
-        data-pitch={PITCH}
-        data-months={monthCount}
-        data-bar-top={26}
-        data-bar-bottom={lastLineY + 14}
-      >
-        <rect
-          class="plot-hit"
-          x={PAD_L}
-          y="0"
-          width={plotW}
-          height={lastLineY + 18}
-          fill="transparent"
-        />
-        <g class="month-mark" data-month-mark aria-hidden="true">
-          <rect class="month-bar" data-month-bar />
-          <text class="month-label" data-month-label></text>
-        </g>
-        {years.map((year) => year.boundary != null && (
-          <line
-            class="guide"
-            x1={year.boundary}
-            x2={year.boundary}
-            y1={firstLineY}
-            y2={lastLineY}
+        <svg
+          class="plot"
+          viewBox={`0 0 ${width} ${height}`}
+          width={width}
+          height={height}
+          role="group"
+          aria-labelledby="models-heading"
+          data-axis-w={AXIS_W}
+          data-pad-r={PAD_R}
+          data-track-top={TRACK_TOP}
+        >
+          <rect
+            class="plot-hit"
+            x={AXIS_W}
+            y={MONTHS_TOP}
+            width={plotW}
+            height={plotH}
+            fill="transparent"
           />
-        ))}
 
-        {rows.map((row) => (
-          <g class="lab-row" style={`--ink:${brandInk[row.lab]}`}>
-            <line class="rule" x1={PAD_L} x2={PAD_L + plotW} y1={row.y} y2={row.y} />
-            {row.dots.map((dot) => (
-              <g
-                class:list={['release', { 'is-limited': dot.limited }]}
-                tabindex={dot.tabIndex}
-                role="button"
-                aria-label={dot.label}
-                data-models={dot.models}
-                data-cx={dot.cx}
-                data-cy={dot.cy}
-                data-row={dot.row}
-                data-col={dot.col}
-              >
-                <rect
-                  class="hit"
-                  x={dot.hitX}
-                  y={dot.hitY}
-                  width={PITCH}
-                  height={ROW_H}
-                  fill="transparent"
-                />
-                <circle class="ring" cx={dot.cx} cy={dot.cy} r={DOT_R + 4} />
-                <circle class="mark" cx={dot.cx} cy={dot.cy} r={DOT_R} />
-                {dot.limited && <path class="gap-arc" d={topGapPath(dot.cx, dot.cy, DOT_R)} />}
-              </g>
+          <g class="month-mark" data-month-mark aria-hidden="true">
+            <rect class="month-bar" data-month-bar />
+          </g>
+
+          {months.map((m) => m.hasYearDivider && (
+            <line
+              class="guide"
+              x1={AXIS_W}
+              x2={width - PAD_R}
+              y1={m.bottom}
+              y2={m.bottom}
+            />
+          ))}
+
+          <g class="today-mark" aria-hidden="true">
+            <text class="today-label" x={AXIS_W - 14} y={TODAY_Y}>Today</text>
+            <line
+              class="today-line"
+              x1={AXIS_W}
+              x2={width - PAD_R}
+              y1={TODAY_Y}
+              y2={TODAY_Y}
+            />
+          </g>
+
+          <g class="time-axis" aria-hidden="true">
+            {months.map((m) => (
+              <>
+                <text
+                  class="month-axis-label"
+                  data-month-row={m.row}
+                  data-top={m.top}
+                  data-height={m.height}
+                  x={AXIS_W - 14}
+                  y={m.isJan ? m.top + 20 : m.center}
+                >
+                  {m.name}
+                </text>
+                {m.isJan && (
+                  <text class="year-label" x={AXIS_W - 14} y={m.top + 39}>
+                    {m.year}
+                  </text>
+                )}
+              </>
             ))}
           </g>
-        ))}
 
-        {years.map((year) => year.boundary != null && (
-          <line
-            class="tick"
-            x1={year.boundary}
-            x2={year.boundary}
-            y1={lastLineY}
-            y2={lastLineY + 7}
-          />
-        ))}
-        {years.map((year) => (
-          <text class="year" x={year.x} y={lastLineY + 24}>{year.year}</text>
-        ))}
+          {columns.map((column) => (
+            <g class="lab-col" style={`--ink:${brandInk[column.lab]}`}>
+              <path class="rule" d={column.trackPath} />
+              {column.dots.map((dot) => (
+                <g
+                  class:list={['release', { 'is-limited': dot.limited }]}
+                  tabindex={dot.tabIndex}
+                  role="button"
+                  aria-label={dot.label}
+                  data-models={dot.models}
+                  data-date={dot.date}
+                  data-cx={dot.cx}
+                  data-cy={dot.cy}
+                  data-col={dot.col}
+                  data-row={dot.row}
+                >
+                  <rect
+                    class="hit"
+                    x={dot.hitX}
+                    y={dot.hitY}
+                    width={COL_W}
+                    height={dot.hitH}
+                    fill="transparent"
+                  />
+                  <circle class="ring" cx={dot.cx} cy={dot.cy} r={DOT_R + 4.5} />
+                  <circle class="mark" cx={dot.cx} cy={dot.cy} r={DOT_R} />
+                </g>
+              ))}
+            </g>
+          ))}
 
-        <g class="callout" data-callout aria-hidden="true">
-          <path class="callout-line" data-callout-line />
-          <rect class="callout-bg" data-callout-bg />
-          <text class="callout-text" data-callout-text></text>
-        </g>
-      </svg>
+          <g class="callout" data-callout aria-hidden="true">
+            <path class="callout-line" data-callout-line />
+            <rect class="callout-bg" data-callout-bg rx="3" ry="3" />
+            <text class="callout-text" data-callout-text></text>
+          </g>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -235,7 +364,12 @@ const years = [2024, 2025, 2026].map((year) => {
   }
 
   .models-head {
-    margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .models-head h2 {
@@ -246,83 +380,121 @@ const years = [2024, 2025, 2026].map((year) => {
     margin-bottom: 0;
   }
 
-  .chart {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .lab-names {
-    flex: none;
-    width: 6.5rem;
-    padding-top: var(--pad-top);
-  }
-
-  .lab-name,
-  .lab-axis {
+  .legend {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    height: var(--row);
-    padding-right: 0.85rem;
+    gap: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .legend-dot {
+    display: block;
+    flex: none;
+  }
+
+  .legend-circle {
+    fill: var(--color-bg);
+    stroke: var(--color-text);
+  }
+
+  .legend-circle--ga {
+    stroke-width: 1.75;
+  }
+
+  .legend-circle--limited {
+    stroke-width: 1.8;
+    stroke-dasharray: 0.01 3.14;
+    stroke-linecap: round;
+  }
+
+  .chart {
+    width: 100%;
+  }
+
+  .chart-scroll {
+    width: 100%;
+  }
+
+  .chart-inner {
+    width: 100%;
+    max-width: var(--chart-w);
+  }
+
+  .lab-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: grid;
+    align-items: end;
+    padding: 0.65rem 0 0.55rem;
+    background: var(--color-bg);
+    transition: background-color 0.4s ease;
+  }
+
+  .lab-name {
+    text-align: center;
     font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.2;
     white-space: nowrap;
     color: var(--color-text);
   }
 
-  .lab-axis {
-    height: var(--axis);
-  }
-
-  .plot-scroll {
-    flex: 1;
-    min-width: 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-  }
-
-  .plot-scroll::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .plot-scroll::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-  }
-
-  :global([data-theme="dark"]) .plot-scroll::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.22);
-  }
-
   .plot {
     display: block;
-    max-width: none;
+    width: 100%;
+    height: auto;
     font-family: var(--font-sans);
+    overflow: visible;
   }
 
-  .tick,
-  .callout-line {
-    stroke: var(--color-text);
+  .today-label {
+    fill: var(--color-text);
+    font-size: 13px;
+    font-weight: 500;
+    text-anchor: end;
+    dominant-baseline: central;
   }
 
-  .rule,
-  .mark,
-  .ring {
-    stroke: var(--ink, var(--color-text));
-  }
-
-  .rule {
-    stroke-width: 1.25;
-  }
-
-  .tick {
-    stroke-width: 1.25;
+  .today-line {
+    stroke: var(--color-rule);
+    stroke-width: 1;
   }
 
   .guide {
     stroke: var(--color-border);
     stroke-width: 1;
+  }
+
+  .month-axis-label {
+    fill: var(--color-text-muted);
+    font-size: 12px;
+    font-weight: 400;
+    text-anchor: end;
+    dominant-baseline: central;
+    transition: fill 100ms ease;
+  }
+
+  .month-axis-label.is-active {
+    fill: var(--color-text);
+    font-weight: 600;
+  }
+
+  .year-label {
+    fill: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+    text-anchor: end;
+    dominant-baseline: central;
+    font-variant-numeric: tabular-nums;
   }
 
   .month-mark {
@@ -337,20 +509,22 @@ const years = [2024, 2025, 2026].map((year) => {
   }
 
   .month-bar {
-    fill: color-mix(in srgb, var(--color-text) 10%, transparent);
+    fill: color-mix(in srgb, var(--color-text) 7%, transparent);
   }
 
-  .month-label {
-    fill: var(--color-text);
-    font-size: 12px;
-    font-weight: 500;
-    text-anchor: middle;
-    dominant-baseline: alphabetic;
+  .rule,
+  .mark {
+    stroke: var(--ink, var(--color-text));
+  }
+
+  .rule {
+    fill: none;
+    stroke-width: 1.35;
   }
 
   .mark {
     fill: var(--color-bg);
-    stroke-width: 1.5;
+    stroke-width: 1.75;
   }
 
   .ring {
@@ -362,6 +536,7 @@ const years = [2024, 2025, 2026].map((year) => {
 
   .release {
     cursor: pointer;
+    scroll-margin-top: 72px;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -374,30 +549,19 @@ const years = [2024, 2025, 2026].map((year) => {
   }
 
   .release.is-on .mark {
-    stroke-width: 2;
+    stroke-width: 2.35;
   }
 
+  /* 10 evenly spaced round dots around a circle of radius 5.5 (circumference 34.558). */
   .release.is-limited .mark {
-    stroke: none;
+    fill: transparent;
+    stroke-width: 1.9;
+    stroke-dasharray: 0.01 3.446;
+    stroke-linecap: round;
   }
 
-  .gap-arc {
-    fill: none;
-    stroke: var(--ink, var(--color-text));
-    stroke-width: 1.5;
-  }
-
-  .release.is-limited.is-on .gap-arc {
-    stroke-width: 2;
-  }
-
-  .year {
-    fill: var(--color-text);
-    font-size: 13px;
-    font-weight: 500;
-    text-anchor: middle;
-    dominant-baseline: hanging;
-    font-variant-numeric: tabular-nums;
+  .release.is-limited.is-on .mark {
+    stroke-width: 2.35;
   }
 
   .callout {
@@ -453,6 +617,7 @@ const years = [2024, 2025, 2026].map((year) => {
   @media (prefers-reduced-motion: reduce) {
     .month-mark,
     .month-mark.is-open,
+    .month-axis-label,
     .callout,
     .callout.is-open {
       transition: none;
@@ -461,6 +626,7 @@ const years = [2024, 2025, 2026].map((year) => {
 
   .callout-line {
     fill: none;
+    stroke: var(--color-text);
     stroke-width: 1.25;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -477,25 +643,48 @@ const years = [2024, 2025, 2026].map((year) => {
     dominant-baseline: text-before-edge;
   }
 
+  @media (max-width: 819px) {
+    .chart-scroll {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+    }
+
+    .chart-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .chart-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    :global([data-theme="dark"]) .chart-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .chart-inner {
+      min-width: 760px;
+    }
+
+    .lab-header {
+      position: static;
+    }
+  }
+
   @media (max-width: 640px) {
     .models-head h2 {
       font-size: 1.5rem;
     }
 
-    .lab-names {
-      width: 5.25rem;
-    }
-
     .lab-name {
       font-size: 0.8125rem;
-      padding-right: 0.55rem;
     }
   }
 </style>
 
 <script>
   const SVG_NS = 'http://www.w3.org/2000/svg';
-  const LINE_LIMIT = 300;
+  const LINE_LIMIT = 280;
 
   function estimate(text: string) {
     let width = 0;
@@ -530,54 +719,68 @@ const years = [2024, 2025, 2026].map((year) => {
     if (!root || root.dataset.bound === '1') return;
     root.dataset.bound = '1';
 
-    const svg = root.querySelector('svg');
+    const svg = root.querySelector<SVGSVGElement>('svg.plot');
     const callout = root.querySelector<SVGGElement>('[data-callout]');
     const calloutLine = root.querySelector<SVGPathElement>('[data-callout-line]');
     const calloutBg = root.querySelector<SVGRectElement>('[data-callout-bg]');
     const calloutText = root.querySelector<SVGTextElement>('[data-callout-text]');
-    if (!svg || !callout || !calloutLine || !calloutBg || !calloutText) return;
+    const monthMark = root.querySelector<SVGGElement>('[data-month-mark]');
+    const monthBar = root.querySelector<SVGRectElement>('[data-month-bar]');
+    if (!svg || !callout || !calloutLine || !calloutBg || !calloutText || !monthMark || !monthBar) {
+      return;
+    }
 
     const dots = [...svg.querySelectorAll<SVGGElement>('.release')];
+    const monthLabels = new Map<number, SVGTextElement>();
+    const bands: Array<{ row: number; top: number; height: number }> = [];
+    for (const label of svg.querySelectorAll<SVGTextElement>('[data-month-row]')) {
+      const row = Number(label.dataset.monthRow);
+      monthLabels.set(row, label);
+      bands.push({ row, top: Number(label.dataset.top), height: Number(label.dataset.height) });
+    }
+    bands.sort((a, b) => a.top - b.top);
+
     const svgWidth = svg.viewBox.baseVal.width;
-    const monthMark = svg.querySelector<SVGGElement>('[data-month-mark]');
-    const monthBar = svg.querySelector<SVGRectElement>('[data-month-bar]');
-    const monthLabel = svg.querySelector<SVGTextElement>('[data-month-label]');
-    if (!monthMark || !monthBar || !monthLabel) return;
+    const svgHeight = svg.viewBox.baseVal.height;
+    const axisW = Number(svg.dataset.axisW);
+    const padR = Number(svg.dataset.padR);
+    const trackTop = Number(svg.dataset.trackTop);
 
-    const padL = Number(svg.dataset.padL);
-    const pitch = Number(svg.dataset.pitch);
-    const monthCount = Number(svg.dataset.months);
-    const barTop = Number(svg.dataset.barTop);
-    const barBottom = Number(svg.dataset.barBottom);
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let pinned: SVGGElement | null = null;
+    let activeMonthRow = -1;
 
-    function columnFromEvent(event: PointerEvent) {
+    function rowFromEvent(event: PointerEvent | MouseEvent) {
       const point = svg.createSVGPoint();
       point.x = event.clientX;
       point.y = event.clientY;
       const matrix = svg.getScreenCTM();
       if (!matrix) return -1;
       const local = point.matrixTransform(matrix.inverse());
-      const col = Math.floor((local.x - padL) / pitch);
-      if (col < 0 || col >= monthCount) return -1;
-      if (local.y < 0 || local.y > barBottom + 8) return -1;
-      return col;
+      if (local.x < axisW || local.x > svgWidth - padR) return -1;
+      // Bands have uneven heights, so find the one containing the pointer.
+      const band = bands.find((item) => local.y >= item.top && local.y < item.top + item.height);
+      return band ? band.row : -1;
     }
 
-    function showMonth(col: number) {
-      if (col < 0) {
+    function showMonth(row: number) {
+      if (activeMonthRow !== row) {
+        if (activeMonthRow >= 0) {
+          monthLabels.get(activeMonthRow)?.classList.remove('is-active');
+        }
+        activeMonthRow = row;
+        if (row >= 0) {
+          monthLabels.get(row)?.classList.add('is-active');
+        }
+      }
+      const band = row >= 0 ? bands.find((item) => item.row === row) : undefined;
+      if (!band) {
         monthMark.classList.remove('is-open');
         return;
       }
-      const x = padL + col * pitch;
-      monthBar.setAttribute('x', String(x));
-      monthBar.setAttribute('y', String(barTop));
-      monthBar.setAttribute('width', String(pitch));
-      monthBar.setAttribute('height', String(barBottom - barTop));
-      monthLabel.setAttribute('x', String(x + pitch / 2));
-      monthLabel.setAttribute('y', String(barTop - 6));
-      monthLabel.textContent = monthNames[col % 12];
+      monthBar.setAttribute('x', String(axisW));
+      monthBar.setAttribute('y', String(band.top));
+      monthBar.setAttribute('width', String(svgWidth - axisW - padR));
+      monthBar.setAttribute('height', String(band.height));
       monthMark.classList.add('is-open');
     }
 
@@ -608,26 +811,29 @@ const years = [2024, 2025, 2026].map((year) => {
         const measured = calloutText.getBBox();
         const textHeight = Math.max(measured.height, 16);
 
-        let top = cy - 34 - textHeight;
-        const lowestTop = cy - 12 - textHeight;
-        if (top < 24) top = Math.max(24, lowestTop);
+        let top = cy - textHeight / 2 - 12;
+        if (top < trackTop + 4) {
+          top = Math.min(cy + 10, svgHeight - textHeight - 6);
+        } else if (top + textHeight > svgHeight - 6) {
+          top = svgHeight - textHeight - 6;
+        }
 
-        const run = 22;
-        const stub = 12;
-        const leaderY = top + Math.min(12, textHeight * 0.55);
+        const run = 18;
+        const stub = 10;
+        const leaderY = top + Math.min(11, textHeight * 0.5);
         const elbowX = cx + sign * run;
         const stubX = elbowX + sign * stub;
         const dx = elbowX - cx;
         const dy = leaderY - cy;
         const length = Math.hypot(dx, dy) || 1;
-        const x0 = cx + (dx / length) * 7.2;
-        const y0 = cy + (dy / length) * 7.2;
+        const x0 = cx + (dx / length) * 7.5;
+        const y0 = cy + (dy / length) * 7.5;
         calloutLine.setAttribute(
           'd',
           `M ${x0.toFixed(1)} ${y0.toFixed(1)} L ${elbowX.toFixed(1)} ${leaderY.toFixed(1)} L ${stubX.toFixed(1)} ${leaderY.toFixed(1)}`,
         );
 
-        const textX = stubX + sign * 5;
+        const textX = stubX + sign * 6;
         calloutText.setAttribute('x', String(textX));
         calloutText.setAttribute('y', String(top));
         for (const tspan of calloutText.querySelectorAll('tspan')) tspan.setAttribute('x', String(textX));
@@ -637,14 +843,14 @@ const years = [2024, 2025, 2026].map((year) => {
       callout.style.transformOrigin = `${cx}px ${cy}px`;
       callout.classList.add('is-open');
       let box = place(1);
-      if (box.x + box.width > svgWidth - 6) box = place(-1);
-      if (box.x < 4) box = place(1);
+      if (box.x + box.width > svgWidth - 8) box = place(-1);
+      if (box.x < axisW + 4) box = place(1);
 
-      calloutBg.setAttribute('x', String(box.x - 3));
-      calloutBg.setAttribute('y', String(box.y - 1));
-      calloutBg.setAttribute('width', String(Math.max(box.width, 1) + 6));
-      calloutBg.setAttribute('height', String(Math.max(box.height, 1) + 3));
-      showMonth(Number(dot.dataset.col));
+      calloutBg.setAttribute('x', String(box.x - 5));
+      calloutBg.setAttribute('y', String(box.y - 2));
+      calloutBg.setAttribute('width', String(Math.max(box.width, 1) + 10));
+      calloutBg.setAttribute('height', String(Math.max(box.height, 1) + 4));
+      showMonth(Number(dot.dataset.row));
     }
 
     function hide() {
@@ -660,22 +866,25 @@ const years = [2024, 2025, 2026].map((year) => {
     }
 
     function move(dot: SVGGElement, key: string) {
-      const row = Number(dot.dataset.row);
       const col = Number(dot.dataset.col);
-      const inRow = dots.filter((item) => Number(item.dataset.row) === row);
-      if (key === 'Home') return focusDot(inRow[0]);
-      if (key === 'End') return focusDot(inRow[inRow.length - 1]);
-      if (key === 'ArrowLeft' || key === 'ArrowRight') {
-        const index = inRow.indexOf(dot);
-        const next = inRow[index + (key === 'ArrowRight' ? 1 : -1)];
+      const cy = Number(dot.dataset.cy);
+      // The top of a column is the newest release, so sort by y rather than DOM order.
+      const inCol = dots
+        .filter((item) => Number(item.dataset.col) === col)
+        .sort((a, b) => Number(a.dataset.cy) - Number(b.dataset.cy));
+      if (key === 'Home') return focusDot(inCol[0]);
+      if (key === 'End') return focusDot(inCol[inCol.length - 1]);
+      if (key === 'ArrowUp' || key === 'ArrowDown') {
+        const index = inCol.indexOf(dot);
+        const next = inCol[index + (key === 'ArrowDown' ? 1 : -1)];
         if (next) focusDot(next);
         return;
       }
-      const targetRow = row + (key === 'ArrowDown' ? 1 : -1);
-      const candidates = dots.filter((item) => Number(item.dataset.row) === targetRow);
+      const targetCol = col + (key === 'ArrowRight' ? 1 : -1);
+      const candidates = dots.filter((item) => Number(item.dataset.col) === targetCol);
       if (!candidates.length) return;
       candidates.sort(
-        (a, b) => Math.abs(Number(a.dataset.col) - col) - Math.abs(Number(b.dataset.col) - col),
+        (a, b) => Math.abs(Number(a.dataset.cy) - cy) - Math.abs(Number(b.dataset.cy) - cy),
       );
       focusDot(candidates[0]);
     }
@@ -683,10 +892,10 @@ const years = [2024, 2025, 2026].map((year) => {
     svg.addEventListener('pointermove', (event) => {
       if (event.pointerType === 'touch') return;
       root.classList.remove('is-instant');
-      const col = columnFromEvent(event);
-      showMonth(col);
+      const row = rowFromEvent(event);
+      showMonth(row);
       const onDot = (event.target as Element | null)?.closest?.('.release');
-      if (pinned && !onDot && Number(pinned.dataset.col) !== col) {
+      if (pinned && !onDot) {
         pinned = null;
         clearMark();
       }
@@ -714,8 +923,8 @@ const years = [2024, 2025, 2026].map((year) => {
     });
 
     svg.addEventListener('click', (event) => {
-      const col = columnFromEvent(event);
-      if (col >= 0) showMonth(col);
+      const row = rowFromEvent(event);
+      if (row >= 0) showMonth(row);
       const dot = (event.target as Element | null)?.closest?.('.release');
       if (dot instanceof SVGGElement) {
         pinned = dot;
