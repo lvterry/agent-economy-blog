@@ -110,6 +110,7 @@ export const modelReleases: ModelRelease[] = [
   { lab: 'GLM', date: '2026-04-10', models: 'GLM-5.1' },
   { lab: 'GLM', date: '2026-06-23', models: 'GLM-5.2' },
   { lab: 'GLM', date: '2026-08-14', models: 'GLM-5.3 / GLM-5.3-Flash' },
+  { lab: 'GLM', date: '2026-11-23', models: 'GLM-5.4' },
 
   { lab: 'Kimi', date: '2025-07-11', models: 'Kimi K2' },
   { lab: 'Kimi', date: '2025-11-06', models: 'Kimi K2 Thinking' },
